@@ -1,0 +1,591 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{C}{>{$}c<{$}} % math-mode version of "l" column type
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{R}{>{$}r<{$}} % math-mode version of "l" column type
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W4-2}
+\author{fat}
+% \date{\today}
+\date{March 14, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W4-2}
+
+\begin{dfn}
+	Let $T \in \mathcal{B}(X, Y)$.
+	We define the \textbf{transpose} $T^t: Y^* \to X^*$ by 
+	\[
+		T^t y^*(x) = y^*(Tx) \sfa y^* \in Y^*, \sfa x \in X
+	\]
+\end{dfn}
+
+Some people write 
+\[
+	\langle x^*, x\rangle := x^*(x), x^* \in X^*, x \in X
+\]
+\[
+	\langle T^t y^*, x \rangle = \langle y^*, Tx \rangle
+\]
+Exercises:
+\begin{enumerate}
+	\item[(a)] $T^t \in \mathcal{B}(Y^*, X^*)$. Furthermore, $\|T^t\| = \|T\|$
+		
+	\item[(b)] $T \mapsto T^t$ is linear from $\mathcal{B}(X, Y)$ to $\mathcal{B}(Y^*, X^*)$
+		
+	\item[(c)] If $S \in \mathcal{B}(Y, Z)$, then $(ST)^t = T^t S^t$
+\end{enumerate}
+
+This transpose extends the one in finite dimensions.
+Let $T:\mathbb{C}^n \to \mathbb{C}^m$ be linear, and let $\{e_j\}, \{f_j\}$ be the canonical basis for $\mathbb{C}^n, \mathbb{C}^m$, respectively.
+If $x \in \sum_j \alpha_j e_j$, then $\exists a_{kj}$ s.t. $T x = \sum_{k, j} a_{kj} \alpha_j f_k$.
+$T$ is represented by the matrix $(a_{kj})$.
+Can also represent $T^t$ as a matrix by using the dual canonical bases $\{f_j^*\}$ and $\{e_j^*\}$.
+For $y^* = \sum_{j} \beta_j f_j^*, T^t y^* = \sum b_{lj} \beta_j e_l^*$.
+\[
+	T^t f_k^*(e_j) = \sum_{l} b_{lk} e_l^*(e_j) = b_{jk}
+\]
+\[
+	T e_j = \sum_l a_{lj} f_l
+\]
+\[
+	f_k^*(T e_j) = a_{kj}
+\]
+\[
+	\Rightarrow a_{kj} = b_{jk}
+\]
+
+\begin{dfn}
+	$T \in \mathcal{B}(X, Y)$, the \textbf{range} $R(T) = T(X)$, the \textbf{null space} $N(T) = \{x \in X: T x= 0\}$.
+\end{dfn}
+
+\begin{dfn}
+	For $Y \subseteq X$, we define its \textbf{annihilator} to be 
+	\[
+		Y^{\perp} = \{x^* \in X^*: x^*(y) = 0 \sfa y \in Y\}
+	\]
+	For a subspace $G$ of $X^*$, its annihilator is 
+	\[
+		^\perp G = \{x \in X: x^*(x) = 0 \sfa x^* \in G\}
+	\]
+\end{dfn}
+
+Check: 
+\begin{itemize}
+	\item The annihilators in both cases are closed subspaces.	
+
+	\item $Y \subseteq ^\perp (Y^\perp), G \subseteq (^\perp G)^\perp$.
+\end{itemize}
+
+\begin{lem}
+	Let $X$ be a normed space, and let $Y$ be a \underline{closed} subspace of $X$.
+	Then $Y = ^\perp(Y^\perp)$.
+	If $X$ is reflexive and $G$ is a closed subspace of $X^*$, then $G = (^\perp G)^\perp$.
+\end{lem}
+
+\begin{proofs}
+	It suffices to show $^\perp(Y^\perp) \subseteq Y$.
+	Let $x \in ^\perp(Y^\perp)$.
+	Then $\Lambda x = 0 \sfa \Lambda \in Y^\perp$.
+	Such a $\Lambda$ has to vanish on $Y$.
+	If $x \notin Y$, then $\exists \Lambda \in Y^\perp$ s.t. $\Lambda x = \text{dist}(x, Y) \neq 0$.
+	So $x \in Y$.
+	For the other equality, let $\Lambda \in (^\perp G)^\perp$.
+	Then $\Lambda x = 0 \sfa x \in ^\perp G$.
+	If $\Lambda \notin G$, then $\exists x \in X \simeq X^{**}$ s.t. 
+	\[
+		\Lambda x = \text{dist} (\Lambda, G) \neq 0 \text{ and } x \in ^\perp G
+	\]
+	Impossible.
+	So $\Lambda \in G$.
+\end{proofs}
+
+\begin{prop}
+	Let $X, Y$ be normed spaces and $T \in \mathcal{B}(X, Y)$.
+	Then 
+	\[
+		N(T^t) = \overline{R(T)}^\perp
+	\]
+	\[
+		N(T) = ^\perp \overline{R(T^t)}
+	\]
+	\[
+		^\perp N(T^t) = \overline{R(T)}
+	\]
+	\[
+		N(T)^\perp = (^\perp \overline{R(T^t)})^\perp
+	\]
+\end{prop}
+
+\begin{proofs}
+	The $3^{rd}$ and $4^{th}$ follows from the first 2 by Lemma.
+	We will only show $N(T^t) = \overline{R(T)}^\perp$.
+	Let $y^* \in N(T^t)$.
+	By definition, $T^t y^* = 0$
+	$\Rightarrow y^*(T x) = T^t y^*(x) = 0 \sfa x \in X$.
+	$y^*$ vanishes on $R(T)$.
+	By continuity, $y^*$ vanishes on $\overline{R(T)}$.
+	So $y^* \in \overline{R(T)}^\perp$.
+	Reverse the reasoning gives $\supseteq$.
+\end{proofs}
+
+\begin{cor}
+	Let $X, Y$ be normed and $T \in \mathcal{B}(X, Y)$.
+	Then $R(T)$ is dense in $Y \Leftrightarrow T^t$ is injective.
+\end{cor}
+
+\begin{proofs}
+	$T^t$ injective $\Leftrightarrow N(T^t) = \{0\} \Leftrightarrow \overline{R(T)}^\perp = \{0\} \Leftrightarrow \overline{R(T)} = Y$.
+\end{proofs}
+
+\section*{Examples of linear operators}
+
+Let $x = (x_n)$ be a sequence.
+If $T$ is a linear operator that maps sequences to sequences, we can write $T x = y = (y_n)$.
+Each $y_n$ depends linearly on $x$.
+Formally, we can write 
+\[
+	y_n = \sum_{j = 1}^\infty c_{jn} x_j
+\]
+Depending on which sequence space and the growth of $c_{jn}, T$ defines a bounded linear operator or an unbounded one.
+
+\begin{ex}
+	Two examples.
+	\begin{enumerate}
+		\item[(a)] Let $(a_n)$ be a sequence s.t. $\lim_{n \to \infty} a_n = 0, a_n \neq 0 \sfa n$.
+			Define $T: \ell^p \to \ell^p$ by 
+			\[
+				T x= (a_1 x_1, a_2x_2,...).
+			\]
+			\[
+				\|T x\|_p \leq \|a\|_\infty \|x\|_p
+			\]
+			so $T$ is bounded.
+			How about $T^{-1}$?
+	\end{enumerate}
+\end{ex}
+
+\begin{dfn}
+	We say that $T \in \mathcal{B}(X, Y)$ is \textbf{invertible} if it is bijective and $T^{-1} \in \mathcal{B}(Y, X)$.
+\end{dfn}
+
+The $T$ above is not invertible.
+Why? 
+If $T^{-1}$ exists, then $T^{-1} e_j = a_j^{-1} e_j \sfa j$.
+If $T^{-1} \in \mathcal{B}(\ell^p)$, then
+\[
+	\|a_j^{-1} e_j \|_p = |a_j|^{-1} \leq \|T^{-1}\|
+\]
+$\Rightarrow (|a_j|^{-1})$ is bounded, impossible.
+
+\setcounter{ex}{0}
+\begin{ex}
+	\begin{enumerate}
+		\item[(b)] Right shift operator $S_R : \ell^p \to \ell^p$
+			\[
+				S_R(x_1, x_2, x_3, ...) = (0, x_1, x_2, x_3, ...)
+			\]
+			Check $S_R \in \mathcal{B}(\ell^p), \|S_R\| = 1$.
+			$S_R$ is not onto, so $S_R$ is not invertible.
+	\end{enumerate}
+\end{ex}
+
+\section*{Integral operators}
+
+Consider 1-dimensional case for simplicity.
+Fix $K \in C^0([a, b] \times [a, b])$ (can be relaxed)
+$K$ is usually called the integral kernel.
+Define 
+\[
+	T f(x) = \int_a^b K(x, y) f(y) \mathrm{d} y \sfa f \in C^0([a, b])
+\]
+$T$ is linear and bounded on $C^0([a, b])$.
+\[
+	|T f(x)| \leq \int_a^b |K(x, y)||f(y) \mathrm{d} y \leq \|f\|_\infty \int_a^b |K(x, y)| \mathrm{d} y
+\]
+\[
+	\leq (\sup_x \int_a^b |K(x, y)| \mathrm{d} y) \|f\|_\infty
+\]
+
+\[
+	\Rightarrow \|T f \|_\infty \leq M \|f\|_\infty \Rightarrow \|T\| \leq M
+\]
+(with more effort, can show $\|T\| = M$.)
+Can define integral operators on other spaces, e.g. $L^p$-spaces.
+For $1 \leq p < \infty$, 
+\[
+	\|T f\|_{L^p}^p = \int_a^b \left|\int_a^b K(x, y) f(y) \mathrm{d} y\right|^p \mathrm{d} x
+\]
+\[
+	\leq (b- a) \|K\|_\infty^p\left(\int_a^b |f(y)| \mathrm{d} y \right)^p
+\]
+by Holder's inequality.
+\[
+	\leq (b - a) \|K\|_\infty^p \left( \|f\|_{L^p} (b - a)^{\frac{1}{q}} \right)^p
+\]
+\[
+	= (b - a)^{1 + \frac{p}{q}} \|K\|_\infty^p \|f\|_{L^p}^p = (b - a)^p \|K\|_\infty^p \|f\|_{L^p}^p
+\]
+$\Rightarrow T \in \mathcal{B}(L^p([a, b]))$.
+
+\section*{Differential operator}
+
+$X = C^1([0, 1])$ with sup norm
+$X$ is a subspace of $C^0([0, 1])$, but $X$ is not a Banach space.
+$\dv{x}: X \to C^0([0, 1])$ is linear but unbounded. (e.g. $f_k(x) = \sin(kx)$)
+
+\section*{Uniform boundedness principle/Banach-Steinhaus theorem}
+
+\begin{thm}
+	Let $\mathcal{F}$ be a family of bounded linear operators from a Banach space $X$ to a normed space $Y$.
+	Suppose that $\mathcal{F}$ is bounded pointwise:
+	\[
+		\forall x \in X, \exists \text{ a constant } C_x \text{ s.t. }\|T x\| \leq C_x \sfa T \in \mathcal{F}
+	\]
+	Then $\exists M > 0$ s.t. $\|T\| \leq M \sfa T \in \mathcal{F}$.
+\end{thm}
+
+\begin{lem}
+	Let $T:X \to Y$ be linear, where $X, Y$ are normed.
+	Fix $x_0 \in X$. Suppose that $\exists c, \rho > 0$ s.t. $\forall x \in B(x_0, \rho), \|T x\| \leq c$.
+	Then $\|T\| \leq \frac{2c}{\rho}$
+\end{lem}
+
+\begin{proofs}
+	By linearity, $B(0, \rho) = B(x_0, \rho) - x_0$.
+	If $v \in B(0, \rho)$, then $v + x_0 \in B(x_0, \rho)$.
+	\[
+		\|T v \| \leq \|T(v + x_0)\| + \|T x_0 \| \leq 2c
+	\]
+	\[
+		\Rightarrow \|T\| \leq \frac{2c}{\rho}
+	\]
+\end{proofs}
+
+\begin{proofs}[Proof of UBP]
+	Recall: $M$ complete metric space.
+	If $M$ is a countable union of closed sets, then at least one of them has nonempty interior.
+	Let $E_k = \{x \in X: \|T x \| \leq k \sfa T \in \mathcal{F}\}$.
+	Then $X = \bigcup_{k = 1}^\infty E_k$.
+	Each $E_k$ is closed.
+	$X$ is complete.
+	At least one of the $E_k$'s has nonempty interior.
+	By the Lemma, $\exists M > 0$ s.t. $\|T \| \leq M \sfa T \in \mathcal{F}$.
+\end{proofs}
+
+The uniform boundedness principle may not hold if the completeness assumption of $X$ is removed.
+\par Alternative formulation:
+
+\begin{dfn}
+	A vector $x_0$ is called a \textbf{resonance point} for a family $\mathcal{F}$ of bounded linear operators if $\sup_{T \in \mathcal{F}} \|T x_0\| = \infty$.
+\end{dfn}
+
+\begin{thm}
+	Let $\mathcal{F}$ be a family of bounded linear operators from $X$ to $Y$, where $X$ is Banach and $Y$ is normed.
+	Suppose that $\sup_{T \in \mathcal{F}} \|T\| = \infty$.
+	Then the resonance points for $\mathcal{F}$ are dense in $X$.
+\end{thm}
+
+\begin{proofs}
+	Suppose not.
+	$\exists$ a ball $\overline{B(x_0, \rho)}$ on which $\mathcal{F}$ is bounded pointwise.
+	$\forall x \in \overline{B(x_0, \rho)}, \|T x\| \leq C x \sfa T \in \mathcal{F}$.
+	Pick $0 \neq x \in X$.
+	Then 
+	\[
+		z := \frac{\rho x}{\|x\|} + x_0 \in \overline{B(x_0, \rho)}
+	\]
+	\[
+		\Rightarrow \|T z \| = \left\|T\left(\frac{\rho x}{\|x\|} + x_0 \right) \right\|
+	\]
+	\[
+		\Rightarrow \|T x\| \leq \frac{C z+ \|T x_0\|}{\rho} \|x\| \sfa T \in \mathcal{F}
+	\]
+	$\Rightarrow \mathcal{F}$ is bounded pointwise on $X$.
+	By uniform boundedness principle, $\exists M > 0$ s.t. $\|T\| \leq M \sfa T \in \mathcal{F}$. Impossible!
+\end{proofs}
+
+\section*{Interlude: Fourier series}
+
+Let $f \in L_{\text{loc}}^1( \mathbb{R})$ of period $2 \pi$.
+We would like to express $f$ as a series of sines and cosines.
+\[
+	f(x) \sim \frac{a_0}{2} + \sum_{n = 1}^\infty (a_n \cos nx + b_n \sin nx)
+\]
+In the complex form, 
+\[
+	f(x) \sim \sum_{n =- \infty}^\infty c_n e^{inx}
+\]
+Question: What should $c_n$ be if we want
+\[
+	f(x) = \sum_{n = -\infty}^\infty c_n e^{inx}?
+\]
+Forget about the convergence issue at this point.
+Fact: 
+\[
+	\frac{1}{2 \pi} \int_{- \pi}^\pi e^{ikx} \mathrm{d} x = 
+	\begin{cases}
+		1 \text{ if } k = 0\\
+		0 \text{ if } k \neq 0
+	\end{cases}
+\]
+If $f(x) = \sum_{n = -\infty}^\infty c_n e^{inx}$, then
+\[
+	\frac{1}{2 \pi}\int_{- \pi}^\pi f(x) e^{-ikx} \mathrm{d} x "=" \sum_{n = -\infty}^\infty c_n \frac{1}{2 \pi} \int_{- \pi}^\pi e^{inx} \cdot e^{-ikx} \mathrm{d} x = c_k.
+\]
+We (expectedly) call the left hand side $\hat{f}(k)$, the $k$-th Fourier coefficient of $f$.
+\[
+	f(x) \sim \sum_{n = -\infty}^\infty \hat{f}(x) e^{-inx}
+\]
+When does the Fourier series converge?
+If yes, is it equal to $f$?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+

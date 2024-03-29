@@ -1,0 +1,580 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{C}{>{$}c<{$}} % math-mode version of "l" column type
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{R}{>{$}r<{$}} % math-mode version of "l" column type
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W4-1}
+\author{fat}
+% \date{\today}
+\date{March 12, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W4-1}
+
+\par Recall:
+$BV_0([a, b])$: set of all functions $\alpha$ of bounded variation on $[a, b]$ s.t. $\alpha(a) = 0$.
+$V([a, b]) = \{\alpha \in BV_0([a, b]): \alpha \text{ is right-continuous on } [a, b)\}$.
+Norm on $V([a, b]):$ Total variation.
+\begin{thm}[Riesz representation theorem]
+	$\exists$ an isometric linear isomorphism from $(C^0([a, b]))^*$ to $V([a, b])$.
+\end{thm}		
+
+\begin{rem}
+	$\exists$ a much more general version of Riesz representation.
+	$X$ is compact Hausdorff space.
+	$(C^0(X))^*$ can be identified with a space of nice Borel measures on $X$.
+	For $X = [a, b]$, the integrals can also be represented as R-S integrals.
+	($(\alpha(x) = \mu([a, b]), \mu([c, d]) = \alpha(d) - \alpha(c)$)
+	(See Rudin's "Real and Complex Analysis", Chapter 2.)
+\end{rem}
+
+\begin{proofs}
+	Let $\Lambda \in (C^0([a, b]))^*$.
+	Want: find $\alpha \in V([a, b])$ s.t. 
+	\[
+		\Lambda f = \int f \mathrm{d} \alpha \sfa f \in C^0([a, b])
+	\]
+	We can "extract" $\alpha$ by using characteristic functions:
+	\[
+		\Lambda(\chi_{[a, x]}) = \int_a^b \chi_{[a, x]} \mathrm{d} \alpha = \int_a^x \mathrm{d} \alpha = \alpha(x)
+	\]
+	Problem: $\chi_{[a, x]}$ is not continuous!
+	We use Hahn-Banach to extend $\Lambda$.
+	$C^0([a, b]) \subseteq C_b([a, b])$, where $C_b([a, b])$ is the space of all bounded functions on $[a, b]$.
+	$\exists$ an extension $\tilde{\Lambda} \in C_b([a, b])^*$ of $\Lambda$ with $\|\tilde{\Lambda}\| = \| \Lambda \|$.
+	Define $\alpha(x) = \tilde{\Lambda}(\chi_{[a, x]})$ for $x \in (a, b]$ where $\alpha(a) = 0$.
+
+	\begin{clm}
+		$\alpha$ is of bounded variation and $T_\alpha(a, b) \leq \| \Lambda \|$.
+	\end{clm}
+
+	\begin{proofs}
+		Let $P = \{x_0, ..., x_n\}$ be a partition of $[a, b]$.
+		For each $j, \exists \theta_j$ s.t.
+		\[
+			|\alpha(x_j) - \alpha(x_{j - 1})| = e^{i \theta_j}(\alpha(x_j) - \alpha(x_{j - 1}))
+		\]
+		\[
+			\Rightarrow \sum_{j = 1}^n |\alpha(x_j) - \alpha(x_{j - 1})| = \sum_{j = 1}^n e^{i \theta_j}(\alpha(x_j) - \alpha(x_{j - 1}))
+		\]
+		\[
+			 = e^{i \theta_1} \alpha(x_1) + \sum_{j = 2}^n e^{i \theta_j} (\alpha(x_j) - \alpha(x_{j - 1}))
+		 \]
+		\[
+			= e^{i \theta_1} \tilde{\Lambda}(\chi_{[a, x_1]}) + \sum_{j = 2}^n e^{i \theta_j}(\tilde{\Lambda}(\chi_{[a, x_j]}) - \tilde{\Lambda}(\chi_{[a, x_{j - 1}]}))
+		\]
+		\[
+			= \tilde{\Lambda}(e^{i \theta_1} \chi_{[a, x_1]}) + \sum_{j = 2}^n \tilde{\Lambda}(e^{i \theta_j} \chi_{(x_{j - 1}, x_j]})
+		\]
+		\[
+			= \tilde{\Lambda}(e^{i \theta_1} \chi_{[a, x_1]} + \sum_{j = 2}^n e^{i \theta_j} \chi_{(x_{j - 1}, x_j]})
+		\]
+		$\forall x \in [a, b], \exists$ a unique interval $[a,x_i]$ of $(x_{j - 1}, x_j]$ that contains $x$.
+		So $h(x) = e^{i \theta_{j_0}}$ for some $j_0$.
+		$|h(x)| = 1 \sfa x \in [a, b]$.
+		$\Rightarrow \|h\|_{\infty} = 1$.
+		\[
+			\sum_{j = 1}^n |\alpha(x_j) - \alpha(x_{j - 1})| \leq \|\tilde{\Lambda}\|\|h\|_{\infty} = \|\Lambda\|
+		\]
+		$\Rightarrow T_\alpha(a, b) \leq \|\Lambda\|$.
+		$\Rightarrow \alpha$ is of bounded variation.
+	\end{proofs}
+	Define $\Psi:(C^0([a, b]))^* \to V([a, b])$ by $\Psi(\Lambda) = \tilde{\alpha}$, where $\tilde{\alpha}$ is the right-continuous modification of $\alpha$ with $\tilde{\alpha(a)} = 0$.
+	Then $T_{\tilde{\alpha}}(a, b) = T_\alpha(a, b) \leq \|\Lambda \|$.( The "=" is quite subtle, need to check)
+	$\Rightarrow T_{\Psi(\Lambda)}(a, b) \leq \|\Lambda\| \sfa \Lambda \in (C^0([a, b]))^*$.
+	\begin{clm}
+		$\Lambda f = \Lambda_{\tilde{\alpha}} f := \int f \mathrm{d} \tilde{\alpha} \sfa f \in C^0([a, b])$.
+	\end{clm}
+	If Claim holds, recalling that we defined 
+	\[
+		\Phi(\alpha) = \Lambda_\alpha = \int \cdot \mathrm{d} \alpha
+	\]
+	then
+	\[
+		\Phi(\Psi(\Lambda)) = \Phi(\tilde{\alpha}) = \Lambda_{\tilde{\alpha}} = \Lambda
+	\]
+	$\Phi$ is surjective.
+	Moreover, $T_\alpha(a, b) \leq \|\Phi(\alpha)\| \leq T_\alpha(a, b)$.
+	$\Rightarrow \Phi$ is an isometry.
+	$\Psi$ is an isometric linear isomorphism.
+
+	\begin{proofs}[Proof of Claim]
+		Let $\epsilon > 0$, and let $f \in C^0([a, b])$.
+		$f$ is R-S integrable w.r.t. $\alpha, \exists \delta_1 > 0$ s.t.
+		\[
+			\left|\int f \mathrm{d} \alpha - \sum_{j = 1}^n f(t_j)(\alpha(x_j) - \alpha(x_{j - 1}))\right| < \epsilon
+		\]
+		whenever $\text{mesh}(P) < \delta_1$.
+		Similarly to above, we can write
+		\[
+			\sum_{j = 1}^n f(t_j)(\alpha(x_j) - \alpha(x_{j - 1})) = \tilde{\Lambda}\left(f(t_1) \chi_{[a, x_j]} + \sum_{j = 2}^n f(t_j) \chi_{(x_j, x_{j - 1}]}\right) = \tilde{\Lambda} \tilde{f}
+		\]
+		\[
+			\Rightarrow \left|\int f \mathrm{d} \alpha - \tilde{\Lambda}(\tilde{f})\right| < \epsilon ... (*)
+		\]
+		On the other hand, $f$ is uniformly continuous on $[a ,b]$.
+		$\exists \delta_2 > 0$ s.t.
+		\[
+			|f(x) - f(y) | < \epsilon \sfa x, y \in [a, b] \text{ with }|x - y| < \delta_2
+		\]
+		Take $\delta = \min\{\delta_1, \delta_2\}$.
+		Let $P$ be a partition s.t. $\text{mesh}(P) < \delta$.
+		Then
+		\[
+			f(x) - \tilde{f}(x) =  f(x) \left(\chi_{[a, x_1]}(x) + \sum_{j = 2}^n \chi_{(x_{j - 1}, x_j]}(x)\right) - \tilde{f}(x)
+		\]
+		\[
+			= (f(x) - f(t_1)) \chi_{[a, x_1]}(x) + \sum_{j = 2}^n(f(x) - f(t_j)) \chi_{(x_{j - 1}, x_j]}(x)
+		\]
+		So $\exists j_0$ s.t.
+		\[
+			|f(x) - \tilde{f}(x)| = |f(x) - f(t_{j_0})|
+		\]
+		\[
+			\Rightarrow \|f - \tilde{f}\|_{\infty} < \epsilon
+		\]
+		\[
+			|\tilde{\Lambda} f - \tilde{\Lambda}\tilde{f}| \leq \|\tilde{\Lambda}\|\|f - \tilde{f}\|_{\infty} < \epsilon \|\Lambda\|
+		\]
+		\[
+			\left|\int f \mathrm{d} \alpha - \tilde{\Lambda} f\right| \leq \left|\int f \mathrm{d} \alpha - \tilde{\Lambda}(\tilde{f})\right| + |\tilde{\Lambda}(\tilde{f}) - \tilde{\Lambda} f|
+		\]
+		Taking $\epsilon \to 0$, 
+		\[
+			\Lambda_{\tilde{\alpha}} f = \Lambda_\alpha f = \int f \mathrm{d} \alpha = \Lambda f
+		\]
+		This proves the claim.
+	\end{proofs}
+\end{proofs}
+
+\section*{Reflexive Spaces}
+
+If $X$ is normed space then so is $X^*$.
+We can consider $X^{**}$.
+$1 < p < \infty, (\ell^p)^{**} \simeq \ell^p$.
+$(c_0)^{**} \simeq (\ell^1)^* \simeq \ell^\infty$.
+It turns out that any vector in $X$ can be viewed as a vector in $X^{**}$.
+
+\begin{prop}
+	For each $x\in X$, we define a function $\tilde{x}$ on $X^*$.
+	(that is, $\tilde{x} \in L(X^*, \mathbb{C})$) by 
+	\[
+		\tilde{x}(\Lambda) = \Lambda x \sfa \Lambda \in X^*
+	\]
+	Then $\tilde{x} \in X^{**}, \|\tilde{x}\| = \|x\|$.
+	The mapping $J:x \mapsto \tilde{x}$ is an isometric linear map from $X$ to $X^{**}$, called the canonical identification.
+\end{prop}
+
+\begin{proofs}
+	Clearly $J$ is linear.
+	\[
+		|\tilde{x}(\Lambda)| = |\Lambda x | \leq \|x\| \|\Lambda\|
+	\]
+	\[
+		\Rightarrow \tilde{x} \in X^{**} \text{ and }\|\tilde{x}\| \leq \|x\|
+	\]
+	If $x = 0$, the equality holds.
+	If $x \neq 0$, by Hahn-Banach, $\exists \Lambda_0 \in X^*$ s.t. $\Lambda_0 x = \|x\|$ and $\|\Lambda_0\| = 1$.
+	\[
+		\Rightarrow \|x\| = \Lambda_0 x = \tilde{x}(\Lambda_0) \leq \|\tilde{x}\|\|\Lambda_0\| = \|\tilde{x}\|
+	\]
+	So $J$ is an isometry.
+\end{proofs}
+
+\begin{dfn}
+	A normed space is called \textbf{reflexive} if $J$ is an isometric linear isomorphism.
+\end{dfn}
+
+\begin{rem}
+	\begin{itemize}
+		\item To show a normed space is reflexive we only need to show that $J$ is surjective.
+
+		\item Reflexive $\Rightarrow X \simeq X^{**}$.
+			
+		\item $"\Leftarrow"$ is  not true in general.
+			$\exists$ a nonreflexive Banach space $X$ s.t. $\exists$ an isometric linear isomorphism from $X$ to $X^{**}$.(Of course cannot be $J$.)
+	\end{itemize}
+\end{rem}
+
+\begin{prop}
+	Let $1 < p < \infty$.
+	Then $\ell^p$ is reflexive.
+\end{prop}
+
+\begin{proofs}
+	Recall: For each $\Lambda \in (\ell^p)^*, \exists !y^{\Lambda} \in \ell^q$ s.t.
+	\[
+		\Lambda x = \sum_{j = 1}^\infty y_j^{\Lambda} x_j \sfa x \in \ell^p
+	\]
+	Let $\sigma \in (\ell^p)^{**}$.
+	Want to find $z \in \ell^p$ s.t. $\tilde{z} = \sigma$.
+	Define 
+	\[
+		\sigma_1 y^{\Lambda} := \sigma \Lambda
+	\]
+	where $\sigma_1 \in (\ell^q)^*$.
+	$\sigma_1$ is bounded.
+	Since $(\ell^q)^* \simeq \ell^p, \exists z \in \ell^p$ s.t.
+	\[
+		\sigma_1 y^{\Lambda} = \sum_{j =1}^\infty y_j^{\Lambda} z_j \sfa y^{\Lambda} \in \ell^q
+	\]
+	In other words,
+	\[
+		\sigma \Lambda = \sum_{j = 1}^\infty y_j^{\Lambda} z_j
+	\]
+	The canonical identification of $z$ is given by 
+	\[
+		\tilde{z}(\Lambda) = \Lambda z = \sum_{j = 1}^\infty y_j^{\Lambda} z_j
+	\]
+	$\Rightarrow \tilde{z} = \sigma$
+	$\Rightarrow \ell^p$ is reflexive.
+\end{proofs}
+
+Similarly, $L^p$ is reflexive for $1< p < \infty$.
+$p = 1$?
+General Banach spaces?
+
+\begin{prop}
+	A reflexive space is a Banach space.
+\end{prop}
+
+\begin{proof}
+	$X \simeq X^{**}$, which is complete.
+\end{proof}
+
+In particular, $(C^0([a, b]), \|\cdot\|_{L^p})$ is not reflexive for $1 \leq p < \infty$.
+
+\begin{prop}
+	If $X^*$ is separable, then $X$ is also separable.
+\end{prop}
+
+\begin{proofs}
+	Since $X^*$ is separable, 
+	\[
+		\{\Lambda \in X^*: \|\Lambda\| = 1\} \text{ is also separable.}
+	\]
+	Pick a countable dense subset $\{\Lambda_1, \Lambda_2, ...\}$.
+	For each $k, \exists x_k$ with $\|x_k\| = 1$ s.t. $|\Lambda_k x_k| \geq \frac{1}{2}$.
+	Let 
+	\[
+		E = \text{span} \{x_1, ...\}
+	\]
+	Then $E$ is separable.
+	\begin{clm}
+		$E = X$.
+	\end{clm}
+
+	\begin{proofs}
+		Suppose not. 
+		Pick $x_0 \in X \setminus E$.
+		By Hahn-Banach, $\exists \Lambda_0 \in X^*$ s.t. $\Lambda_0 = 0$ on $E$, $\|\Lambda_0\| = 1$.
+		Since $\{\Lambda_1, \Lambda_2, ...\}$ are dense, $\exists k_0$ s.t.
+		\[
+			\|\Lambda_0 - \Lambda_{k_0}\| < \frac{1}{4}
+		\]
+		Then 
+		\[
+			\frac{1}{2} \leq |\Lambda_{k_0} x_{k_0}| = | (\Lambda_{k_0} - \Lambda_0) x_{k_0}| \leq \|\Lambda_{k_0} - \Lambda_0\|\|x_{k_0}\| < \frac{1}{4}
+		\]
+		A contradiction.
+	\end{proofs}
+\end{proofs}
+
+$\ell^1$ is not reflexive.
+If it was, then $(\ell^1)^{**} = (\ell^\infty)^* \simeq \ell^1$.
+$\ell^1$ separable $\Rightarrow (\ell^\infty)^*$ is separable $\Rightarrow \ell^\infty$ separable, a contradiction.
+
+\section*{Bounded linear operators}
+
+Let $X, Y$ be normed spaces over $\mathbb{C}$.
+A linear operator $T:X \to Y$ is bounded if it maps a bounded set in $X$ to a bounded set in $Y$.
+Check: A linear operator is bounded $\Leftrightarrow$ it is continuous.
+\[
+	\mathcal{B}(X, Y) = \{\text{bounded linear operators from }X \text{ to }Y \}
+\]
+$X^* = \mathcal{B}(X, \mathbb{C})$
+If $X = Y$, we write $\mathcal{B}(X) = \mathcal{B}(X, X)$.
+We can also define a norm on $\mathcal{B}(X, Y)$:
+For $T \in \mathcal{B}(X, Y)$, define its operator norm by 
+\[
+	\|T\| = \sup_{x \neq 0} \frac{\|T x \|_Y}{\|x\|_X} = \sup_{\|x\|_X = 1} \|Tx\|_Y = \sup_{\|x\|_X \leq 1} \|Tx\|_Y
+\]
+Check: 
+\begin{itemize}
+	\item $\|\cdot\|$ is a norm.
+
+	\item If $T \in \mathcal{B}(X, Y), S \in \mathcal{B}(Y, Z)$ then $ST \in \mathcal{B}(X, Z)$ and $\|ST\| \leq \|S\|\|T\|$.
+
+\end{itemize}
+
+When $X = Y = Z$, there is a multiplicative structure on $\mathcal{B}(X)$.
+$\mathcal{B}(X)$ is an algebra.
+
+\begin{prop}
+	Let $T \in \mathcal{B}(X, Y)$. 
+	Suppose that $\exists M > 0$ s.t.
+	\begin{enumerate}
+		\item[(a)] $\|Tx\| \leq M \|x\| \sfa x \in D$, where $D$ is dense in $X$.
+
+		\item[(b)] $\exists$ a nonzero sequence $(x_n)$ in $D$ s.t.
+			\[
+				\frac{\|T x_k\|}{\|x_k\|} \to M
+			\]
+			Then $M = \|T\|$.
+	\end{enumerate}
+\end{prop}
+
+\begin{proofs}
+	Clearly(?), $\|T\| \leq M$.
+	\[
+		M = \lim_{k \to \infty}\frac{\|T x_k\|}{\|x_k\|} \leq \sup_{x \neq 0}\frac{\|Tx\|}{\|x\|} = \|T\|
+	\]
+\end{proofs}
+
+In linear algebra, we want to solve nonhomogeneous system.
+\[
+	Ax = b
+\]
+where $A$ is a $m \times n$ matrix and $b \in \mathbb{R}^m$.
+The Fredholm alternative states that either this system is unique solvable, or the homogeneous system
+\[
+	A^{\dagger} y = 0
+\]
+has a nonzero solution $y$.
+Moreover, the nonhomogeneous system is solvable $\Leftrightarrow b \perp y \sfa$ solutions $y$ of the homogeneous system. 
+Question: What happens in infinite dimensional spaces?
+
+
+\end{document}
+
+
+

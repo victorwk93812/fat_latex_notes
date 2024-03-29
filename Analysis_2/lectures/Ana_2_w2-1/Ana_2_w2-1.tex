@@ -1,0 +1,485 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+\theoremstyle{definition}
+% \newtheorem{thy}{Theory}[section]
+% \newtheorem{thm}{Theorem}[section]
+% \newtheorem{ex}{Example}[section]
+% \newtheorem{prob}{Problem}[section]
+% \newtheorem{lem}{Lemma}[section]
+% \newtheorem{dfn}{Definition}[section]
+% \newtheorem{rem}{Remark}[section]
+% \newtheorem{cor}{Corollary}[section]
+% \newtheorem{prop}{Proposition}[section]
+% \newtheorem*{clm}{Claim}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+  \left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+  #1
+  \right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+  \mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+  #2
+  \mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W2-1}
+\author{fat}
+% \date{\today}
+\date{February 27, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W2-1}
+
+\begin{rem}
+  If $p = \infty$
+  \[
+    \|f\|_{\infty} = \text{esssup} (|f|)
+  \]
+  where
+  \[
+    \text{esssup} (f) \equiv \inf \{y > 0: m(|f| > y) = 0\}
+  \]
+\end{rem}
+
+Last time: Try to show if $F$ is increasing and continuous then $F$ is differentiable a.e. It remains to show 
+\[
+  D^+(F)(x) \leq D_-(F)(x) \text{ for a.e. x }
+\]
+Fix $r < R$ rationals. Define 
+\[
+  E = \{x \in [a, b]: D^+(F)(x) < r < R < D_-(F)(x)\}
+\]
+If we can show $m(E) = 0$ then we are done (Take union over $r < R$). Assume that $m(E) > 0$. Recall: $\forall \epsilon > 0, \exists \text{ open } \mathcal{U} \supset E$ s.t. $m(\mathcal{U} < m(E) + \epsilon$. $R/r > 1 \Rightarrow$ take $\epsilon = (R/r - 1) m(E) > 0$. Find an open set $E \subset \mathcal{U} \subset (a, b)$ s.t. 
+\[
+  m(\mathcal{U}) < \frac{R}{r} m(E)
+\]
+Write $\mathcal{U} = \cup_{n} I_n$ where $I_n$ are disjoint open intervals (may assume $I_n \cup E \neq \phi \sfa n$). 
+\par Recall: $G:[a, b] \to \mathbb{R}$ continuous. 
+\[
+E = \{x \in (a, b) : G(x + h) > G(x) \text{ for some } h > 0\}
+\]
+If $E \neq \phi$, write $E = \cup_k(a_k, b_k)$. We have $G(a_k) \leq G(b_k)$. We apply the above to $G(x) = F(-x) + rx$ on $-I_n$. 
+\[
+  E_n = \{x \in -I_n: G(x + h) > G(x) \text{ for some }h > 0\}
+\]
+$E_n \neq \phi$? Now 
+\[
+  G(x + h) > G(x) \Leftrightarrow F(-x - h)+ r(x + h) > F(-x) + rx
+\]
+\[
+  \Leftrightarrow F(-x - h) - F(-x) > -rh
+\]
+\[
+  \Leftrightarrow \frac{F(-x - h) - F(-x)}{-h} < r
+\]
+If $x \in (-E) \cap (-I_n)$ then $x \in E_n$. So $E_n \neq \phi$. Write $E_n = \cap_k (-b_k, -a_k)$. Then we have $G(-b_k) \leq G(-a_k)$. 
+\[
+  \Leftrightarrow F(b_k) - F(a_k) \leq r (b_k - a_k)
+\]
+On each $(a_k, b_k)$, we can apply the recall to 
+\[
+  G(x) = F(x) - Rx
+\]
+By a similar argument, we obtain an open set $E_n' = \cup_{k, j} (a_{k, j}, b_{k, j})$ s.t. $(a_{k, j}, b_{k, j}) \subset (a_k, b_k) \sfa j$ and $F(b_{k, j}) - F(a_{k, j}) \geq R(b_{k, j} - a_{k, j})$. 
+\[
+  m(E_n') = \sum_{k, j} ( b_{k, j} - a_{k, j})
+\]
+\[
+  \leq \frac{1}{R} \sum_{k, j} (F(b_{k, j}) - F(a_{k, j}))
+\]
+\[
+  \stackrel{\text{F increasing}}{\leq} \frac{1}{R} \sum_{k} (F(b_k) - F(a_k))
+\]
+\[
+  \leq \frac{r}{R} \sum_k (b_k - a_k)
+\]
+\[
+  \leq \frac{r}{R} m(I_n)
+\]
+We can show similarly that $I_n \cap E \subset E_n'$. 
+\[
+  m(E) = \sum_n m(E \cap I_n) \leq \sum_n m(E_n')
+\]
+\[
+  \leq \frac{r}{R} \sum_n m(I_n) = \frac{r}{R} m(\mathcal{U}) < m(E)
+\]
+A contradiction!!!!! So $m(E) = 0$. 
+
+\begin{cor}
+  If $F$ is increasing and continuous, the $F'$ exists a.e. Moreover, $F'$ is measurable, nonnegative, and 
+  \[
+    \int_a^b F'(x) \mathrm{d} x \leq F(b) - F(a)
+  \]
+  In particular, if $F$ is bounded on $\mathbb{R}$, then $F'$ is integrable on $\mathbb{R}$. 
+\end{cor}
+
+\begin{proofs}
+  We only prove the statement in the middle. 
+  \[
+    F'(x) = \lim_{n \to \infty} n (F(x +  \frac{1}{n}) - F(x))
+  \]
+  exists a.e. So $F'$ is measurable. 
+  \[
+    \int_a^b F'(x) \mathrm{d}x \leq \liminf_{n \to \infty} n\int_a^b (F(x + \frac{1}{n}) - F(x)) \mathrm{d} x
+  \]
+  \[
+    \Rightarrow \int_a^b F'(x) \mathrm{d}x \leq n \int_b^{b + \frac{1}{n}} F(x) \mathrm{d} x - n \int_a^{a + \frac{1}{n}} F(x) \mathrm{d} x = F(b) - F(a)
+  \]
+  where the last line comes from continuity. We do not expect equality holds for all increasing and continuous $F$. Counterexapmle: Cantor function. 
+
+\end{proofs}
+
+\section{Absolutely continuous functions}
+
+\begin{dfn}
+	A function $F:[a, b] \to \mathbb{R}$ is said to be \textbf{absolutely continuous} if $\forall \epsilon > 0, \exists \delta > 0$ s.t.
+  \[
+    \sum_{k =1}^N |F(b_k ) - F(a_k)| < \epsilon \text{ whenever } \sum_{k = 1}^N (b_k - a_k) < \delta
+  \]
+  where $(a_k, b_k), k = 1, ..., N$ are disjoint intervals. 
+\end{dfn}
+
+Observations:
+
+\begin{itemize}
+  \item Absolute continuity $\Rightarrow$ Uniform continuity
+  \item Absolute continuity $\Rightarrow$ bounded variation. In this case, the total variation is also absolutely continuous. 
+\end{itemize}
+
+So every absolutely continuous function can be written as a difference of two increasing functions. 
+
+\begin{ex}
+  
+  \begin{itemize}
+    \item Lipschitz functions.
+    \item $F(x) = \int_a^x f(x) \mathrm{d} x$, where $f$ integrable. $F$ is absolutely continuous. Recall: $\forall \epsilon > 0, \exists \delta > 0$ s.t. $m(E) < \delta \Rightarrow \int_E |f| < \epsilon$. ($f$ is integrable) 
+  \end{itemize}
+
+\end{ex}
+
+From the second example, if  we want $F(b) - F(a) = \int_a^b F'(x) \mathrm{d} x$, then $F$ has to be absolutely continuous. It turns out that absolute continuity is sufficient!
+
+\begin{dfn}
+	A collection $\mathcal{B}$ is said to be a \textbf{Vitali covering} of a set $E$ if $\forall x \in E$ and $\forall \eta > 0$, exists a ball $B \in \mathcal{B}$ s.t. $x \in B$ and $m(B) < \eta$. 
+\end{dfn}
+
+\begin{lem}
+  Suppose that $m(E) < \infty$, and $\mathcal{B}$ is a Vitali covering of $E$. For any $\delta > 0$, we can find finitely many balls $B_1, ...,B_n \in \mathcal{B}$ that are disjoint and s.t.
+  \[
+    m(E) < \sum_{i = 1}^N m(B_i) + \delta
+  \]
+\end{lem}
+
+\begin{proofs}
+  May assume $m(E) > \delta$. Take any compact $E' \subset E$ s.t. $m(E') \geq \delta$. We can cover $E'$ by finitely many balls in $\mathcal{B}$. Recall: if $\{B_1, ..., B_k\}$ are open balls, we can find a disjoint collection $B_{i_1}, ..., B_{i_j}$ of balls s.t.
+  \[
+    m\left(\bigcup_{i = 1}^k B_i\right) \leq 3^d \sum_{l = 1}^j m(B_{i_l})
+  \]
+  So we obtain disjoint balls from $\mathcal{B}$, say $B_1, ..., B_{N_1}$, s.t.
+  \[
+    \delta \leq 3^d \sum_{i = 1}^{N_1} m(B_i)
+  \]
+  Two cases:
+  \begin{enumerate}
+    \item $m(E) \leq \sum_{i = 1}^{N_1} m(B_i) + \delta$. Then done.
+    \item $m(E) > \sum_{i = 1}^{N_1} m(B_i) + \delta$. Consider $E_2 = E \setminus \cup_{i = 1}^{N_1} \overline{B_i}$. Then $m(E_2) > \delta$. Moreover, the balls in $\mathcal{B}$ that are disjoint from $\cup_{i = 1}^{N_1} \overline{B_i}$ is a Vitali covering for $E_2$. Therefore from this remaining collection of balls we can find disjoint balls, say
+      \[
+        B_{N_1 + 1}, ..., B_{N_2}
+      \]
+      s.t.
+      \[
+        \delta \leq 3^d \sum_{i = N_1 + 1}^{N_2} m(B_i)
+      \]
+      Again two cases:
+      
+      \begin{enumerate}
+        \item $m(E) < \delta + \sum_{i =1}^{N_2} m(B_i)$ Then done.
+        \item $m(E) > \delta + \sum_{i = 1}^{N_2} m(B_i) \geq 2 \delta 3^{-d}$. 
+      \end{enumerate}
+
+      At each step we increase by a factor of $\delta \cdot 3^{-d}$. $m(E) < \infty$, this procedure must stop at some point. 
+  \end{enumerate}
+\end{proofs}
+
+\begin{thm}
+  If $F$ is absolutely continuous on $[a, b]$, then $F'$ exists almost everywhere. Moreover, if $F'(x) = 0$ for a.e. $x$, then $F$ is a constant. 
+\end{thm} 
+
+\begin{proofs}
+  To prove the second statement, we just need to show that $F(b) = F(a)$ (can apply the argument to subintervals). Let 
+  \[
+    E = \{ s \in (a, b): F'(x) \text{ exists and } F'(x) = 0\}
+  \]
+  Then $m(E) = b - a$. Fix $\epsilon > 0$. For each $x \in E$, we have 
+  \[
+    \lim_{h \to 0} \left|\frac{F(x + h) - F(x)}{h}\right| = 0
+  \]
+  So for each $\eta > 0$, $\exists $ open interval $I = (a_x, b_x) \subset [a, b]$ containing $x$ s.t.
+  \[
+    |F(b_x) - F(a_x)| \leq \epsilon (b_x - a_x) \text{ and } (b_x - a_x) < \eta
+  \]
+  These intervals form a Vitali covering of $E$. By the previous lemma, $\forall \delta >0 $, we can find finitely many intervals $I_1, ..., I_N$ s.t. they are disjoint and 
+  \[
+    b - a = m(E) \leq \sum_{i = 1}^N m(I_i) + \delta
+  \]
+  \[
+    m \left( \bigcup_{i = 1}^N I_i \right) = \sum_{i = 1}^N m(I_i) \geq (b - a) - \delta 
+  \]
+  Write $I_i = (a_i, b_i)$. The complement of $\cup_{i = 1}^N I_i$ in $[a, b]$ has measure $\leq \delta$. Also, it is a union of finitely many closed interals $\cup_{k = 1}^M [\alpha_k \beta_k]$. By absolute continuity, we can choose $\delta > 0$ small s.t.
+  \[
+    \sum_{k = 1}^M |F(\beta_k) - F(\alpha_k)| < \epsilon
+  \]
+  On the other hand, 
+  \[
+    |F(b_i) - F(a_i)| \leq \epsilon (b_i - a_i)
+  \]
+  \[
+    \Rightarrow \sum_{i = 1}^N |F(b_i) - F(a_i)| \leq \epsilon (b - a)
+  \]
+  Combine everything, 
+  \[
+    |F(b) - F(a)| \leq \sum_{k = 1}^M |F(\beta_k) - F(\alpha_k)| + \sum_{i = 1}^N |F(b_i) - F(a_i)| \leq \epsilon(b - a + 1)
+  \]
+  $\epsilon > 0$ is arbitrary, so $F(b) = F(a)$. 
+
+\end{proofs}
+
+\begin{cor}
+  Suppose $F$ is absolutely continuous on $[a, b]$. Then $F'$ exists a.e. and is integrable. Moreover 
+  \[
+    F(x) - F(a) = \int_a^x F'(y) \mathrm{d} y \sfa x \in [a, b]
+  \]
+  Conversely, if $f$ is integrable on $[a, b]$, then $\exists$ absolutely continuous function $F$ s.t. $F' = f$ a.e.
+\end{cor}
+
+\begin{proofs}
+  $F'$ integrable because 
+  \[
+    \int_a^b G'(x) \mathrm{d} x \leq G(b) - G(a)
+  \]
+  if $G$ is increasing and continuous. To prove the equality, let $G(x) = \int_a^x F'(y) \mathrm{d} y$. So $G$ is absolutely continuous, and so is $G - F$.  By the Lebesgue differentiation theorem, $G'(x) = F'(x)$ for a.e. $x$. So $(G - F)' = 0$ a.e. $\Rightarrow G - F$ is a constant. 
+  \[
+    \Rightarrow \int_a^x F'(y) \mathrm{d} y = F(x) - F(a)
+  \]
+  For the converse part, take $F(x) = \int_a^x f(y) \mathrm{d} y$. 
+\end{proofs}
+
+\section{Differentiability of jump functions}
+
+Recall: We haven't finished if $F$ is of bounded variation on $[a, b]$ then it is differentiable a.e. Let $F:[a, b] \to \mathbb{R}$ be increasing and bounded. Write $(x_n)$ for the points at which $F$ is discontinuous. Let
+\[
+  \alpha_n = F(x_n^+) - F(x_n^-)
+\]
+which is the jump of $F$ at $x_n$. $\exists \theta_n \in [0,1]$ s.t. $F(x_n) = F(x_n^-) + \theta_n \alpha_n$. Define 
+\[
+  j_n(x) = 
+  \begin{cases}
+    0 & \text{if } x < x_n\\
+    \theta_n & \text{if } x = x_n\\
+    1 & \text{if } x > x_n
+  \end{cases}
+\]
+Finally, define the jump function associated to $F$ by 
+\[
+  J_F(x) = \sum_{n - 1}^\infty \alpha_n j_n(x)
+\]
+Observe:
+\[
+  \sum_{n = 1}^\infty \alpha_n \leq F(b) - F(a) < \infty
+\]
+So the series defining $J_F$ converges absolutely and uniformly. 
+\begin{lem}
+  Suppose that $F$ is increasing and bounded on $[a, b]$. Then $J_F$ is dscontinuous precisely at $(x_n)$, and has jump at $x_n$ equal to that of $F$. Moreover, $F - J_F$ is increasing and continuous. 
+\end{lem}
+
+
+\end{document}

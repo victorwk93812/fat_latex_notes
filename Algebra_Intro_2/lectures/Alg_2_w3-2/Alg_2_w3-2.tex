@@ -1,0 +1,382 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+  top=2cm, 
+  bottom=2cm,
+  left=2cm,
+  right=2cm,
+  includehead, includefoot,
+  heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{C}{>{$}c<{$}} % math-mode version of "l" column type
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{R}{>{$}r<{$}} % math-mode version of "l" column type
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Intro to Algebra W3-2}
+\author{fat}
+% \date{\today}
+\date{March 8, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Intro to Algebra W3-2}
+
+\begin{proofs}[Proof of theorem $4 + 6$]
+	We first prove that $F(\alpha) = F[\alpha]$.
+	Clearly, $F[\alpha] \subseteq F(\alpha)$. 
+	We now prove $F(\alpha) \subseteq F[\alpha]$.
+	Let $f(\alpha)/g(\alpha) \in F(\alpha), g(\alpha) \neq 0$.
+	Let $m(x) = m_{\alpha, F}(x)$.
+	Now since $m(x)$ is irreducible over $F$ and has the property that $p(\alpha) = 0 \Leftrightarrow m(x) | p(x)$.
+	The assumption $g(\alpha) \neq 0$ implies $GCD(g(x), m(x)) = 1$.
+	($GCD(m(x), h(x))$ is either 1 or $m(x)$ since $m(x)$ is irreducible over $F$.)
+	Then since $F[x]$ is a PID, $\exists a(x), b(x) \in F[x]$ s.t. $a(x) g(x) + b(x) m(x) = 1$.
+	\[
+		\Rightarrow a(\alpha) g(\alpha) = 1 \Rightarrow g(\alpha)^{-1} = a(\alpha)
+	\]
+	\[
+		\Rightarrow \frac{f(\alpha)}{g(\alpha)} = f(\alpha) a(\alpha) \in F[\alpha]
+	\]
+	\[
+		\Rightarrow F(\alpha) \subseteq F[\alpha]
+	\]
+	\par We now prove that 
+	\[
+		\quot{F[x]}{(m(x))} \simeq F[\alpha]
+	\]
+	Define $\phi: F[x] \to F[\alpha]$ by $f(x) \mapsto f(\alpha)$.
+	It is a surjective ring homomorphism with $ker(\phi) = \{f(x) \in F[x]: f(\alpha) = 0\}(= I_\alpha) = (m(x))$.
+	\[
+		\Rightarrow \quot{F[x]}{(m(x))} \simeq F[\alpha]
+	\]
+	We now prove that $\{1, \alpha, ..., \alpha^{n - 1} \}$ is a basis for $F(\alpha)$ over $F$, where $n = deg(m(x))$.
+	For $f(\alpha) \in F[\alpha] = F(\alpha), \exists ! q(x), r(x) \in F[x]$ s.t.
+	\[
+		\begin{cases}
+			f(x) = q(x) m(x) + r(x) \Rightarrow f(\alpha) = r(\alpha)\\
+			r(x) = 0 \text{ or } deg(r(x)) < deg(m(x))
+		\end{cases}
+	\]
+	This implies that every element of $F[\alpha]$ can be written as $r(\alpha)$ for some $r(x) \in F[x]$ with $r(x) = 0$ or $deg(r) \leq n - 1$.
+	$\Rightarrow \{1, \alpha, ..., \alpha^{n - 1} \}$ spans $F[\alpha] = F(\alpha)$.
+	Now if $a_0, ..., a_{n - 1}$ are elements of $F$ s.t. $a_0 + a_1 \alpha + \hdots + a_{n -1} \alpha^{n - 1} = 0$.
+	Then $m(x) | (a_0 + a_1 x + \hdots + a_{n- 1} x^{n-  1})$
+	Thus, $\{1, \alpha, ..., \alpha^{n - 1}\}$ is linearly independent over $F$.
+\end{proofs}
+
+\begin{ex}
+	$F = \mathbb{R}, \alpha = i = \sqrt{-1}, m(x) = x^2 + 1$.
+	According to the proof of the theoren, to find $(ai + b)^{-1}$, where $a, b \neq 0$.
+	We shall find $s(x), t(x)$ s.t. $s(x) (ax + b) + t(x) (x^2 + 1) = 1$.
+	Then $(ai + b)^{-1} = s(i)$.
+	We have
+	\[
+		x^2 + 1 = (a^{-1} x - \frac{b}{a^2})(ax + b) + 1 + \frac{b^2}{a^2}
+	\]
+	\[
+		\Rightarrow s(x) = \frac{x/a - b/a^2}{ + b^2/a^2} = \frac{ax - b}{a^2 + b^2}
+	\]
+	\[
+		(ai + b)^{-1} = s(i) = \frac{ai - b}{a^2 + b^2}
+	\]
+\end{ex}
+
+\begin{rem}
+	If $\alpha$ is transcendental over $F$, then $F(\alpha) \simeq F(x)$.
+\end{rem}
+
+\begin{prop}
+	$\alpha$ is algebraic over $F \Leftrightarrow [F(\alpha):F] < \infty$.
+\end{prop}
+
+\begin{proofs}
+	We have proved $\Rightarrow$ in Theorem 4 + 6.
+	Conversely, assume that $[F(\alpha):F] = n < \infty$.
+	Consider $1, \alpha, ..., \alpha^n$.
+	Since $\#\{1, \alpha, ..., \alpha^n \} = n + 1 > dim_{F}(F(\alpha)) = n$, $\exists a_0, ..., a_n \in F$, not all zero s.t. $a_0 + a_1 \alpha + \hdots + a_n \alpha^n = 0$.
+	$\Rightarrow \alpha$ is algebraic over $F$.
+\end{proofs}
+
+\begin{cor}
+	If $K/F$ is a finite extension, then $K/F$ is an algebraic extension.
+	(The converse is not true in general.)
+\end{cor}
+
+\begin{thm}
+	Let $L/K/F$.
+	Then $[L:F] = [L:K][K:F]$.
+\end{thm}
+
+\begin{ex}
+	Claim $\sqrt{2} \ni \mathbb{Q}(2^{1/3})$.
+\end{ex}
+
+\begin{proofs}
+	iWe have $[\mathbb{Q}(2^{1/3}) : \mathbb{Q}] = 3$.
+	Now if $\sqrt{2} \in \mathbb{Q}(2^{1/3})$, then $\mathbb{Q} \subseteq \mathbb{Q}(\sqrt{2}) \subseteq \mathbb{Q}(2^{1/3})$ and $[\mathbb{Q}(2^{1/3}) : \mathbb{Q}(\sqrt{2})] [\mathbb{Q}(\sqrt{2}) : \mathbb{Q}]$, which is impossible.
+\end{proofs}
+
+\begin{proofs}[Proof of Theorem]
+	Note that if any of the degree is $\infty$, then both sides are equal to $\infty$.
+	So we assume that $[L:K] = m, [K:F] = n$ are finite. 
+	Let $\{\alpha, ..., \alpha_m \}$ be a basis for $L$ over $K$, $\{\beta_1, ..., \beta_n\}$ be a basis for $K$ over $F$.
+
+	\begin{clm}
+		$\{\alpha_i \beta_j: i = 1, ..., m, j = 1, ..., n \}$ is a basis for $L$ over $F$.
+	\end{clm}
+
+	\begin{proofs}
+		Given $r \in L$. 
+		Since $\{\alpha_1, .., \alpha_n \}$ is a basis for $L/K$, we have
+		\[
+			r = \sum_{i = 1}^m a_i \alpha_i \text{ for some } a_i \in K
+		\]
+		Then because $\{\beta_1, ..., \beta_n\}$ is a basis for $K$ over $F$, we have for each $i$
+		\[
+			a_i = \sum_{j = 1}^n b_{ij} \beta_j \text{ for some } b_{ij}
+		\]
+		\[
+			\Rightarrow r = \sum_{i = 1}^m (\sum_{j = 1}^n b_{ij} \beta_j) \alpha_i \in \text{ span of } \{\alpha_i \beta_j \}
+		\]
+		\[
+			\Rightarrow L \subseteq span\{\alpha_i \beta_j\}
+		\]
+		Now assume that $c_{ij}$ are elements of $F$ s.t. 
+		\[
+			\sum_{i = 1}^m \sum_{j = 1}^n c_{ij} \alpha_i \beta_j = 0
+		\]
+		Then 
+		\[
+			0 = \sum_{i = 1}^m (\sum_{j = 1}^n c_{ij} \beta_j) \alpha_i
+		\]
+		Since $\{\alpha_1, ..., \alpha_m \}$ is linearly independent over $K$. 
+		We have $\sum_{j = 1}^n c_{ij} \beta_j = 0 \sfa i$.
+		Then since $\{ \beta_1, ..., \beta_n \}$ is linearly independent over $F$, we have $c_{ij} = 0 \sfa i, j$.
+		...
+
+	\end{proofs}
+\end{proofs}
+
+
+
+\end{document}
+
+
+

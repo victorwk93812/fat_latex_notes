@@ -1,0 +1,422 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{pro}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem*{clm}{Claim}
+
+
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+
+
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+%%%%
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W1-1}
+\author{fat}
+% \date{\today}
+\date{February 20, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W1-1}
+
+\section{Differentiation and Integration}
+
+\par Recall that if $f$ is continuous, then $F(x)=\int_a^x f(t)dt$ is differentiable. $f$ Lebesgue integrable?
+
+\par The derivative of $F$ is the limit
+
+\begin{equation}
+  \lim_{h \to 0} \frac{F(x+h) - F(x)}{h} = \lim_{h \to 0} \frac{1}{h} \int_{x}^{x+h} f(t) dt
+  \label{eq:}
+\end{equation}
+
+\begin{equation}
+  =\frac{1}{|I|} \int_{I} f(t)dt
+\end{equation}
+
+\par where $I=(x, x+h)$. The average should $\to f(x)$ as $|I| \to 0$. But this would not hold ofr all $x$ if $f$ is just Lebesgue integrable. ($f$ is just defined a.e.).
+
+\par Want: Understand the set of $x$ s.t. the convergence holds. 
+
+\par Problem: Given $f$ in $L^1 (\mathbb{R}^d)$, for which $x$ one has 
+
+$$ \lim_{m(B) \to 0, x \in B} \frac{1}{m(B)} \int_B f(y) dy = f(x)$$
+
+\par If $f$ is continuous, this holds for all $x \in \mathbb{R}^d$. In general, need to understand how the averages of $f$ behave. 
+
+\section{Hardy-Littlewood maximal function}
+
+\begin{dfn}
+	If $f \in L^1(\mathbb{R}^d)$, we define its \textbf{maximal function} $f^*$ by 
+
+  \begin{equation}
+    f^*(x) = \sup_{B \ni x} \frac{1}{m(B)} \int_B |f(y)| dy
+    \label{eq:}
+  \end{equation}
+\end{dfn}
+\begin{clm} 
+    $f^*$ is measurable. 
+\end{clm}
+
+  \begin{proof}
+    Wil show $\{f^*>\alpha\}$ is open. Let $y \in \{f^* > \alpha \}$. Then exists ball $B \in y$ s.t. 
+    $$\frac{1}{m(B)} \int _B |f(t)|dt > \alpha$$
+    If $x$ is sufficiently close to $y$, then $x \in B$. $\Rightarrow f^*(x) > \alpha$. $\Rightarrow \{ f^* > \alpha \}$ is open. 
+    \begin{thm}
+      For all $\alpha > 0$, 
+      $$m(\{x \in \mathbb{R}^d: f^*(x) > \alpha \} ) \leq \frac{3^d}{\alpha} ||f||_{L^1(\mathbb{R}^d)}$$
+
+    \end{thm}
+    Some discussions:\\
+    \begin{itemize}
+      \item We have $f^*(x) < \infty$ for a.e. $x$:\\
+        Let $\alpha \to \infty$ on both sides. $RHS \to 0$, $LHS \to m(\{x: f^*(x) = \infty\})$.\\
+      \item For any $f \in L^1(\mathbb{R}^d)$, for any $\alpha > 0$, 
+    \begin{equation}
+      m(\{x \in \mathbb{R}^d: |f(x)| > \alpha \}) \leq \frac{1}{\alpha} ||f||_{L^1}
+      \label{eq:}
+    \end{equation}
+    \begin{proof}
+      Chebyshev/Markov inequality
+      $$\int_{\mathbb{R}^d} |f| = \int_{\{|f|>\alpha\}} |f| + \int_{\{|f| < \alpha\}} |f| \leq \int_{\{|f| > \alpha\}} \alpha = \alpha m(\{|f|>\alpha\})$$
+    \end{proof}
+    Will show later that $f^*(x) \leq |f(x)|$ for a.e. $x$. So the inequality in Theorem is sharper in general. In fact, $f^*(x) \notin L^1$ in general.\\
+  \item $f^*$ is of weak $L^1$. \\
+    \end{itemize}
+  \end{proof}
+
+    \begin{dfn}
+		A function $g$ is of \textbf{weak $L^1$} if 
+      $$\sup_{\alpha > 0} \alpha m(\{x \in \mathbb{R}^d : |g(x)| > \alpha\}) < \infty$$
+      $L^1 \Rightarrow $ weak $L^1$, converse does not hold. 
+    \end{dfn}
+Notation: If $B = B(x, r)$ is a ball and if $c>0$, we write $cB = B(x, cr)$. 
+\begin{lem}[Vitali]
+  Suppose that $\mathcal{B} = \{B_1, ..., B_N\}$ is a finite collection of open balls in $\mathbb{R}^d$, exists a disjoint subcollection $\{B_{i_1}, ..., B_{i_k}\}$ of $\mathcal{B}$ s.t. 
+  $$\bigcup_{l = 1}^N B_l \in \bigcup_{j = 1}^k 3 B_{i_j}$$
+  and hence 
+  $$m(\bigcup_{l = 1}^N B_l) \leq 3^d \sum_{j = 1}^k m(B_{i_j})$$
+\end{lem}
+\begin{proof}
+  Observation: if $B$ and $B'$ are balls that intersect, and if $B' \leq $ radius of $B$, then $B' \subset 3B$. Pick a ball $B_{i_1}$ in $\mathcal{B}$ with maximal radius. Remove the ball $B_{i_1}$ and any ball that intersects $B_{i_1}$ from $\mathcal{B}$. All balls we removed are contained in $3B_{i_1}$.In the remaining collection of balls, pick $B_{i_2}$ with maximal radius. Repeat the same procedure.   
+\end{proof}
+\begin{proof}[Proof of Theorem] 
+  Write $E_\alpha = \{x \in \mathbb{R}^d: f^*(x) > \alpha\}$. If $x \in E_{\alpha}$, $\exists$ a ball $B_x \ni x$ s.t. 
+  $$\frac{1}{m(B_x)} \int_{B_x} |f(y)| dy > \alpha$$
+  $$\Leftrightarrow m(B_x) < \frac{1}{\alpha} \int_{B_x} |f(y)| dy$$
+  Let $K \subset E_{\alpha}$ be compact. Since $K \subset \bigcup_{x \in E_{\alpha}}B_x$, exists a finite subcover of $K$, say $K \subset \bigcup_{l = 1}^N B_l$. By Vitali's covering lemma, exists a disjoint subcollection of balls $B_{i_1}, ..., B_{i_k}$ s.t. 
+  $$m(\bigcup_{l = 1}^N B_l) \leq 3^d \sum_{i = 1}^k m(B_{i_j})$$
+  $$ \Rightarrow m(K) \leq m(\bigcup_{l =1}^N B_l)  \leq 3^d \sum_{j = 1}^{k} m(B_{i_j}) \leq \frac{3^d}{\alpha} \sum_{j = 1}^k \int_{B_{i_j}} |f(y)| dy$$ 
+  $$\stackrel{\text{disjointness}}{=} \frac{3^d}{\alpha} \int_{\bigcup_{j = 1}^{k} B_{i_j}} |f(y)| dy \leq \frac{3^d}{\alpha} \int_{\mathbb{R}^d} |f(y)| dy = \frac{3^d}{\alpha} ||f||_{L^1} $$
+  
+  So $m(K) \leq \frac{3^d}{\alpha} ||f||_{L^1}$ for all compact $K \subset E_{\alpha}$. \\
+  Fact: $m(E_{\alpha}) = \sup \{m(K):K\subset E_{\alpha}  \text{compact} \}$. (inner regularity). So $m(E_\alpha) \leq \frac{3^d}{\alpha} ||f||_{L^1}$. 
+\end{proof}
+
+
+
+\begin{thm}[Lebesgue differentiation]
+  If $f \in L^1(\mathbb{R}^d)$, then for a.e. $x$, 
+  $$\lim_{m(B) \to 0, B \ni x} \frac{1}{m(B)} \int_{B} f(y) dy = f(x)$$
+\end{thm}
+\begin{proof}
+  For $\alpha > 0$, define 
+  $$E_\alpha = \{x: \limsup_{m(B) \to 0, x \in B} |\frac{1}{m(B)} \int_{B} f(y)dy - f(x)| > \alpha \}$$
+  Will show $m(E_\alpha) = 0 \forall \alpha > 0$
+  If this holds, $\bigcup_{n = 1}^{\infty} E_{\frac{1}{n}}$ has measure zero. This implies the theorem. Fix $\alpha > 0$. Recall for each $\epsilon > 0$, exists a continuous $g$ of compact support s.t. $||f-g||_{L^1} < \epsilon$. Continuity of $g$ 
+  $$\Rightarrow \lim_{m(B) \to 0, x \in B} \frac{1}{m(B)} \int_{B} g(y)dy = g(x) \forall x$$
+  $$ \frac{1}{m(B)} \int_{b} f(y) dy - f(x) = [\frac{1}{m(B)} \int_B (f(y) - g(y)) dy ] + [\frac{1}{m(B)} \int_{B} g(y) dy - g(x) ]+ [g(x) - f(x)]$$
+
+  Where the first term is $(f-g)^*(x)$ and the second term goes to 0 since $g$ is continuous. 
+
+  $$\Rightarrow \limsup_{m(B) \to 0, x \in B} |\frac{1}{m(B)} \int_{B} f(y) dy - f(x)| \leq (f-g)*(x) + |g(x) - f(x)|$$ 
+  Let $F_\alpha = \{x: (f-g)^*(x) > \frac{\alpha}{2}\}, G_\alpha = \{x: |g(x)-f(x)| > \frac{\alpha}{2}\}$. Observe: $E_\alpha \subset F_\alpha \bigcup G_{\alpha}$. 
+  $$m(G_\alpha) \leq \frac{2}{\alpha} ||g-f||_{L^1} \leq \frac{2 \epsilon}{\alpha}$$
+  $$m(F_\alpha) \leq \frac{2\cdot 3^d}{\alpha} ||f-g||_{L^1} \leq \frac{2 \cdot 3^d \epsilon}{\alpha}$$
+  Observe: $E_\alpha \subset F_\alpha \bigcup G_\alpha$. 
+  $$ m(G_\alpha) \leq \frac{2}{\alpha} ||g-f||_{L^1} \leq \frac{2 \epsilon}{\alpha} \text{(Chebyshev)}$$
+  $$ m(F_\alpha) \leq \frac{2 \cdot 3^d}{\alpha} ||f-g||_{L^1} \leq \frac{2 \cdot 3^d} \alpha \epsilon \text{(Theorem)}$$
+
+
+  $$\Rightarrow m(E_\alpha) \leq C \epsilon$$
+  Let $\epsilon \to 0$, we get $m(E_\alpha) = 0$.
+\end{proof}
+\begin{cor}
+  One has $f^*(x) \leq |f(x)|$ for a.e. $x$. 
+\end{cor}
+  \begin{proof}
+    Apply the Lebesgue diff theorem to $|f|$. 
+  \end{proof}
+  We cam weaken the assumption a bit. 
+  \begin{dfn}
+	  A measurable function $f$ on $\mathbb{R}^d$ is \textbf{locally integrable} if for every ball B, the function $f \chi_B$ is integrable.
+    $$L_{loc}^1 (\mathbb{R}^d) = \{  \text{locally integrable functions}  \}$$
+  \end{dfn}
+  The Lebesgue differentiation theorem holds for locally integrable functions. $f(x) = x$ is locally integrable but not integrable. 
+
+\begin{dfn}
+	If $E \subset \mathbb{R}^d$ is measurable and $x \in \mathbb{R}^d$, we say that $x$ is a \textbf{density point} of $E$ if 
+  $$\lim_{m(B) \to 0, x \in B} \frac{m(B \bigcap E)}{m(B)} = 1$$
+  Intuition: If $x$ is a density point, then $m(B \bigcap E) \sim m(B)$. $E$ covers a large portion of $B$. 
+  \begin{cor}[Lebesgue density theorem] 
+    Suppose that $E \subset \mathbb{R}^d$ is measurable. Then a.e. $x \in E$ is a density point of $E$, a.e. $x \notin E$ is not a density point of $E$. 
+  \end{cor}
+\end{dfn}
+  \begin{proof}
+    Apply the Lebesgue diff theorem to $\chi_E$.
+  \end{proof}
+\begin{dfn}
+	Let $f \in L_{loc}^1 (\mathbb{R}^d)$. The \textbf{Lebesgue set} of $f$ is the set of all points $x \in \mathbb{R}^d$ s.t. $|f(x) < \infty$ and 
+  $$\lim_{m(B) \to 0, x \in B} \frac{1}{m(B)} \int_{B} |f(y) - f(x)| dy = 0$$
+  Write the set $Leb(f)$. 
+\end{dfn}
+\begin{cor}
+  If $f \in L_{loc}^1 (\mathbb{R}^d)$, then $x \in Leb(f)$ for a.e. $x$.
+\end{cor}
+\begin{proof}
+  For each $r \in \mathbb{Q}$, there exists $E_r$ of measure zero s.t. 
+  $$\frac{1}{m(B)} \int_B |f(y) - r| dy = |f(x) - r|$$
+
+  for all $x \notin E_r$. Then $E \equiv \bigcup_{r \in \mathbb{Q}} E_r$ is also of measure zero. Suppose that $x \notin E$ and $|f(x)| < \infty$. Let $\epsilon > 0$ be given. Then $\exists r \in \mathbb{Q}$ s.t. $|f(x) - r| < \frac{\epsilon}{2}$. 
+
+  $$\frac{1}{m(B)} \int_B |f(y) - f(x)| dx \leq \frac{1}{m(B)} \int_B |f(y) - r| dy + \frac{1}{m(B)} \int_B |r - f(x)| dy $$
+
+  $$\Rightarrow \limsup_{m(B) \to 0, x \in B} \int_B |f(y) - f(x)| dx \leq 2 |f(x) - r| < \epsilon$$
+
+  $$\Rightarrow x \in Leb(f)$$ 
+  $E^c \subset Leb(f)$, $E$ has measure zero. So a.e. point $x \in Leb(f)$. 
+\end{proof}
+\begin{rem}
+  $f \in L^1(\mathbb{R}^d) $ are equivalence classes. But the set of points where the limit\\ 
+  $\lim_{m(B) \to 0, x \in B} \frac{1}{m(B)} \int_B f(y) dy$ exists is independent of the representation of $f$ chosen. But $Leb(f)$ depends on the representation function $f$. 
+\end{rem}
+\section{Approximations to the identity}
+\begin{dfn}
+	A family of functions $(K_\delta)_{\delta>0}$ is called an \textbf{approximation to the identity} if they are integrable and $\exists A \in \mathbb{R}$ s.t.
+  \begin{itemize}
+    \item[(a)]$\int K_{\delta} = 1$, 
+    \item[(b)]$|K_{\delta}(x)| \leq A \delta^{-d}$ for all $\delta > 0$ and all $x \in \mathbb{R}^d$, 
+    \item[(c)]$|K_{\delta}(x)| \leq \frac{A\delta}{|x|^{d+1}}$ for all $\delta > 0$ and all $x \in \mathbb{R}^d$. 
+  \end{itemize}
+\end{dfn}
+Observations: \\
+$\int |K_\delta| \leq A'$. 
+\begin{proof}
+  Recall: $\exists c > 0$ s.t. $\forall \epsilon > 0$, 
+  $$\int_{\{|x| \geq \epsilon\}} \frac{dx}{|x|^{d+1}} \leq \frac{C}{\epsilon}$$
+
+  $$|K_\delta| = \int_{\{|x| < \delta\}} |K_\delta| + \int_{\{|x| \geq \delta\}} |K_{\delta}|$$
+
+  $$\leq A \delta^{-d} \int_{\{|x| < \delta\}} 1 + A \delta \int_{\{|x| \geq \delta\}} \frac{dx}{|x|^{d+1}} = A'$$ 
+\end{proof}
+For every $\eta > 0$, 
+$$\lim_{\delta \to 0} \int_{\{|x| \geq \eta\}} |K_{\delta}| = 0$$
+\begin{proof}
+  $$\int_{\{|x| \geq \eta\}} |K_\delta| \leq A \delta \int_{\{|x| \geq \eta\}} \frac{dx}{|x|^{d+1}} \leq \frac{C \delta}{\eta} \stackrel{\delta \to 0}{\to} 0$$
+\end{proof}
+An example:
+$$K_\delta(x) = \frac{1}{\delta^d} \phi(\frac{x}{\delta})$$
+$\phi$ is a nonnegative bounded function in $\mathbb{R}^d$ s.t. $\int \phi = 1$. \\
+The mapping $$f \rightarrow f * K_{\delta}$$ converges to the identity map $f \rightarrow f$ as $\delta \to 0$ in various senses. As $\delta \to 0$, $K_\delta$ converges to the "Dirac delta function" $D$, informally defined by 
+$$
+D(x) = 
+\left\{
+  \begin{array}{ccc}
+    \infty & \text{if} & x = 0\\
+    0 & \text{if} & x \neq 0 
+  \end{array}
+  \right. 
+$$
+and $\int D(x) dx = 1$. Doesn't make sense when we think of $D$ as an integrable function. Can think of 
+$$f*D = \int f(x - y) D(y) dy = 0 (y \neq 0)$$
+The mass of $D$ is concentrated at 0. Intuitively, $(f*D)(x) = f(x)$. (Think of $D$ as the identity element for convolutions. ) Can be rigorously defined, but we need abstract measure theory and functional analysis.
+
+\begin{thm}
+  If $(K_\delta)_{\delta > 0}$ is an approximation to the identity and $f \in L^1(\mathbb{R}^d)$, then
+
+  $$(f * K_\delta)(x) \to f(x) \forall x \in Leb(f)$$
+
+  In particular, the convergence holds for a.e. $x$. 
+\end{thm}
+
+\begin{lem}
+  Suppose that $f \in L^1(\mathbb{R}^d)$ and $x \in Leb(f)$. For $r > 0$, define 
+
+  $$A(r) = \frac{1}{r^d} \int_{\{|y| < r\}} |f(x - y) - f(x)| dy$$
+
+  then $A$ is continuous in $r$ and $A(r) \to 0$ as $r \to 0$. Moreover, $\exists M > 0$ s.t. $A(r) \leq M \text{ } \forall r > 0$. 
+
+\end{lem}
+
+\begin{proofs}
+  Recall: If $f \in L^1(\mathbb{R}^d)$, then $\forall \epsilon > 0$, $\exists \delta > 0$ s.t. $m(E) < \delta \Rightarrow \int_E |f| < \epsilon$. (Absolute continuity). Check that $A$ is continuous by using this. If $x \in Leb(f)$, 
+
+  $$\lim_{m(b) \to 0, x \in B} \frac{1}{m(B)} \int_B |f(y) - f(x)| dy = \lim_{r \to 0} \frac{1}{c_d r^d} \int_{\{|y - x| \leq r \}} |f(y) - f(x)| dy$$
+
+  $$= \lim_{r \to 0} \frac{1}{c_dr^d} \int_{\{|z| \leq r\}} |f(x - z) - f(x)| dz = 0$$
+
+  This, together with continuity, shows that $A$ is bounded for $0 < r \leq 1$. Why is $A$ bounded for $r > 1$?
+
+  $$A(r) = \frac{1}{r^d} \int_{\{|y| < r\}} |f(x - y) - f(x)|dy$$
+
+  $$\leq \frac{1}{r^d} \int_{\{|y| < r\}} |f(x - y)| dy + \frac{1}{r^d} m(\{|y| < r\}) |f(x)| \leq \frac{1}{r^d} ||f||_{L^1} + c_d |f(x)|$$
+
+  So $A(r)$ is bounded. 
+
+\end{proofs}
+
+
+
+
+
+
+\end{document}

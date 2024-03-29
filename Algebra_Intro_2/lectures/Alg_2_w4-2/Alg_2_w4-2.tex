@@ -1,0 +1,358 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[Path = /usr/share/fonts/TTF/]{edukai-5.0.ttf}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment   
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}  
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Intro to Algebra 2 W4-2}
+\author{fat}
+% \date{\today}
+\date{March 15, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Intro to Algebra 2 W4-2}
+
+\begin{dfn}
+	If $K/F$ is an algebraic extension such that $K$ is the splitting field for a collection of polynomials in $F[x]$, then we say $K$ is a \textbf{normal extension}.
+	(Equivalently, given an irreducible $f(x) \in F[x]$, if $f(x)$ has a root $\alpha$ in $K$, then $f(x)$ splits completely in $K[x]$.)
+\end{dfn}
+
+We next show that any 2 splitting fields for $f(x) \in F[x]$ are isomorphic, so it makes sense to speak of "the" splitting field for $f(x)$.
+We first prove a lemma.
+
+\begin{thm}[Theorem 8]
+	Assume that $F \stackrel{\phi}{\simeq} F'$.
+	Let $p(x)$ be a irreducible polynomial in $F[x]$ and $p'(x) = \phi(p(x))$. 
+	(Here $\phi(a_n x^n + \cdots + a_0) := \phi(a_n) x^n + \cdots + \phi(a_0)$)
+	Let $\alpha$ be a root of $p(x)$ in some extension field of $F$, same for $\alpha'$ for $p'(x)$ in some $F'$.
+	Then $\exists \tilde{\phi}: F(\alpha) \to F'(\alpha)$ an isomorphism such that $\tilde{\phi}|_F = \phi$ (i.e. $\tilde{\phi}(a) = \phi(a) \sfa a \in F$).
+	(That is, $\phi$ can be extended to an isomorphism $\tilde{\phi}$ from $F(\alpha)$ to $F'(\alpha)$ such that $\tilde{\phi}(\alpha) = \alpha'$.)
+\end{thm}
+
+\begin{proofs}
+	It's clear that $\phi$ induces an isomorphism from $F[x]/(p(x))$ to $F'[x]/(p'(x))$.
+	(Consider the ring homomorphism $F[x] \to F'[x]/(p'(x))$ defined by $f(x) \mapsto \phi(f(x)) + (p'(x))$.
+	Check it's surjective with $\text{ker} = (p(x))$.)
+	On the other hand, theorem 4+6 says $F(\alpha) \simeq F[x]/(m_{\alpha, F}(x)) = F[x]/(p(x))$.
+	Similarly $F'(\alpha') \simeq F'[x]/(p'(x))$.
+	Combining every isomorphism, we see that $\exists$ an isomorphism $\tilde{\phi}: F(\alpha) \to F'(\alpha')$.
+	Tracing the images of $F$ and $\alpha$ under $\tilde{\phi}$, we see that $\tilde{\phi}|_F = \phi$ and $\tilde{\phi}(\alpha) = \alpha'$.
+	e.g. 
+	\[
+		F(\alpha) \to F[x]/(p(x)) \to F'[x]/(p(x)) \to F'[x]/(p'(x)) \to F'(\alpha')
+	\]
+	\[
+		a \in F \to a + (p(x)) \mapsto \phi(a) + (p'(x)) \to \phi(a)
+	\]
+	\[
+		\alpha \to x + (p(x)) \mapsto \phi(x) + (p'(x)) = x + (p'(x))
+	\]
+	
+\end{proofs}
+
+\begin{thm}[Theorem 27]
+	Assume that $F \stackrel{\phi}{\simeq} F'$.
+	Let $f(x) \in F[x]$ and $f'(x) = \phi(f(x))$. 
+	Let $E$ be a splitting field for $f(x)$, $E'$ be a splitting field for $f'(x)$.
+	Then $\exists$ an isomorphism $\tilde{\phi}:E \to E'$ such that $\tilde{\phi}|_F = \phi$.
+\end{thm}
+
+\begin{proofs}
+	We'll prove by induction on $n = \deg f(x)$.
+	The case $n = 1$ is clear.
+	Assume that the statement holds up to $\deg = n - 1$.
+	Let $F(x)$ be a polynomial of $\deg n$ in $F[x]$.
+	Let $g(x)$ be an irreducible factor of $f(x)$ in $F[x]$.
+	Let $\alpha$ be a root of $g(x)$ in $E$, $\alpha'$ be a root of $g'(x) = \phi(g(x))$ in $E'$.
+	Let $E_1 = F(\alpha), E_1' = F'(\alpha')$.
+	By theorem 8, $\phi$ can be extended to an isomorphism $\phi_1: E_1 \to E_1'$ such that $\phi_1|_F = \phi, \phi_1(\alpha) = \alpha'$.
+	Now we have
+	\[
+		f(x) = (x - \alpha) h(x)
+	\]
+	for some $h(x) \in E_1[x]$ ($\alpha \in E_1$).
+	\[
+		f'(x) = (x - \alpha') h'(x) \cdots (1)
+	\]
+	for some $h'(x) \in E_1'[x]$ ($\alpha' \in E_1'$).
+	Now consider $\phi_1(f(x))$.
+	We have $\phi_1(f(x)) = \phi(f(x)) = f'(x) \cdots (2)$ since $f(x) \in F[x]$ and $\phi_1|_F = \phi$.
+	On the other hand
+	\[
+		\phi_1(f(x)) = \phi_1(x - \alpha) \phi_1(h(x)) = (x - \alpha') \phi_1(h(x)) \cdots (3)
+	\]
+	Comparing (1), (2), (3), we see that 
+	\[
+		h'(x) = \phi_1(h(x))
+	\]
+	Now $\deg h(x) = n - 1 = \deg h'(x)$ and $E$ is a splitting field for $h(x)$, $E'$ is a splitting field for $h'(x)$.
+	By the induction hypothesis, $\phi_1$ can be extended to an isomorphism $\tilde{\phi}: E \to E'$ such that $\tilde{\phi}_{E_1} = \phi_1$.
+	Then $\tilde{\phi}_F = \phi_1|_F = \phi$.
+\end{proofs}
+
+\begin{cor}[Corollary 28]
+	If $E, E'$ are 2 splitting fields for $f(x) \in F[x]$, then $\exists$ an isomorphism $\phi: E \to E'$ such that $\phi(a) = a \sfa a \in F$.
+\end{cor}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+

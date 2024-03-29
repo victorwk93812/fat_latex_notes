@@ -1,0 +1,352 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+
+
+%
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Intro to Algebra 2 W1-2}
+\author{fat}
+% \date{\today}
+\date{February 23, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Intro to Algebra 2 W1-2}
+
+
+\begin{cor}
+  Assume that $R$ is a UFD and $F$ is its field of fractions. Let $f(x) \in R[x]$ be a polynomial s.t. $GCD(\text{coefficients of }f) = 1$. Then $f(x)$ is irreducible in $R[x] \Leftrightarrow f(x)$ is irreducible in $F[x]$. 
+\end{cor}
+
+\begin{proofs}
+  ($\Rightarrow$) Gauss lemma. 
+  \par ($\Leftarrow$) (Note that this direction is not trivial. Think of $R$ as $\mathbb{Z}$ and $F$ as $\mathbb{Q}$. Take $f(x) = 2$.) Assume that $f(x)$ is irreducible in $F[x]$, but reducible in $R[x]$. Say $f(x) = a(x) b(x)$ in $R[x]$. Since $f(x)$ is irreducible in $F[x]$. We have $deg(a(x)) = 0$ or $deg(b(x)) = 0$. Suppose $deg(a(x)) = 0$, we have $a(x) = c$ for some nonunit $c \in R$. $\Rightarrow$ every coefficient of $f(x)$ is a multiple of $c$. This contradicts to the assumption that $GCD(\text{coefficient of }f) = 1$. $\Rightarrow f(x)$ is irreducible in $R[x]$.  
+  
+\end{proofs}
+
+\begin{thm}
+  Let $R$ be an ID, then $R[x]$ is a UFD $\Leftrightarrow  R$ is a UFD. 
+\end{thm}
+
+\begin{proofs}
+  ($\Rightarrow$) has been explained. 
+  \par ($\Leftarrow$) We first prove that every nonzero, nonunit polynomial $f(x) \in R[x]$ can be factorized into a product of irreducibles in $R[x]$. Let $F$ be the field of fractions. Let $f(x) = P_1(x) \hdots P_k(x)$ be the factorization of $f(x)$ into irreducibles in $F[x]$. By Gauss's lemma, $\exists r_1, \hdots, r_k \in F^\times$ s.t. the polynomials 
+
+  $$p_j(x) \equiv r_j P_j(x)$$
+
+  are in $R[x]$ and $f(x) = p_1(x) \hdots p_k(x)$. Let $d_j = GCD(\text{coefficients of }p_j(x))$ and $p_j'(x) = \frac{1}{d_j} p_j(x)$. Then $GCD(\text{coefficients of }p_j'(x)) = 1$. Now $p_j'(x)$ is a constant multiple of $p_j(x)$, which is irreducible in $F[x]$. Thus, $p_j'(x)$ is an irreducible polynomial in $F[x]$. By Corollary 1, $p_j'(x)$ is an irreducible polynomial in $R[x]$. Let $d = d_1 \hdots d_k$ and $d = q_1 \hdots q_n$ be the factorization of $d$ into irreducibles in $R$. Note that $q_j$ are irreducibles in $R[x]$ (since $R[x]^\times = R^\times$). 
+
+  $$\Rightarrow f(x) = p_1(x) \hdots p_k(x) = (d_1 p_1'(x)) \hdots (d_k p_k'(x)) = q_1 \hdots q_n p_1'(x) \hdots p_k'(x)$$
+
+  is a factorization of $f(x)$ into irreducibles in $R[x]$. 
+
+  \par Uniqueness of the factorization follows from the uniquenness of factorization in $R$ and $F[x]$. 
+  
+\end{proofs}
+
+\begin{cor}
+  If $R$ is a UFD, then $R[x_1, \hdots, x_n]$ is a UFD for any $n$.
+\end{cor}
+
+\section*{9.4 Irreducibility Criteria}
+
+\begin{prop}
+  Let $F$ be a field and $f(x) \in F[x]$. Then $f(x)$ has a factor of degree 1 $\Leftrightarrow f(x)$ has a root in $F$. In fact, for $a \in F$, $(x - a)|f(x) \Leftrightarrow f(a) = 0$.  
+\end{prop}
+
+\begin{prop}
+  A polynomial of degree 2 or 3 is reducible in $F[x] \Leftrightarrow f(x)$ has a root in $F$.
+\end{prop}
+
+\begin{prop}
+  Let $f(x) = a_n x^n + \hdots + a_0 \in \mathbb{Z}[x]$. If $r/s \in \mathbb{Q}, (r, s) = 1$, is a root of $f(x)$, then $s|a_n, r|a_0$. 
+\end{prop}
+
+\begin{proofs}
+  We have $f(x) = (sx-r) g(x)$ for some $g(x) \in \mathbb{Q}[x]$. By Gauss's lemma, $\exists c, d \in \mathbb{Q}^\times$ with $cd = 1$, s.t. $c(sx-r), dg(x) \in \mathbb{Z}[x]$. Now since $(s, r) = 1$, $c$ must be an integer. Thus $c, d = \pm 1 \Rightarrow g(x) \in \mathbb{Z}[x]$. Comparing the leading coefficients in $f(x) = (sx - r) g(x)$, we see $s | a_n$. Comparing the constant term, we see that $r|a_0$.  
+\end{proofs}
+
+\begin{prop}
+  Let $R$ be an ID, $I \trianglelefteq R$, $f$ a monic polynomial in $R[x]$. If $f \mod I$ (the image of $f$ under the reduction homomorphism $R[x] \rightarrow (R/I)[x]$) cannot be factored into 2 polynomials of smaller degree in $(R/I)[x]$, then $f$ is irreducible in $R[x]$.  
+\end{prop}
+
+\begin{proofs}
+  Assume $f = gh \in R[x]$. W.L.O.G. we may assume $g, h$ are also monic. Consider the reduction modulo $I$. We have $\bar{f} = \bar{g} \bar{h}$. By assumption, $deg(\bar{g}) = 0$ or $deg(\bar{h}) = 0$. $\Rightarrow g = 1$ or $h = 1$. 
+\end{proofs}
+
+\begin{ex}
+  $$f(x) = x^4 + 8 x^3 + 12x^2 + 7x + 9 \in \mathbb{Z}[x]$$
+
+  From expericence, one could consider the reduction modulo 2. We can check that 
+
+  $$x^4 + 8x^3 + 12x^2 + 7x + 9 \equiv x^4 + x + 1$$
+
+  is irreducible in $(\mathbb{Z}/2\mathbb{Z})[x]$. By Proposition 4, $x^4 + 8 x^3 + 12 x^2 + 7x + 9$ is irreducible in $\mathbb{Z}[x]$. 
+\end{ex}
+
+\begin{ex}
+  $$f(x, y) = x^2 + (3y + 1)x + (y^2 - 2y + 1) \in \mathbb{Q}[x, y](=\mathbb{Q}[y][x])$$
+
+  Consider $f \mod (y)$. We have $f(x, y) \equiv x^2 + x + 1$. Note that $\mathbb{Q}[x, y]/(y) \simeq \mathbb{Q}[x]$. Now $x^2 + x + 1$ is irreducible in $\mathbb{Q}[x] \Rightarrow f(x)$ is irreducible in $\mathbb{Q}[x]$.  
+\end{ex}
+
+\begin{prop}[Eisenstein Criterion]
+  Let $P$ be a prime ideal of an ID $R$. Let $f(x) = x^n + a_{n - 1}x^{n - 1} + \hdots + a_0$. Assume that $a_j \in P$ for $j = 0, \hdots, n - 1$ and $a_0 \notin P^2$, then $f$ is irreducible in $R[x]$.  
+\end{prop}
+
+\begin{proofs}
+  Consider the reduction modulo P. We have
+
+  $$f(x) \equiv x^n \mod (P)=P[x]$$
+
+  Thus if $f(x) = g(x) h(x)$, then 
+
+  $$g(x) h(x) \equiv x^n \mod P$$
+
+  i.e. $\bar{g} \bar{h} = x^n$ in $(R/P)[x]$). Now $P$ is a prime ideal and $R$ is an ID. Over the ID $R/P$ the only possible factorizations of $x^n$ are $x^n  x^k \cdot x^{n - k}$ for some $k, 0 \leq k \leq n$. Therefore 
+
+  $$
+  \left\{
+  \begin{array}{c}
+    \bar{g}(x) = x^k \\
+    \bar{h}(x) = x^{n - k}
+  \end{array}
+  \right.
+  \text{ for some } k, 1 \leq k \leq n - k - 1
+  $$
+
+  
+  $$
+  \Rightarrow 
+  \left\{
+  \begin{array}{c}
+    \bar{g}(x) = x^k + b_k x^{k - 1} + \hdots + b_0 \\
+    \bar{h}(x) = x^{n - k} + c^{n - k - 1} x^{n - k - 1} + \hdots + c_0
+  \end{array}
+  \right.
+  \text{ for some } b_j, c_j \in P
+  $$
+
+  $\Rightarrow a_0 = b_0 c_0 \in P^2$ a contradiction. Therefore $f(x)$ cannot be factorized into a product 2 polynomials of smaller degree. $\Rightarrow $ The onlyl factorization of $f(x)$ in $R[x]$ is of the form $f(x) = (\text{ a constant }) \times (\text{ a polynomial })$. But since $f$ is monic, the constant must be a unit. i.e., if we write $f$ as a product of 2 polynomials, then one of the polynomials is a unit. $\Rightarrow f$ is irreducible in $R[x]$.  
+\end{proofs}
+
+\begin{ex}
+  \begin{enumerate}
+    \item $x^4 + 8x^3 + 12x^2 + 4 x + 2$ is irreducible in $\mathbb{Z}[x]$. 
+    \item Let $P$ be a prime. Let 
+
+      $$f(x) = \prod_{k = 1}^{p - 1} (x - e^{2 \pi i k/p}) = \frac{x^p - 1}{x - 1} = x^{p - 1} + x^{p - 2} + \hdots + 1$$
+
+      This is called the $p$th cyclotonic polynomial. 
+
+      \begin{clm}
+        $f(x)$ is irreducible in $\mathbb{Z}[x]$. 
+      \end{clm}
+      
+      \begin{proofs}
+        Note that $f(x)$ is irreducible in $\mathbb{Z}[x] \Leftrightarrow g(x) = f(x + 1)$ is irreducible in $\mathbb{Z}[x]$. Now
+
+        $$g(x) = \frac{(x+1)^p - 1}{(x+1) - 1} = \frac{1}{x} (x^p + \binom{p}{1} x^{p - 1} + \hdots + \binom{p}{p - 1}x + 1  - 1)$$
+
+        $$ = x^{p - 1} + \binom{p}{1} x^{p - 2} + \hdots + \binom{p}{p - 2} x + \binom{p}{p - 1}$$
+
+        Now $p|\binom{p}{j}$ for $j = 1, \hdots, p - 1$. By the Eisenstein criterion, $g(x)$ is irreducible in $\mathbb{Z}[x] \Rightarrow f(x)$ is irreducible in $\mathbb{Z}[x]$. 
+      \end{proofs}
+  \end{enumerate}
+\end{ex}
+
+\begin{rem}
+  It's possible that a polynomial in $\mathbb{Z}[x]$ is reducible modulo $p$ for any prime $p$, but the polynomial is irreducible in $\mathbb{Z}[x]$. For example, let $f(x) = x^4 + 1$. We have 
+
+  $$x^4 + 1 \equiv (x+1)^4 \mod 2$$
+
+  for $p \equiv \mod 8$, then since $(\mathbb{Z}/p\mathbb{Z})$ is cyclic, $\exists a \in \mathbb{Z}$ s.t. $a^4 \equiv -1 \mod p$. $\Rightarrow (x - a) | (x^4 + 1)$ in $(\mathbb{Z}/p\mathbb{Z})[x]$. Likewise, if $p \equiv 5 \mod 8$, $\exists a \in \mathbb{Z}$ s.t. $a^2 \equiv -1 \mod p$. $\Rightarrow (x^4 + 1) \equiv (x^2 - a)(x^2 + a) \mod p$. For $p \equiv 3 \mod 8$, we can show that $\exists a$ s.t. $a^2 + 2 \equiv 0 \mod p$. For $p \equiv 7 \mod 8$, $\exists a $ s.t. $a^{12} \equiv 2 \mod p$. $\Rightarrow x^4 + 1 \equiv (x^2 - ax + 1)(x^2 + ax + 1) \mod p$.
+\end{rem}
+
+
+\end{document}

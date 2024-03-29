@@ -1,0 +1,598 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[Path = /usr/share/fonts/TTF/]{edukai-5.0.ttf}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment   
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}  
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W5-1}
+\author{fat}
+% \date{\today}
+\date{March 19, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W5-1}
+
+Recall:
+$f \in L^1([-\pi, \pi])$ and extend $f$ periodically.
+To each such $f$ we can associate the Fourier series of $f$:
+\[
+	f(x) \sim \sum_{n = - \infty}^\infty \hat{f}(n) e^{inx}
+\]
+where 
+\[
+	\hat{f}(n) = \frac{1}{2 \pi} \int_{-\pi}^\pi f(y) e^{-iny} \mathrm{d} y
+\]
+which is well-defined when $f \in L^1$.\\
+Questions: Does the Fourier series converge? 
+In what sense?
+Is the limit $f$?
+In fact we don't have pointwise convergence if $f$ is justs piecewise continuous.
+Consider 
+\[
+	f(x) = 
+	\begin{cases}
+		1 \text{ if } 0 \leq x \leq \pi\\
+		0 \text{ if } - \pi < x < 0
+	\end{cases}
+\]
+Extend it periodically on $\mathbb{R}$.
+\[
+	\hat{f}(n) = \frac{1}{2 \pi} \int_0^\pi e^{-inx} \mathrm{d} x = 
+	\begin{cases}
+		\frac{1 - e^{-in \pi}}{2 \pi i n} & \text{ if } n \neq 0\\
+		\frac{1}{2} & \text{ if } n = 0\\
+	\end{cases}
+\]
+\[
+	= 
+	\begin{cases}
+		\frac{1}{i \pi n} & \text{ if } n \text{ is odd}\\
+		\frac{1}{2} & \text{ if } n = 0\\
+		0 & \text{ if } n \text{ is even, } n \neq 0
+	\end{cases}
+\]
+The Fourier series of $f$ becomes
+\[
+	\frac{1}{2} + \sum_{n \text{ odd}} \frac{2}{n \pi} \sin nx
+\]
+$f(0) = 0$, but the Fourier series is $1/2$ at $x = 0$.
+How about continuous $f$?
+Define the partial sum
+\[
+	S_N(f)(x) = \sum_{n = -N}^N \hat{f}(n) e^{inx}
+\]
+Consider the $N^{\text{th}}$-\textbf{Dirichlet kernel}
+\[
+	D_N(x) = \sum_{n = -N}^N e^{inx}
+\]
+Check:
+\[
+	D_N(x) = \frac{\sin \left(\left(N + \frac{1}{2} \right) x \right)}{\sin \left( \frac{x}{2} \right)}  (D_N(0) = 2N + 1)
+\]
+and
+\[
+	\frac{1}{2 \pi} \int_{-\pi}^\pi D_N(x) \mathrm{d} x = 1
+\]
+\[
+	S_N(f)(x) = \sum_{n = -N}^N \hat{f}(n) e^{inx}
+\]
+\[
+	= \sum_{n = -N}^N \left( \frac{1}{2 \pi} \int_{-\pi}^\pi f(y) e^{-iny} \mathrm{d} y \right) e^{inx}
+\]
+\[
+	= \frac{1}{2 \pi} \int_{- \pi}^\pi f(y) \left( \sum_{n = -N}^N e^{in (x - y)} \right) \mathrm{d} y
+\]
+\[
+	= f * D_N(x)
+\]
+where 
+\[
+	(f*g)(x) = \frac{1}{2 \pi} \int_{- \pi}^\pi f(x - y) g(y) \mathrm{d}y
+\]
+So
+\[
+	S_N(f)(x) = \frac{1}{2 \pi} \int_{- \pi}^\pi \frac{\sin \left( \left(N + \frac{1}{2} \right) \left( x - y \right) \right)}{\sin \left(\frac{x - y}{2} \right)} f(y) \mathrm{d} y
+\]
+\[
+	= \frac{1}{2 \pi} \int_{- \pi}^\pi \frac{\sin \left( \left( N + \frac{1}{2} \right) y \right)}{\sin \left( \frac{y}{2} \right)} f(x - y) \mathrm{d} y
+\]
+
+\begin{prop}
+	If $f$ is $2 \pi$ periodic and H\"older/Lipschitz continuous then $S_N(f) \to f$ pointwise.
+\end{prop}
+
+\begin{proofs}
+	Let $\alpha \in (0, 1]$ and $c > 0$ such that
+	\[
+		|f(x + h) - f(x)| \leq c |h|^\alpha \sfa x, h \in \mathbb{R}
+	\]
+	\[
+		S_N(f)(x) - f(x) = \frac{1}{2 \pi} \int_{- \pi}^\pi \left(f(x - y) - f(x)\right) D_N(y) \mathrm{d} y = \frac{1}{2 \pi} \int_{- \pi}^\pi g(y) \sin \left( \left(N + \frac{1}{2} \right) y \right) \mathrm{d} y
+	\]
+	where $g(y) \in L^1([-\pi, \pi])$.
+	For $y \in [-\pi, \pi]$, 
+	\[
+		\left|\frac{f(x - y) - f(x)}{\sin \left( \frac{y}{2} \right) } \right| \leq c'|y|^{-1 + \alpha}
+	\]
+	where $c'|y|^{-1 + \alpha}$ is Lebesgue integrable.\\
+	Recall that if $g$ is integrable then $\hat{g}(N) \to 0$ as $|N| \to \infty$.(Riemann-Lebesgue lemma.)
+	Similarly, can show
+	\[
+		\int_{-\pi}^\pi g(x) \sin \left( \left( N + \frac{1}{2} \right) x \right) \mathrm{d} y \to 0 \text{ as } N \to \infty
+	\]
+	So 
+	\[
+		S_N(f)(x) - f(x) \to 0 \sfa x \in \mathbb{R}, \text{ as } N \to \infty
+	\]
+\end{proofs}
+
+What if $f$ is merely continuous?
+\par Fact: Can construct an explicit example of continuous $f$ such that its Fourier series diverges at one point.
+(Stein-Shakarchi: Fourier analysis, Ch3, Section 2.2)
+We will give aa soft (non-constructive) proof of a stronger result.
+A periodic function can be viewed as a function on $\mathbb{S}^1$.
+
+\begin{thm}
+	$\{f \in C^0(\mathbb{S}^1): S_N(f) \text{ diverges at } 0 \}$ is dense in $C^0(\mathbb{S}^1)$.
+\end{thm}
+
+\begin{proofs}
+	Consider $\Lambda_N f = S_N (f)(0) = \sum_{n = -N}^N \hat{f}(n)$.
+	Check: $\Lambda_N \in (C^0(\mathbb{S}^1))^*$.
+	Can write 
+	\[
+		\Lambda_N f = \frac{1}{2 \pi} \int_{- \pi}^\pi D_N(y) f(y) \mathrm{d} y
+	\]
+
+	\begin{clm}
+		\[
+			\|\Lambda_N\| = \int_{- \pi}^\pi |D_N(y)| \mathrm{d} y
+		\]
+	\end{clm}
+
+	\begin{proofs}
+		Will prove something stronger.
+		For $G \in C^0([a, b])$, define $\Lambda f = \int_a^b f(x) g(x) \mathrm{d} x$.
+		Will show $\Lambda \in (C^0([a, b]))^*$, and
+		\[
+			\| \Lambda \| = \int_a^b |g(x)| \mathrm{d} x
+		\]
+		By Riesz representation theorem, take 
+		\[
+			\alpha (x) = \int_a^x g(t) \mathrm{d} t
+		\]
+		\[
+			\Rightarrow \|\Lambda \| = T_\alpha(a, b) = \|g\|_{L^1}
+		\]
+		(Can prove this directly without Riesz representation theorem.)
+	\end{proofs}
+	\[
+		\|\Lambda_N\| = \frac{1}{2 \pi} \int_{- \pi}^\pi \left| \frac{\sin \left( \left( N + \frac{1}{2} \right) y \right)}{\sin \left( \frac{y}{2} \right)} \right| \mathrm{d} y
+	\]
+	\[
+		= \frac{1}{\pi} \int_0^\pi \left| \frac{\sin \left( \left( N + \frac{1}{2} \right) y \right) } {\sin \left( \frac{y}{2} \right)} \right| \mathrm{d} y
+	\]
+	\[
+		\geq \frac{2}{\pi} \int_0^\pi \frac{\left| \sin \left( \left( N + \frac{1}{2} \right) y \right) \right|}{y} \mathrm{d} y
+	\]
+	\[
+		= \frac{2}{\pi} \int_0^{\left( N + \frac{1}{2} \right) \pi} \frac{|\sin y|}{y} \mathrm{d} y
+	\]
+	\[
+		\geq \frac{2}{\pi} \sum_{j = 1}^N \int_{(j - 1) \pi}^{j \pi} \frac{|\sin y|}{y} \mathrm{d} y
+	\]
+	\[
+		\geq \frac{2}{\pi} \sum_{j = 1}^N \frac{1}{j \pi} \int_{(j - 1) \pi}^j |\sin y| \mathrm{d} y
+	\]
+	\[
+		\frac{4}{\pi^2} \sum_{j = 1}^N \frac{1}{j} \to \infty \text{ as } N \to \infty
+	\]
+	That is, $\|\Lambda_N \| \to \infty$ as $N \to \infty$.
+	So by the alternative formulation of UBP, the resonance points of $(\Lambda_N)$ are dense in $C^0(\mathbb{S}^1)$.
+	The resonance points are exactly the functions whose Fourier series diverges at 0.
+\end{proofs}
+
+\section{Open Mapping Theorem}
+
+Recall(?): A function $f: X \to Y$, where $X, Y$ are topological spaces, is called an open map if $f(\mathcal{U})$ is open in $Y$ whenever $\mathcal{U}$ is open in $X$.
+
+\begin{ex}
+	Every nonzero linear functional on a normed space $X$ is open.
+	Let $\Lambda \in L(X, \mathbb{C})$ be nonzero.
+	Pick $z_0 \in X$ such that $\Lambda z_0 = 1$.
+	Let $\mathcal{U} \subseteq X$ be open.
+	Want: $\Lambda \mathcal{U}$ is open.
+	Take $\Lambda x_0 \in \Lambda \mathcal{U}$.
+	Since $\mathcal{U}$ is open, $\exists r > 0$ such that $B(x_0, r)\subseteq \mathcal{U}$.
+	If $s \in \left(-\frac{r}{\|z_0\|}, \frac{r}{\|z_0\|} \right)$, then $x_0 + sz_0 \in B(x_0, r)$.
+	\[
+		\Rightarrow \Lambda(x_0 + s z_0) = \Lambda x_0 + s \in \Lambda \mathcal{U}
+	\]
+	\[
+		\Rightarrow \left( \Lambda x_0 - \frac{r}{\|z_0\|}, \Lambda x_0 + \frac{r}{\|z_0\|} \right) \subseteq \Lambda \mathcal{U}
+	\]
+	So $\Lambda \mathcal{U}$ is open.
+\end{ex}
+
+\begin{thm}
+	Every surjective bounded linear operator from a Banach space to another Banach space is an open map.
+\end{thm}
+
+\begin{proofs}
+	Let $T \in \mathcal{B}(X, Y)$ be surjective, where $X, Y$ are Banach spaces.
+	\par Step 1: $\exists r > 0$ such that $B_Y(0, r) \subseteq \overline{T B_X(0, 1)}$.
+	Why? Since $T$ is onto, 
+	\[
+		Y = \bigcup_{j = 1}^\infty T B_X(0, j) = \bigcup_{j = 1}^\infty \overline{T B_X(0, j)}
+	\]
+	$Y$ is complete.
+	By Baire category theorem, $\exists j_0$ such that $\overline{T B_X(0, j_0)}$ contains a ball $B_Y(y_0, \rho)$.
+	$TB_X(0, j_0)$ is dense in $\overline{T B_X(0, j_0)} \Rightarrow B_Y (y_0, \rho) \cap T B_X(0, j_0) \neq \phi$.
+	By replacing $B_Y(y_0, \rho)$ by a smaller ball if necessary, we may assume $y_0 = T x_0$ for some $x_0 \in B(0, j_0)$.
+	Then 
+	\[
+		B_Y(y_0, \rho) \subseteq \overline{T B_X(0, j_0)} \stackrel{\Delta-\text{ineq}}{\subseteq} \overline{T B_X(x_0, j_0 + \|x_0\|)}
+	\]
+	\[
+		\stackrel{\text{Translation}, y_0 = T x_0}{\Rightarrow} B_Y(0, \rho) \subseteq \overline{T B_X(0, j_0 + \|x_0\|)}
+	\]
+	\[
+		\Rightarrow B_Y(0, r) \subseteq \overline{T B_X(0, 1)}, \text{ where } r = \frac{\rho}{j_0 + \|x_0\|}
+	\]
+	\par Step 2: $B_Y(0, r) \subseteq T B_X(0, 3)$.
+	Exercise: This implies the theorem.
+	It remains to show Step 2.
+	Let $y \in B_Y(0, r)$. 
+	Want to find $x^* \in B_X(0, 3)$ such that $T x^* = y$.
+	By Step 1, for any $n \geq 0$, we have
+	\[
+		B_Y\left(0, \frac{r}{2^n} \right) \subseteq \overline{T B_X\left(0, \frac{1}{2^n} \right)}
+	\]
+	$n = 0$: $\exists x_1 \in B_X(0, 1)$ such that $\|y - T x_1\| < \frac{r}{2}$.
+	Now, $y - Tx_1 \in B_Y\left( 0, \frac{r}{2} \right)$.\\
+	$n = 1$: $\exists x_2 \in B_X\left( 0, \frac{1}{2} \right)$ such that $\|y - T x_1 - T x_2 \| < \frac{r}{2^2}$.
+	Inductively, we obtain $(x_n)$ with $x_n \in B_X\left( 0, \frac{1}{2^{n - 1}} \right)$ and $\|y - T x_1 - T x_2 - \cdots - T x_n \| < \frac{r}{2^n}$.
+	Set $z_n = \sum_{j = 1}^n x_n$.
+	Then $(z_n)$ is Cauchy: for $r_n < n$, 
+	\[
+		\|z_m - z_n\| \leq \|x_{m + 1}\| + \cdots + \| x_n \| \leq \frac{1}{2^{m-  1}}
+	\]
+	$X$ is complete $\Rightarrow x^* = \lim_{n \to \infty} z_n$ exists.
+	Check: $x^*\in B_X(0, 3)$ and $T x^* = y$.
+	\[
+		\|z_n\| \leq \sum_{j = 1}^n \|x_j\| \leq 2
+	\]
+	\[
+		\Rightarrow x^* \in \overline{B_X(0, 2)} \subseteq B_X(0, 3)
+	\]
+	\[
+		\|y - T x^*\| \leq \|y - T z_n\| + \|T z_n - T x^*\| < \frac{r}{2^n} + 0 \to 0
+	\]
+	$y = T x^*$.
+\end{proofs}
+
+\begin{cor}[Banach inverse mapping theorem]
+	Let $T \in \mathcal{B}(X, Y)$ be a bijection, where $X, Y$ are Banach spaces.
+	Then $T$ is invertible.
+\end{cor}
+
+\begin{proofs}
+	Want: $T^{-1}$ is bounded.
+	From the proof of the open mapping theorem, $\exists r > 0$ such that $B_Y(0, r) \subseteq T B_X(0, 3)$.
+	\[
+		\Rightarrow T^{-1} B_Y(0, r) \subseteq B_X(0, 3)
+	\]
+	$\Rightarrow T^{-1}$ maps a ball (and hence any ball) in $Y$ to a bounded set in $X$.
+	$\Rightarrow T^{-1}$ is bounded.
+\end{proofs}
+
+\section{Closed Graph Theorem}
+
+\begin{thm}
+	Let $T: X \to Y$ be linear, where $X, Y$ are vector spaces.
+	The graph of $T$ is 
+	\[
+		G(T) = \{ (x, Tx) : x \in X \} \subseteq X \times Y\}
+	\]
+	Further suppose that $X, Y$ are normed.
+	We say that $T$ is closed if $G(T)$ is a cclosed subset of $X \times Y$ under the product topology.
+	Equivalently, $T$ is closed if whenever $x_n \to x$ in $X$ and $T x_n \to y$ then $y = T x$.
+\end{thm}
+
+$T$ bounded $\Rightarrow T$ closed. 
+$T$ closed $\not\Rightarrow T$ bounded.
+Differential operator $\dv{x}$ on $C^1([a, b]) \subseteq C^0([a, b])$ with sup norm is closed by unbounded.
+
+\begin{thm}[Closed Graph Theorem]
+	Any closed map from a Banach space to another Banach space is bounded.
+\end{thm}
+
+\begin{proofs}
+	Let $T \in L(X, Y)$ be a closed map.
+	Since $X \times Y$ is complete and $G(T)$ is closed in $X \times Y$, $G(T)$ is also a Banach space.
+	Define the projection operator $P: G(T) \to X$ by 
+	\[
+		P(x, T x) = x \sfa x \in X
+	\]
+	Clearly, $P$ is bijective.
+	Also, 
+	\[
+		\|P(x, Tx)\| = \|x\| \leq \|x\| + \|T x\|
+	\]
+	$\Rightarrow P \in \mathcal{B}(G(T), X)$.
+	By Banach's inverse mapping theorem, $P^{-1}$ is bounded.
+	So $\exists , > 0$ such that 
+	\[
+		\|x\| + \|T x \| = \|(x, T x) \| = \| P^{-1} x\| \leq c \|x\| \sfa x \in X
+	\]
+	$\Rightarrow T$ is bounded.
+\end{proofs}
+
+We showed open mapping theorem $\Rightarrow$ closed graph theorem. 
+Can also show closed graph theorem $\Rightarrow$ open mapping theorem.
+These two are equivalent.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+

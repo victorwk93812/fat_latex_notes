@@ -1,0 +1,342 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+  top=2cm, 
+  bottom=2cm,
+  left=2cm,
+  right=2cm,
+  includehead, includefoot,
+  heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{array}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+\newcolumntype{L}{>{$}c<{$}} % math-mode version of "l" column type
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Intro to Algebra W2-2}
+\author{fat}
+% \date{\today}
+\date{February 28, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Intro to Algebra W2-2}
+
+\section*{9.5 Polynomial rings over fields}
+
+Let $F$ be a field. Recall that $F[x]$ is a ED, PID, UFD. 
+
+\setcounter{prop}{14}
+\begin{prop}
+  Let $f(x) \in F[x]$. $F[x]/(f(x))$ is a field $\Leftrightarrow (f(x))$ is a maximal ideal $\Leftrightarrow f(x)$ is a irreducible polynomial in $F[x]$. 
+\end{prop}
+
+\begin{proofs}
+  Recall that in a PID (that is not a field), $(a)$ is a maximal ideal $\Leftrightarrow a$ is an irreducible. 
+\end{proofs}
+
+\subsection*{Construction of finite fields of $p^n$ elements}
+
+\par Idea: Let $p$ be a prime. Let $F_p$ denote the field $\mathbb{Z}/p\mathbb{Z}$. Let $f(x)$ be an irreducible polynomial of degree $n$ in $F_p[x]$. By Proposition 15, $F_p[x]/(f(x))$ is a field. We claim that the number of elements in $F_p[x]/(f(x))$ is $p^n$. By Theorem 3, $\forall a(x) \in F_p[x], \exists ! q(x), r(x) \in F_p[x]$ s.t.
+\[
+  \begin{cases}
+    a(x) = q(x) f(x) + r(x) & \\
+    r(x) = 0 \text{ or } deg(x) < deg(f) & 
+  \end{cases}
+\]
+\par This implies that in any coset $a(x) + (f(x))$, there is a unique $r(x) = 0$ or $deg(r) < deg(f)$ (this $r(x)$ is obtained by the division algorithm in Theorem 3). Therefore $\{a_{n - 1} x^{n - 1} + \hdots + a_0: a_j \in F_p\}$ forms a complete set of coset representatives of $(f(x))$ in $F_p(x) \Rightarrow |F_p[x]/(f(x))| = p^n$.
+
+\par Summary: To construct a field of $p^n$ elements, we simply find an irreducible polynomial of degree $n$ in $F_p[x]$. Then $F_p[x]/(f(x))$ is a field of $p^n$ elements.
+
+\begin{ex}
+	$p = 2, n = 2$. Let $f(x) = x^2 + x + 1$. Then $f(x)$ is an irreducible polynomial in $F_2[x]$ (0, 1 are not roots of $f(x)$, so $f(x)$ is irreducible in $F_2[x]$).
+	The table of $F_2[x]/(x^2 + x + 1)$:
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|L|L|L|L|L|}
+			\hline
+			+ & \bar{0} & \bar{1} & \bar{x} & \overline{x + 1}\\
+			\hline
+			\bar{0} & \bar{0} & \bar{1} & \bar{x} & \overline{x + 1}\\
+			\hline
+			\bar{1} & \bar{1} & \bar{0} & \overline{x + 1} & \bar{x}\\
+			\hline
+			\bar{x} & \bar{x} & \overline{x + 1} & \bar{0} & \bar{1}\\
+			\hline
+			\overline{x + 1} & \overline{x + 1} & \overline{x} & \bar{1} & \bar{0}\\
+			\hline
+		\end{tabular}
+		\quad
+		\begin{tabular}{|L|L|L|L|L|}
+			\hline
+			\cdot & \bar{0} & \bar{1} & \bar{x} & \overline{x + 1}\\
+			\hline
+			\bar{0} & \bar{0} & \bar{0} & \bar{0} & \overline{0}\\
+			\hline
+			\bar{1} & \bar{0} & \bar{1} & \overline{x} & \overline{x+1}\\
+			\hline
+			\bar{x} & \bar{0} & \overline{x} & \overline{x + 1} & \bar{1}\\
+			\hline
+			\overline{x + 1} & \overline{0} & \overline{x+1} & \bar{1} & \bar{x}\\
+			\hline
+		\end{tabular}
+	\end{table}
+
+\end{ex}
+
+
+\begin{prop}
+  If $f(x) =f_1(x)^{e_1} \hdots f_k(x)^{e_k}$ where $f_i(x)$ are distinct irreducible polynomials in $F[x]$ that are not associates of each other. Then
+  \[
+    \quot{F[x]}{(g(x))} \simeq \quot{F[x]}{(f_1(x)^{e_1})} \times \hdots \times \quot{F[x]}{(f_k(x)^{e_k})}
+  \]
+\end{prop}
+
+\begin{proofs}
+  Note that in a PID $R$, if $GCD(a, b) = d$, then $\exists x, y \in R$ s.t. $ax + by = d$ (Prop 6 of Section 8.2). In a UFD, this is not the case. For example, $\mathbb{Z}[x]$ is a UFD. Now $GCD(2, x) = 1$, but there do not exist $r(x), s(x) \in \mathbb{Z}[x]$ s.t. $2r(x) + xs(x) = 1$. Therefore if $i \neq j$, then $(f_i(x)^{e_i}) + (f_j(x)^{e_j}) = (1) = R[x]$. By the CRT,  
+  \[
+    \quot{F[x]}{(g(x))} \simeq \quot{F[x]}{(f_1(x)^{e_1})} \times \hdots \times \quot{F[x]}{(f_k(x)^{e_k})}
+  \]
+\end{proofs}
+
+\begin{prop}
+  A polynomial of degree $n$ in $F[x]$ has at most $n$ roots in $F$ (with multipiplicities taken into account).  
+\end{prop}
+
+\begin{proofs}
+  We'll prove by induction on the degree of the polynomial. If $f(x) = ax - b, a \neq 0$, has degree 1, then clearly $f(\alpha) = 0 \Leftrightarrow \alpha = a^{-1} b$. The statement holds for polynomial of degree 1. Suppose that the statement holds for polynomials of degree up to $n - 1$. Let $f(x)$ be a polynomial of degree $n$ in $F[x]$. If $f(x)$ has no roots in $F$, we are done. If $f(x)$ has a root $\alpha \in F$, then $f(x) = (x - \alpha) g(x)$. Now if $\beta$ is a root of $f(x)$ in $F[x]$, then 
+  \[
+    (\beta - \alpha) g(\beta) = 0
+  \]
+  \[
+    \Rightarrow \beta - \alpha = 0 \text{ or } g(\beta) = 0
+  \]
+  \[
+    \Rightarrow \beta = \alpha \text{ or } \beta \text{ is a root of } g(x)
+  \]
+  By the induction hypothesis, $g(x)$ has at most $n - 1$ roots in $F \Rightarrow f(x)$ has at most $n$ roots in $F$. 
+\end{proofs}
+
+\begin{prop}
+  Any finite subgroup of $F^\times$ is cyclic (In particular, $(\mathbb{Z}/p\mathbb{Z})^\times$ is cyclic). 
+\end{prop}
+
+\begin{proofs}
+  Let $G < F^\times$ be a finite subgroup. By the FTFGAG, we have 
+  \[
+    G \simeq (\quot{\mathbb{Z}}{n_1 \mathbb{Z}}) \times \hdots \times (\quot{\mathbb{Z}}{n_k\mathbb{Z}})
+  \]
+  for some positive integers $n_j$ satisfying $n_k |n_{k - 1}| \hdots |n_2| n_1$. Then we have $a^{n_1} = 1 \sfa a \in G \Rightarrow $ the polynomial $x^{n_1} - 1$ has at least $|G| = n_1 \hdots n_k$ roots in $F$. However, by Prop. 17, $x^{n_1} - 1$ has at most $n_1$ roots in $F \Rightarrow k = 1$ and $G \simeq \mathbb{Z}/n_1 \mathbb{Z}$ is cyclic.  
+\end{proofs}
+
+
+\end{document}

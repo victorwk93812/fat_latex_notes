@@ -1,0 +1,614 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[Path = /usr/share/fonts/TTF/]{edukai-5.0.ttf}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W6-1}
+\author{fat}
+% \date{\today}
+\date{March 26, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W6-1}
+
+Last time: 
+$K$ closed, convex, proper, nonempty subset of $X$ where $X$ is a Hilbert space.
+Let $x_0 \in X \setminus K$.
+Then $\exists ! x^* \in K$ such that
+\[
+	\|x_0 - x^*\| = \inf_{x \in K} \|x_0 - x\|
+\]
+
+\section{Orthogonal Decomposition}
+
+\begin{thm}
+	Let $Y$ be a closed proper subspace of a Hilbert space $X$.
+	Let $x_0 \in X \setminus Y$.
+	Then the point $y_0 \in Y$ that minimizes the distance between $x_0$ and $Y$ satisfies
+	\[
+		\langle x_0 - y_0 , y \rangle = 0 \quad \forall y \in Y
+	\]
+	Conversely, if $z \in Y$ such that $\langle x_0 - z, y \rangle = 0 \quad y \in Y$, then $z = y_0$.
+	In this case, we have $\|x_0 - y_0\|^2 + \|y_0\|^2 = \|x_0\|^2$.
+\end{thm}
+
+\begin{proofs}
+	For $y \in Y$ and $h \in \mathbb{R}$, 
+	\[
+		\varphi(h) = \|x_0 - y_0 - hy\|^2
+	\]
+	attains a minimum at $h = 0$.
+	\[
+		\varphi(h) = \|x_0 - y_0\|^2 - h \langle x_0 - y_0 , y \rangle - h \langle y, x_0 - y_0 \rangle + h^2 \|y\|^2
+	\]
+	\[
+		\varphi'(0) = 0 \Rightarrow \Re \langle x_0 - y_0, y \rangle = 0
+	\]
+	Replacing $y$ by $iy$, we obtain $\Im \langle x_0 - y_0, y \rangle = 0$.
+	Conversely, if $\langle x_0 - z, y \rangle = 0 \quad \forall y \in Y$, then 
+	\[
+		\|x_0 - y\|^2 = \|x_0 - z + z - y\|^2 = \|x_0 - z\|^2 + \|z - y\|^2 \geq \|x_0 - z\|^2
+	\]
+	Since $y$ is arbitrary, $z$ minimizes the distance between $x_0$ and $Y \Rightarrow z = y_0$.
+\end{proofs}
+
+\begin{dfn}
+	Let $Y$ be a closed subspace of a Hilbert space $X$.
+	The \textbf{projection operator} $P$ of $X$ onto $Y$ is given by
+	\[
+		P x_0 = 
+		\begin{cases}
+			y_0 & \text{if } x_0 \in X \setminus Y\\
+			x_0 & \text{if } x_0 \in Y
+		\end{cases}
+	\]
+	We may call $Px$ the \textbf{best approximation} of $x$ in $Y$/\textbf{orthogonal projection} of $x$ on $Y$.
+\end{dfn}
+
+Check:
+\begin{itemize}
+	\item $P \in \mathcal{B}(X, Y)$
+
+	\item $P^2 = P$.
+
+	\item $\|P\| = 1$.
+\end{itemize}
+
+\begin{ex}
+	To show that $P$ is linear, we just need to show that
+	\[
+		\langle \alpha x_1 + \beta x_2 - (\alpha P x_1 + \beta P x_2), y \rangle = 0 \quad \forall y \in Y
+	\]
+	By uniquenesss we have $P(\alpha x_1 + \beta x_2) = \alpha P x_1 + \beta P x_2$.
+\end{ex}
+
+Check: If $x, z \in X$, then $z = Px \Leftrightarrow z$ satisfies $\langle x - z, y \rangle = 0 \quad \forall y \in Y$.
+
+\par Two consequences:
+
+\begin{enumerate}
+	\item Hilbert space is self-dual.
+		To each $z \in X$, we associate a bounded linear function 
+		\[
+			\Lambda_z x = \langle x, z \rangle \quad \forall x \in X
+		\]
+		Easy to check: $\Lambda_z \in X^*$ and $\|\Lambda_z\| = \|z\|$.
+		The map $\Phi: z \mapsto \Lambda_z$ defines a \textbf{sesquilinear} map from $X$ to $X^*$, i.e.
+		\[
+			\Phi(\alpha x_1 + \beta x_2) = \bar{\alpha} \Phi(x_1) + \bar{\beta} \Phi(x_2)
+		\]
+		Will show: $\Phi$ is isometric sesquilinear isomorphism.
+		$\Rightarrow$ Hilbert space is self-dual.
+		\begin{thm}[Riesz Representation Theorem]
+			Let $X$ be a Hilbert space.
+			For every $\Lambda \in X^*$, $\exists ! z \in X$ such that $\Lambda_z = \Lambda$ and $\|z\| = \|\Lambda\|$.
+		\end{thm}
+		Theorem $\Rightarrow \Phi$ is surjective and isometric.
+		\begin{proofs}
+			Let $\Lambda \in X^*$.
+			Consider 
+			\[
+				Y = \{ x \in X: \Lambda x = 0\}. \quad \text{( So } Y = N(\Lambda) \text{.)}
+			\]
+			$Y$ is closed.
+			If $Y = X$, then $\Lambda = 0$.
+			Take $z = 0$.
+			Otherwise, take any $x_0 \in X \setminus Y$.
+			Then $\langle x_0 - P x_0, y \rangle = 0$ $\forall y \in Y$.
+			Set $z_0 = x_0 - P x_0$ and $z = \frac{\overline{\Lambda z_0}}{\|z_0\|^2} z_0$.
+			Fix $x \in X$.
+			Let $u = (\Lambda x) z_0 - (\Lambda z_0) x$.
+			Then $\Lambda u = 0 \Rightarrow u \in Y$.
+			\[
+				\Rightarrow 0 = \langle z_0, u \rangle = \langle u, z_0 \rangle = \langle (\Lambda x) z_0 - (\Lambda z_0) x, z_0 \rangle
+			\]
+			\[
+				= (\Lambda x) \|z_0\|^2 - \langle(\Lambda z_0) x, z_0 \rangle = (\Lambda x) \|z_0\|^2 - \langle x, (\overline{\Lambda z_0}) z_0 \rangle
+			\]
+			\[
+				\Rightarrow \Lambda x = \frac{1}{\|z_0\|^2} \langle x, (\overline{\Lambda z_0}) z_0 \rangle = \langle x, z \rangle
+			\]
+			Check: $\|\Lambda\| = \|z\|$ and $z$ is unique.
+		\end{proofs}
+
+	\item Direct sum decomposition in a Hilbert space.
+		$X = X_1 \oplus X_2$.
+		If $X$ is normed, we hope that the projections $X \to X_1$ and $X \to X_2$ are bounded to preserve the toopology.
+		Also hope that $X_1, X_2$ are closed (so $X$ Banach $\Rightarrow X_1, X_2$ Banach).
+		If $X_1, X_2$ are closed, then by the closed graph theorem the projections are bounded.
+\end{enumerate}
+
+Another question: Gieven any closed subspace $X_1$ of a Banach space $X$, can wew find a closed subspace $X_2$ such that $X = X_1 \oplus X_2$?
+Not always possible in the general situation.
+Fact: If a Banach space possesses the property that any closed subspace satisfies this complementary property, then its norm must be equivalent to a norm induced by an inner product.
+
+Let $X$ be a Hilbert space.
+$X_1 \subseteq X$ be a closed subspace.
+The orthogonal complement $X_1^\perp$ is defined as 
+\[
+	X_1^\perp = \{x \in X: \langle x, x_1 \rangle = 0 \quad \forall x_1 \in X_1\}
+\]
+By the Riesz Representation Theorem, $X_1^\perp$ is also the annihilation of $X_1$.
+The notation is consitent.
+$X_1^\perp$ is a closed subspace of $X$.
+\[
+	x = P x + (x - P x) \in X_1 + X_1^\perp
+\]
+\begin{clm}
+	This is a direct sum.
+\end{clm}
+
+\begin{proofs}
+	If $x_0 \in X_1 \cap X_1^\perp$, then $\langle x_0, x_1 \rangle = 0 \quad \forall x_1 \in X_1$.
+	$\Rightarrow \langle x_0, x_0 \rangle = 0 \Rightarrow x_0 = 0$.
+\end{proofs}
+Moreover, $P, I - P$ are precisely the projection maps of $X_1 \oplus X_1^\perp$.
+To summarize:
+\begin{thm}
+	$\forall$ closed subspace $X_1$ of a Hilbert space $X$, $X = X_1 \oplus X_1^\perp$.
+	Moreover, if $P: X \to X_1$ is the projection operator, then $\forall x \in X$, $P x$ is the unique point in $X_1$ that satisfies $\|x - Px\| = \text{dist}(x, X_1)$ and the projection $Q: X \to X_1^\perp$ is given by $Q x = x - P x$.
+\end{thm}
+
+\section{Complete Orthonormal Set}
+
+Question: How can we determine $P x_0$ when $x_0, Y$ are given?
+In finite dimensions, if $\{x_1, ..., x_m\}$ is a basis for $Y$, then any projection $y_0$ of $x_0$ can be written as $y_0 = \sum_{k = 1}^m \alpha_k x_k$.
+Also $\langle y_0 - x_0, x_j \rangle = 0 \quad j = 1, ..., m$.
+To determine $\alpha_k$'s, we just need to solve
+\[
+	\sum_{k = 1}^m \langle x_k, x_j \rangle \alpha_k = \langle x_0, x_j \rangle \quad \forall j = 1, ..., m
+\]
+If $\{x_1, ..., x_m\}$ is orthonormal, we see $\alpha_j = \langle x_0, x_j \rangle$, so $y_0 = \sum_{k = 1}^m \langle x_0, x_k \rangle x_k$.
+In general, if we have an orthonormal spanning set in $Y$, then we should be able to find $P x_0$ easily.
+
+\begin{lem}[Bessel's Inequality]
+	Let $S$ be an orthonormal set in a Hilbert space $X$.
+	Then for each $x \in X$, $\langle x, x_\alpha \rangle = 0$ for all but at most countable many $\alpha$.
+	If we write $B$ for this exceptional indices, then for any sequence $(\alpha_k)$ in $B$, 
+	\[
+		\sum_k |\langle x, x_{\alpha_k} \rangle|^2 \leq \|x\|^2
+	\]
+\end{lem}
+
+\begin{proofs}
+	Step 1: We show the Bessel inequality for a finite orthonormal set $\{x_1, ..., x_N\}$. 
+	\begin{clm}
+		$\sum_{k = 1}^N |\langle x, x_k \rangle|^2 \leq \|x\|^2$.
+	\end{clm}
+
+	\begin{proofs}
+		Let $y = \sum_{k = 1}^N \langle x, x_k \rangle x_k$.
+		Then 
+		\[
+			\langle x - y, x_k \rangle = \left\langle x - \sum_{l = 1}^N \langle x, x_l \rangle x_l, x_k \right\rangle
+		\]
+		\[
+			= \langle x, x_k \rangle - \langle x, x_k \rangle = 0
+		\]
+		So $y$ is the orthogonal projection of $x$ onto $\text{span}(\{x_1, ..., x_N\})$.
+		Also 
+		\[
+			\sum_{k = 1}^N |\langle x, x_k \rangle|^2 = \|y\|^2 = \|x\|^2 - \|x - y\|^2 \leq \|x\|^2
+		\]
+		This proves the claim.
+	\end{proofs}
+	
+	Step 2: Let $x \in X$ and $l \in \mathbb{N}$. 
+	Define 
+	\[
+		S_l = \{x_\alpha \in S: |\langle x, x_\alpha \rangle | \geq \frac{1}{l}\}
+	\]
+	We show that $S_l$ is a finite set.
+	Pick $x_{\alpha_1}, ..., x_{\alpha_N}$ from $S_l$.
+	Then by Step 1,
+	\[
+		\frac{N}{l^2} \leq \sum_{k = 1}^N |\langle x, x_{\alpha_k} \rangle |^2 \leq \|x\|^2
+	\]
+	$\Rightarrow N \leq l^2 \|x\|^2$.
+	So $S_l$ has at most $l^2 \|x\|^2$ many elements.
+
+	\par Step 3: Fix $x \in X$.
+	Then there are at most countable manny $\langle x, x_\alpha \rangle$ are nonzero.
+	Ler $S_x = \{x_\alpha \in S: \langle x, x_\alpha \rangle \neq 0\}$.
+	Then
+	\[
+		S_x = \bigcup_{l = 1}^\infty S_l
+	\]
+	So $S_x$ is at most countable.\\
+	\par Finally the Bessel inequality follows from the finite case by taking $N \to \infty$.
+\end{proofs}
+
+\begin{thm}
+	Let $Y$ be a closed subspace of a Hilbert space $X$.
+	Suppose that $S$ is an orthonormal subset of $Y$ such that $\text{span}(S)$ is dense in $Y$.
+	Then $\forall x \in X$, its orthogonal projection on $Y$ is given by $\sum_k \langle x, x_k \rangle x_k$, where $(x_k)$ is any ordering of those $x_\alpha$ in $S$ with $\langle x, x_\alpha \rangle \neq 0$.
+	(So we can write $\sum_\alpha \langle x, x_\alpha \rangle x_\alpha$ without any ambiguity.)
+\end{thm}
+
+\begin{proofs}
+	We first verigy that $\sum_k \langle x, x_k \rangle x_k$ is convergent.
+	Let $z_n = \sum_{k = 1}^n \langle x, x_k \rangle x_k$.
+	We just need to show that $(z_n)$ is Cauchy.
+	For $m < n$, 
+	\[
+		\|z_m - z_n\|^2 = \left\|\sum_{k = m + 1}^n \langle x, x_k \rangle x_k \right\|^2 = \sum_{k = m + 1}^n |\langle x, x_k \rangle|^2
+	\]
+	where the last term is small as $m, n$ are large, by Bessel's inequality.
+	So $(z_n)$ is Cauchy.
+	Also, it is easy to check that 
+	\[
+		\left\langle x - \sum_k \langle x, x_k \rangle x_k, y \right\rangle = 0 \quad \forall y \in Y
+	\]
+	So $\sum_k \langle x, x_k \rangle x_k$ is the orthogonal projection of $x$ on $Y$.
+\end{proofs}
+
+\begin{dfn}
+	A subset $B$ of a Hilbert space $X$ is called a \textbf{complete orthonormal set} if 
+	\begin{enumerate}
+		\item[(a)] It is an orthonormal set.
+
+		\item[(b)] $\overline{\text{span}(B)} = X$.
+	\end{enumerate}
+\end{dfn}
+
+Recall: A Hamel basis $B$ satisfies 
+\begin{enumerate}
+	\item[(a')] All vectors in $B$ are linearly independent.
+
+	\item[(b')] $\text{span}(B) = X$.
+\end{enumerate}
+
+(a)$\Rightarrow$(a'), but (b') is stronger than (b).
+A complete orthonormal set is a good substitution for a Hamel basis.
+(Some books called a complete orthonormal set as an orthonormal basis.)
+
+\begin{thm}
+	Every nonzero Hilbert space admits a complete orthonormal set.
+\end{thm}
+
+\begin{proofs}
+	Let $\mathcal{O}$ be the collection of all orthonormal sets in $X$.
+	$\mathcal{O} \neq \phi$, partially ordered by $\subseteq$.
+	If $\mathcal{C}$ is a chain in $\mathcal{O}$, then
+	\[
+		O^* = \bigcup_{O \in \mathcal{C}} O
+	\]
+	is an upper boundd of $\mathcal{C}$ in $\mathcal{O}$.
+	By Zorn's lemma, $\mathcal{O}$ has a maximal element $B$.
+	
+	\begin{clm}
+		$B$ is a complete orthonormal set.
+	\end{clm}
+
+	\begin{proofs}
+		$B$ is clearly orthonormal.
+		Suppose $\exists z \in X \setminus \overline{\text{span}(B)}$.
+		By orthogonal decomposition, if $P$ is the projection operator onto $\overline{\text{span}(B)}$, then
+		\[
+			z' = \frac{z - {Pz}}{\|z - P z\|}
+		\]
+		is a unit vector $\perp \overline{\text{span}(B)}$.
+		Then $B \cup \{z'\} \in \mathcal{O}$, a contradiction.
+	\end{proofs}
+\end{proofs}
+
+When is an orthonormal set complete?
+
+\begin{thm}
+	Let $B$ be an orthonormal set in a Hilbert space $X$.
+	The following are equivalent.
+	\begin{enumerate}
+		\item[(a)] $B$ is a complete orthonormal set.
+
+		\item[(b)] $x = \sum_\alpha \langle x, x_\alpha \rangle x_\alpha$ holds for all $x \in X$.
+
+		\item[(c)] $\|x\|^2 = \sum_\alpha |\langle x, x_\alpha \rangle|^2$ holds for all $x \in X$.
+
+		\item[(d)] $\langle x, x_\alpha \rangle = 0 \quad \forall x_\alpha \in B$ then $x = 0$.
+	\end{enumerate}
+	(c) is called the \textbf{Parseval Identity}.
+\end{thm}
+
+\begin{proofs}
+	\par "(a)$\Rightarrow$(b)" Suppose that $B$ is a complete orthonormal set.
+	The orthogonal projection on $\overline{\text{span}(B)}$ is just $I$.
+	So (b) holds.
+
+	\par "(b)$\Rightarrow$(c)" 
+	\[
+		\|x\|^2 - \sum_{k = 1}^n |\langle x, x_k \rangle |^2 = \|x - \sum_{k = 1}^n \langle x, x_k \rangle x_k \|^2 \to 0
+	\]
+
+	\par "(c)$\Rightarrow$(d)" is obvious.
+
+	\par "(d)$\Rightarrow$(a)" Suppose that $\overline{\text{span}(B)} \subset X$ is a proper subset of $X$.
+	Then $\exists$ nonzero $x_0 \in X \setminus \overline{\text{span}(B)}$ such that $\langle x_0, x_\alpha \rangle = 0 \quad \forall x_\alpha \in B$.
+	(similar to the proof of existence of a complete orthonormal set).
+	$\Rightarrow x_0 = 0$ by (a), a contradiction.
+\end{proofs}
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

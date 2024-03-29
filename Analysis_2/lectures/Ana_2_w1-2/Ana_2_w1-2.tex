@@ -1,0 +1,467 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% \theoremstyle{definition}
+% \newtheorem{thy}{Theory}[section]
+% \newtheorem{thm}{Theorem}[section]
+% \newtheorem{ex}{Example}[section]
+% \newtheorem{prob}{Problem}[section]
+% \newtheorem{lem}{Lemma}[section]
+% \newtheorem{dfn}{Definition}[section]
+% \newtheorem{rem}{Remark}[section]
+% \newtheorem{cor}{Corollary}[section]
+% \newtheorem{prop}{Proposition}[section]
+% \newtheorem*{clm}{Claim}
+
+
+%
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W1-2}
+\author{fat}
+% \date{\today}
+\date{February 22, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W1-2}
+
+\begin{thm}
+  If $(K_\delta)$ is an approximation to the identity and $f \in L^1(\mathbb{R}^d)$ then
+
+  $$(f * K_\delta) (x) \rightarrow f(x) \text{ as } \delta \rightarrow 0 \forall x \in Leb(f)$$
+\end{thm}
+
+\begin{proofs}
+  $$(f * K_\delta)(x) - f(x) = \int f(x - y) K_\delta (y) dy - \int f(x) K_\delta (y) dy$$
+
+  $$ = \int (f(x - y) - f(x)) K_\delta(y) dy$$
+
+  $$\Rightarrow |(f* K_\delta)(x) - f(x)| \leq \int |f(x - y) - f(x)| |K_\delta(y)| \mathrm{d}y$$
+
+  $$\int_{|y| \leq \delta} |f(x - y) - f(x)| |K_\delta(y)| dy \stackrel{(b)}{\leq} \frac{C}{\delta^d} \int_{|y| \leq \delta} |f(x - y) - f(x)| dy = CA(\delta) $$
+
+  $$\int_{2^k \delta < |y| \leq 2^{k +1 } \delta} |f(x - y) - f(x)| |K_\delta (y)| dy \leq C \delta \int_{2^k  \delta < |y| \leq 2^{k + 1} \delta} |f(x - y) - f(x)| \frac{1}{|y|^{d+1}} dy$$
+
+  $$\leq \frac{D \delta}{(2^k \delta)^{d + 1}} \int_{|y| \leq 2^{k+1} \delta} |f(x - y) - f(x)| dy$$
+
+  $$\leq C' 2^{-k} A(2^{k + 1} \delta)$$
+
+  $$\Rightarrow |(f*K_\delta)(x) - f(x)| \leq CA(\delta) + C' \sum_{k = 0}^\infty 2^{-k} A(2^{k+1} \delta)$$
+
+  Given $\epsilon > 0$, choose $N$ large s.t. $\sum_{k \geq N} 2^{-k} < \epsilon$. By the Lemma, we can choose $\delta > 0$ small s.t. 
+
+  $$A(2^{k +1} \delta) < \frac{\epsilon}{N} \text{ for } k= 0, 1, \hdots, N - 1$$
+
+  Also, $A$ is bounded.
+
+  $$\Rightarrow |(f*K_\delta)(x) - f(x)| \leq C'' \epsilon$$
+
+  This proves the theorem. 
+
+  \par So $f * K_\delta \rightarrow f$ a.e. as $\delta \rightarrow 0$. We also have $L^1$-convergence.
+
+
+\end{proofs}
+
+\begin{thm}
+  $f \in L^1(\mathbb{R}^d)$, $(K_\delta)_{\delta > 0}$ approximation to the identity. Then $f(K_\delta) \in L^1(\mathbb{R}^d)$ and 
+
+  $$||f*K_\delta - f||_{L^1} \rightarrow 0 \text{ as } \delta \rightarrow 0$$
+\end{thm}
+
+\begin{proof}
+  $f*K_\delta \in L^1(\mathbb{R}^d)$ follows from  Fubini (check!)
+
+  $$|f*K_\delta(x) - f(x)| \leq \int |f(x - y) - f(x)| |K_\delta(y)| dy$$
+
+  $$||f*K_\delta - f||_{L^1} \leq \int \int |f(x - y) - f(x)| |K_\delta(y)|dydx$$
+
+  Write $f_y(x) = f(x - y)$.
+
+  $$\Rightarrow ||f*K_\delta - f||_{L^1} \leq \int ||f_y - f||_{L^1} |K_\delta(y)| dy$$
+
+  Recall: Given $\epsilon > 0$, $\exists \eta > 0$ s.t. if $|y| < \eta$, then $||f_y - f||_{L^1} < \epsilon$.
+
+  $$\Rightarrow ||f*K_\delta - f||_{L^1} \leq C\epsilon + \int_{|y| \geq \eta} ||f_y - f||_{L^1} |K_\delta(y)|dy$$
+
+  $$\leq C \epsilon + 2||f||_{L^1} \int_{|y| \geq \eta} |K_\delta(y)|dy$$
+
+  Where the second term converges to 0 as $\delta \rightarrow 0$.
+
+  $\Rightarrow f*K_\delta \rightarrow f$ in $L^1$. 
+\end{proof}
+
+For which class of $F$ we have 
+
+$$F(b) - F(a) = \int_a^b F'(x) dy \text{?}$$
+
+If $F$ is an indefinite integral then this must be true. When can a function be written as an indefinite integral? Will study a wider class of functions. 
+
+\begin{dfn}
+  Let $F:[a, b] \rightarrow \mathbb{C}$ be a function, and let $a = t_0 < t_1 < \hdots < t_N = b$ be a partition of $[a, b]$. The variation of $F$ on this partition is defined by 
+
+  $$\sum_{j = 1}^N  |F(t_j) - F(t_{j - 1})|$$
+
+  F is said to be of \textbf{bounded variation} if 
+
+  $$\sup_{\text{all partitions of }[a ,b]} \sum_{j = 1}^N |F(t_j) - F(t_{j - 1})| < \infty $$
+
+\end{dfn}
+
+\begin{ex}
+  \begin{itemize}
+    \item If $F: [a, b] \rightarrow \mathbb{R}$ is monotone, then $F$ is of bounded variation.
+
+    \item If $F$ is Lipschitz, then $F$ is of bounded variation.
+  \end{itemize}
+\end{ex}
+
+\begin{rem}
+  If $\mathcal{P}$ is a partition of $[a, b]$ and if $\mathcal{P}'$ is a refinement of $\mathcal{P} (\mathcal{P} \subset \mathcal{P}')$ then the variation of $F$ on $\mathcal{P}'$ is at least the variation of $F$ on $\mathcal{P}$. 
+\end{rem}
+
+\begin{dfn}
+  Let $F:[a, b] \rightarrow \mathbb{C}$ be a function of bounded variation. Let $x \in [a, b]$. The \textbf{total variation} of $F$ on $[a, x]$ is 
+
+  $$T_F(a, x) = \sup_{\text{all partitions of } [a, x]} \sum_{j = 1}^N |F(t_j) - F(t_{j - 1})|$$
+
+  If $F$ is real-valued, the positive variation of $F$ on $[a,x]$ is 
+
+  $$P_F (a, x) = \sup \sum_{(+)} F(t_j) - F(t_{j - 1})$$
+
+  Where the $(+)$ means summing over all $j$ s.t. $F(t_j) \leq F(t_{j - 1})$. The negative variation of $F$ on $[a, x]$ is
+
+  $$N_F (a, x) = \sup \sum_{(-)} - (F(t_j) - F(t_{j - 1}))$$
+
+  Where $(-)$ means summing over all $j$ s.t. $F(t_j) \leq F(t_{j - 1})$. 
+\end{dfn}
+
+\begin{lem}
+  Suppose $F:[a, b] \rightarrow \mathbb{R}$ is of bounded variation. Then $\forall x \in [a, b]$ one has
+
+  $$F(x) - F(a) = P_F (a, x) - N_F(a, x)$$
+
+  $$T_F(a, x) = P_F(a, x) + N_F(a, x)$$
+\end{lem}
+
+\begin{proofs}
+  Let $\epsilon > 0$. $\exists$ a partition $a = t_0 < \hdots < t_N = b$ s.t. 
+
+  $$|P_F(a, x) - \sum_{(+)} (F(t_j) - F(t_{j - 1}))| < \frac{\epsilon}{2}$$
+
+  
+  $$|N_F(a, x) - \sum_{(-)} - (F(t_j) - F(t_{j - 1}))| < \frac{\epsilon}{2}$$
+
+  Observe 
+
+  $$F(x) - F(a) = \sum_{j = 1}^N (F(t_j) - F(t_{j - 1}))$$
+
+  $$ = \sum_{(+)} F(t_j) - F(t_{j - 1}) - \sum_{(-)} -(F(t_j) - F(t_{j - 1}))$$
+
+  $$\Rightarrow  |F(x) - F(a) - (P_F(a, x) - N_F(a, x))| < \epsilon$$
+
+  For any partition $a = t_0 < \hdots < t_N = x$, 
+
+  $$\sum_{j = 1}^N |F(t_j) - F(t_{j - 1})| = \sum_{(+)} F(t_j) - F(t_{j - 1}) + \sum_{(-)} -(F(t_j) - F(t_{j - 1}))$$
+
+  $$\Rightarrow T_F(a, x) = P_F(a, x) + N_F(a, x)$$
+
+  where one should verify this line carefully.
+  
+
+\end{proofs}
+
+
+\begin{thm}
+  $F:[a, b] \rightarrow \mathbb{R}$ is of bounded variation $\Leftrightarrow$ $F$ is a difference of two increasing bounded functions. 
+\end{thm}
+
+\begin{proofs}
+  If $F = F_1 - F_2$, where $F_1, F_2$ are increasing and bounded, then $T_F(a, x) \leq T_{F_1}(a, x) + T_{F_2}(a ,x) < \infty$. On the other hand, if $F$ is of bounded variation, take 
+
+  $$F_1(x) = P_F(a, x) + F(a) \text{, } F_2(x) = N_F(a, x)$$
+
+  where both the functions are increasing and bounded. Clearly $F(x) = F_1(x) - F_2(x)$. 
+\end{proofs}
+
+Consequence: Any complex-valued function of bounded variation is a linear combination of 4 increasing function. 
+
+\begin{thm}
+  If $F$ is of bounded variation on $[a, b]$, then $F$ is differentiable a.e.
+\end{thm}
+
+It suffices to show that increasing functions are differentiable a.e. We will first consider the case that the function is continuous. 
+
+\begin{lem}
+  Suppose that $G$ is real-valued and continuous on $\mathbb{R}$. Let $E = \{x \in \mathbb{R}: G(x + h) > G(x) \text{ for some } h = h_x > 0 \}$. If $E \neq \phi$, then $E$ is open, and we can write $E = \bigcup_k (a_k, b_k)$ where the intervals are disjoint. If $(a_k, b_k)$ is a finite interval in the union, then $G(b_k) - G(a_k) = 0$.  
+\end{lem}
+
+\begin{proofs}
+  Suppose that $(a_k, b_k)$ is a finite interval in the union. $a_k \notin E \Rightarrow $ we cannot have $G(b_k) > G(a_k)$. Suppose that $G(b_k) < G(a_k)$. By continuity, $\exists c \in (a_k, b_k)$ s.t. 
+
+  $$G(c) = \frac{G(a_k) + G(b_k)}{2}$$
+
+  We may choose $c$ to be the rightmost such point in $(a_k, b_k)$. Then $c \in E$. So $\exists d > c$ s.t. $G(d) > G(c)$. Also, $b_k \notin E$. So $G(x) \leq G(b_k) \forall x \leq b_k$. 
+
+  $$G(d) > G(c) > G(b_k) \Rightarrow d < b_k$$
+
+  By continuity again, $\exists c' \in (d, b_k)$ s.t. $G(c') = G(c)$, contradicting that $c$ is the rightmost point. So $G(a_k) = G(b_k)$. 
+\end{proofs}
+
+\begin{rem}
+  If $G:[a, b] \rightarrow \mathbb{R}$ is continuous, and if we define $E = \{ x \in (a, b): G(x + h) > G(x) \text{ for some } h = h_x > 0 \}$, then the above result still holds, except possibly when $a_k = a$. In this case we only have $G(a_k) \leq G(b_k)$. 
+\end{rem}
+
+Define 
+
+$$\Delta_h (F)(x) = \frac{F(x + h) - F(x)}{h}$$
+
+The Dini derivatives of $F$ at $x$ are
+
+$$D^+(F)(x) = \limsup_{h \to 0^+} \Delta_h (F)(x)$$
+
+$$D_+(F)(x) = \liminf_{h \to 0^+} \Delta_h (F)(x)$$
+
+$$D^-(F)(x) = \limsup_{h \to 0^-} \Delta_h (F)(x)$$
+
+$$D_-(F)(x) = \liminf_{h \to 0^-} \Delta_h (F)(x)$$
+
+Want: $D^+ = D_+ = D^- = D_- < \infty$ a.e. clearly, $D_+ \leq D^+$ and $D_- \leq D_-$. It suffices to verify that for all increasing and continuous $F$, 
+
+\begin{itemize}
+  \item[(a)] $D^+(F)(x) < \infty$ for a.e. $x$
+  \item[(b)] $D^+(F)(x) \leq D_-(F)(x)$ for a.e. $x$. 
+\end{itemize}
+
+If (a) and (b) hold for all increasing and continuous $F$, we apply (b) to $-F(-x)$ (increasing and continuous) on the interval $[-b, -a]$.
+
+$$\Rightarrow D^+(-F)(-x) \leq D_-(-F)(-x) (\text{write } \tilde{F}(x) = -F(-x))$$
+
+while
+
+$$\text{L.H.S.} = \limsup_{h \to 0^+} (-\frac{\tilde{F}(x+h) - \tilde{F}(x)}{h}) = \limsup_{h \to 0^+}  (-\frac{F(-x-h) - F(-x)}{-h})$$
+
+$$ = \limsup_{h \to 0^+} (\frac{F(-x-h) - F(-x)}{-h}) = \limsup_{h \to 0^-} (\frac{F(-x+h)- F(-x)}{h})$$
+
+
+$$ = D^-(F)(-x) = D^-(F)(y)$$
+
+$$D_-(-F)(y) = D_+(F)(y)$$
+
+$$\Rightarrow D_- \leq D_+$$
+
+$$\Rightarrow D^+ \stackrel{(b)}{\leq} D_- \leq D^- \leq D_+ \leq D_+ \stackrel{(a)}{<} \infty$$
+
+So all are equal and finite. $\Rightarrow F'$ exists a.e. Remains to verify (a) and (b). For $\gamma > 0$, define 
+
+$$E_\gamma = \{x: D^+ (F)(x) > \gamma\}$$
+
+$E_\gamma$ is measurable. Apply the remark to $G(x) = F(x) - \gamma_x$
+
+$$E = \{x \in (a, b): G(x + h) > G(x) \text{ for some } h > 0\}$$
+
+$$\Rightarrow E_\gamma \\ {a} \subset E = \bigcup_k (a_k, b_k)$$
+
+By Remark, $G(a_k) \leq G(b_k)$
+
+$$\Rightarrow F(a_k) - \gamma a_k \leq F(b_k) - \gamma b_k$$
+
+$$\Rightarrow F(b_k) - F(a_k) \leq \gamma (b_k - a_k)$$
+
+$$m(E_\gamma) \leq m(E) \leq \sum_k m((a_k, b_k)) \leq \frac{1}{\gamma} \sum_k (F(b_k) - F(a_k))$$
+
+$$\stackrel{\text{F increasing}}{\leq} \frac{1}{\gamma} (F(b) - F(a))$$
+
+$$\Rightarrow \lim_{\gamma \to \infty} m(E_\gamma) = 0$$
+
+$$\Rightarrow \{ x : D^+ = \infty\} \text{ has measure zero }$$
+
+
+
+
+
+
+
+
+
+
+\end{document}

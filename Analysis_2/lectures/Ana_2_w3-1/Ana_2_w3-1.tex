@@ -1,0 +1,559 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+  top=2cm, 
+  bottom=2cm,
+  left=2cm,
+  right=2cm,
+  includehead, includefoot,
+  heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{C}{>{$}c<{$}} % math-mode version of "l" column type
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{R}{>{$}r<{$}} % math-mode version of "l" column type
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W3-1}
+\author{fat}
+% \date{\today}
+\date{March 5, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W3-1}
+
+\par Recall: $X$ a normed space.
+$L(X, \mathbb{C}) = \text{ space of all linear functionals from } X \text{ to } \mathbb{C}$.
+
+\begin{prop}
+	$\Lambda \in L(X, \mathbb{C})$. 
+
+	\begin{enumerate}
+		\item[(a)] $\Lambda$ is bounded $\Leftrightarrow \exists C > 0$ s.t. $|\Lambda x| \leq C\| x \| \sfa x \in X$.
+
+		\item[(b)] $\Lambda$ is continuous $\Leftrightarrow \Lambda$ is continuous at one point.
+
+		\item[(c)] $\Lambda$ is continuous $\Leftrightarrow \Lambda$ is bounded.
+	\end{enumerate}
+\end{prop}
+
+\begin{proofs}
+	We proved (a). 
+	\par (b). We only show the other "$\Leftarrow$". 
+	Suppose that $\Lambda$ is continuous at $x_0$.
+	Fix $x \in X$. 
+	Let $(x_n)$ be a sequence in $X$ that converges to $x$.
+	Define $y_n = x_n - x + x_0$.
+	Then $y_n \to x_0$.
+	So $\Lambda y_n \to \Lambda x_0 \Rightarrow \Lambda x_n - \Lambda x \to 0 \Rightarrow \Lambda x_n \to \Lambda x$.
+	So $\Lambda$ is continuous at $x$.
+	\par (c). Suppose that $\Lambda$ is not bounded. 
+	$\exists M > 0$ and a sequence $(x_n)$ in $X$ s.t. $\|x_n\| \leq M$ but $|\Lambda x_n| \to \infty$.
+	May assume $\Lambda x_n \neq 0 \sfa n$. 
+	Define $y_n = x_n / |\Lambda x_n|$.
+	Then $\|y_n \| \to 0$, but $| \Lambda y_n| = 1$ for all $n$. \
+	$\Lambda$ is not continuous. 
+	On the other hand, suppoes that $\Lambda$ is bounded. By (a), $\Lambda$ is Lipschitz $\Rightarrow \Lambda$ is continuous. 
+
+\end{proofs}
+
+$X^* = $ Set of all bounded linear functionals on $X$, called the Dual space/topological dual.
+$X^* \subset L(X, \mathbb{C})$.
+If $X$ is finite dimensional, then $X^* = L(X, \mathbb{C})$. 
+If $X$ is infinite dimensional, that $X^* \subset L(X, \mathbb{C})$ but $X^* \neq L(X, \mathbb{C}$). 
+Why? 
+Let $B$ be a Hamel basis for $X$.
+Normalize the vectors in $B$ s.t. all have norm 1.
+Pick $\{x_1, x_2, x_3, ...\}$ from $B$. 
+Define
+\[
+	\begin{cases}
+		\Lambda x_i = i & \forall i\\
+		\Lambda x = 0 & \text{ if } x \in B \setminus \{x_1, ...\}
+	\end{cases}
+\]
+Extend $\Lambda$ linearly.($ \forall v \in X, v = a_1 v_1 + \hdots + a_n v_n$ where $v_1, ..., v_n \in B$. $\Lambda v = a_1 \Lambda v_1 + \hdots + a_n \Lambda v_n$.)
+Then $\Lambda$ is unbounded.
+
+\begin{prop}
+	Let $X$ be a normed space and $\Lambda \in X^*$. 
+	Define 
+	\[
+		\|\Lambda\| = \sup_{x \neq 0} \frac{|\Lambda x|}{\|x\|}
+	\]
+	Then $\| \cdot \|$ is a norm on $X^*$ called the operator norm. 
+\end{prop}
+
+\begin{rem}
+	We can define
+	\[
+		\| \Lambda \| = \sup_{\|x\| = 1} |\Lambda x| = \sup_{\| x \| \leq 1} |\Lambda x|
+	\]
+	From definition, we have $|\Lambda x| \leq \| \Lambda \| \|x\| \sfa x \in X$. 
+	Exercise: Verify this. 
+\end{rem}
+
+\begin{proofs}
+	We only prove the $\Delta$-ineq. 
+	Let $\Lambda_1, \Lambda_2 \in X^*$ and let $x \in X$ with $\|x\| = 1$. 
+	Then
+	\[
+		|(\Lambda_1 + \Lambda_2)(x)| \leq |\Lambda_1 x| + |\Lambda_2 x| \leq \|\Lambda_1 \| + \| \Lambda_2 \|
+	\]
+	Take sup over all $\|x\| = 1$, done.
+\end{proofs}
+
+\begin{prop}
+	If $X$ is a normed space, then $X^*$ is a Banach space.
+\end{prop}
+
+\begin{proofs}
+	Let $(\Lambda_k)$ be a Cauchy sequence in $X^*$.
+	Fix $\epsilon > 0$.
+	$\exists K$ s.t. $\|\Lambda_k - \Lambda_l\| < \epsilon \sfa k, l \geq K$. 
+	For $x \in X$, 
+	\[
+		|\Lambda_k x- \Lambda_l x| \leq \|\Lambda_k - \Lambda_l \| \|x \| < \epsilon \|x\| \sfa k, l \geq K \hdots (*)
+	\]
+	So for each $x \in X, (\Lambda_k x)$ is a Cauchy sequence in $\mathbb{C}$.
+	$\lim_{k \to \infty} \Lambda_k x$ exists $\forall x \in X$. 
+	Define $\Lambda x = \lim_{k \to \infty} \Lambda_k x$.
+	Check: $\Lambda$ is linear. 
+	Let $l \to \infty$ in $(*)$.
+	\[
+		|\Lambda_k x - \Lambda x| \leq \epsilon \|x\| \sfa k \geq K \hdots (!)
+	\]
+	\[
+		|\Lambda x| \leq (\epsilon + \|\Lambda_{K}\|) \|x\|
+	\]
+	This holds for all $x \in X$, so $\Lambda \in X^*$. Finally, we show $\Lambda_k \to \Lambda$ in norm.
+	from (!), $\| \Lambda_k - \Lambda\| \leq \epsilon \sfa k \geq K$.
+	So $\Lambda_k \to \Lambda$.
+\end{proofs}
+
+\begin{ex}
+	\begin{prop}
+		Let $1 \leq p < \infty$. The dual of $l^p$ is isometrically isomorphic to $l^q$ where $q = \frac{p}{p - 1}$.
+	\end{prop}
+
+	\begin{proofs}
+		We only prove the case when $p > 1$. 
+		Define $e_j = (0, \hdots 0, 1, 0, 0, \hdots)$ where only the $j^{\text{th}}$ position is 1.
+		Define $\Phi: (l^p)^* \to l^q$ as follows:
+		For $\Lambda \in (l^p)^*$, define 
+		\[
+			\Phi(\Lambda) = (\Lambda e_1, \Lambda e_2, \hdots )
+		\]
+		We first verify that $\Phi(\Lambda) \in l^q$.
+		Write $\Phi(\Lambda)= (a_1, a_2, ...,)$.
+		$\exists \theta_j$ s.t. $a_j = e^{i \theta_j} |a_j|$.
+		Define 
+		\[
+			a^N = (e^{-i \theta_1}|a_1|^{q-1}, ..., e^{-i \theta_N}|a_N|^{q- 1}, 0, 0, ...)
+		\]
+		Then $a^N \in l^p \sfa N$.
+		$(a^N = \sum_{j = 1}^N e^{-i \theta_j} |a_j|^{q - 1} e_j)$.
+		\[
+			|\Lambda a^N| = \left| \sum_{j = 1}^N e^{-i \theta_j} |a_j|^{q - 1} \Lambda e_j\right|
+		\]
+		\[
+			= \left|\sum_{j =1}^N e^{-i \theta_j} |a_j|^{q - 1} a_j\right| = \sum_{j = 1}^N |a_j|^q
+		\]
+		\[
+			\|a^N\|_{l^p} = \left( \sum_{j = 1}^N \left(|a_j|^{q - 1}\right)^{p} \right)^{\frac{1}{p}} = \left( \sum_{j = 1}^N |a_j|^q \right)^{\frac{1}{p}} 
+		\]
+		Recall: $|\Lambda x| \leq \|\Lambda \| \|x\|$.
+		So we have 
+		\[
+			\sum_{j = 1}^N |a_j|^q \leq \|\Lambda\|\left(\sum_{j = 1}^N |a_j|^q\right)^{\frac{1}{p}}
+		\]
+		\[
+			\Rightarrow \left( \sum_{j = 1}^N |a_j|^q\right)^{\frac{1}{q}} \leq \|\Lambda\|
+		\]
+		Let $N \to \infty$, we have
+		\[
+			\|\Phi(\Lambda)\|_{l^q} \leq \|\Lambda \|
+		\]
+		That is, $\Phi:(l^p)^* \to l^q$.
+		Next, we show that $\Phi$ is onto.
+		We will construct the inverse explicitly.
+		For each $a \in l^q$, we define $\Psi(a) = \Lambda_a$, where $\Lambda_a \in (l^p)^*$ is given by $\Lambda_a x = \sum_{j = 1}^\infty a_j x_j \sfa x \in l^p$.
+		By H\"older's inequality, 
+		\[
+			|\Lambda_a x| \leq \|a\|_{l^q} \|x\|_{l^p} \sfa x \in l^p
+		\]
+		So $\Lambda_a x$ is well-defined, and $\Lambda_a \in (l^p)^*$.
+		Taking sup over all $x$ with $\|x\|_{l^p} = 1$, we have 
+		\[
+			\|\Psi(a)\| = \|\Lambda_a\| \leq \|a\|_{l^q}
+		\]
+
+		\begin{clm}
+			$\Phi(\Psi(a)) = a \sfa a \in l^q$.
+		\end{clm}
+
+		\begin{proofs}
+			Let $a \in l^q$.
+			\[
+				\Phi(\Psi(a)) = (\Psi(a) e_1, \Psi(a) e_2, ...) 
+			\]
+			\[
+				= (a_1, a_2, ...) = a
+			\]
+		\end{proofs}
+	Finally, we show $\Phi$ is an isometry.
+	Recall: 
+	\[
+		\|\Phi(\Lambda)\|_{l^q} \leq \|\Lambda\|
+	\]
+	We also have$\Psi(\Phi(\Lambda)) = \Lambda \sfa \Lambda \in (l^p)^*$. (Why? $\Psi(\Phi(\Lambda)) = \Psi(\Lambda e_1, \Lambda e_2, ...) = \Lambda_{(\Lambda e_1, \Lambda e_2, ...)}$
+	\[
+		\forall x \in l^p, \Lambda_{(\Lambda e_1, \Lambda e_2, ...)} x = \sum_{j = 1}^\infty \Lambda e_j x_j = \Lambda \left(\sum_{j = 1}^\infty x_j e_j\right) = \Lambda x
+	\]
+	) Thus, 
+	\[
+		\| \Lambda \| = \|\Psi(\Phi(\Lambda))\| \leq \|\Phi(\Lambda)\|_{l^q} \leq \|\Lambda\|
+	\]
+	\[
+		\Rightarrow \|\Phi(\Lambda)\|_{l^q} = \|\Lambda\|
+	\]
+	So $\Phi$ is an isometry.
+	\end{proofs}
+\end{ex}
+
+Fact:$(L^p)^* = L^q$ is $1 \leq p < \infty, q = \frac{p}{p - 1}$.
+What is $(C^0([a , b]))^*$?
+We will need the Hahn-Banach theorem.
+\begin{dfn}
+	Let $X$ be a vector space (over $\mathbb{C}$). A function $p: X \to [0, \infty]$ is called \textbf{subadditive} if $p(x+y) \leq p(x) + p(y) \sfa x, y \in X$.
+	$p:X \to [0, \infty]$ is \textbf{positively homogeneous} if 
+	\[
+		p(\alpha x) = \alpha p(x) \sfa x \in X, \sfa \alpha \geq 0
+	\]
+	A subadditive, positively homogeneous function is also called a \textbf{gauge} or a \textbf{Minkowski function}.
+\end{dfn}
+
+\begin{ex}
+	\begin{itemize}
+		\item If $X$ is a normed space, then $p(x)= c \|x\|$ ($c > 0$) is a gauge.
+
+		\item Let $C$ be a convex set containing $O$ in $X$. Define 
+			\[
+				p_C(x) = \inf \{\alpha > 0: x \in \alpha C\}
+			\]
+			Also, define $p_C(x) = \infty$ if no such $\alpha$ exists.
+			\begin{clm}
+				$p_C$ is a gauge
+			\end{clm}
+
+			\begin{proofs}
+				Positive homogenity is easy. 
+				Let $x, y \in X$. If $p_C(x) = \infty$ or $p_C(y) = \infty$, there is nothing to prove.
+				Assume $p_C(x), p_C(y) < \infty$.
+				Fix $\epsilon > 0$.
+				$\exists \alpha, \beta > 0$ s.t. $p_C(x) > \alpha - \epsilon$ and $p_C(y) > \beta - \epsilon$ and $\frac{x}{\alpha} \in C, \frac{y}{\beta} \in C$.
+				\[
+					\frac{x + y}{\alpha + \beta} = \frac{\alpha}{\alpha + \beta} \cdot \frac{x}{\alpha} + \frac{\beta}{\alpha + \beta} \cdot \frac{y}{\beta} \in C
+				\]
+				Hence, $p_C(x+y) \leq p_C(x) + p_C(y)$.
+			\end{proofs}
+	\end{itemize}
+\end{ex}
+
+\begin{thm}[Hahn-Banach]
+	Let $X$ be a vector space and let $p$ be a gauge on $X$. 
+	Suppose that $Y$ is a proper subspace of $X$.
+	Let $\Lambda \in L(Y, \mathbb{C})$ satisfy
+	\[
+		Re(\Lambda x) \leq p(x) \sfa x \in Y
+	\]
+	Then $\exists$ an extension $\tilde{\Lambda}$ of $\Lambda$ to $L(X, \mathbb{C})$ s.t.
+	\[
+		Re(\tilde{\Lambda} x) \leq p(x) \sfa x \in X
+	\]
+	We will assume our vector spaces are over $\mathbb{R}$ first.
+	The $\mathbb{C}$ case follows from the $\mathbb{R}$ case (we will see).
+\end{thm}
+
+\begin{lem}[One-step extension]
+	Let $\Lambda \in L(Y, \mathbb{R})$ s.t. $\Lambda x \leq p(x) \sfa x \in Y$, ans let $x_0 \in X \setminus Y$. $\exists$ an extension $\Lambda_1$ of $\Lambda$ on $Y' =$ the space spanned by $x_0$ and $Y$ s.t. $\Lambda_1 x \leq p(x) \sfa x \in Y'$.
+\end{lem}
+
+\begin{proofs}
+	Every $x \in Y'$ is of the form $x = y + c x_0$ for some $y \in Y$ and $c \in \mathbb{R}$. Any linear functional $\Lambda_1$ extending $\Lambda$ satisfies
+	\[
+		\Lambda_1 x = \Lambda_1 (y + c x_0) = \Lambda_1 y + c \Lambda_1 x_0
+	\]
+	\[
+		= \Lambda y + c \Lambda_1 x_0
+	\]
+	Conversely, by assigning any value to $\Lambda_1 x_0$, one obtains an extension of $\Lambda$ to $Y'$. However, what we need is to choose an appropriate $\Lambda_1 x_0$ s.t. $\Lambda_1 x \leq p(x) \sfa x \in Y'$. To see such a choice is possible, we focus on the case that $c = \pm 1$.
+	Need:
+	\[
+		\Lambda y \pm \Lambda_1 x_0 = \Lambda_1(y \pm x_0) \leq p(y \pm x_0) 
+	\]
+	\[
+		\Leftrightarrow \Lambda_1 x_0 \leq p(y + x_0) - \Lambda y \text{ and } \Lambda y - p(y - x_0) \leq \Lambda_1 x_0 \sfa y \in Y
+	\]
+	\[
+		\Leftrightarrow \forall y, z \in Y, \Lambda x - p(z - x_0) \leq \Lambda_1 x_0 \leq p(y + x_0) - \Lambda y
+	\]
+	Let 
+	\[
+		\alpha = \sup_{z \in Y} (\Lambda z - p(z - x_0))
+	\]
+	\[
+		\beta = \inf_{y \in Y} (p(y + x_0) - \Lambda y)
+	\]
+	If $\alpha \leq \beta$, we set $\Lambda_1 x_0$ as any value between $\alpha$ and $\beta$
+	\begin{clm}
+		This gives the desired extension.
+	\end{clm}
+
+	\begin{proofs}
+		Need $\Lambda_1 x \leq p(x) \sfa x \in Y'$.
+		For $c > 0$, 
+		\[
+			\Lambda_1 (y \pm c x_0) = \Lambda y \pm c \Lambda_1x_0
+		\]
+		\[
+			= c\left( \Lambda \left(\frac{y}{c} \pm \Lambda_1 x_0 \right) \right) = c\left(\Lambda \left(\frac{y}{c} \pm x_0\right) \right) \leq c p\left(\frac{y}{c} \pm x_0\right) = p(y \pm c x_0)
+		\]
+		Remains to show $\alpha \leq \beta$.
+		Only need to show 
+		\[
+			\Lambda z - p(z - x_0) \leq p(y + x_0) - \Lambda y \sfa y, z \in Y
+		\]
+		\[
+			\Leftrightarrow \Lambda (y + z) \leq p (y + x_0) + p(z - x_0)
+		\]
+		$y + z \in Y$
+		\[
+			\Lambda (y + z) \leq p (y + z) = (y + x_0 + z - x_0) \leq p(y + x_0) + p(z - x_0)
+		\]
+	\end{proofs}
+
+\end{proofs}
+
+
+
+
+
+\end{document}
+
+
+

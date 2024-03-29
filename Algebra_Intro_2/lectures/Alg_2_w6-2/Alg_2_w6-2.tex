@@ -1,0 +1,382 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[Path = /usr/share/fonts/TTF/]{edukai-5.0.ttf}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Intro to Algebra W6-2}
+\author{fat}
+% \date{\today}
+\date{March 29, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Intro to Algebra W6-2}
+
+\begin{dfn}
+	$[E_s:F] = $ \textbf{separable degree} of $E$ over $F$.
+	$[E:E_s] = $ \textbf{inseparable degree} of $E$ over $F$.
+\end{dfn}
+
+\begin{cor}
+	We have
+	\[
+		\left|\text{Emb}(\quot{E}{F})\right| = \{E:F\} = [E_s:F]
+	\]
+\end{cor}
+
+\begin{proof}
+	$\{E:F\} = \{E:E_s\}\{E_s:F\} = 1 \cdot [E_s:F]$.
+\end{proof}
+
+\begin{thm}[Primitive Element Theorem]
+	If $E/F$ is a finite separable extension, then $E/F$ is a simple extension.	
+	i.e. $E = F(\alpha)$ for some $\alpha \in E$.
+\end{thm}
+
+\begin{dfn}
+	The element $\alpha$ in the theorem is called a \textbf{primitive element} in the field extension.
+\end{dfn}
+
+\begin{proofs}
+	If $F$ is a finite field, then so is $E$ by Prop 18 of Chap 9.
+	$E^\times = \langle \alpha \rangle$ for some $\alpha \in E$.
+	Then $E = F(\alpha)$ is a simple extension.
+	Now assume that $|F| = \infty$.
+	It suffices to show that if $\alpha, \beta \in E$, then $\exists \gamma \in F$ such that $F(\gamma) = F(\alpha, \beta)$.
+	(Say $E = F(\alpha_1, ..., \alpha_n)$.
+	Then $F(\alpha_1, \alpha_2) = F(\beta_1) \Rightarrow F(\beta_1, \alpha_3) = F(\beta_2), ...$)\\
+	Let $f(x) = m_{\alpha, F}(x), g(x) = m_{\beta, F}(x)$.
+	Let $\alpha_1, ..., \alpha_n$ be the roots of $f(x)$, and $\beta_1, ..., \beta_n$ be the roots of $g(x)$.
+	Since $|F| = \infty$, $\exists a \in F$ such that $a \neq (\alpha_i - \alpha)/(\beta - \beta_j)$ for any $i, j$.
+	Let $\gamma = \alpha - a \beta$.
+	Consider the polynomial
+	\[
+		h(x) = f(\gamma - ax) \in F(\gamma)
+	\]
+	We have
+	\[
+		h(\beta) = f(\gamma - a \beta) = f(\alpha) = 0
+	\]
+	\[
+		\Rightarrow m_{\beta, F(\gamma)}(x) | h(x) \cdots (*)
+	\]
+	Also, 
+	\[
+		m_{\beta, F(\gamma)}(x) | g(x)
+	\]
+	by the definition of $g(x)$.
+	$\Rightarrow \{\text{the roots of }m_{\beta, F(\gamma)}(x)\} \subseteq \{\beta_1, ..., \beta_n\} \cdots (**)$.
+	\begin{clm}
+		If $\beta_i \neq \beta$, then $h(\beta_i) \neq 0$.
+	\end{clm}
+	Assume that the claim is true.
+	Then for any $\beta_i \neq \beta$, we have $m_{\beta, F(\gamma}(\beta_i) \neq 0 \cdots (***)$.
+	(Since $m_{\beta_i, F(\gamma)}(x) | h(x)$.)
+	Combining $(**)$ and $(***)$, we see that $\beta$ is the only root of $m_{\beta, F(\gamma)}(x)$. 
+	Since $E/F$ is a separable extension, we must have $m_{\beta, F(\gamma}(x) = x - \beta$.
+	$\Rightarrow \beta \in F(\gamma)$.
+	$\Rightarrow \alpha = \gamma - a \beta \in F(\gamma)$.
+	$\Rightarrow F(\alpha, \beta) \subseteq F(\gamma)$.
+	The converse is trivial.
+	$\Rightarrow F(\gamma) = F(\alpha, \beta)$.
+	\begin{proofs}[Proof of the Claim]
+		Assume $\beta_i \neq \beta$.
+		We have $h(\beta_i) = f(\gamma - a \beta_i)$.
+		Recall that the roots of $f$ are $\alpha_1, ..., \alpha_m$.
+		So it suffices to show that $\gamma - a \beta_i \neq \alpha_j$ for any $j$.
+		However, this follows from our choice of $a$.
+		(To see this, 
+		\[
+			a \neq \frac{\alpha_j - \alpha}{\beta - \beta_j} \quad \forall i, j \text{ such that } \beta_i \neq \beta
+		\]
+		\[
+			\Rightarrow a(\beta - \beta_i) \neq \alpha_j - \alpha \quad \forall i, j \text{ such that } \beta_i \neq \beta
+		\]
+		\[
+			\Rightarrow \gamma - a \beta_i \neq \alpha_j \forall i, j \text{ such that } \beta_i \neq \beta
+		\]
+		which gives our claim.)
+	\end{proofs}
+\end{proofs}
+
+Note that in general isomorphisms $\phi$ in $\text{Emb}(E/F)$ may not be composited with since $\phi(E)$ may not be $E$.
+(For example, $E = \mathbb{Q}(\sqrt[3]{2}), F = \mathbb{Q}$.
+We have $\phi_{\sqrt[3]{2}, \sqrt[3]{2} \zeta}: \mathbb{Q}(\sqrt[3]{2}) \to \mathbb{Q}(\sqrt[3]{2} \zeta), \zeta = e^{2 \pi i}{3}$ where $\phi_{\sqrt[3]{2}, \sqrt[3]{2} \zeta} \in \text{Emb}(E/F)$ is defined by $a_0 + a_1 \sqrt[3]{2} + a_2 \sqrt[3]{4} \mapsto a_0 + a_1 \sqrt[3]{2} \zeta + a_2 (\sqrt[3]{2} \zeta)^2$.)
+In order for elements of $\text{Emb}(E/F)$ to composite with each other, we need $\phi(E) = E \quad \forall \phi \in \text{Emb}(E/F)$.
+Now 
+\[
+	\phi(E) = E \quad \forall \phi
+\]
+\[
+	\Leftrightarrow \forall \alpha \in E, \forall \phi, \phi(\alpha) \in E
+\]
+(Recall that $\phi(\alpha)$ are conjugates of $\alpha$ over $F$.) 
+$\Leftrightarrow \forall \alpha \in E$, all the conjugates of $\alpha$ over $F$ are in $E$.
+$\Leftrightarrow E/F$ is a normal extension. 
+(We say $E/F$ is a normal extension if $\forall \alpha \in E$ all the conjugates of $\alpha$ over $F$ are in $E$.)
+$\Leftrightarrow \forall \alpha \in E, m_{\alpha, F}(x)$ splits completely over $E$.
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

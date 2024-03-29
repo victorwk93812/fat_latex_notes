@@ -1,0 +1,627 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[Path = /usr/share/fonts/TTF/]{edukai-5.0.ttf}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment   
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}  
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W5-2}
+\author{fat}
+% \date{\today}
+\date{March 21, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W5-2}
+
+\section{Spectrum}
+
+Recall: $\mathcal{B}(X) = \mathcal{B}(X, X)$.
+If $X$ is a Banach space then $\mathcal{B}(X)$ is a Banach space.
+$I$ is the identity map from $X$ to $X$, $I \in \mathcal{B}(X)$.
+
+\begin{dfn}
+	$\lambda \in \mathbb{C}$ is called an \textbf{eigenvalue} of $T$ is $\exists$ nonzero $x \in X$ called an \textbf{eigenvector}, such that $T x = \lambda x$.
+\end{dfn}	
+
+We will focus on the case that $X$ is a Banach space and $T$ is bounded.
+Open mapping theorem $\Rightarrow$
+\[
+	T - \lambda I \text{ invertible } \Leftrightarrow T - \lambda I \text{ bijective}
+\]
+
+\begin{dfn}
+	$\lambda \in \mathbb{C}$ is called a \textbf{regular value} for $T$ if $T - \lambda I$ is invertible.
+	\[
+		\rho(T) = \{ \lambda \in \mathbb{C}: \lambda \text{ is a regular value for } T\}
+	\]
+	\[
+		\sigma(T) = \mathbb{C} \setminus \rho(T)
+	\]
+	where $\rho(T)$ is called the \textbf{resolvent set} and $\sigma(T)$ the \textbf{spectrum} of $T$.
+\end{dfn}
+
+If $\lambda$ is an eigenvalue of $T$ then $\lambda \in \sigma(T)$. 
+($T - \lambda I$ is not injective.)
+In finite dimensions, $S:X \to X$ injective $\Leftrightarrow S$ is surjective.
+NOT TRUE in infinite dimensions.
+
+\begin{ex}
+	Let $X = C^0([0, 1])$.
+	Consider 
+	\[
+		T f(x) = x f(x) \sfa x \in [0, 1], f \in C^0([0, 1]).
+	\]
+	$T \in \mathcal{B}(C^0([0, 1])), \|T\| \leq 1$.
+	If $\lambda$ is an eigenvalue of $T$ and $\varphi$ is an eigenvector/eigenfunction, theen
+	\[
+		x \varphi(x) = \lambda \varphi(x) \sfa x \in [0, 1]
+	\]
+	\[
+		\Rightarrow \varphi = 0
+	\]
+	$T$ does not have any eigenvalue!
+	For $\lambda \in \mathbb{C} \setminus [0, 1]$, the inverse of $T - \lambda I$ is 
+	\[
+		S f(x) = \frac{f(x)}{x - \lambda}
+	\]
+	Can check: $S \in \mathcal{B}(C^0([0, 1]))$.
+	If $\lambda \in [0, 1]$, then the inverse of $T - \lambda I$ does not exist.
+	Conclusion: $T$ has no eigenvalues, but $\sigma(T) = [0, 1], \rho(T) = \mathbb{C} \setminus [0, 1]$.
+\end{ex}
+
+What can we say about $\sigma (T)$?
+
+\begin{prop}[Lemma]
+	Let $T \in \mathcal{B}(X)$, where $X$ is a Banach space.
+	Then $I - T$ is invertible if $\|T\| < 1$.
+	(Want to prove that $(I - T)^{-1} = \sum_{k = 0}^\infty T^k$.)
+\end{prop}
+
+\begin{proofs}
+	By assumption, $\exists r \in (0, 1)$ such that $\|T\| \leq r$.
+	\[
+		\|T^k\| \leq \|T\|^k \leq r^k
+	\]
+	$\Rightarrow \sum_k T^k$ converges in $X$ (similar to the Weierstrass M-test).
+	\[
+		(I - T) \sum_{k = 0}^\infty T^k = \lim_{n \to \infty} \left( (I - T) \sum_{k = 0}^n T^k \right) = \lim_{n \to \infty} (I - T^{n + 1}) = I
+	\]
+	Similaraly, 
+	\[
+		\sum_{k = 0}^\infty T^k (I - T) = I
+	\]
+	So $I - T$ is invertible with inverse $\sum_{k = 0}^\infty T^k$.
+\end{proofs}
+
+\begin{cor}
+	Suppose that $T \in \mathcal{B}(X)$.
+	Then $\sigma(T)$ is compact in $\mathbb{C}$.
+	In fact, $|\lambda| \leq \|T\| \sfa \lambda \in \sigma(T)$.
+\end{cor}
+
+\begin{proofs}
+	Let $\lambda \notin \sigma(T)$ ($\lambda \in \rho(T)$).
+	Then $T - \lambda I$ is invertible.
+	Want: If $\lambda' \approx \lambda$ then $T - \lambda' I$ is also invertible.
+	Let $r = \|(T - \lambda I)^{-1}\|^{-1}$.
+	Consider $S \in \mathcal{B}(T - \lambda I, r)$, a ball in $\mathcal{B}(X)$.
+	\[
+		\|I - (T - \lambda I)^{-1} S\| = \|(T - \lambda I)^{-1}(T - \lambda I - S)\|
+	\]
+	\[
+		\leq \|(T - \lambda I)^{-1}\| \|T - \lambda I - S\| < \frac{1}{r} \cdot r = 1
+	\]
+	By lemma, $(T - \lambda I)^{-1} S$ is invertible $\Rightarrow S$ is invertible $\Rightarrow \rho(T)$ is open $\Rightarrow \sigma(T)$ is closed.
+	If $|\lambda| > \|T\|$, then $I - \lambda^{-1} T$ is invertible.
+	($\|T/\lambda\| < 1$ and by lemma.)
+	$I - \lambda^{-1}T$ invertible $\Rightarrow \lambda I - T$ is invertible $\Rightarrow \lambda \in \rho(T)$.
+	If $\lambda \in \sigma(T)$, then $|\lambda| \leq \|T\|$.
+	$\Rightarrow \sigma(T)$ is bounded $\Rightarrow \sigma(T)$ is compact.
+\end{proofs}
+
+Is $\sigma(T) \neq \phi \sfa T \in \mathcal{B}(X)$?
+Yes, but the proof relies on complex analysis.
+
+\begin{thm}[Liouville's Theorem]
+	If $f: \mathbb{C} \to \mathbb{C}$ is complex analytic, and if $f$ is bounded then $f$ is a constant.
+\end{thm}
+
+\begin{thm}
+	Let $T \in \mathcal{B}(X)$, $X$ Banach space over $\mathbb{C}$.
+	Then 
+	\begin{enumerate}
+		\item[(a)] For each $\Lambda \in \mathcal{B}(X)^*$, the function $\varphi (\lambda) = \Lambda (\lambda I - T)^{-1}$ is analytic in $\rho(T)$.
+
+		\item[(b)] $\sigma(T) \neq \phi$.
+	\end{enumerate}
+\end{thm}
+
+\begin{proofs}
+	\begin{enumerate}
+		\item[(a)] Fix $\lambda_0 \in \rho(T)$.
+			It suffices to show that we can represent $\varphi$ as a power series in $\lambda$ around $\lambda_0$.
+			\[
+				\lambda I - T = \lambda_0 I - T + (\lambda - \lambda_0) I
+			\]
+			\[
+				= (I + (\lambda - \lambda_0)(\lambda_0 I - T)^{-1})(\lambda_0 I - T)
+			\]
+			\[
+				"\Rightarrow" (\lambda I - T)^{-1} = (\lambda_0 I - T)^{-1} (I + (\lambda - \lambda_0)(\lambda_0 I - T)^{-1})^{-1}
+			\]
+			Consider
+			\[
+				(\lambda_0 I - T)^{-1} \sum_{k = 0}^\infty (-1)^k (\lambda_0 I - T)^{-k} (\lambda - \lambda_0)^k
+			\]
+			$\|(\lambda - \lambda_0)(\lambda_0 I - T)^{-1}\| < 1$ happens when 
+			\[
+				|\lambda - \lambda_0| < \|(\lambda_0 I - T)^{-1}\|^{-1}
+			\]
+			For such a $\lambda$, the power series converges, and it converges to $(\lambda I - T)^{-1}$.
+			\par For $\Lambda \in \mathcal{B}(X)^*$, 
+			\[
+				\varphi(\lambda) = \sum_{k = 0}^\infty (-1)^k \Lambda ((\lambda_0 I - T)^{-k - 1})(\lambda - \lambda_0)^k
+			\]
+			This series converges when $|\lambda - \lambda_0| < \|(\lambda_0 I - T)^{-1}\|^{-1}$.
+			So $\varphi$ is analytic at $\lambda_0$.
+
+		\item[(b)] We first show that $\varphi(\lambda) \to 0$ as $|\lambda| \to \infty$ for any $\Lambda \in \mathcal{B}(X)^*$.
+			We expand $\varphi$ "at $\infty$".
+			\[
+				(\lambda I - T)^{-1} = \frac{1}{\lambda}(I - \lambda^{-1} T)^{-1} = \frac{1}{\lambda} \sum_{k = 0}^\infty \lambda^{-k} T^k
+			\]
+			This series makes sense when $|\lambda| > \|T\|$.
+			\[
+				|\varphi(\lambda)| = |\Lambda(\lambda I - T)^{-1}| \leq \frac{1}{|\lambda|} \sum_{k = 0}^\infty |\lambda|^{-k}|\Lambda T^k|
+			\]
+			Note that 
+			\[
+				|\lambda|^{-k} |\Lambda T^k| \leq \frac{\|\Lambda\| \|T^k\|}{|\lambda|^k} \leq \|\Lambda\| \left(\frac{\|T\|}{\lambda}\right)^k < \|\Lambda\|
+			\]
+			Thus
+			\[
+				|\varphi(\lambda)| \leq \frac{C\|\Lambda\|}{|\lambda|} \to 0 \text{ as } |\lambda| \to \infty
+			\]
+			If $\sigma(T) = \phi$, then $\varphi$ is analytic over $\mathbb{C}$.
+			Moreover, it is bounded.
+			By Liouville's theorem, $\varphi(\lambda) = 0 \sfa \lambda \in \mathbb{C}$.
+			$\Rightarrow \Lambda(\lambda I - T)^{-1} = 0 \sfa \lambda \in \mathbb{C}, \sfa \Lambda \in \mathcal{B}(X)^*$.
+			By Hahn-Banach,
+			\[
+				(\lambda I - T)^{-1} = 0 \sfa \lambda \in \mathbb{C}
+			\]
+			Impossible!
+			So $\sigma(T) \neq \phi$.
+	\end{enumerate}
+\end{proofs}
+
+\begin{dfn}
+	Let $T \in \mathcal{B}(X)$.
+	The \textbf{spectral radius} of $T$ is 
+	\[
+		r(T) = \sup \{|\lambda|: \lambda \in \sigma(T)\}
+	\]
+\end{dfn}
+
+We know $0 \leq r(T) \leq \|T\|$.
+
+\begin{thm}[Spectral Radius Formula]
+	If $X$ is a Banach space over $\mathbb{C}$ and if $T \in \mathcal{B}(X)$, then
+	\[
+		r(T) = \limsup_{n \to \infty} (\|T^n\|)^{\frac{1}{n}}
+	\]
+\end{thm}
+
+\begin{rem}
+	Can replace $\limsup_{n \to \infty}$ by $\lim_{n \to \infty}$.
+	\[
+		\|T^{m + n} \| \leq \| T^m\|\|T^n\|
+	\]
+	\[
+		\log \|T^{m + n}\| \leq \log \|T^m\| + \log \|T^n\|
+	\]
+	\[
+		\lim_{n \to \infty} \frac{\log \|T^n\|}{n} = \inf_{n \geq 1} \frac{\log \|T^n\|}{n}
+	\]
+	By Fekete's lemma, $\lim_{n \to \infty}(\|T^n\|)^{\frac{1}{n}}$ exists and equals $\inf_{n \geq 1}(\|T^n\|)^{\frac{1}{n}}$.
+\end{rem}
+
+\begin{proofs}[Proof of Theorem]
+	For $|\lambda| > \limsup_{n \to \infty} (\|T^n\|))^\frac{1}{n}, \exists \delta \in (0, 1)$ and $n_0$ such that
+	\[
+		|\lambda|(1 - \delta) > (\|T^n\|)^{\frac{1}{n}} \sfa n \geq n_0
+	\]
+	\[
+		\Leftrightarrow \frac{\|T^n\|}{|\lambda|^n} < (1 - \delta)^n \sfa n \geq n_0
+	\]
+	$\Rightarrow (1/\lambda) \sum_{k = 0}^\infty \lambda^{-k} T^k = (\lambda I - T)^{-1}$ converges.
+	$\Rightarrow \lambda \in \rho(T)$.
+	$\Rightarrow r(T) \leq \limsup_{n \to \infty} (\|T^n\|)^{\frac{1}{n}}$.
+	On the other hand, if $|\lambda| > \|T\|$, then $\lambda \in \rho(T)$.
+	For $\Lambda \in \mathcal{B}(X)^*, \varphi(\lambda) = \Lambda(\lambda I - T)^{-1} = \sum_{k = 0}^\infty \frac{\Lambda T^k}{\lambda^{k + 1}}$ holds $\sfa |\lambda| > \|T\|$.
+	$\varphi$ is analytic on $\rho(T)$.
+	$\Rightarrow \varphi(\lambda)$ is analytic if $|\lambda| > r(T)$.
+	So $\varphi(\lambda) = \sum_{k = 0}^\infty$ still holds $\forall |\lambda| > r(T)$.
+	$\Rightarrow$ for each such $\lambda$, $\left(\frac{\Lambda T^k}{\lambda^{k + 1}} \right)_k$ is bounded for each $\Lambda \in \mathcal{B}(X)^*$.
+	\[
+		\frac{\Lambda T^k}{\lambda^{k + 1}} = \frac{\tilde{T^k} \Lambda}{\lambda^{k + 1}}
+	\]
+	where $\tilde{T^k} \in \mathcal{B}(X)^{**}$ is the canonical identification.
+	We have $\left( \frac{\tilde{T^k}}{\lambda^{k + 1}} \right)_k$ is bounded pointwise.
+	By the uniform boundedess principle, $\exists M > 0$ such that 
+	\[
+		\frac{\|T^k\|}{|\lambda|^{k + 1}} = \left\|\frac{\tilde{T^k}}{\lambda^{k + 1}} \right\| \leq M \sfa k
+	\]
+	\[
+		\Rightarrow \limsup_{n \to \infty} (\|T^n\|)^{\frac{1}{n}} \leq |\lambda|
+	\]
+	\[
+		\Rightarrow \limsup_{n \to \infty} (\|T^n\|)^{\frac{1}{n}} \leq r(T)
+	\]
+\end{proofs}
+
+\section{Hilbert Space}
+
+A Hilbert space is a Banach space whose norm is induced by an inner product.
+
+\begin{ex}
+	\begin{itemize}
+		\item $\ell^2$ is an inner product space with
+			\[
+				\langle x, y \rangle = \sum_{j = 1}^\infty x_j \overline{y_j}
+			\]
+			This is well-defined by Cauchy-Schwarz.
+			Can also define sequences over integers:
+			\[
+				\ell^2(\mathbb{Z}) = \{x = (x_n)_{n \in \mathbb{Z}}: \sum_{n = - \infty}^\infty |x_n|^2 < \infty\}
+			\]
+			\[
+				\langle x, y \rangle = \sum_{n = -\infty}^\infty x_n \overline{y_n}
+			\]
+		\item The inner product of $L^2(\mathbb{R})$ is given by 
+			\[
+				\langle f, g \rangle = \int_{\mathbb{R}} f(x) \overline{g(x)} \mathrm{d} x
+			\]
+	\end{itemize}
+\end{ex}
+
+We say two vectors $x, y$ are orthogonal if $\langle x, y \rangle = 0$.
+Define a norm by using inner product:
+\[
+	\|x\| = \sqrt{\langle x, x \rangle}
+\]
+Check:
+\begin{itemize}
+	\item $(x, y) \mapsto \langle x, y \rangle$ is continuous from $X \times X$ to $\mathbb{C}$.
+
+	\item If $(X, \langle \cdot, \cdot \rangle)$ is an inner product space, and if $(X', \| \cdot \|')$ is a completion of $(X, \|\cdot \|)$, where $\| \cdot \|$ is the norm induced by $\langle \cdot, \cdot \rangle$, then $\exists$ an inner product $\langle \cdot, \cdot \rangle'$ on $X'$ such that it induces $\|\cdot \|'$.
+\end{itemize}
+
+A complete inner product space is called a Hilbert space.
+
+\begin{prop}[Parallelogram law]
+	If $\| \cdot \|$ is induced by an inner product then $\|x + y \|^2 + \|x - y\|^2 = 2(\|x\|^2 + \|y\|^2)$.
+\end{prop}
+
+\begin{ex}
+	\begin{enumerate}
+		\item[(a)] On $\mathbb{C}^n, n \geq 2, \| \cdot \|_[$ is induced from an inner product $\Leftrightarrow p = 2$.
+			Take $x = (1, 1, 0, ..., 0)$ and $y = (1, -1, 0, ..., 0)$.
+			$\|x\|_p = 2^{1/p} = \|y\|_p$.
+			$\|x + y \|_p = 2 = \|x - y\|_p$.
+			Parallelogram law holds only when $p = 2$.
+			
+		\item[(b)] The sup norm on $C^0([0, 1])$ is not from an inner product.
+			Take $f(x) = 1, g(x) = x$.
+	\end{enumerate}
+\end{ex}
+
+\begin{rem}
+	Polarization identity:
+	\[
+		\Re \langle x, y \rangle = \frac{1}{4} (\|x + y \|^2 - \|x - y \|^2), \Im \langle x, y \rangle = \frac{1}{4} (\|x + iy\|^2 - \|x - iy \|^2)
+	\]
+\end{rem}
+
+\begin{thm}
+	Let $K$ be a nonempty closed, convex, proper subset of a Hilbert space.
+	Let $x_0 \in X \setminus K$.
+	Then $\exists ! x^* \in K$ such that
+	\[
+		\|x_0 - x^*\| = \inf_{x \in K} \|x - x_0\|
+	\]
+\end{thm}
+
+\begin{proofs}
+	Let $(x_n)$ be a minimizing sequence:
+	\[
+		\|x_0 - x_n\| \to \inf_{x \in K} \|x - x_0\| =: d
+	\]
+	\begin{clm}
+		$(x_n)$ is Cauchy.
+	\end{clm}
+
+	\begin{proofs}
+		\[
+			\|x_n - x_m\|^2 = \|x_n - x_0 + x_0 - x_m\|^2
+		\]
+		\[
+			\stackrel{\text{//-gram law}}{=} - \|x_n - x_0 + x_m - x_0\|^2 + 2 (\|x_n - x_0\|^2 + \|x_m - x_0\|^2)
+		\]
+		\[
+			= -4 \left\| \frac{x_m + x_n}{2} - x_0 \right\|^2 + 2 (\|x_n - x_0\|^2 + \|x_m - x_m\|^2)
+		\]
+		\[
+			\leq -4d^2 + 2(\|x_n - x_0\|^2 + \|x_m - x_0\|^2)
+		\]
+		Since $(x_m + x_n)/2 \in K$, 
+		\[
+			\to -4d^2 + 2(d^2 + d^2) = 0
+		\]
+	\end{proofs}
+	So $x^* = \lim_{n \to \infty} x_n \in K$ exists.
+	Norm is continuous $\Rightarrow d = \|x_0 - x^*\|$.
+	Uniqueness: exercise.
+\end{proofs}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+

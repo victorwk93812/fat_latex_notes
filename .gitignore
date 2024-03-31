@@ -3,8 +3,10 @@
 *.log
 *.out
 *.run.xml
+*.pdf
 hello_world/
 Applied_Math_3/
 Analysis_2/hw/
 Algebra_Intro_2/hw/
+General_Astronomy/
 

@@ -1,0 +1,645 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont[Path = /usr/share/fonts/TTF/]{edukai-5.0.ttf}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W6-2}
+\author{fat}
+% \date{\today}
+\date{March 29, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W6-2}
+
+\section{Separable Hilbert Space}
+
+\begin{prop}
+	A Hilbert space $X$ has a countable complete orthonormal set $\Leftrightarrow$ it is separable.
+\end{prop}
+
+\begin{proofs}
+	Let $B$ be a countable complete orthonormal set.
+	Then rational linear combinations of elements in $B$ is dense in $X$.
+	$\Rightarrow X$ is separeble.
+	For "$\Leftarrow$", suppose that $X$ is separable.
+	Let $D = \{x_1, x_2, ... \}$ be a countable dense subset of $X$.
+	We can throw away vectors which are linearly dependent of the previous ones to obtain $\{y_1, y_2, ...\}$.
+	We still have $\overline{\text{span}(\{y_1, y_2, ..\})} = X$.
+	Then use Gram-Schmidt to obtain orthonormal $\{z_1, z_2, ...\}$ such that $\text{span}(\{z_1, z_2, ...\}) = X$.
+\end{proofs}
+
+\begin{thm}
+	Let $X$ be an infinite dimensional separable Hilbert space.
+	Then $\exists$ an inner-product preserving linear isomorphism $\Phi$ from $X$ onto $\ell^2$.
+\end{thm}
+
+\begin{proofs}
+	Pick a complete orthonormal set $(x_k)$ of $X$.
+	$\forall x \in X$, we have $x = \sum_{k = 1}^\infty \langle x, x_k \rangle x_k$.
+	Define $\Phi(x) = (\langle x, x_1 \rangle, \langle x, x_2 \rangle, ...)$.
+	Recall: Parseval's identity:
+	\[
+		\|x\|^2 = \sum_{k = 1}^\infty |\langle x, x_k \rangle|^2
+	\]
+	So $\Phi$ is an isometric linear map from $X$ to $\ell^2$.
+	Inner-product is preserved by polarization.
+	Remains to show $\Phi$ is onto.
+	let $(a_k) \in \ell^2$.
+	Define $u_n = \sum_{j = 1}^n a_j x_j$.
+	Check $(y_n)$ is Cauchy.
+	$y_n \to \sum_{j = 1}^\infty a_j x_j =: x$.
+	Clearly, $a_j = \langle x, x_j, \rangle$.
+	So $\Phi$ is onto.
+\end{proofs}
+
+\section{Fourier Series in $L^2$}
+
+$L^2([-\pi, \pi])$ can be equipped with the inner product
+\[
+	\langle f, g \rangle = \frac{1}{2 \pi} \int_{- \pi}^\pi f(x) \overline{g(x)} \mathrm{d} x
+\]
+$B = \{e^{inx}: n \in \mathbb{Z}\}$ is a countable orthonormal set in $L^2$.
+\[
+	\hat{f}(n) = \frac{1}{2 \pi} \int_{- \pi}^\pi f(x) e^{-inx} \mathrm{d} x = \langle f, e^{i n \cdot} \rangle
+\]
+If $f \in L^2([-\pi, \pi])$, its Fourier series $\sum_{n = -\infty}^\infty \hat{f}(n) e^{inx} = \sum_{n = -\infty}^\infty \langle f, e^{inx} \rangle e^{inx}$, which is the orthogonal projection of $f$ on $\overline{\text{span}(B)}$, is well-defined in $L^2([-\pi, \pi])$.
+By the Weierstrass approximation theorem, we know that $\text{span}(B)$ is dense in the subspace of periodic functions in $C^0([-\pi, \pi])$. under the sup norm.
+\[
+	\|f - g\|_{L^2} \leq \|f - g\|_{\infty} \quad \forall f, g \in C^0([-\pi, \pi])
+\]
+So $\text{span}(B)$ is also dense in $L^2([-\pi, \pi])$.
+$\Rightarrow B$ is a complete orthonormal set.
+$\forall f \in L^2([-\pi, \pi])$ its Fourier series converges to $f$ in $L^2$:
+\[
+	\|f(x) = \sum_{n = -N}^N \hat{f}(n) e^{inx}\|_{L^2} \to 0 \text{ as }N \to \infty
+\]
+Parseval's identity:
+\[
+	\frac{1}{2 \pi} \int_{- \pi}^\pi |f(x)|^2 \mathrm{d} x = \sum_{n = -\infty}^\infty |\hat{f}(n)|^2
+\]
+
+\section{Adjoint Operators}
+
+Let $X, Y$ be Hilbert spaces.
+Let $T \in \B(X, Y)$.
+For any $y \in Y$, the map $x \mapsto \langle T x, y \rangle_{Y}$ is linear and bounded.
+This defines an element in $X^*$.
+By self-duality, $\exists ! x^* \in X$ such that $\langle T x, y \rangle_Y = \langle x, x^* \rangle_X$.
+We define the adjoint of $T$ to be the map
+\[
+	T^* y = x^*
+\]
+Then $\langle T x, y \rangle_Y = \langle x, T^* y \rangle_X \quad \forall x \in X, y \in Y$.
+
+\begin{prop}
+	Let $T$ be as above. 
+	Then $(T^*)^* = T, T^* \in \B(Y, X), \|T^*\| = \|T\|$.
+\end{prop}
+
+\begin{proofs}
+	We will only show $\|T^*\| = \|T\|$.
+	If $T^* y \neq 0$, then
+	\[
+		\|T^* y \| = \frac{|\langle T^* y, T^* y \rangle|}{\|T^* y\|} \leq \sup_{x \neq 0} \frac{|\langle x, T^* y \rangle|}{\|x\|} = \sup_{x \neq 0} \frac{|\langle T x, y \rangle |}{\|x\|} \leq \|T\| \|y\|
+	\]
+	The inequality also holds when $T^* y = 0$.
+	$\Rightarrow \|T^*\| \leq \|T\|$.
+	The other inequality follows from $(T^*)^* = T$.
+\end{proofs}
+
+Some other basic properties:
+\begin{itemize}
+	\item $(\alpha T_1 + \beta T_2)^* = \bar{\alpha} T_1^* + \bar{\beta} T_2^*$
+
+	\item $(ST)^* = T^* S^*$.
+
+	\item $(T^{-1})^* = (T^*)^{-1}$ if $T \in \B (X)$ is invertible.
+\end{itemize}
+
+\begin{dfn}
+	Let $X$ be a Hilbert space.
+	$T \in \B(X)$ is \textbf{self-adjoint} if $T^* = T$.
+\end{dfn}
+
+\begin{rem}
+	Some textbooks use "symmmetric operator" instead of self-adjoint operator.
+	"Self-adjoint operator" is used for a densely defined unbounded operator whose adjoint is equal to itself.
+\end{rem}
+
+\begin{prop}
+	Let $T \in \B(X)$ be self-adjoint.
+	\begin{enumerate}
+		\item[(a)] All eigenvalues of $T$ are real.
+
+		\item[(b)] Eigenvectors corresponding to distinct eigenvectors are orthogonal.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	Linear algebra.
+\end{proof}
+
+\begin{prop}
+	Let $T \in \B(X)$ be self-adjoint.
+	Then 
+	\[
+		\|T\| = \sup_{\|x\| = 1} |\langle T x, x\rangle| =: M
+	\]
+\end{prop}
+
+\begin{proofs}
+	May assume $T \neq 0$.
+	\[
+		|\langle T x, x \rangle| \leq \|T\|\|x\|^2 \quad \forall x \in X
+	\]
+	\[
+		\Rightarrow M \leq \|T\|
+	\]
+	On the other hand, 
+	\[
+		\langle T(x + y), x + y \rangle - \langle T(x - y), x - y \rangle = 2 \langle T x, y \rangle + 2 \langle T y, x \rangle = 4 \Re \langle T x, y \rangle
+	\]
+	\[
+		\Rightarrow \Re \langle T x, y \rangle = \frac{1}{4} ( \langle T (x + y), x + y \rangle - \langle T(x - y), x - y \rangle ) 
+	\]
+	\[
+		\leq \frac{M}{4} ( \|x + y\|^2 + \|x - y\|^2) \stackrel{\text{//-gram law}}{=} \frac{M}{2} (\|x\|^2 + \|y\|^2)
+	\]
+	Take $x \in X$ with $\|x\| = 1$ and $T x \neq 0$.
+	Set $y = Tx/\|T x\|$.
+	\[
+		\Rightarrow \|T x\| = \Re \left\langle Tx, \frac{T x}{\|T x\|} \right\rangle \leq \frac{M}{2} (\|x\|^2 + 1) = M
+	\]
+	$\Rightarrow \|T\| \leq M$.
+\end{proofs}
+
+\begin{rem}
+	Let $T \in \B(X)$ be self-adjoint.
+	\begin{enumerate}
+		\item[(a)] Note that we can express
+			\[
+				\|T\| = \max \left\{ \sup_{\|x\| = 1} \langle T x, x \rangle, - \inf_{\|x\| = 1} \langle T x, x \rangle \right\}
+			\]
+			
+		\item[(b)] $\langle T x, x \rangle = 0 \quad \forall x \in X$.
+			$\Rightarrow T = 0$.
+
+	\end{enumerate}
+\end{rem}
+
+\section{Compact Operators}
+
+\begin{dfn}
+	Let $X, Y$ be normed spaces.
+	A linear operator $T: X \to Y$ is called \textbf{compact} if the following holds.
+	If $(x_n)$ is a uniformly bounded sequence ($\exists M > 0$ such that $\|x_n\| \leq M \quad \forall n$) then $(T x_n)$ has a convergent subsequence in $Y$.
+\end{dfn}
+
+Note: A compact operator must be bounded. (Why?)\\
+Basic properties:
+\begin{itemize}
+	\item The set of all compact operators in $\B(X)$, where $X$ is a Banach space, formms a closed subspace of $\B(X)$ under the operator norm.
+		\begin{proof}
+			Diagonal argument.
+		\end{proof}
+
+	\item If $S$ is bounded and $T$ is compact, then $ST$ and $TS$ are compact.
+		(In other words, the space of compact operators is a 2-sided ideal.)
+
+	\item The transpose or the adjoint of a compact operator is compact.
+		\begin{proofs}
+			We prove the transpose case.
+			Suppose that $T \in \B(X)$ is compact.
+			Let $(\Lambda_n)$ be a bounded sequence in $X^*$.
+			Want: Find a convergent subsequence of $(T^t \Lambda_n)$.
+			Define $A = \overline{T B(0, 1)}$.
+			Then $A$ is compact.
+			$(\Lambda_n)$ is a sequence of Lipschitz functions with uniformly bounded Lipschitz constants.
+			So $(\Lambda_n)$ is equicontinuous on $A$.
+			Moreover, for each $x \in A$, $(\Lambda_n(x))$ lies in a compact set of $\CC$.
+			By Arzel\`a-Ascoli, $\exists$ a subsequence $(\Lambda_{n_k})$ that converges unidormly on $A$.
+			For $\|x\| < 1$, 
+			\[
+				| T^t \Lambda_{n_k} (x) - T^t \Lambda_{n_l}(x)| = |\Lambda_{n_k} (T x) - \Lambda_{n_l} (T x)| \leq \|\Lambda_{n_k} - \Lambda_{n_l}\|_\infty
+			\]
+			\[
+				\Rightarrow \|T^t \Lambda_{n_k} - T^t \Lambda_{n_l}\| \to 0 \text{ as }k, l \to \infty
+			\]
+			$\Rightarrow T^t$ is compact.
+		\end{proofs}
+\end{itemize}
+
+\begin{ex}
+	Let $K \in C^0([a, b] \times [a, b])$ and consider 
+	\[
+		T f(x) = \int_a^b K(x, y) f(y) \mathrm{d} y
+	\]
+	We saw that $T \in \B(C^0([a, b])$ and $T \in \B(L^p([a, b])), 1 \leq p < \infty$.
+	$T$ is compact on any of these spaces.
+	We just consider the $L^p$ case.
+	Let $(f_n)$ be a bounded sequence in $L^p$.
+	$\exists M > 0$ such that $\|f_n\|_{L^p} \leq M$.
+	$\exists g_n \in C^0*[a, b])$ such that $\|f_n - g_n\|^{L^p} < 1/n$.
+	Let $\epsilon > 0$.
+	By uniform continuotu, $\exists \delta > 0$ such that $|K(x, y) - K(x', y')| < \epsilon$ whenever $|(x, y) - (x', y')| < \delta$.
+	So whenever $|x - x'| < \delta$, 
+	\[
+		|T g_n(x) - T g_n(x')| \leq \int_a^b |K(x, y) - K(x', y)| |g_n(y)| \mathrm{d} y
+	\]
+	\[
+		\leq \epsilon (b - a)^{\frac{1}{q}} \|g_n\|_{L^p} \leq (b - a)^{\frac{1}{q}} (1 + M)\epsilon
+	\]
+	So $(T g_n)$ is equicontinuous.
+	By Arzel\`a-Ascoli, $\exists$ a subsequence $(T g_{n_k})$ that converges uniformly to $h \in \C^0([a, b])$.
+	Uniform convergence $\Rightarrow L^p$-convergence.
+	\[
+		\|T f_{n_k} - h\|_{L^p} \leq \|T f_{n_k} - T g_{n_k}\|_{L^p} + \|T g_{n_k} - h \|_{L^p} 
+	\]
+	The right hand side converges to 0 since
+	\[
+		\|T f_{n_k} - T g_{n_k}\|_{L^p} \leq \|T\|\|f_{n_k} - g_{n_k}\|_{L^p}  \|T\| \cdot \frac{1}{n_k} \to 0
+	\]
+	So $T$ is compact.
+\end{ex}
+
+\begin{ex}
+	Another subclass of compact operators is provided by operators of finite rank.
+	A bounded linear operator $T$ is of finite rank if its image is a finite dimensional subspace.
+	In this case, $(T x_n)$ is bounded in a finite dimensional space whenever $(x_n)$ is bounded, $(T x_n)$ must have a convergent subsequence.
+\end{ex}
+
+Limits of operators of finite rank is copact.
+Not all compact operators arise from this in general.
+In Hilbert space, these are equivalent.
+
+\begin{prop}
+	Let $X$ be a Hilbert space and let $T \in \B(X)$ be a compact operator.
+	Then $T$ is the limit of a sequence of operators of finite rank.
+\end{prop}
+
+\begin{proofs}
+	Let $\epsilon > 0$ be given.
+	$\overline{TB(0, 1)}$ is compact, so we can cover $\overline{TB(0, 1)}$ by open balls of radius $\epsilon$ centered at $T x_1, ..., T x_n$.
+	Let $P$ be the orthogonal projection onto 
+	\[
+		\text{span}(\{T x_1, ..., T x_n\})
+	\]
+	which is finite dimensional.
+	For any $x \in X$, for any $x_i$
+	\[
+		\|P x - T x_i\| = \|P x - P T x_i\| \leq \|x - T x_i\| (\text{since } \|P\| = 1) \cdots (*)
+	\]
+	Fix $x \in X$ with $\|x\| < 1$.
+	Then $\exists T x_i$ such that $\|T x - T x_i\| < \epsilon$.
+	Then 
+	\[
+		\| T x - P T x\| \leq \|T x - T x_i\| + \| T x_i - P T x\| < \epsilon + \|T x_i - T x\| \stackrel{(*)}{<} 2 \epsilon 
+	\]
+	$\Rightarrow \|T - P T\| \leq 2 \epsilon$, where $PT$ is the operator of finite rank.
+\end{proofs}
+
+\section{Compact, Self-Adjoint Operators}
+
+\begin{prop}
+	Let $T \in \B(X)$ be self-adjoint and compact.
+	Then 
+	\begin{enumerate}
+		\item[(a)] For any nonzero eigenvalue $\lambda$, the corresponding eigenspace is finite dimensional.
+
+		\item[(b)] If $(\lambda_k)$ is a sequence of distinct eigenvalues that converges to $\lambda_0$, then $\lambda_0 = 0$.
+	\end{enumerate}
+\end{prop}
+
+\begin{proofs}
+	We only prove (b).
+	(The proof of (a) is similar.)
+	Let $(\lambda_k)$ be as above.
+	Let $x_k$ be an eigenvector of $T$ with eigenvalue $\lambda_k$ with $\|x_k\| = 1$.
+	Then $(x_k)$ is orthonormal.
+	$\Rightarrow \|x_k - x_j\| = \sqrt{2}$ if $k \neq j$.
+	Suppose that $\lambda_0 \neq 0$.
+	By compactness, $\exists$ a subsequence $(T x_{k_j})$ such that $\lambda_{k_j} x_{k_j} = T x_{k_j} \to x_0$ in $X$.
+	$\Rightarrow x_{k_j} \to x_0/\lambda_0$.
+	So $(x_{k_j})$ is Cauchy.
+	$\|x_{k_j} - x_{k_l}\| < \sqrt{2}$, a contradiction.
+	So $\lambda_0 = 0$.
+\end{proofs}
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

@@ -1,5 +1,9 @@
 .DS_Store
+Field_Theory.log
+Field_Theory.pdf
 \.tmp.driveupload
+index.html
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -13,3 +17,6 @@
 *.cb
 *.cb2
 .*.lb
+*.bcf
+*.run.xml
+*.synctex.gz

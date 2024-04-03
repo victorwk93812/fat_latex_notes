@@ -1,0 +1,579 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+  top=2cm, 
+  bottom=2cm,
+  left=2cm,
+  right=2cm,
+  includehead, includefoot,
+  heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Introduction to Algebra 2 HW2}
+\author{B11202041 物理二 $ $ 劉晁泓}
+% \date{\today}
+\date{March 3, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Introduction to Algebra 2 HW2}
+
+\section*{9.3}
+
+\begin{prob}
+	Let $R$ be an integral domain with quotient field $F$ and let $p(x)$ be a monic polynomial in $R[x]$. 
+	Assume that $p(x) = a(x) b(x)$ where $a(x)$ and $b(x)$ are monic polynomials in $F[x]$ of smaller degree than $p(x)$. 
+	Prove that if $a(x) \notin R[x]$ then $R$ is not a Unique Factorization Domain. 
+	Deduce that $\mathbb{Z}[2\sqrt{2}]$ is not a U.F.D.
+\end{prob}
+
+\begin{sols}
+	\par Suppose that $R$ is a UFD, then $R[x]$ should also be a UFD.
+	By the assumption, $p(x)$ is a reducible in $F[x]$. 
+	By Gauss's lemma, we found that $\exists r, s \in F[x]$ s.t. $r a(x), s b(x) \in R[x]$ and $p(x) = (r a(x)) (s b(x))$ with $rs = 1$.
+	Now since $ra(x) \in R[x]$ and $s \in R[x]$, we have $s r a(x) = a(x) \in R[x]$, contradicting the fact that $a(x) \in R[x]$.
+	Thus $R$ must not be a UFD.
+	\par Let $F$ denote the quotient field of $\mathbb{Z}[2 \sqrt{2}]$.
+	Consider the polynomial $x^2 - 2 \in F$.  
+	We have $x^2 - 2 = (x + \sqrt{2})(x - \sqrt{2})$ where $x + \sqrt{2} \in F \notin \mathbb{Z}[2\sqrt{2}]$.
+	Thus $\mathbb{Z}[2\sqrt{2}]$ is not a UFD.
+\end{sols}
+
+\section*{9.4}
+
+\setcounter{prob}{0}
+\begin{prob}
+	Determine whether the following polynomials are irreducible in the rings indicated. 
+	For those that are reducible, determine their factorization into irreducibles. 
+	The notation $\mathbb{F}_p$ denotes the finite field $\mathbb{Z}/p\mathbb{Z}, p$ a prime.
+	\begin{enumerate}
+		\item[(a)] $x^2 + x + 1$ in $\mathbb{F}_2[x]$. 
+
+		\item[(b)] $x^3 + x + 1$ in $\mathbb{F}_3[x]$. 
+
+		\item[(c)] $x^4 + 1$ in $\mathbb{F}_5[x]$. 
+
+		\item[(d)] $x^4 + 10 x^2 + 1$ in $\mathbb{Z}[x]$.
+	\end{enumerate}
+\end{prob}
+
+\begin{sols}
+	\begin{enumerate}
+		\item[(a)] Obviously 0 and 1 are both not roots for $x^2 + x + 1$, which has degree 2.
+			Thus $x^2 + x + 1$ is an irreducible. 
+
+		\item[(b)] We see that $1$ is a root for $x^3 + x + 1$, so we could reduce $x^3 + x + 1$ into 
+			\[
+				x^3 + x + 1 = (x - 1) ( x^2 + x + 2) 
+			\]
+			Thus $x^3 + x + 1$ is a reducible.
+
+		\item[(c)] Since all 0, 1, 2, 3, 4 are not roots of $x^4 + 1$, we shall consider polynomials with degree 2.
+			We could try monic polynomials with only constant terms besides the leading term.
+			By brute force, one could find
+			\[
+				x^4 + 1 = (x^2 + 2)(x^2 + 3)
+			\]
+			Thus $x^4 + 1$ is a reducible.
+			
+		\item[(d)] Since 
+			\[
+				x^4 + 10x^2 + 1 = (x^2 + 1)^2 + 8 x^2 > 0
+			\]
+			There are no roots for this polynomial. 
+			We shall take polynomials of degree 2 into account. 
+			Since the coefficients of $x^3$ and $x$ are zero, $x^4 + 10 x^2 + 1$ must be factored into the form 
+			\[
+				x^4 + 10 x^2 + 1 = 
+				\begin{cases}
+					(x^2 + ax + 1)(x^2 - ax + 1) = x^4 + (2 - a^2) x^2 + 1\\
+					(x^2 + bx - 1)(x^2 - bx - 1) = x^4 - (2 + b^2) x^2 + 1
+				\end{cases}
+			\]
+			But in both cases the $x^2$ coefficients could not exceed 2, so there is no way to reduce $x^4 + 10x^2 + 1$.
+			Thus $x^4 + 10x^2 + 1$ is an irreducible.
+
+	\end{enumerate}
+\end{sols}
+
+\setcounter{prob}{2}
+\begin{prob}
+	Show that the polynomial $(x - 1)(x - 2) \hdots (x - n) - 1$ is irreducible over $\mathbb{Z}$ for all $n \geq 1$.
+	[If the polynomial factors consider the values of the factors at $x = 1, 2, ..., n.$]
+\end{prob}
+
+\begin{sols}
+	Suppose that $(x - 1)(x - 2) \hdots (x - n) - 1$ is reducible, we write
+	\[
+		(x - 1)(x - 2) \hdots (x - n) - 1 = f(x) g(x)
+	\]
+	where $1 \leq deg(f(x)), deg(g(x)) < n$. 
+	Either $f(x)$ or $g(x)$ has degree less than $\floor{n/2}$, take $deg(f(x)) = a \leq \floor{n/2}$ without loss of generality.
+	Now for all $i \in \{1, ..., n\}$, we have
+	\[
+		f(i) g(i) = -1 \sfa i \in \{1, ..., n\}
+	\]
+	\[
+		\Rightarrow f(i) = 1 \text{ or } f(i) = -1
+	\]
+	By the pigeon-hole principle, there exists $b \geq \floor{n/2}$ ($b > \floor{n/2}$ if $n$ is odd) s.t. either $f(i_1) = f(i_2) = \hdots = f(i_b) = 1$ or $f(i_1) = f(i_2) = \hdots = f(i_b) = -1$. 
+	Assume that $f(i_1) = f(i_2) = \hdots = f(i_b) = 1$ without loss of generality.
+	Since $f(i_1) = f(i_2) = \hdots = f(i_b) = 1$, $f(x) - 1$ has roots $i_1, i_2, ..., i_b$.
+	Recall that $f(x)$ has degree $a \leq \floor{n/2}$, thus $f(x)$ could have at most $n$ roots.
+	Thus if $a < b$, we obtain a contradiction. 
+	The only case left is while $n$ is even and $a = b = \floor{n/2}$. 
+	In this case, $f(x)$ must take the form
+	\[
+		f(x) = \alpha(x - i_1)(x - i_2) \hdots (x - i_b) + 1
+	\]
+	for some $\alpha \in \mathbb{Z}$.
+	Note that for all $x \in \{j_1, ..., j_b\} := \{1, ..., n\} \setminus \{i_1, i_2, ..., i_b\} $, we have $f(x) = -1$.
+	Thus $f(x)$ must take the form 
+	\[
+		f(x) = \beta(x - j_1)(x - j_2) \hdots (x - j_b) - 1
+	\]
+	for some $\beta \in \mathbb{Z}$.
+	Since $(x - 1)(x - 2) ... (x - n) - 1$ has leading coefficient 1, either $\alpha = \beta = 1$ or $\alpha = \beta = -1$.
+	Thus we have
+	\[
+		(x - i_1) (x - i_2) ... (x - i_b) - (x - j_1) (x - j_2) ... (x - j_b) = \pm 2
+	\]
+	Recall that $\{i_1, ..., i_b\} = \{1, ..., n\} \setminus \{j_1,, ..., j_b\}$, one could easily verify that the above equation could not hold for all $x \in \{1, ..., n\}$ for any $n$ even. 
+	Thus $(x - 1)(x - 2) ... (x - n) - 1$ is an irreducible in $\mathbb{Z}$.
+	
+\end{sols}
+
+\setcounter{prob}{5}
+\begin{prob}
+	Construct field of each of the following orders: (a)9,  (b)49,  (c)8,  (d)81(you may exhibit these as $F[x]/(f(x))$ for some $F$ and $f$). [Use Exercises 2 and 3 in Section 2.]
+\end{prob}
+
+\begin{sols}
+	\begin{enumerate}
+		\item[(a)] Since $x^2 + 1$ is an irreducible in $\mathbb{F}_3[x]$ with degree 2 (since 0, 1, 2 are all not roots), the field $\mathbb{F}_3[x]/(x^2 + 1)$ is a field of order 9.
+
+		\item[(b)] The polynomial $x^2 + 1$ is an irreducible in $\mathbb{F}_7[x]$ because 0, 1, 2, ..., 6 are all not roots. 
+			Thus the field $\mathbb{F}_7[x]/(x^2 + 1)$ is a field of order 49.
+
+		\item[(c)] The polynomial $x^3 + x + 1$ is an irreducible in $\mathbb{F}_2[x]$ with degree 3 since 0 and 1 are not roots. Thus the field $\mathbb{F}_2[x]/(x^3 + x + 1)$ is a field of order 8.  
+			
+		\item[(d)] The polynomial $x^4 + x + 2$ is an irreducible in $\mathbb{F}_3[x]$. 
+			First it is trivial that 0, 1, 2 are all not roots for $x^4 + x + 2$. 
+			Next since the $x^3$ coefficient is 0, if $x^4 + x + 2$ is reducible, the factorization must take the form
+			\[
+				x^4 + x + 2 = (x^2 + ax + 1)(x^2 - ax + 2)
+			\]
+			for some $a \in \mathbb{F}_3$. 
+			If this holds, the $x^2$ coefficient turns out to be $-a^2$. 
+			This implies $a = 0$, which gives us $x^4 + x + 2 = (x^2 + 1)(x^2 + 2) = x^4 + 2$, a contradiction.
+			Thus $x^4 + x + 2$ is indeed an irreducible of degree 4 and the field $\mathbb{F}[x]/(x^4 + x + 2)$ is a field of order 81.
+			
+	\end{enumerate}
+\end{sols}
+
+\setcounter{prob}{6}
+\begin{prob}
+	Prove that $\mathbb{R}[x]/(x^2 + 1)$ is a field which is isomorphic to the complex numbers.	
+\end{prob}
+
+\begin{sols}
+	Note that $x^2 + 1 \geq 1 > 0 \sfa x \in \mathbb{R}$. 
+	Thus $x^2 + 1$ is an irreducible in $\mathbb{R}$, which implies $\mathbb{R}[x]/(x^2 + 1)$ is indeed a field. 
+	By applying the division algorithm, any polynomial $p(x) \in \mathbb{R}[x]$ could be written as
+	\[
+		p(x) = q(x) (x^2 + 1) + r(x)
+	\]
+	where $deg(r(x)) \leq 1$. 
+	We write $r(x) = bx + a$. 
+	Thus an element in $\mathbb{R}/(x^2 + 1)$ could be written as $\overline{p(x)} = \overline{r(x)} = \overline{bx + a}$.
+	Define the isomorphism map $\phi: \mathbb{R}/(x^2 + 1) \to \mathbb{C}$ by 
+	\[
+		\phi(\overline{p(x)}) = \phi(\overline{bx + a}) = a + bi
+	\]
+	To check that this is indeed an isomorphism, let's check:\\
+	Additivity:
+	\[
+		\phi(\overline{bx + a} + \overline{dx + c}) = \phi(\overline{(b + d) x + (a + c)}) = (a + c) + (b + d)i = \phi(\overline{bx + a}) + \phi(\overline{dx + c})
+	\]
+	Multiplicity:
+	\[
+		\phi(\overline{bx + a} \cdot \overline{dx + c}) = \phi(\overline{bdx^2 + (ad + bc) x + ac}) = \phi(\overline{(ad + bc) x + (ac - bd)}) 
+	\]
+	\[
+		= (ac - bd) + (ad + bc)i = (a + bi)(c + di) = \phi(\overline{bx + a}) \phi(\overline{dx + c})
+	\]
+	surjective is natural by the division algorithm. 
+	Thus $\mathbb{R}/(x^2 + 1) \simeq \mathbb{C}$.
+\end{sols}
+
+\setcounter{prob}{9}
+\begin{prob}
+	Prove that the polynomial $p(x) = x^4 +  4x^2 + 8x + 2$ is irreducible over the quadratic field $F = \mathbb{Q}(\sqrt{-2}) = \{a + b \sqrt{-2} | a, b \in \mathbb{Q} \}$. 
+	[First use the method of Proposition 11 for the Unique Factorization Domain $\mathbb{Z}[\sqrt{-2}]$ (cf.Exercise 8, Section 8.1) to show that if $\alpha \in \mathbb{Z}[\sqrt{-2}]$ is a root of $p(x)$ then $\alpha$ is a divisor of 2 in $\mathbb{Z}[\sqrt{-2}]$. 
+	Conclude that $\alpha$ must be $\pm 1, \pm \sqrt{-2}$, or $\pm 2$, and hence show $p(x)$ has no linear factor over $F$. 
+	Show similarly that $p(x)$ is not the product of two quadratics with coefficients in $F$.]
+\end{prob}
+
+\begin{sols}
+	Since $\mathbb{Z}[\sqrt{-2}]$ is a UFD and $p(x) = x^4 + 4x^2 + 8x + 2$ is monic, $p(x)$ is an irreducible in $\mathbb{Z}[\sqrt{-2}][x] \Leftrightarrow p(x)$ is an irreducible in $\mathbb{Q}[\sqrt{-2}][x]$.
+	We first eliminate the case where there exists a root of $p(x)$. 
+	If this holds, then this root divides 2.
+	Say $\alpha \beta = 2$, taking norms on both sides gives
+	\[
+		N(\alpha) N(\beta) = 4
+	\]
+	If $N(\alpha) = 2$, we must have $\alpha = \pm \sqrt{-2}$. 
+	Else if $N(\alpha) = 1$ or 4, we will have $\alpha = \pm 1, \pm 2$. 
+	Note that $p(1) = 15, p(-1) = -1, p(\sqrt{-2}) = -2 + 8 \sqrt{-2}, p(-\sqrt{-2}) = -2 - 8 \sqrt{-2}, p(2) = 50, p(-2) = 18$. 
+	None of the above are 0, thus $p(x)$ must not have a linear factor. 
+	Assume that $p(x)$ is a product of two quadratic polynomials. 
+	Observe that the $x^3$ term is 0, we must have either 
+	\[
+		p(x) = 
+		\begin{cases}
+			(x^2 + ax + 1)( x^2 - ax + 2)\\
+			(x^2 + bx + \sqrt{-2})(x^2 - bx - \sqrt{-2})\\
+			(x^2 + cx - 1)(x^2 - cx - 2)
+		\end{cases}
+	\]
+	for some $a, b, c \in \mathbb{Z}[\sqrt{-2}]$. 
+	For the first case, to match the $x$ term coefficient, we have $a = 8$. 
+	This gives the $x^2$ term $3 - 64 = -61$, a contradiction.
+	For the second case, the $x$ term coefficient is 0, a contradiction.
+	For the third case, to match the $x$ term coefficient, we have $c = -8$. 
+	This gives the $x^2$ term $-3 - 64 = -67$, a contradiction.
+	Thus $p(x)$ is neither a product of two quadratic polynomials. 
+	We could conclude that $p(x)$ should be a irreducible in $\mathbb{Z}[\sqrt{-2}][x]$, thus in $\mathbb{Q}[\sqrt{-2}][x]$. 
+	
+
+\end{sols}
+
+\section*{9.5}
+
+\setcounter{prob}{1}
+\begin{prob}
+	For each of the fields constructed in Exercise 6 of Section 4 exhibit a generator for the (cyclic) multiplicative group of nonzero elements. 
+\end{prob}
+
+\begin{sols}
+	\begin{enumerate}
+		\item[(a)] The polynomial $x + 1$ is a generator for $(\mathbb{F}_3[x]/(x^2 + 1))^\times$.
+			To see this, we could evaluate powers of $x + 1$ where the exponent could be divided by 8 since the order of $x + 1$ must be a factor of 8.
+			If all of these powers are not the identity, then $x + 1$ is indeed not a irreducible.
+			We have
+			\[
+				(x + 1)^2 = 2x
+			\]
+			\[
+				(x + 1)^4 = 2
+			\]
+			\[
+				(x + 1)^8 = 1
+			\]
+			and we are done.
+		\item[(b)] We could verify that $x + 2$ is a generator for $(\mathbb{F}_7[x](x^2 + 1))^\times$ which has order 48.
+			\[
+				(x + 2)^2 = 4x + 3
+			\]
+			\[
+				(x + 2)^3 = 4x + 2
+			\]
+			\[
+				(x + 2)^4 = 3x
+			\]
+			\[
+				(x + 2)^6 = 2x + 2
+			\]
+			\[
+				(x + 2)^8 = 5
+			\]
+			\[
+				(x + 2)^{12} = x
+			\]
+			\[
+				(x + 2)^{16} = 4
+			\]
+			\[
+				(x + 2)^{24} = 6
+			\]
+			\[
+				(x + 2)^{48} = 1
+			\]
+			and we are done.
+		\item[(c)] The group $(\mathbb{F}_2[x]/(x^3 + x + 1))^\times$ has a prime order 7, thus all of the elements are generators.
+
+		\item[(d)] We could verify that $x + 1$ is a generator of $(\mathbb{F}_3[x]/(x^4 + x + 2))^\times$.
+			\[
+				(x + 1)^2 = x^2 + 2x + 1
+			\]
+			\[
+				(x + 1)^4 = x^3 + 2
+			\]
+			\[
+				(x + 1)^3 = x^3 + x
+			\]
+			\[
+				(x + 1)^8 = x^2 + 1
+			\]
+			\[
+				(x + 1)^{10} = 2x^3 + 2x^2 + x + 2
+			\]
+			\[
+				(x + 1)^{16} = 2x^2 + 2x + 2
+			\]
+			\[
+				(x + 1)^{20} = 2x^3 + 2x^2 + x
+			\]
+			\[
+				(x + 1)^{40} = 2
+			\]
+			\[
+				(x + 1)^{80} = 1
+			\]
+
+	\end{enumerate}
+\end{sols}
+
+\begin{prob}
+	Let $p$ be an odd prime in $\mathbb{Z}$ and let $n$ be a positive integer. Prove that $x^n - p$ is irreducible over $\mathbb{Z}[i]$. 
+	[Use Proposition 18 in Chapter 8 and Eisenstein's Criterion.]
+\end{prob}
+
+\begin{sols}
+	Recall Proposition 18. 
+	Irreducibles in $\mathbb{Z}[i]$ could only be in the form
+	\[
+		\begin{cases}
+			1 + i\\
+			p \text{ where } p \equiv 3 \pmod{4}\\
+			a \pm bi \text{ where } a^2 + b^2 = p, p \equiv 1 \pmod{4}
+		\end{cases}
+	\]
+	The hypothesis require that $p$ is odd, so $p \equiv 1, 3 \pmod{4}$. 
+	If $p \equiv 3 \pmod{4}$, consider the irreducible $p$ itself. 
+	The ideal $(p)$ is a prime ideal because in an Euclidean domain, irreducible implies prime. 
+	We found that all coefficients of $x^j, j = \{0, ..., n - 1\}$ are contained in $(p)$ since all of them are either 0 or $p$ itself.
+	The last term $p$ obviously does not lie in $(p)^2$. 
+	By the Eisenstein's criterion, we have $x^n - p$ in the $p \equiv 3 \pmod{4}$ case irreducible. 
+	If $p \equiv 1 \pmod{4}$, consider the irreducible $a + bi$ and the prime ideal $(a + bi)$ where $p = (a + bi)(a - bi)$. 
+	All coefficients of $x^j, j = \{0, ..., n - 1\}$ are contained in $(a + bi)$ since all of them are either 0 or $p$, which could be divided by $a + bi$. 
+	However, the last constant could not be contained in $(a + bi)^2$ since $N(p) = p^2 < N((a + bi)^2) =  p^4$. 
+	Again by the Eisenstein's criterion, $x^n - p$ is an irreducible in this case also, and we are done.
+\end{sols}
+
+
+\end{document}

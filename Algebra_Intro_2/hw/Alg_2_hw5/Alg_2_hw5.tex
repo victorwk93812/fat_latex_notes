@@ -1,0 +1,398 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[Path = /usr/share/fonts/TTF/]{edukai-5.0.ttf}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Introduction to Algebra 2 HW5}
+\author{B11202041 物理二 $ $ 劉晁泓}
+% \date{\today}
+\date{March 23, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Introduction to Algebra 2 HW5}
+
+\section*{13.5}
+
+\setcounter{prob}{3}
+\begin{prob}
+	Let $a > 1$ be an integer.
+	Prove for any positive integers $n, d$ that $d$ divides $n$ if an only if $a^d - 1$ divides $a^n - 1$(cf. the previous exercise).
+	Conclude in particular that $\mathbb{F}_{p^d} \subseteq \mathbb{F}_{p^n}$ if and only if $d$ divides $n$.
+\end{prob}
+
+\begin{sols}
+	If $d|n$, then denote $k = n/d$, we have
+	\[
+		a^n - 1 = (a^d - 1) (a^{(k - 1)d} + a^{(k - 2) d} + \cdots + a^d + 1)
+	\]
+	which gives $\Rightarrow$.
+	If not, then denote $l = \floor{n/d}$, we have
+	\[
+		a^n - 1 = (a^d - 1) (a^{n - d} + a^{n - 2d} + \cdots a^{n - ld}) + (a^{n - ld} - 1)
+	\]
+	Now by definition, $n - ld < d$.
+	Since $a > 1$, we must have $a^{n - ld} - 1 < a^{d} - 1$.
+	Thus $a^{n - ld} - 1$ is the remainder and $a^d - 1$ does not divide $a^n - 1$ and we are done.
+\end{sols}
+
+\begin{prob}
+	For any prime $p$ and any nonzero $a \in \mathbb{F}_p$ prove that $x^p - x + a$ is irreducible and separable over $\mathbb{F}_p$. 
+	[For the irreducibility: One approach --- prove first that if $\alpha$ is a root then $\alpha + 1$ is also a root.
+	Another approach --- suppose it's reducible and compute derivatives.]
+\end{prob}
+
+\begin{sols}
+	Consider the derivative of $f$, we have
+	\[
+		\mathrm{D} f = p x^{p - 1} - 1 = -1
+	\]
+	Thus $(f, \mathrm{D} f) = 1$, $f$ is separable.
+	To see that $f$ is an irreducible, we first check that no elements in $\mathbb{F}_p$ are roots of $f$.
+	By the Fermat's little theorem, $x^p \equiv x \pmod{p}$, then $x^p - x + a \equiv a \not\equiv 0 \pmod{p}$.
+	Next let $\alpha$ be a root of $f$. 
+	By the Frobenius automorphism we have
+	\[
+		(\alpha + 1)^p - (\alpha + 1) + a = \alpha^p + 1 - \alpha - 1 + a = \alpha^p - \alpha + a = 0
+	\]
+	Thus $\alpha + 1$ must also be a root.
+	Now assume that $f$ is reducible.
+	This root-finding process could continue until we reach $\alpha + p - 1$, since $\alpha + p$ is just $\alpha$.
+	We've just obtained $p$ distinct zeros of $f$.
+	Since $f$ is separable, we could write $f$ into a product of the minimal polynomials of these distinct roots.
+	Note that $\mathbb{F}_p(\alpha) = \mathbb{F}_p(\alpha + 1)$, thus the minimal polynomials of all the $p$ distinct roots should share the same degree, call it $m$.
+	(The minimal polynomial of these roots shall not be $f$ itself since $f$ would be an irreducible in this case, a contradiction.)
+	Then we have $p = p \times m$, concluding that $m = 1$.
+	This is a contradiction since $\alpha \notin \mathbb{F}_p$.
+	Thus $f$ must be an irreducible.
+\end{sols}
+
+\begin{prob}
+	Prove that $x^{p^n - 1} - 1 = \prod_{\alpha \in \mathbb{F}_{p^n}^\times} (x - \alpha)$.
+	Conclude that $\prod_{\alpha \in \mathbb{F}_{p^n}^\times} \alpha = (-1)^{p^n}$ so the product of the nonzero elements of a finite field is $+1$ if $p = 2$ and $-1$ if $p$ is odd.
+	For $p$ odd and $n = 1$ derive \textit{Wilson's Theorem}: $(p - 1)! \equiv -1 \pmod{p}$.
+\end{prob}
+
+\begin{sols}
+	Since the $p^n$ roots of $x^{p^n} - x$ are exactly the elements in $\mathbb{F}_{p^n}$, we could write
+	\[
+		x^{p^n} - x = \prod_{\alpha \in \mathbb{F}_{p^n}} (x - \alpha)
+	\]
+	Note that the product on the right hand side includes a $x$ which represents $\alpha = 0$, thus excluding it on both sides gives
+	\[
+		x^{p^n - 1} - 1 = \prod_{\alpha \in \mathbb{F}_{p^n}^\times} (x - \alpha)
+	\]
+	Taking $x = 0$ gives
+	\[
+		-1 = (-\alpha)^{p^n - 1} = (-1)^{p^n - 1} \prod_{\alpha \in \mathbb{F}_{p^n}^\times} \alpha
+	\]
+	\[
+		\Rightarrow (-1)^{p^n} = \prod_{\alpha \in \mathbb{F}_{p^n}^\times} \alpha
+	\]
+	For $p = 2$, $p^n$ is always even and the product is $+1$.
+	For odd $p$, $p^n$ is always odd and the product is $-1$.
+	For odd $p$ and $n = 1$, we have
+	\[
+		\prod_{\alpha \in \mathbb{F}_{p}^\times} \alpha = (p - 1)! = -1
+	\]
+\end{sols}
+
+\setcounter{prob}{8}
+\begin{prob}
+	Show that the binomial coefficient $\binom{pn}{pi}$ is the coefficient of $x^{pi}$ in the expansion of $(1 + x)^{pn}$.
+	Working over $\mathbb{F}_p$ show that this is the coefficient of $(x^p)^i$ in $(1 + x^p)^n$ and hence prove that $\binom{pn}{pi} \equiv \binom{n}{i} \pmod{p}$.
+\end{prob}
+
+\begin{sols}
+	The fact that $\binom{pn}{pi}$ is the coeffiecient of $x^{pi}$ in the expansion of $(1 + x)^{pn}$ is obvious.
+	Working over $\mathbb{F}_p$, we have
+	\[
+		(1 + x)^{pn} = ((1 + x)^p)^n = (1^p + x^p)^n = (1 + x^p)^n
+	\]
+	Just by comparing coefficients we see that the coefficient of $(x^p)^i = x^{pi}$ must be $\binom{pn}{pi}$.
+	Simultaneously, by the binomial expansion of $(1 + x^p)^n$, this coefficient must equal to $\binom{n}{i}$, thus we must have
+	\[
+		\binom{pn}{pi} \equiv \binom{n}{i} \pmod{p}
+	\]
+\end{sols}
+
+\setcounter{prob}{10}
+\begin{prob}
+	Suppose $K[x]$ is a polynomial ring over the field $K$ and $F$ is a subfield of $K$.
+	If $F$ is a perfect field and $f(x) \in F[x]$ has no repeated irreducible factors in $F[x]$, prove that $f(x)$ has no repeated irreducible factors in $K[x]$.
+\end{prob}
+
+\begin{sols}
+	Suppose that $f(x) = p_1(x) p_2(x) \cdots p_n(x)$ where $p_i(x)$ are distinct irreducibles for all $i$.
+	Then for each root $\alpha_{ik}$ of each $p_i(x)$, $m_{\alpha_{ik}, F}(x) = p_i(x)$.
+	Thus roots of $p_i(x)$ and $p_j(x)$ with $i \neq j$ should have no intersection.
+	Also since $F$ is perfect, all the roots for each $p_i(x)$ must be distinct, yielding that all roots of $f$ are actually distint with each other.
+	This conclustion could be applied to either $\bar{F}(x)$ or $\bar{K}(x)$, where $\bar{\cdot}$ denotes the algebraic closure.
+	Now if $f$ has repeated irreducible factors in $K[x]$, then it must have repeated linear factors in $\bar{K}[x]$, a contradiction.
+	Thus $f$ must not have repeated irreducible factors in $K[x]$.
+\end{sols}
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

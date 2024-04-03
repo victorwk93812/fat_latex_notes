@@ -1,0 +1,444 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[Path = ../../../fonts/]{edukai-5.0.ttf}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Introduction to Algebra 2 HW6}
+\author{B11202041 物理二 $ $ 劉晁泓}
+% \date{\today}
+\date{March 31, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Introduction to Algebra 2 HW6}
+
+\section*{13.6}
+
+\setcounter{prob}{3}
+\begin{prob}
+	Prove that if $n = p^k m$ where $p$ is a prime and $m$ is relatively prime to $p$ then there are precisely $m$ distinct $n^{\text{th}}$ roots of unity over a field of characteristic $p$.
+\end{prob}
+
+\begin{sols}
+	The $n^{\text{th}}$ roots of unity over a field of characteristic $p$ satisfies
+	\[
+		x^n - 1 = 0 \Rightarrow (x^m)^{p^k} - 1 = 0 \Rightarrow (x^m - 1)^{p^k} = 0
+	\]
+	Thus $m$ distinct roots of unity are just the $m^{\text{th}}$ roots of unity. 
+\end{sols}
+
+\begin{prob}
+	Prove there are only a finite number of roots of unity in any finite extension $K$ of $\mathbb{Q}$.
+\end{prob}
+
+\begin{sols}
+	Suppose that there are infinite roots of unity.
+	Let $N := [K:\mathbb{Q}]$.
+	Since there are inifinite roots of unity, there exists $n > 2 N^2$ and $K$ contains a $n^{\text{th}}$ root of unity $\zeta$.
+	Now we have
+	\[
+		[K:\mathbb{Q}] = [K:\mathbb{Q}(\zeta)][\mathbb{Q}(\zeta):\mathbb{Q}] \geq [\mathbb{Q}(\zeta):\mathbb{Q}] = \varphi(n) \geq \sqrt{\frac{n}{2}} > N
+	\]
+	where $\varphi$ is the Euler phi function satisfying the inequality $\varphi(n) > \sqrt{\frac{n}{2}}$.
+	This is a contradiction since $[K:\mathbb{Q}] = N$ and we are done.
+\end{sols}
+
+\setcounter{prob}{9}
+\begin{prob}
+	Let $\varphi$ denote the Frobenius map $x \mapsto x^p$ on the finite field $\mathbb{F}_{p^n}$.
+	Prove that $\varphi$ gives an isomorphism of $\mathbb{F}_{p^n}$ to itself (such an isomorphism is called an \textit{automorphism}).
+	Prove that $\varphi^n$ is the identity map and that no lower power of $\varphi$ is the identity.
+\end{prob}
+
+\begin{sols}
+	First we note that $\mathbb{F}_{p^n}$ has characteristic $p$ since the characteristic must be a prime dividing the field order.
+	Thus under a field with characteristic $p$, the Frobenius map is an homomorphism.
+	Moreover, it is not trivial, and $\mathbb{F}_{p^n}$ is a field.
+	Thus the homomorphsim must be injective.
+	Since both $\mathbb{F}_{p^n}$ is finite, injective implies surjective, and thus $\varphi$ is indeed an isomorphsim.
+	The map $\varphi^n$ is just $\varphi^n(x) = x^{p^n} = x$, which is obviously the identity map.
+	If there exists $m < n$ such that $\varphi^m(x) = x$ for all $x \in \mathbb{F}_{p^n}$, then all the elements in $\mathbb{F}_{p^n}$ satisfies $x^{p^m} - x = 0$.
+	This polynomial must have at most $p^m < p^n$ distinct roots, but the field $\mathbb{F}_{p^n}$ has $p^n$ distinct elements, a contradiction.
+	Thus there exists no such $m$ and no lower power of $\varphi$ is the identity.
+\end{sols}
+
+\setcounter{prob}{14}
+\begin{prob}
+	Let $p$ be an odd prime not dividing $m$ and let $\Phi_m(x)$ be the $m^{\text{th}}$ cyclotomic polynomial.
+	Suppose $a \in \mathbb{Z}$ satisfies $\Phi_m(a) \equiv 0 \pmod{p}$.
+	Prove that $a$ is relatively prime to $p$ and that the order of $a$ in $(\mathbb{Z}/p \mathbb{Z})^\times$ is precisely $m$.
+	[Since
+	\[
+		x^m - 1 = \prod_{d|m} \Phi_d(x) = \Phi_m(x) \prod_{\substack{d|m \\ d < m}} \Phi_d(x)
+	\]
+	we see first that $a^m - 1 \equiv 0 \pmod{p}$ i.e., $a^m \equiv 1 \pmod{p}$.
+	If the order of $a \mod p$ were less than $m$, then $a^d \equiv 1 \pmod{p}$ for some $d$ dividing $m$, so then $\Phi_d(a) \equiv 0 \pmod{p}$ for some $d < m$.
+	But then $x^m - 1$ would have $a$ as a multiple root mod $p$, a contradiction.]
+\end{prob}
+
+\begin{sols}
+	Since
+	\[
+		x^m - 1 = \prod_{d|m} \Phi_d(x) = \Phi_m(x) \prod_{\substack{d|m \\ d < m}} \Phi_d(x)
+	\]
+	and $\Phi_m(a) = 0$, we must have $a^m \equiv 1 \pmod{p}$.
+	Thus $p$ must not divide $a$ and hence $(p, a) = 1$.
+	If the order of $a \pmod{p}$ is less than $m$, then by Lagrange's theorem there exists $d | m$ such that $a^d \equiv 1 \pmod{p}$.
+	Since
+	\[
+		a^d - 1 = \prod_{k | d} \Phi_k(a)
+	\]
+	There must exists $k$ such that $\Phi_k(a) = 0$.
+	Thus the polynomial $x^m - 1$ has $a$ as a multiple root.
+	This is impossible since if we consider the derivative of $x^m - 1$, we have
+	\[
+		\mathrm{D}(x^m - 1) = m x^{m - 1}
+	\]
+	The only multiple root would be possibly 0, a contradiction.
+	Thus the order of $a$ is exactly $m$.
+\end{sols}
+
+\section*{14.1}
+
+\setcounter{prob}{3}
+\begin{prob}
+	Prove that $\mathbb{Q}(\sqrt{2})$ and $\mathbb{Q}(\sqrt{3})$ are not isomorphic.
+\end{prob}
+
+\begin{sols}
+	If there exists such isomorphism $\phi: \mathbb{Q}(\sqrt{2}) \to \mathbb{Q}(\sqrt{3})$, then we must have
+	\[
+		0 = \phi(0) = \phi(m_{\sqrt{2}, \mathbb{Q}}(\sqrt{2})) = \phi(\sqrt{2})^2 - 2 
+	\]
+	Thus $\phi(\sqrt{2})$ has the identical minimal polynomial as $\sqrt{2}$, which must be one of $\pm \sqrt{2}$.
+	But obviously both of them could not exist in $\mathbb{Q}(\sqrt{3})$, a contradiction. 
+	Thus $\mathbb{Q}(\sqrt{2})$ is not isomorphic to $\mathbb{Q}(\sqrt{3})$.
+\end{sols}
+
+\setcounter{prob}{5}
+\begin{prob}
+	Let $k$ be a field.
+	\begin{enumerate}
+		\item[(a)] Show that the mapping $\varphi: k[t] \to k[t]$ defined by $\varphi(f(t)) = f(at + b)$ for fixed $a, b \in k, a \neq 0$ is an automorphism of $k[t]$ which is the identity on $k$.
+		
+		\item[(b)] Conversely, let $\varphi$ be an automorphism of $k[t]$ which is the identity on $k$.
+			Prove that there exist $a, b \in k$ with $a \neq 0$ such that $\varphi(f(t)) = f(at + b)$ as in (a).
+	\end{enumerate}
+\end{prob}
+
+\begin{sols}
+	\begin{enumerate}
+		\item[(a)] The fact that $\varphi$ is an identity on $k$ is trivial.
+			To see that $\varphi$ is actually a homomorphism, we have $\varphi(f(t) + g(t)) = f(at + b) + g(at + b) = \varphi(f(t)) + \varphi(g(t))$.
+			On the other hand, we have $\varphi(f(t) g(t)) = f(at + b) g(at + b) = \varphi(f(t)) \varphi(g(t))$.
+			Thus $\varphi$ is a homomorphism.
+			For surjective, let $f(t) \in k[t]$.
+			Consider $g(t) = f((t - b)/a)$, we have
+			\[
+				\varphi(g(t)) = g(at + b) = f\left(\frac{(at + b) - b}{a}\right) = f(t)
+			\]
+			Thus $\varphi$ is an automorphism.
+
+		\item[(b)] First we state that $\varphi(t)$ should not have degree larger than 2.
+			Suppose not, and let $\varphi(t) = p_n t^n + \cdots + p_0$ with $n \geq 2$ and $f(t) = a_m t^m + \cdots + a_0$, where $p_i, a_j \in k$ for all $i, j$.
+			We have
+			\[
+				\varphi(f(t)) = a_m \varphi(t)^m + \cdots + a_0 = a_m (p_n t^n + \cdots + p_0)^m + \cdots + a_0
+			\]
+			Thus $\varphi(k[t]) = k[p_n t^n + \cdots + p_0]$.
+			Since $\varphi$ is an automorphism, it must be surjective.
+			We conclude that $k[p_n t^n + \cdots + p_0] = k[t]$.
+			This is impossible since any polynomial of $t$ with degree less than $n$ would be in $k[t]$, but not in $k[p_n t^n + \cdots + p_0]$.
+			Thus we must have $\varphi(t) = at + b$.
+			The fact that $a$ must be nonzero is easy since if $a = 0$, then $\varphi(k[t]) = k$ would not be surjective and we are done.
+	\end{enumerate}
+\end{sols}
+
+\setcounter{prob}{9}
+\begin{prob}
+	Let $K$ be an extension of the field $F$.
+	Let $\varphi: K \to K'$ be an isomorphism of $K$ with a field $K'$ which maps $F$ to the subfield $F'$ of $K'$.
+	Prove that the map $\sigma \mapsto \varphi \sigma \varphi^{-1}$ defines a group isomorphism $\text{Aut}(K/F) \stackrel{\~{}}{\to} \text{Aut}(K'/F')$.
+\end{prob}
+
+\begin{sols}
+	We shall check that if $\sigma \in \text{Aut}(K/F)$ then $\varphi \sigma \varphi^{-1} \in \text{Aut}(K'/F')$.
+	It is clear that $\varphi \sigma \varphi^{-1}$ is bijective since all the maps appeared are bijective.
+	We shall check that $\varphi \sigma \varphi^{-1}$ is a homomorhpism that fixes $F'$.
+	Given $a, b \in K$, we have
+	\[
+		\varphi \sigma \varphi^{-1}(ab) = \varphi \sigma (\varphi^{-1}(a) \varphi^{-1}(b)) = \varphi (\sigma \varphi^{-1}(a) \sigma \varphi^{-1}(b)) = \varphi \sigma \varphi^{-1}(a) \varphi \sigma \varphi^{-1}(b)
+	\]
+	Same works for $+$.
+	To see that it fixes $F'$, for all $a \in F'$, since $\varphi^{-1}(a) \in F$ and $\sigma$ is just the identity map for $F$, we must have $\varphi \sigma \varphi^{-1}(a) = \varphi \varphi^{-1} (a) = a$.
+	Thus $\varphi \sigma \varphi^{-1} \in \text{Aut} (K'/F')$.
+	The map $\phi: \text{Aut}(K/F) \to \text{Aut}(K'/F'), \sigma \mapsto \varphi \sigma \varphi^{-1}$ is obviously a homomorphism since if $\sigma, \tau \in \text{Aut}(K/F)$, then
+	\[
+		\phi(\sigma \circ \tau) = \varphi \sigma \tau \varphi^{-1} = \varphi \sigma \varphi^{-1} \circ \varphi \tau \varphi^{-1} = \phi(\sigma) \circ \phi(\tau)
+	\]
+	For surjective it suffices to check that $\varphi^{-1} \lambda \varphi \in \text{Aut}(K/F)$ for all $\lambda \in \text{Aut}(K'/F')$.
+	This checking procedure is literally identical to the above while checking $\varphi \sigma \varphi^{-1} \in \text{Aut}(K'/F')$ with $\lambda$ instead of $\sigma$, $\varphi$ instead of $\varphi^{-1}$ and the spaces interchanged.
+	Thus $\phi$ is indeed a group isomorphism.
+\end{sols}
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

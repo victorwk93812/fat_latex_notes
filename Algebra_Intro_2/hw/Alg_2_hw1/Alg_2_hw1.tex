@@ -1,0 +1,457 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Introduction to Algebra 2 HW1}
+\author{B11202041 物理二 $ $ 劉晁泓}
+% \date{\today}
+\date{February 29, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Introduction to Algebra 2 HW1}
+
+\section*{9.1}
+
+%\begin{enumerate}
+%  \item[Problem 4.]
+%\end{enumerate}
+\setcounter{prob}{3}
+\begin{prob}
+  Prove that the ideals $(x)$ and $(x, y)$ are prime ideals in $\mathbb{Q}[x, y]$ but only the latter ideal is a maximal ideal. 
+\end{prob}
+
+\begin{sols}  
+  Consider the quotient ring $\mathbb{Q}[x, y]/(x) \simeq \mathbb{Q}[y]$. Since $\mathbb{Q}$ is an integral domain, $\mathbb{Q}[y]$ is an integral domain. Thus $(x)$ must be a prime ideal. Moreover $(\mathbb{Q}[y])^\times = \mathbb{Q}^\times$, and thus $\mathbb{Q}[y] \simeq \mathbb{Q}[x, y]/(x) $ is not a field, and $(x)$ is not a maximal ideal. Now $\mathbb{Q}[x, y]/ (x, y) \simeq \mathbb{Q}$. $\mathbb{Q}$ is obviously a field, and therefore $(x, y)$ is a maximal ideal (and of course a prime ideal).  
+\end{sols}
+
+\begin{prob}
+  Prove that $(x, y)$ and $(2, x, y)$ are prime ideals in $\mathbb{Z}[x, y]$ but only the latter ideal is a maximal ideal. 
+\end{prob}
+
+\begin{sols}
+  Again consider the quotient rings, we have $\mathbb{Z}[x, y]/(x, y) \simeq \mathbb{Z}$ and $\mathbb{Z}[x, y]/(2, x, y) \simeq \mathbb{Z}/2 \mathbb{Z}$. Both $\mathbb{Z}$ and $\mathbb{Z}/2 \mathbb{Z}$ are integral domains, but obviously only $\mathbb{Z}/2 \mathbb{Z}$ is a field. Thus only $(2, x, y)$ is a maximal ideal and $(x, y)$ is just a prime one.  
+\end{sols}
+
+
+\begin{prob}
+  Prove that $(x, y)$ is not a principal ideal in $\mathbb{Q}[x, y]$. 
+\end{prob}
+
+\begin{sols}
+  Suppose that $(x, y)$ is a principal ideal, i.e. let $(a(x, y)) = (x, y)$. In particular, $(x) \subset (a(x, y))$ and $(y) \subset (a(x, y))$. Thus $\exists r_1(x, y), r_2(x, y) \in \mathbb{Q}[x, y]$ s.t.
+  \[
+    r_1(x, y) a (x, y) = x
+  \]
+  \[
+    r_2(x, y) a(x, y) = y
+  \]
+  Viewing $\mathbb{Q}[x, y]$ as $(\mathbb{Q}[x])[y]$ we could consider the degree of $y$ on both sides 
+  \[
+    deg_y(r_1(x, y)) + deg_y (a(x, y)) = deg_y(x) = 0
+  \]
+  Since $\mathbb{Q}[x, y]$ is an integral domain, neither $r_1(x, y)$ nor $a(x, y)$ equals to zero. We therefore have $deg_y(a(x, y)) = 0$. Similarly view $\mathbb{Q}[x, y]$ as $(\mathbb{Q}[y])[x]$ and take the degree of $x$ on both sides on the second equation, one obtains $deg_x(a(x, y)) = 0$. Thus $a(x, y)$ must be a nonzero constant, i.e. $a(x, y) = r \in \mathbb{Q}^\times$. But this is just saying that $a(x, y)$ is a unit of $\mathbb{Q}[x, y]$, thus the principal ideal is just the entire ring $(a(x, y)) = \mathbb{Q}[x, y]$. Obviously $(x, y) \neq \mathbb{Q}[x, y]$, a contradiction. Thus $(x, y)$ must not be a principal ideal. 
+\end{sols}
+
+\setcounter{prob}{13}
+\begin{prob}
+  Let $R$ be an integral domain and let $i, j$ be relatiely prime integers. Prove that the ideal $(x^i - y^j)$ is a prime ideal in $R[x, y]$. [Consider the ring homomorphism $\phi$ from $R[x, y]$ to $R[t]$ defined by mapping $x$ to $t^j$ and mapping $y$ to $t^i$. Show that an element of $R[x, y]$ differs from an element in $(x^i - y^j)$ by a polynomial $f(x)$ of degree at most $j - 1$ in $y$ and observe that the exponents of $\phi(x^r y^s)$ are distinct for $0 \leq s < j$.]
+\end{prob}
+
+\begin{sols}
+  Let $a(x, y), b(x, y) \in R[x, y]$ s.t. $a(x, y) b(x, y) \in (x^i - y^j)$. Consider the ring homomrphism $\phi: R[x, y] \to R[t]$ defined by 
+  \[
+    \phi(c x^r y^s) = c t^{rj+si}
+  \]
+  Note that for any element $r(x, y) (x^i - y^j) \in (x^i - y^j)$, the image 
+  \[
+    \phi(r(x, y)(x^i - y^j)) = \phi(r(x, y)) \phi(x^i - y^j) = \phi(r(x, y)) (t^{ij} - t^{ij}) = 0
+  \]
+  Now I claim that for all element in the form $c x^a y^b \in R[x, y]$, we could write this into
+  \[
+    c x^a y^b = \alpha + cx^h y^s
+  \]
+  where $\alpha \in (x^i - y^j)$ is an element in the principal ideal and $0 \leq s < j$, $h$ some integer. This is because if $b \geq j$, then we could do
+  \[
+    c x^a y^b + c x^a y^{b - j} (x^i - y^j) = c x^{a + j} y^{b - j}
+  \]
+  \[
+    c x^a y^b = c x^{a + j} y^{b - j} - c x^a y^{b - j} (x^i - y^j) = c x^{a + j} y^{b - j} + \alpha
+  \]
+  and we've successfully decomposed $c x^a y^b$ into a sum of an elememt in $(x^i - y^j)$ and an element with $y$ exponent $b - j$. By keep doing this procedure, we should eventually reach the decomposition
+  \[
+    c x^a y^b = \alpha + cx^h y^s
+  \]
+  where $0 \leq s < j$. For an arbitrary element $a = \sum_{i = 1}^n c_i x^{r_i} y^{s_i} \in R[x, y]$, one could write
+  \[
+    a(x, y) = \sum_{i = 1}^n (\alpha_i + c_i x^{h_i} y^{\tilde{s_i}})
+  \]
+  where each $\alpha_i \in (x^i - y^j)$ and $0 \leq \tilde{s_i} < j$. Back to our main part of the problem, given $a(x, y) b(x, y) \in (x^i - y^j)$, we have
+  \[
+    \phi(a(x, y)) \phi(b(x, y)) = 0
+  \]
+  Thus $\phi(a(x, y)) = 0$ or $\phi(b(x, y)) = 0$ since $R[t]$ is an integral domain. W.L.O.G. assume that $\phi(a(x, y))  = 0$. If we decompose $a(x, y)$ into the forementioned form, we get
+  \[
+    \phi(a(x, y)) = \sum_{k = 1}^n [\phi(\alpha_k) + \phi(c_k x^{h_k} y^{\tilde{s_k}})]
+  \]
+  The first term is just 0. For the second term, 
+  \[
+    \phi(c_k x^{h_k} y^{\tilde{s_k}}) = c_k t^{h_k j + i \tilde{s_k}}
+  \]
+  For all pairs of $(h_k, \tilde{s_j})$ s.t. $h_k \in \mathbb{N}, 0 \leq \tilde{s_k} < j$, we will have each $h_k j + i \tilde{s_k}$ distinct. To see this, suppose not, then $\exists h_{k_1}, h_{k_2} \in \mathbb{N}, 0 \leq \tilde{s_{k_1}}, \tilde{s_{k_2}} < j$ s.t. 
+  \[
+    h_{k_1} j + i \tilde{s_{k_1}} = h_{k_2} j + i \tilde{s_{k_2}}
+  \]
+  \[
+    \Rightarrow |(h_{k_1} -h_{k_2})| j = i |(\tilde{s_{k_1}} - \tilde{s_{k_2}})|
+  \]
+  Now since $gcd(i, j) = 1$ and $0 \leq |\tilde{s_{k_1}} - \tilde{s_{k_2}}| < j$, we found that there is no way the above equation holds, a contradiction. Thus if $\phi(a(x, y)) = 0$, one has
+  \[
+    \sum_{k = 1}^n c_k t^{h_k j + i \tilde{s_k}} = 0
+  \]
+  since all the exponents are distinct, we must have all the coefficients $c_k = 0$, that is, $a(x, y) = 0$. Thus we have
+  \[
+    a(x, y) = \sum_{k = 1}^n \alpha_n \in (x^i - y^j)
+  \]
+  which is if $a(x, y) b(x, y) \in (x^i - y^j)$, we have either $a(x, y)$ or $b(x, y)$ belongs to $(x^i - y^j)$, thus $(x^i - y^j)$ is a prime ideal and we are done. 
+
+\end{sols}
+
+\section*{9.2}
+
+\setcounter{prob}{0}
+\begin{prob}
+  Let $f(x) \in F[x]$ be a polynomial of degree $n \geq 1$ and let bars denote passage to the quotient $f[x]/(f(x))$. Prove that for each $\overline{g(x)}$ there is a unique polynomial $g_0(x)$ of degree $\leq n - 1$ s.t. $\overline{g(x)} = \overline{g_0(x)}$ (equivalently, the elements $\bar{1}, \bar{x}, ...,\bar{x^{n - 1}}$ are a \textit{basis} of the vector space $F[x]/(f(x))$ over $F$ --- in particular, the dimension of this space is $n$.)[Use the Division Algorithm]
+\end{prob}
+
+\begin{sols}
+  Since $F[x]$ is an Euclidean domain, for each $g(x)$, we could divide $g(x)$ by $f(x)$ and get
+  \[
+    g(x) = q(x) f(x) + r(x)
+  \]
+  where $q(x)$ is the quotient and $r(x)$ the remainder with $r = 0$ or $deg(r(x)) < deg(f(x)) = n$. Moreover
+  \[
+    \overline{g(x)} = \overline{r(x)}
+  \]
+  Take $g_0(x) = r(x)$ and we found that $\overline{g(x)} = \overline{g_0(x)}$. To check the uniqueness, suppose that $\exists (q_1(x), r_1(x)) \neq (q_2(x), r_2(x))$ s.t.
+  \[
+    g(x) = q_1(x) f(x) + r_1(x) = q_2(x) f(x) + r_2(x)
+  \]
+  \[
+    \Rightarrow (q_1(x) - q_2(x)) f(x) = r_1(x) - r_2(x)
+  \]
+  Since both $r_1(x), r_2(x)$ have degree $<n$, we must have $deg(r_1(x) - r_2(x)) < n$. Now since $q_1(x) \neq q_2(x)$, we have $deg(q_1(x) - q_2(x)) \geq 0$. This implies 
+  \[
+    deg(q_1(x) - q_2(x)) + deg(f(x)) \geq 0 + n = n
+  \]
+  A contradiction. Thus $r(x) = g_0(x)$ is unique. 
+\end{sols}
+
+\setcounter{prob}{8}
+\begin{prob}
+  Determine the greatest common divisor of $a(x) = x^5 + 2 x^3 + x^2 + x + 1$ and the polynomial $b(x) = x^5 + x^4 + 2x^3 + 2x^2 + 2x + 1$ in $\mathbb{Q}[x]$ and write it as a linear combnation (in $\mathbb{Q}[x]$) of $a(x)$ and $b(x)$. 
+\end{prob}
+
+\begin{sols}
+  We apply the Euclidean algorithm (which is a sequence a Division algorithms)
+  \[
+    x^5 + x^4 + 2x^3 + 2x^2 + 2x + 1 = (x^5 + 2 x^3 + x^2 + x + 1) (1) + (x^4 + x^2 + x)
+  \]
+  \[
+    x^5 + 2 x^3 + x^2 + x + 1 = (x^4 + x^2 + x) (x) + (x^3 + x + 1)
+  \]
+  \[
+    x^4 + x^2 + x = (x^3 + x + 1) (x)
+  \]
+  Thus 
+  \[
+    g(x) \equiv GCD(x^5 + x^4 + 2x^3 + 2x^2 + 2x + 1, x^5 + 2 x^3 + x^2 + x + 1) = x^3 + x + 1
+  \]
+  and we have
+  \[
+    g(x) = (x+1) a(x) + (-x) b(x)
+  \]
+\end{sols}
+
+\setcounter{prob}{10}
+\begin{prob}
+  Suppose $f(x)$ and $g(x)$ are two nonzero polynomials in $\mathbb{Q}[x]$ with greatest common divisor $d(x)$. 
+
+  \begin{enumerate}
+    \item[(a)] Given $h(x) \in \mathbb{Q}[x]$, show that there are polynomials $a(x), b(x) \in \mathbb{Q}[x]$ satisfying the equation $a(x) f(x) + b(x) g(x) = h(x)$ if and only if $h(x)$ is divisible by $d(x)$. 
+    \item[(b)] If $a_0(x), b_0(x) \in \mathbb{Q}[x]$ are particular solutions to the equation in (a), show that the full set of solutions to this equation is given by
+      \[
+        a(x) = a_0(x) + m(x) \frac{g(x)}{d(x)}
+      \]
+      \[
+        b(x) = b_0(x) - m(x) \frac{f(x)}{d(x)}
+      \]
+  \end{enumerate}
+
+\end{prob}
+
+\begin{sols}
+  Let's write
+  \[
+    f(x) = r(x) d(x), g(x) = s(x) d(x)
+  \]
+  \begin{enumerate}
+    \item[(a)] First we have
+      \[
+        (a(x) r(x) + b(x) s(x)) g(x) = h(x)
+      \]
+      Thus $g(x) | h(x)$. Conversely, if $g(x) | h(x)$, then we write $h(x) = t(x) g(x)$. Since $g(x)$ is the GCD of $f(x), g(x)$, it could must be written in a linear combination of $f$ and $g$. i.e., exists $a'(x), b'(x)$ s.t.
+      \[
+        a'(x) f(x) + b'(x) g(x) = d(x)
+      \]
+      Multiply this equation by $d(x)$ and get
+      \[
+        (d(x) a'(x)) f(x) + (d(x) b'(x)) g(x) = h(x)
+      \]
+      Take $a(x) = d(x) a'(x)$ and $b(x) = d(x) b'(x)$ and we are done. 
+    \item[(b)] If $(a_1(x), b_1(x)), (a_2(x), b_2(x))$ are two different set of solutions to (a), then 
+      \[
+        h(x) = a_1(x) f(x) + b_1(x) g(x) = a_2(x) f(x) + b_2(x) g(x)
+      \]
+      \[
+        \Rightarrow (a_1(x) - a_2(x)) f(x) = (b_2(x) - b_1(x)) g(x)
+      \]
+      \[
+        \Rightarrow (a_1(x) - a_2(x)) r(x) = (b_2(x) - b_1(x)) s(x)
+      \]
+      Note that $GCD(r(x), s(x)) = 1$, for the above equation to hold, one must have 
+      \[
+        r(x) | (b_2(x) - b_1(x))
+      \]
+      \[
+        s(x) | (a_1(x) - a_2(x))
+      \]
+      Thus one should take 
+      \[
+        a_2(x) - a_1(x) = m(x) s(x) = m(x) \frac{g(x)}{d(x)}
+      \]
+      and thus
+      \[
+        b_2(x) - b_1(x) = -m(x) r(x) = -m(x) \frac{f(x)}{d(x)}
+      \]
+      We shall just plug $(a_1(x), b_1(x))$ with $(a_0(x), b_0(x))$ and $(a, b)$ with $(a_2, b_2)$ and find
+      \[
+        a(x) = a_0(x) + m(x) \frac{g(x)}{d(x)}
+      \]
+      \[
+        b(x) = b_0(x) - m(x) \frac{f(x)}{d(x)}
+      \]
+  \end{enumerate}
+\end{sols}
+
+\end{document}

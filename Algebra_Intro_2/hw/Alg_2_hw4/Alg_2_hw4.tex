@@ -1,0 +1,527 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[Path = /usr/share/fonts/TTF/]{edukai-5.0.ttf}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment   
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}  
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Introduction to Algebra 2 HW4}
+\author{B11202041 物理二 $ $ 劉晁泓}
+% \date{\today}
+\date{March 17, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Introduction to Algebra 2 HW4}
+
+\section*{13.2}
+
+\setcounter{prob}{8}
+\begin{prob}
+	Let $F$ be a field of characteristic $\neq$ 2.
+	Let $a, b$ be elements of the field $F$ with $b$ not a square in $F$.
+	Prove that a necessary and sufficient condition for $\sqrt{a + \sqrt{b}} = \sqrt{m} + \sqrt{n}$ for some $m$ and $n$ in $F$ is that $a^2 - b$ is a square in $F$.
+	Use this to determine when the field $\mathbb{Q}(\sqrt{a + \sqrt{b}})(a, b \in \mathbb{Q})$ is biquadratic over $\mathbb{Q}$.
+\end{prob}
+
+\begin{sols}
+	($\Rightarrow$) Consider the square of both sides
+	\[
+		a + \sqrt{b} = m + n + 2 \sqrt{mn}
+	\]
+	Since $a, m, n \in F$ and $\sqrt{b}, \sqrt{mn} \notin F$, we must have $a = m + n$ and $\sqrt{b} = 2 \sqrt{mn}$.
+	Thus
+	\[
+		a - \sqrt{b} = m + n - 2 \sqrt{mn}
+	\]
+	\[
+		\Rightarrow a^2 - b = (m + n)^2 - 4mn = m^2 - 2mn + n^2 = (m - n)^2
+	\]
+	which is a square.
+	\par ($\Leftarrow$) Suppose that $c^2 = a^2 - b$, consider 
+	\[
+		m = \frac{a - c}{2}, n = \frac{a + c}{2}
+	\]
+	We have
+	\[
+		(\sqrt{m} + \sqrt{n})^2 = m + n + 2 \sqrt{mn} = a + 2 \sqrt{\frac{a^2 - c^2}{4}} = a + \sqrt{b}
+	\]
+	\[
+		\Rightarrow \sqrt{a + \sqrt{b}} = \sqrt{m} + \sqrt{n}
+	\]
+	we have both sides proven.
+	If $a^2 - b$ is a square, then from the last homework where we have proven $\mathbb{Q}(\sqrt{2} + \sqrt{3}) = \mathbb{Q}(\sqrt{2}, \sqrt{3})$, we have $\mathbb{Q}(\sqrt{a + \sqrt{b}}) = \mathbb{Q}(\sqrt{m} + \sqrt{n}) = \mathbb{Q}(\sqrt{m}, \sqrt{n})$, which is biquadratic. 
+\end{sols}
+
+\setcounter{prob}{10}
+\begin{prob}
+	$ $\par\nobreak\ignorespaces
+	\begin{enumerate}
+		\item[(a)] Let $\sqrt{3 + 4i}$ denote the square root of the complex number $3 + 4i$ that lies in the first quadrant and let $\sqrt{3 - 4i}$ denote the square root of $3 - 4i$ that lies in the fourth quadrant.
+			Prove that $[\mathbb{Q}(\sqrt{3 + 4i} + \sqrt{3 - 4i}) : \mathbb{Q}] = 1$.
+
+		\item[(b)] Determine the degree of the extension $\mathbb{Q}(\sqrt{1 + \sqrt{-3}} + \sqrt{1 - \sqrt{-3}})$ over $\mathbb{Q}$.
+	\end{enumerate}
+\end{prob}
+
+\begin{sols}
+	\begin{enumerate}
+		\item[(a)] One can easily check that $(2 + i)^2 = 3 + 4i$ and $(2 - i)^2 = 3 - 4i$.
+			Thus $\mathbb{Q}(\sqrt{3 + 4i} + \sqrt{3 - 4i})=  \mathbb{Q}(6) = \mathbb{Q}$, which gives the demanded relation directly.
+
+		\item[(b)] Again one can easily check that $(\sqrt{3} - i)^2 = 1 + \sqrt{-3}$ and $(\sqrt{3} - i)^2 = 1 - \sqrt{-3}$.
+			Thus $[\mathbb{Q}(\sqrt{1 + \sqrt{-3}} + \sqrt{1 - \sqrt{-3}}): \mathbb{Q}] = [\mathbb{Q}(2 \sqrt{3}) : \mathbb{Q}] = 2$.
+	\end{enumerate}
+\end{sols}
+
+\setcounter{prob}{13}
+\begin{prob}
+	Prove that if $[F(\alpha) : F]$ is odd then $F(\alpha) = F(\alpha^2)$.
+\end{prob}
+
+\begin{sols}
+	It is clear that $F(\alpha^2) \subseteq F(\alpha)$.
+	It suffices to show that $F(\alpha) \subseteq F(\alpha^2)$, which is equivalent to showing that $\alpha \in F(\alpha^2)$.
+	Now $[F(\alpha):F] = n$ is odd, consider the minimal polynomial $p(x) \in F[x]$ of $\alpha$
+	\[
+		p(x) = a_n x^n + a_{n - 1} x^{n - 1} + \cdots + a_0
+	\]
+	Since $p(\alpha) = 0$ and $n$ is odd we have
+	\[
+		a_n \alpha^n + a_{n - 1} \alpha^{n - 1} + \cdots + a_0 = 0
+	\]
+	\[
+		\Rightarrow \alpha = -\frac{a_{n - 1} \alpha^{n - 1} + a_{n - 3} \alpha^{n - 3} + \cdots + a_0}{a_n \alpha^{n - 1} + a_{n - 2} \alpha^{n - 3} + \cdots + a_1} \in F(\alpha^2)
+	\]
+	and we are done.
+\end{sols}
+
+\setcounter{prob}{15}
+\begin{prob}
+	Let $K/F$ be an algebraic extension and let $R$ be a \textit{ring} contained in $K$ and containing $F$.
+	Show that $R$ is a subfield of $K$ containing $F$.
+\end{prob}
+
+\begin{sols}
+	Since $R$ is a subring of a commutative ring $K$, it must also be commutative. 
+	We shall prove that $R$ is division.
+	$\forall r \in R$, consider the minimal polynomial $p(x) = a_n x^n + a_{n - 1} x^{n - 1} + \cdots + a_0$ of $r$, explicitly
+	\[
+		a_n r^n + a_{n - 1} r^{n - 1} + \cdots + a_0 = 0
+	\]
+	\[
+		\Rightarrow r^{-1} = -\frac{a_n r^{n - 1} + a_{n - 1} r^{n - 2} + \cdots + a_1}{a_0} \in R
+	\]
+	Thus $R$ is division and we are done.
+\end{sols}
+
+\setcounter{prob}{19}
+\begin{prob}
+	Show that if the matrix of the linear transformation "multiplication by $\alpha$" considered in the previous exercise is $A$ then $\alpha$ is a root of the characteristic polynomial for $A$.
+	This gives an effective procedure for determining an equation of degree $n$ satisfied by an element $\alpha$ in an extension of $F$ of degree $n$.
+	Use this procedure to obtain the monic polynomial of degree 3 satisfied by $\sqrt[3]{2}$ and by $1 + \sqrt[3]{2} + \sqrt[3]{4}$.
+\end{prob}
+
+\begin{sols}
+	Given a field $F$ and an extension $K/F$ with degree $n$.
+	For all $k \in K$, we have $\alpha k = A k \Rightarrow (A - \alpha I) k = 0  \Rightarrow \alpha$ is a root of the characteristic polynomial for $A$.
+	Now consider $\sqrt[3]{2}, 1 + \sqrt[3]{2} + \sqrt[3]{4} \in \mathbb{R}(\sqrt[3]{2})$.
+	Consider the basis $\{1, \sqrt[3]{2}, \sqrt[3]{4}\}$.
+	For all $k = a + b \sqrt[3]{2} + c \sqrt[3]{4} \in \mathbb{R}(\sqrt[3]{2})$, the linear transformation for $\sqrt[3]{2}, 1 + \sqrt[3]{2} + \sqrt[3]{4}$ are
+	\[
+		\sqrt[3]{2} (a + b \sqrt[3]{2} + c \sqrt[3]{4}) = 2c + a \sqrt[3]{2} + b \sqrt[3]{2}
+	\]
+	\[
+		\Rightarrow 
+		\sqrt[3]{2}:
+		\begin{pmatrix}
+			0 & 0 & 2\\
+			1 & 0 & 0\\
+			0 & 1 & 0
+		\end{pmatrix}
+	\]
+	\[
+		(1 + \sqrt[3]{2} + \sqrt[3]{4})(a + b \sqrt[3]{2} + c \sqrt[3]{4}) = [(a + 2b + 2c) + (a + b + 2c) \sqrt[3]{2} + (a + b + c) \sqrt[3]{4}]
+	\]
+	\[
+		\Rightarrow 1 + \sqrt[3]{2} + \sqrt[3]{4}:
+		\begin{pmatrix}
+			1 & 2 & 2\\
+			1 & 1 & 2\\
+			1 & 1 & 1
+		\end{pmatrix}
+	\]
+	The characteristic polynomials are
+	\[
+		\sqrt[3]{2}:
+		\det \left|
+		\begin{pmatrix}
+			- \lambda & 0 & 2\\
+			1 & - \lambda & 0\\
+			0 & 1 & -\lambda
+		\end{pmatrix}
+		\right| = 0
+	\]
+	\[
+		\Rightarrow - \lambda^3 + 2 = 0 
+	\]
+	\[
+		1 + \sqrt[3]{2} + \sqrt[3]{4}:
+		\det \left|
+		\begin{pmatrix}
+			1 - \lambda & 2 & 2\\
+			1 & 1 - \lambda & 2\\
+			1 & 1 & 1 - \lambda
+		\end{pmatrix}
+		\right| = 0
+	\]
+	\[
+		\Rightarrow - \lambda^3 + 3 \lambda^2 + 3 \lambda + 1 = 0 
+	\]
+
+\end{sols}
+
+\section*{13.4}
+
+\setcounter{prob}{1}
+\begin{prob}
+	Determine the splitting field and its degree over $\mathbb{Q}$ for $x^4 - 2$.
+\end{prob}
+
+\begin{sols}
+	The solutions to $x^4 - 2$ are $\sqrt[4]{2} e^{2 \pi  i k/4}$, where $k = 0, 1, 2, 3$.
+	Thus the splitting field of $\mathbb{Q}$ is 
+	\[
+		\mathbb{Q}(\sqrt[4]{2}, \sqrt[4]{2} e^{2 \pi i /4}, \sqrt[4]{2} e^{2 \pi i \cdot 2/4}, \sqrt[4]{2} e^{2 \pi i \cdot 3/4}) = \mathbb{Q}(\sqrt[4]{2}, e^{2 \pi i/4}) = \mathbb{Q}(\sqrt[4]{2}, i)
+	\]
+	Consider the field $\mathbb{Q}(\sqrt[4]{2})$, we have
+	\[
+		[\mathbb{Q}(\sqrt[4]{2}, i):\mathbb{Q}] = [\mathbb{Q}(\sqrt[4]{2}, i):\mathbb{Q}(\sqrt[4]{2})][\mathbb{Q}(\sqrt[4]{2}), \mathbb{Q}]
+	\]
+	The minimal polynomial of $i$ in $\mathbb{Q}(\sqrt[4]{2})$ is $x^2 + 1$, which has degree 2.
+	Thus $[\mathbb{Q}(\sqrt[4]{2}, i) : \mathbb{Q}(\sqrt[4]{2})] = 2$.
+	Obviously $[\mathbb{Q}(\sqrt[4]{2}):\mathbb{Q}] = 4$.
+	Hence
+	\[
+		[\mathbb{Q}(\sqrt[4]{2}, i):\mathbb{Q}] = 2 \cdot 4 = 8
+	\]
+\end{sols}
+
+\setcounter{prob}{4}
+\begin{prob}
+	Let $K$ be a finite extension of $F$.
+	Prove that $K$ is a splitting field over $F$ if and only if every irreducible polynomial in $F[x]$ that has a root in $K$ splits completely in $K[x]$.
+	[Use Theorems 8 and 27.]
+\end{prob}
+
+\begin{sols}
+	($\Leftarrow$) Since $K$ is finite, $K = F(\alpha_1, ..., \alpha_n)$.
+	Consider the minimal polynomials $p_1(x), ..., p_n(x)$ for $\alpha_1, ..., \alpha_n$ respectively.
+	Then $p_1 \cdot \cdots \cdot p_n \in F[x]$ is an irreducible.
+	By our assumption this must split completely in $K$.
+	Moreover $K$ must be the smallest extension of $F$ that this splits in.
+	To see this, since $\alpha_1 \in K$, $K$ must split from some polynomial $f(x)$ with $p_1(x)|f(x)$.
+	Same works with $\alpha_2, ..., \alpha_n$, thus $K$ splits for $p_1 \cdot \cdots \cdot p_n$.
+
+	\par ($\Rightarrow$) Let $K$ splits for $f(x) \in F[x]$ and $p(x) \in F[x]$ be an irreducible in $F[x]$ which has a root $\alpha \in K$.
+	If $p$ is linear, then we are done.
+	Consider $p$ not linear but has a root that is not in $K$, i.e. $p(x) = (x - \alpha) (x - \beta) \tilde{p}(x)$ over the splitting field $\mathcal{F}$ of $p(x)$.
+	Since $p(x)$ is an irreducible, it must be the minimal polynomial for both $\alpha$ and $\beta$. 
+	Thus there exists a natural isomorphism between $F(\alpha)$ and $F(\beta)$.
+	Consider the splitting field of $f(x)$ over $F(\alpha)$.
+	Since $\alpha \in K$, this is just $K$ itself.
+	For the splitting field of $f(x)$ over $F(\beta)$, call it $K'$, since $\beta \notin K$, $K' = K(\beta)$.
+	Thus $[K':K] > 1$.
+	Since $F(\alpha)$ and $F(\beta)$ is isomorphic, there exists an isomorphism from $K$ to $K'$, the splitting fields for them respectively.
+	Thus $[K:F] = [K':F]$ since they are isomorphic.
+	But $[K':F] = [K':K][K:F] > 1 \cdot [K:F]$, a contradiction.
+	Hence $p$ must split completely in $K$, and we are done.
+\end{sols}
+
+\begin{prob}
+	Let $K_1$ and $K_2$ be finite extensions of $F$ contained in the field $K$, and assume both are splitting fields over $F$.
+	\begin{enumerate}
+		\item[(a)] Prove that their composite $K_1 K_2$ is a splitting field over $F$.
+
+		\item[(b)] Prove that $K_1 \cap K_2$ is a splitting field over $F$.
+			[Use the preceding exercise.]
+	\end{enumerate}
+\end{prob}
+
+\begin{sols}
+	\begin{enumerate}
+		\item[(a)] Suppose that $K_1$ is a splitting field of $f(x) \in F[x]$ where $f(x)$ splits into $(x - \alpha_1) \cdots (x - \alpha_n)$ in $K_1$, $K_2$ a splitting field of $g(x) \in F[x]$ where $g(x)$ splits into $(x - \beta_1) \cdots (x - \beta_m)$.
+			Then $K_1 K_2$ must be a splitting field of $f(x) g(x)$.
+			To see this, let $K$ be the splitting field of $f(x) g(x)$.
+			Now $f(x) g(x)$ splits completely if and only if $f(x)$ splits completely and $g(x)$ splits completely.
+			Since $f(x)$ splits completely in $K$, $K_1 \subseteq K$. 
+			Similarly $K_2 \subseteq K$.
+			Thus $K \subseteq K_1 K_2$.
+			But $K_1 K_2$ is the smallest field containing both $K_1$ and $K_2$, thus $K_1 K_2 \subseteq K$, and $K = K_1 K_2$.
+			
+		\item[(b)] Given a polynomial $f(x) \in K_1 \cap K_2$ that has a root $\alpha \in K_1 \cap K_2$.
+			Since $\alpha \in K_1 \cap K_2$, $f(x)$ must split in both $K_1$ and $K_2$.
+			Hence all the roots are contained in both $K_1$ and $K_2$, thus contained in $K_1 \cap K_2$, implying $f(x)$ must split in $K_1 \cap K_2$.
+	\end{enumerate}
+\end{sols}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+

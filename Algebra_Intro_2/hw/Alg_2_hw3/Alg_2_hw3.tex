@@ -1,0 +1,415 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{C}{>{$}c<{$}} % math-mode version of "l" column type
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{R}{>{$}r<{$}} % math-mode version of "l" column type
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+
+
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Introduction to Algebra 2 HW3}
+\author{B11202041 劉晁泓 $ $ 物理二}
+% \date{\today}
+\date{March 11, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Introduction to Algebra 2 HW3}
+
+\section*{13.1}
+
+\setcounter{prob}{1}
+\begin{prob}
+	Show that $x^3 - 2x - 2$ is irreducible over $\mathbb{Q}$ and let $\theta$ be a root. 
+	Compute $(1 + \theta) (1 + \theta + \theta^2)$ and $\frac{1 + \theta}{1 + \theta + \theta^2}$ in $\mathbb{Q}(\theta)$.
+\end{prob}
+
+\begin{sols}
+	Note that if $x^3 - 2x - 2$ irreducible in $\mathbb{Q}$, it must be irreducible in $\mathbb{Z}$.
+	Moreover, it must have a linear factor $ax + b$ with $a | 1$ and $b | -2$.
+	Thus the only linear factors are $x \pm 1, x \pm 2$. 
+	By simple evaluation, none of $\pm 1, \pm 2$ are roots of $x^3 - 2x - 2$.
+	Thus $x^3 - 2x - 2$ must be an irreducible over $\mathbb{Q}$. 
+	We have
+	\[
+		(1 + \theta)(1 + \theta + \theta^2) = \theta^3 + 2 \theta^2 + 2 \theta + 1 = 2 \theta^2 + 4 \theta + 3
+	\]
+	Thus $(1 + \theta + \theta^2)(1 + \theta)$ is just $2 \theta^2 + 4 \theta + 3$.
+	For $\frac{1 + \theta}{1 + \theta + \theta^2}$, we could calculate the inverse of $1 + \theta + \theta^2$ in $\mathbb{Q}(\theta)$
+	\[
+		(-\frac{2}{3} \theta^2 + \frac{1}{3} \theta + \frac{5}{3})(\theta^2 + \theta + 1) + (\frac{2}{3} \theta + \frac{1}{3})(\theta^3 - 2 \theta - 2) = 1
+	\]
+	\[
+		\Rightarrow \frac{1}{1 + \theta + \theta^2} = -\frac{2}{3} \theta^2 + \frac{1}{3} \theta + \frac{5}{3}
+	\]
+	Thus
+	\[
+		\frac{1 + \theta}{1 + \theta + \theta^2} = (1 + \theta)(- \frac{2}{3} \theta^2 + \frac{1}{3} \theta + \frac{5}{3}) = -\frac{2}{3} \theta^3 - \frac{1}{3} \theta^2 +2 \theta + \frac{5}{3} = -\frac{1}{3} \theta^2 + \frac{2}{3} \theta + \frac{1}{3} 
+	\]
+\end{sols}
+
+\begin{prob}
+	Show that $x^3 + x + 1$ is irreducible over $\mathbb{F}_2$ and let $\theta$ be a root. 
+	Compute the powers of $\theta$ in $\mathbb{F}_2(\theta)$.
+\end{prob}
+
+\begin{sols}
+	Note that if $x^3 + x + 1$ is reducible in $\mathbb{F}_2$, there must exist a linear factor.
+	Thus either 0 or 1 is a root.
+	In fact by simple evaluation, both of them are not roots, thus $x^3 + x + 1$ is an irreducible in $\mathbb{F}_2$.
+	For the power of $\theta$ we could give the answer explicitly\\
+	\[
+		\theta^n = 
+		\begin{cases}
+			1 \text{ if } n \equiv 0 \pmod{7}\\
+			\theta \text{ if } n \equiv 1 \pmod{7}\\
+			\theta^2 \text{ if } n \equiv 2 \pmod{7}\\
+			\theta + 1 \text{ if } n \equiv 3 \pmod{7}\\
+			\theta^2 + \theta \text{ if } n \equiv 4 \pmod{7}\\
+			\theta^2 + \theta + 1 \text{ if } n \equiv 5 \pmod{7}\\
+			\theta^2 + 1 \text{ if } n \equiv 6 \pmod{7}
+		\end{cases}
+	\]
+\end{sols}
+
+\setcounter{prob}{7}
+\begin{prob}
+	Prove that $x^5 - ax - 1 \in \mathbb{Z}[x]$ is irreducible unless $a = 0, 2 \text{ or } -1$.
+	The first two correspond to linear factors, the third corresponds to the factorization $(x^2 - x + 1)(x^3 + x^2 - 1)$.
+\end{prob}
+
+\begin{sols}
+	Note that $x^5 - ax - 1$ could be factorized into either a product of a degree 1 and a degree 4 polymial or a product of a degree 2 and a degree 3 polynomial.
+	Consider the linear factor case.
+	The linear factor must be either $x - 1$ or $x + 1$.
+	If 1 is a root, then $1^5 - a - 1 = 0$. 
+	In this case, $a = 0$ makes $x^5 - ax - 1$  a reduicble.
+	On the other hand if -1 is a root, then $(-1)^5 + a - 1 = 0$.
+	Thus $x^5 - ax - 1$ would be a reducible also if $a = 2$.
+	Now let's consider the quadratic factor case.
+	The quadratic factor must be in the form of $x^2 + bx \pm 1$ for some $b \in \mathbb{Z}$ since we could assume monic without loss of generality and the constant term must divide 1.
+	On the other hand, the corresponding degree 3 factor for the two cases should be written in the form $x^3 - bx^2 + cx \mp 1$ for some $c \in \mathbb{Z}$, where the $\mp 1$ matches the constant term and the $x^4$ term must be 0 eventually. 
+	We could compare the coefficients of the factorization formula
+	\[
+		x^5 - ax - 1 = (x^2 + bx \pm 1)(x^3 - bx^2 + cx \mp 1)
+	\]
+	\[
+		\Rightarrow 
+		\begin{cases}
+			\pm 1 - b^2 + c = 0\\
+			\mp b + bc \mp 1 = 0 \Rightarrow 1 + b(1 \pm c) = 0
+		\end{cases}
+	\]
+	where the two equations come from the $x^3, x^2$ term coefficients, respectively.
+	The second equation implies $c = 0$ because $(1 \pm c)| 1$. 
+	Thus we obtain $b = -1$ and the $+$ term in the $\pm$ works, and that $a = b - c = -1$.
+	Eventually $x^5 + x - 1 = (x^2 - x + 1)(x^3 + x^2 - 1)$.
+\end{sols}
+
+\section*{13.2}
+
+\setcounter{prob}{0}
+\begin{prob}
+	Let $\mathbb{F}$ be a finite field of characteristic $p$. 
+	Prove that $|\mathbb{F}| = p^n$ for some positive integer $n$.
+\end{prob}
+
+\begin{sols}
+	Since $\mathbb{F}$ is of characteristic $p$, it must contain a subfield $S$ isomorphic to $\mathbb{Z}/p \mathbb{Z}$.
+	Moreover, $\mathbb{F}$ is a finite extension of $S$, thus $\mathbb{F}$ is an algebraic extension and $[\mathbb{F}:S] = n$ for some integer $n$.
+	Thus there must exist $k$ roots $\alpha_1, ..., \alpha_k$ and polynomials $p_1, ..., p_k$ of degree $n_1, ..., n_k$ where $p_i(\alpha_i) = 0 \sfa i \in \{1, \cdots k\}$.
+	For each extension step, the order of the field grows a power of $n_i$, thus the entire extension $\mathbb{F}$ takes an order of $p^{n_1 \cdots n_k}$, which is in the form $p^n$, and we are done.
+\end{sols}
+
+\setcounter{prob}{3}
+\begin{prob}
+	Determine the degree over $\mathbb{Q}$ of $2 + \sqrt{3}$ and of $1 + \sqrt[3]{2} + \sqrt[3]{4}$.
+\end{prob}
+
+\begin{sols}
+	For $x = 2 + \sqrt{3}$, we have
+	\[
+		(x - 2)^2 = 3 \Rightarrow x^2 - 4x + 1 = 0
+	\]
+	The polynomial $x^2 - 4x + 1$ is a minimal polynomial of $2 + \sqrt{3}$. 
+	We could exclude the degree 1 case because there exists no degree 1 polynomial that has root $2 + \sqrt{3}$ since $2 + \sqrt{3}$ is irrational.
+	Thus the degree of $2 + \sqrt{3}$ is 2.
+	For $1 + \sqrt[3]{2} + \sqrt[3]{4}$, consider
+	\[
+		1 + \sqrt[3]{2} + \sqrt[3]{4} = \frac{(\sqrt[3]{2})^3 - 1}{\sqrt[3]{2} - 1} = \frac{1}{\sqrt[3]{2} - 1}
+	\]
+	Thus for $x = \frac{1}{\sqrt[3]{2} - 1}$ we have
+	\[
+		(\frac{1}{x} + 1)^3 = 2 \Rightarrow -x^3 + 3x^2 + 3x + 1 = 0
+	\]
+	As a result $-x^2 + 3x^2 + 3x + 1$ should be a minimal polynomial for $1 + \sqrt[3]{2} + \sqrt[3]{4}$.
+	To check this, we could check that $-x^3 + 3x^2 + 3x + 1$ is an irreducible.
+	Suppose that it is reducible, then there should exist a linear factor since it is of degree 3.
+	But all the possible cases are $x + 1$ and $x - 1$, and both of them must not be a factor of $-x^3 + 3x^2 + 3x + 1$ since neither 1 nor -1 is a root of $-x^3 + 3x^2 + 3x + 1$.
+	Thus $-x^3 + 3x^2 + 3x + 1$ is indeed a minimal polynomial of $1 + \sqrt[3]{2} + \sqrt[3]{4}$, and the degree of $1 + \sqrt[3]{2} + \sqrt[3]{4}$ is 3. 
+\end{sols}
+
+\setcounter{prob}{6}
+\begin{prob}
+	Prove that $\mathbb{Q}(\sqrt{2} + \sqrt{3}) = \mathbb{Q}(\sqrt{2}, \sqrt{3})$[one inclusion is obvious, for the other consider $(\sqrt{2} + \sqrt{3})^2$, etc.]. 
+	Conclude that $[\mathbb{Q}(\sqrt{2} + \sqrt{3}) : \mathbb{Q}] = 4$.
+	Find an irreducible polynomial satisfied by $\sqrt{2} + \sqrt{3}$.
+\end{prob}
+
+\begin{sols}
+	It is easy to see that $\mathbb{Q}(\sqrt{2} + \sqrt{3}) \subseteq \mathbb{Q}(\sqrt{2}, \sqrt{3})$ since $\forall a + b(\sqrt{2} + \sqrt{3}) \in \mathbb{Q}(\sqrt{2} + \sqrt{3})$, we have $a + b(\sqrt{2} + \sqrt{3}) = a + b\sqrt{2} + b\sqrt{3} \in \mathbb{Q}(\sqrt{2}, \sqrt{3})$.
+	For the other inclusion, consider
+	\[
+		(\sqrt{2} + \sqrt{3})^3 = 2 \sqrt{2} + 3 \cdot 2 \sqrt{3} + 3 \cdot 3 \sqrt{2} + 3 \sqrt{3} = 11\sqrt{2} + 9 \sqrt{3}
+	\]
+	\[
+		\Rightarrow \sqrt{2} = \frac{1}{2} ((\sqrt{2} + \sqrt{3})^3 - 9 (\sqrt{2} + \sqrt{3})) \in \mathbb{Q}(\sqrt{2} + \sqrt{3}) 
+	\]
+	\[
+		\Rightarrow \sqrt{3} = (\sqrt{2} + \sqrt{3}) - \sqrt{2} \in \mathbb{Q}(\sqrt{2} + \sqrt{3})
+	\]
+	Thus any linear combination of $\sqrt{2}, \sqrt{3}$ could be expressed as a polynomial of $\sqrt{2} + \sqrt{3}$, and we conclude that $\mathbb{Q}(\sqrt{2}, \sqrt{3}) \subseteq \mathbb{Q}(\sqrt{2} + \sqrt{3}) \Rightarrow \mathbb{Q}(\sqrt{2} + \sqrt{3}) = \mathbb{Q}(\sqrt{2}, \sqrt{3})$.
+	Moreover 
+	\[
+		[\mathbb{Q}(\sqrt{2}, \sqrt{3}):\mathbb{Q}] = [\mathbb{Q}(\sqrt{2}, \sqrt{3}):\mathbb{Q}(\sqrt{2})][\mathbb{Q}(\sqrt{2}):\mathbb{Q}]
+	\]
+	Obviously $\sqrt{2}$ has degree 2 in $\mathbb{Q}$ and $\sqrt{3}$ has degree 2 in $\mathbb{Q}(\sqrt{2})$.
+	Thus $[\mathbb{Q}(\sqrt{2}, \sqrt{3}):\mathbb{Q}] = 2 \cdot 2 = 4$.
+	The minimal polynomial of $x = \sqrt{2} + \sqrt{3}$ could be obtained by
+	\[
+		x^2 = (\sqrt{2} + \sqrt{3})^2 = 5 + 2 \sqrt{6}
+	\]
+	\[
+		\Rightarrow (x^2 - 5)^2 = 24 \Rightarrow x^4 - 10 x^2 + 1 = 0
+	\]
+	We have $x^4 - 10x^2 + 1$ is a polynomial satisfied by $\sqrt{2} + \sqrt{3}$.
+\end{sols}
+
+\end{document}
+
+
+

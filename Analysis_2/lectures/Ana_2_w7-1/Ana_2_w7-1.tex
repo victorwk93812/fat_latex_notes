@@ -1,0 +1,626 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W7-1}
+\author{fat}
+% \date{\today}
+\date{April 2, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W7-1}
+
+Recall:
+
+\begin{itemize}
+	\item $T:X \to Y$ is compact if whenever $(x_n)$ is a bounded sequence in $X$, $(T x_n)$ has a convergent subsequence in $Y$.
+
+	\item If $X$ is a Hilbert space and $T \in \B(X)$ is compact and self-adjoint, then the following holds.
+		\begin{enumerate}
+			\item[(a)] $\forall $ nonzero eigenvalue $\lambda$, the corresponding eigenspace is finite dimensional. 
+				
+			\item[(b)] If $(\lambda_k)$ is a sequence of distinct eigenvalues that converges to $\lambda_0$, then $\lambda_0 = 0$.
+		\end{enumerate}
+\end{itemize}
+
+\begin{lem}
+	Let $T \in \B(X)$ be compact, self-adjoint. 
+	($X$ is Hilbert space.)
+	Then
+	\[
+		M = \sup_{x \neq 0} \frac{\langle T x, x \rangle}{\|x\|^2}
+	\]
+	is an eigenvalue of $T$ provided that $M > 0$.
+	Similarly,
+	\[
+		m = \inf_{x \neq 0} \frac{\langle T x, x \rangle}{\|x\|^2}
+	\]
+	is an eigenvalue if $m < 0$.
+\end{lem}
+
+\begin{proofs}
+	We will just prove the first case.
+	Let $(x_k)$ be a sequence in $X$ with $\|x_k\| = 1$ and $\langle T x_k, x_k \rangle \to M$ as $k \to \infty$.
+	By compactness, $\exists (T x_{k_j})$ that converges to some $x_0 \in X$.
+	Let $m$ be defined as above.
+	Consider the self-adjoint operator $T - m I$.
+	(Recall: If $S$ is self-adjoint then $\|S\| = \max\{ \sup_{\|x\| = 1} \langle Sx, x\rangle, -\inf_{\|x\| = 1} \langle S x, x \rangle\}$)
+	So 
+	\[
+		\|T - mI\| = \max \{ M - m, m - m\} = M - m
+	\]
+	\[
+		\begin{split}
+			\|T x_k - M x_k\|^2 & = \|T x_k - m x_k + m x_k - M x_k\|^2\\
+			& = \|(T - m I) x_k\|^2 + (M - m)^2 \|x_k\|^2 \\
+			& = \langle (T - mI) x_k, (M - m) x_k \rangle - \langle (M - m) x_k, (T - mI) x_k \rangle\\
+			& \leq \|T - mI\|^2 + (M - m)^2 - 2 (M - m)(\langle T x_k, x_k \rangle - m) \\
+			& = 2(M - m)^2 - 2 (M - m)(\langle T x_k, x_k \rangle - m)
+		\end{split}
+	\]
+	which goes to 0 as $k \to \infty$.
+	So we also have $T x_{k_j} - M x_{k_j} \to 0$.
+	Recall: 
+	\[
+		T x_{k_j} \to x_0 \Rightarrow x_{k_j} \to \frac{x_0}{M}
+	\]
+	Since $M > 0, x_0 \neq 0$.
+	(If $x_0 = 0$, then $\langle T x_{k_j}, x_{k_j} \rangle \to 0$.)
+	By continuity, 
+	\[
+		T x_{k_j} \to \frac{T x_0}{M} \Rightarrow T x_0 = M x_0
+	\]
+	So $x_0$ is an eigenvector with eigenvalue $M$.
+\end{proofs}
+
+\section{Spectral Theorem for Compact, Self-Adjoint Operators}
+
+\begin{thm}
+	Let $T \in \B(X)$ be compact, self-adjoint, where $X$ is a Hilbert space.
+	\begin{enumerate}
+		\item[(a)] Suppose that $\langle Tx, x \rangle > 0$ for some $x \in X$, then
+			\[
+				\lambda_0 = \sup_{x \neq 0} \frac{ \langle T x, x \rangle}{\|x\|^2}
+			\]
+			is a positive eigenvalue of $T$.
+
+		\item[(b)] Recursively, for $n \geq 2$, define 
+			\[
+				\lambda_n = \sup \left\{\frac{\langle T x, x \rangle}{\|x\|^2}: x \neq 0, x \perp \text{span}(\{x_1, ..., x_{n - 1}\}) \right\}
+			\]
+			where $x_j$ satisfies $T x_j = \lambda_j x_j, \|x_j\| = 1$ for all $j = 1, ..., n - 1$.
+			Then $\lambda_n$ is a positive eigenvalue of $T$ as long as the supremum is positive.
+			The collection of positive eigenvvalues is finite when $\exists N$ such that $\langle T x, x \rangle \leq 0$ for all $x \perp \text{span}(\{x_1, ..., x_N\})$.
+			Otherwise, there are infinitely many $\lambda_j$ and $\lambda_1 \geq \lambda_2, \geq, ... \to 0$.
+
+		\item[(c)] For any eigenpair $(\lambda, z)$ where $\lambda > 0$, $\lambda$ must be equal to some $\lambda_j$ and $z$ belongs to the subspace spanned by the eigenvectors of $\lambda_j$.
+
+		\item[(d)] Similarly, all negative eigenvalues are given by 
+			\[
+				\lambda_1' = \inf_{x \neq 0} \frac{\langle T x, x \rangle}{\|x\|^2}
+			\]
+			if $\langle T x, x \rangle < 0$ for some $x$, and 
+			\[
+				\lambda_n' = \inf \left\{ \frac{\langle T x, x \rangle}{\|x\|^2}: x \neq 0, x \perp \text{span}(\{x_1', ..., x_{n - 1}'\})\right\}
+			\]
+			$x_j'$ is a normalized eigenvector of $\lambda_j'$.
+
+		\item[(e)] Let $Y$ be the span of all normalized eigenvectors construccted above.
+			Then $X = \bar{Y} \oplus X_0$, where $X_0$ is the eigenspace corresponding to $\lambda = 0$.
+	\end{enumerate}
+\end{thm}
+
+\begin{proofs}
+	\begin{enumerate}
+		\item[(a)] is proved.
+
+		\item[(d)] is left as an exercise.
+
+		\item[(b)] We will only show the case $n = 2$ for the first part.
+			Consider the closed subspace
+			\[
+				X_1 = \text{span}(\{x_1\})^{\perp}
+			\]
+			\begin{clm}
+				$T: X_1 \to X_1$.
+			\end{clm}
+			
+			\begin{proof}
+				Let $x \in X$ be such that $x \perp x_1$.
+				Need to show $T x \perp x_1$.
+				\[
+					\langle T x, x_1 \rangle = \langle x, T  x_1 \rangle = \lambda_1 \langle x, x_1 \rangle = 0
+				\]
+			\end{proof}
+			Routine to check: $T: X_1 \to X_1$ is compact and self-adjoint.
+			We can apply the lemma to conclude that
+			\[
+				\lambda_2 = \sup \left\{ \frac{\langle T x, x \rangle}{\|x\|^2}: x \neq 0, x \in X_1 \right\}
+			\]
+			is an eigenvalue if the sup is positive.
+			We can repeat this process until it exhausts all positive eigenvalues, or we have an infinite sequence of positive, nonincreasing eigevalues.
+			In this case, the sequence must converge to 0.
+		\item[(c)] Suppose that $(\lambda, z)$ is not from the above construction.
+			Either $\lambda \in (\lambda_{n + 1}, \lambda_n]$ for some $n$, or $\lambda \in (0, \lambda_N]$ when there are only $N$ positive eigenvalues.
+			We consider the first case.
+			\begin{enumerate}
+				\item[1.] $\lambda \neq \lambda_n$.
+					Then $z$ is orthogonal to all $x_1, ..., x_n$.
+					Then 
+					\[
+						\lambda = \frac{\langle T z, z \rangle}{\|z\|^2} \leq \sup \left\{ \frac{\langle T x, x \rangle}{\|x\|^2}: x \neq 0, x \perp \text{span}(\{x_1, ..., x_n\}) \right\} = \lambda_{n + 1}
+					\]
+					contradiction.
+
+				\item[2.] $\lambda = \lambda_n$.
+					Let's assume $\lambda_{n - k} > \lambda_{n - k + 1} = \cdots = \lambda_n > \lambda_{n + 1}$.
+					Let $P$ be the orthogonal projection onto $\text{span}(\{x_{n - k + 1}, ..., x_n\})$.
+					Define $z' = z - P z$.
+					Then $z' \perp \text{span}(\{x_{n - k + 1}, ..., x_n\})$.
+					Also, $z' \perp x_1, ..., x_{n - k}$.
+					Moreover, $T z' = \lambda z'$.
+					Repeating the same argument as in 1. (replacing $z$ by $z'$) shows $\lambda \leq \lambda_{n + 1}$, contradiction.
+			\end{enumerate}
+			The case $\lambda \in (0, \lambda_N]$ is similar.
+
+		\item[(e)] Recall: $Y = $ span of all eigenvectors constructed above.
+			Observe: 
+			\begin{itemize}
+				\item $\langle T x, x \rangle = 0 \quad \forall x \in \bar{Y}^{\perp}$.
+
+				\item $T: \bar{Y}^{\perp} \to \bar{Y}^{\perp}$.
+			\end{itemize}
+			Then $T = 0$ on $\bar{Y}^\perp$ (0-eigenspace) by a remark last time.
+			$X = \bar{Y} \oplus \bar{Y}^\perp = \bar{Y} \oplus X_0$.
+	\end{enumerate}
+\end{proofs}
+
+\section{An Application}
+
+Consider the eigenvalue problem
+\[
+	-y'' + q(x) y = \mu y, y(a) = y(b) = 0
+\]
+$q$:"potential", a continuous function on $[a, b]$.
+Goal: Find $mu$ such that this problem has a nontrivial solution $y$.
+$\mu$: eigenvalue, $y$: eigenfunction corresponding to $\mu$.
+$L = -\dv[2]{x} + q(x)$
+Look at the simplest case $q = 0$ and $[a, b] = [0, \pi]$.
+Then the BVP becomes
+\[
+	-y'' = \mu y, y(0) = y(\pi) = 0
+\]
+\[
+	\langle f, g \rangle = \int_0^\pi f(x) \overline{g(x)} \dd{x} \text{ on } L^2([0, \pi]) 
+\]
+The eigenvalues are given by $j^2$, where $j \in \NN$, and $\varphi_j(x) = \sqrt{2/\pi} \sin(jx)$ is the corresponding normalized eigenfunction.
+All eigenvalues are simple.
+Want: Extend this result to general $q$, using the spectral theorem for compact, self-adjoint operators.
+$L$ is unbounded!
+Will convert the problem to one that involves integral operator.
+Observation: for any contant $c_0$, 
+\[
+	- y'' + (q(x) + c_0) y = \mu' y, \quad y(a) = y(b) = 0
+\]
+Then $\mu$ is an eigenvalue of the original problem $\Leftrightarrow \mu' = \mu + c_0$ is an eigenvalue of the new problem.
+Hence choosing $c_0$ large enough we may assume $q > 0$ on $[a, b]$.
+\begin{clm}
+	If $q > 0$ then all eigenvalues are positive.
+\end{clm}
+\begin{proofs}
+	Let $(\mu, \phi)$ be an eigenpair.
+	May assume that $\phi$ is positive somewhere (otherwise just consider $- \phi$.)
+	So $\exists x_0 \in (a, b)$ such that $\phi$ attains maximum at $x_0$
+	\[
+		\Rightarrow \mu \phi(x_0) = - \phi''(x_0) + q(x_0) \phi(x_0) > 0
+	\]
+	$\Rightarrow \mu > 0$.
+\end{proofs}
+We use the Green function to convert $L$ into an integral operator.
+Consider $-y'' + q(x) y = 0$.
+Pick any two nontrivial solutions $h_a(x)$ and $h_b(x)$ with $h_a(b) = 0 = h_b(a)$.
+\begin{clm}
+	$h_a$ and $h_b$ are linearly independent.
+\end{clm}
+
+\begin{proofs}
+	If $\exists C$ such that $h_a = C h_b$, $\Rightarrow h_a(a) = C h_b(a) = 0$.
+	$\Rightarrow h_a$ is a nontrivial eigenfunction for $\mu = 0$.
+	But we assumed $q > 0$, so all eigenvalues are positive, a contradiction!.
+\end{proofs}
+
+Wronskian $W(x) = (h_a h_b' - h_a' h_b)(x) \neq 0$.
+\begin{clm}
+	$W$ is a nonzero constant $c$.
+\end{clm}
+\begin{proof}
+	Compute $W'$.
+\end{proof}
+
+Define the Green operator $\G$ by 
+\[
+	(\G f)(x) = \int_a^b G(x, y) f(y) \dd{y}, \quad f \in L^2([a, b])
+\]
+where the Green function $G$ is 
+\[
+	G(x, y) = 
+	\begin{cases}
+		\frac{1}{c} h_a(x) h_b(y) & \text{if } x \geq y\\
+		\frac{1}{c} h_a(y) h_b(x) & \text{if } x \leq y
+	\end{cases}
+\]
+Then $G \in C^0([a, b] \times [a, b]), G(x, y) = G(y, x)$.
+So $\G$ is a compact, self-adjoint operator on $L^2([a, b])$.
+Define 
+\[
+	E = \{ \phi: C^1([a, b]): \phi(a) = \phi(b) = 0\}
+\]
+\begin{prop}
+	\begin{enumerate}
+		\item[(a)] One has $\G : C^0([a, b]) \to C^2([a, b]) \cap E$.
+			Moreover, $L \G f = f \quad \forall f \in C^0([a, b])$.
+
+		\item[(b)] We also have $L:C^2([a, b]) \cap E \to C^0([a, b])$.
+			Moreover, $\G L \phi = \phi \quad \forall \phi \in C^2([a, b]) \cap E$.
+	\end{enumerate}
+\end{prop}
+
+\begin{proofs}
+	We only prove (a).
+	Write
+	\[
+		(\G f)(x) = \int_a^x \frac{1}{c} h_a(x) h_b(y) f(y) \dd{y} + \int_x^b \frac{1}{c} h_a(y) h_b(x) f(y) \dd{y}
+	\]
+	Then $(\G f)(a) = (\G f)(b) = 0$.
+	\[
+		\begin{split}
+			(\G f)'(x) & = \int_a^x \frac{1}{c} h_a'(x) h_b(y) f(y) \dd{y} + \frac{1}{c} h_a(x) h_b(x) f(x)\\
+			& + \int_x^b \frac{1}{c} h_a(y) h_b'(x) f(y) \dd{y} - \frac{1}{c} h_a(x) h_b(x) f(x)\\
+			& = \int_a^x \frac{1}{c} h_a'(x) h_b(y) f(y) \dd{y} + \int_x^b \frac{1}{c} h_a(y) h_b'(x) f(y) \dd{y}
+		\end{split}
+	\]
+	\[
+		\begin{split}
+			(\G f)''(x) & = \int_a^x \frac{1}{c} h_a''(x) h_b(y) f(y) \dd{y} + \frac{1}{c} h_a'(x) h_b(x) f(x)\\
+			& + \int_x^b \frac{1}{c} h_a(y) h_b''(y) f(y) \dd{y} - \frac{1}{c} h_a(x) h_b'(x) f(x)\\
+			& \stackrel{-W = -c}{=} q(x) (\G f)(x) - f(x)
+		\end{split}
+	\]
+	$\Rightarrow L \G f = f$.
+\end{proofs}
+
+\begin{prop}
+	$\exists C > 0$ such that
+	\[
+		\| \G f\|_{\infty} + \|(\G f)'\|_{\infty} \leq C \| f\|_{L^2} \quad \forall f \in L^2([a, b])
+	\]
+\end{prop}
+
+\begin{proofs}
+	\[
+		|(\G f)(x)| \leq \|G\|_\infty \|f\|_{L^1} \leq \sqrt{b - a} \|G\|_{\infty} \|f\|_{L^2}
+	\]
+	Similarly can show $\|(\G f)'\|_{\infty} \leq C \|f\|_{L^2}$.
+\end{proofs}
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

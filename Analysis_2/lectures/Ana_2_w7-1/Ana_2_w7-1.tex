@@ -358,7 +358,7 @@ Recall:
 		\begin{split}
 			\|T x_k - M x_k\|^2 & = \|T x_k - m x_k + m x_k - M x_k\|^2\\
 			& = \|(T - m I) x_k\|^2 + (M - m)^2 \|x_k\|^2 \\
-			& = \langle (T - mI) x_k, (M - m) x_k \rangle - \langle (M - m) x_k, (T - mI) x_k \rangle\\
+			& + \langle (T - mI) x_k, (M - m) x_k \rangle - \langle (M - m) x_k, (T - mI) x_k \rangle\\
 			& \leq \|T - mI\|^2 + (M - m)^2 - 2 (M - m)(\langle T x_k, x_k \rangle - m) \\
 			& = 2(M - m)^2 - 2 (M - m)(\langle T x_k, x_k \rangle - m)
 		\end{split}
@@ -487,7 +487,7 @@ Consider the eigenvalue problem
 	-y'' + q(x) y = \mu y, y(a) = y(b) = 0
 \]
 $q$:"potential", a continuous function on $[a, b]$.
-Goal: Find $mu$ such that this problem has a nontrivial solution $y$.
+Goal: Find $\mu$ such that this problem has a nontrivial solution $y$.
 $\mu$: eigenvalue, $y$: eigenfunction corresponding to $\mu$.
 $L = -\dv[2]{x} + q(x)$
 Look at the simplest case $q = 0$ and $[a, b] = [0, \pi]$.

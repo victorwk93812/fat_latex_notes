@@ -1204,6 +1204,12 @@ $$
 	\end{itemize}
 \end{proofs}
 
+\subsection{Lifting Field Isomorphisms}
+
+證明完Splitting field的存在性，接著來證明唯一性。
+我們只要說明，在兩個同構的體當中兩個對應的多項式，他們兩個的Splitting field一定同構。
+簡單來說，我們可以把體之間的同構提升到他們的extension之間，但是在原本的定義域上面和原本的同構完全一樣：
+
 \begin{thm}[Field Isomorphism can be Extended to Isomorphism Between \textit{Simple Extensions}]
 	Given a field isomorphism $\phi:F\to F'$ and a irreducible $f(x)\in F[x]$. Let ${\phi}:F[x]\to F'[x]$ be the ring homomorphism extending $\phi$, i.e.
 	\[f(x)=\sum_{i=0}^n a_i x^i \overset{{\phi}}{\mapsto} f'(x)=\sum_{i=1}^n \phi(a_i) x^i\]
@@ -1229,12 +1235,10 @@ $$
 	where we can see $\sigma|_F=\phi$
 \end{proofs}
 
-現在我們嘗試證明唯一性，在證明唯一性之前我們先證明以下定理
 \begin{thm}[Field Isomorphism can be Extended to Isomorphism Between \textit{Splitting Fields}]
 	Given a field homomorphism $\phi:F\to F'$ and a irreducible $f(x)\in F[x]$
 	Let $E$ and $E'$ be splitting fields of $f(x)$ over $F$ and $F'$ respectively. Then there exists a homomorphism 
 	\[\sigma:E\to E' \text{ scuh that }\sigma|_F=\phi\]
-	
 \end{thm}
 
 \begin{proofs}
@@ -1247,6 +1251,22 @@ $$
 	Then let $F_1=F[x]/(p)$ and $F_1'=F'[x]/(\tilde{\phi}(p))$. Observe that
 	\[F_1\]
 
+\end{proofs}
+
+有兩個版本，證明不太一樣，需要再確認
+\begin{thm}[Field Isomorphism can be Extended to Isomorphism Between \textit{Splitting Fields}]
+	Given a field isomorphism $\phi:F\to F'$, which induces a ring isomorphism $\Phi: F[x]\to F'[x]$. 
+	\[f(x)=\sum_{i=0}^n a_i x^i \overset{{\Phi}}{\mapsto} f'(x)=\sum_{i=1}^n \phi(a_i) x^i\]
+	If $\alpha$ (resp. $\beta$) is algebraic over $F$ (resp. $F'$) with minimal polynomial $p(x)$ (resp. $\Phi(p(x))$), whose splitting field is thus $F(\alpha)$ (resp. $F'(\alpha')$).
+	, then there is a unique isomorphism $\sigma: F(\alpha)\to F'(\alpha')$ extending $\phi$ (i.e. such that $\sigma|_F=\phi$) and such that $\phi(\alpha)\to\beta$.
+\end{thm}
+
+\begin{proofs}
+	Suppose $p(x)=\sum_{i=0}^n a_i x^i$, then $[F(\alpha):F]=n$ with a basis $\{1,\alpha, \dots,\alpha^n\}$
+	and similarly $[F(\beta):F]=n$ with basis $\{1,\beta,\dots,\beta^n\}$. 	
+	Then any isomorphism $\sigma$ extending $\phi$ with $\sigma(\alpha)=\beta$ must map any element $\sum_{i=1}^{n-1} c_i \alpha^i$ in $F(\alpha)$
+	\[\sum_{i=0}^n c_i \alpha^i \overset\sigma\mapsto \sum_{i=0}^n \phi(c_i) \beta^i \]
+	so there is at most one possible map $\sigma$. We can check that $\sigma$ is well-defined and isomorphic.
 \end{proofs}
 
 \section{Algebraic Closures (WIP)}
@@ -1294,6 +1314,184 @@ $$
 Notation: We let $\bar{F}$ denote the algebraic closure of $F$.
 
 \section{Separable Extensions}
+
+\begin{dfn}
+	Let $f(x) \in F[x]$.
+	We say $f(x)$ is \textbf{separable} if it has no repeated roots in its splitting field.
+	Otherwise, we say $f$ is \textbf{inseparable}.
+\end{dfn}
+
+\ex 
+
+	\begin{enumerate}
+		\item[(1)] $f(x) = (x^2 - 2)^2 \in \mathbb{Q}[x]$ is inseparable.
+
+		\item[(2)] $F = \mathbb{F}_2(t), f(x) = x^2 - t \in F[x]$.
+			Note that $\sqrt{t} = -\sqrt{t}$ in $F[x]$. 
+			Thus $f$ is inseparable.
+	\end{enumerate}
+
+\begin{dfn}
+	Let $f(x) = a_n x^n + \cdots + a_0 \in F[x]$.
+	Then its \textbf{derivative} $\mathrm{D} f$ is defined to be 
+	\[
+		(\mathrm{D} f)(x) = n a_nx^{n - 1} + (n - 1) a_{n - 1}x^{n - 2} + \cdots + a_1
+	\]
+\end{dfn}
+
+\begin{lem}
+	(1)$\mathrm{D}(fg) = f \mathrm{D} g + g \mathrm{D} f\quad$ (2) $\mathrm{D} (cf + g) = c \mathrm{D} f + \mathrm{D} g \sfa f, g \in F[x], c \in F$.
+\end{lem}
+
+\begin{prop}[Separable則和導數互質]
+	A polynomial $f(x) \in F[x]$ has a repeated root $\alpha \Leftrightarrow \alpha$ is also a root of $\mathrm{D} f$.
+	In particular, $f$ is separable $\Leftrightarrow$ $\text{GCD}(f, \mathrm{D} f) = 1$.
+\end{prop}
+
+\begin{proofs}
+	If $\alpha \in \bar{F}$ is a repeated root of $f(x)$, then 
+	\[
+		f(x) = (x - \alpha)^2 g(x)
+	\]
+	for some $g(x) \in \bar{F}[x]$.
+	Now $(\mathrm{D} f) (x) = 2(x - \alpha) g(x) + (x - \alpha)^2 (\mathrm{D} g)(x)$.
+	$\Rightarrow \alpha$ is a root of $\mathrm{D} f$.
+	Conversely assume that $\alpha$ is not a repeated root of $f(x)$. 
+	Then $f(x) = (x - \alpha) g(x)$ for some $g(x) \in \bar{F}[x]$ with $g(\alpha) \neq 0$.
+	Then $(\mathrm{D} f)(x) = g(x) + (x - \alpha) (\mathrm{D} g)(x) \Rightarrow (\mathrm{D} g)(\alpha) = g(\alpha) \neq 0$.
+\end{proofs}
+
+\ex
+
+	$F = \mathbb{F}_2(t)$. $f(x) = x^2 - t \in F[x]$.
+	$\mathrm{D} f = 2x = 0$.
+	Indeeed $\sqrt{t}$ is a root of $\mathrm{D} f$.
+
+
+\begin{cor}[$\Char=0$的體中irreducible就會separable]
+	Every irreducible polynomial over a field of $\text{char } 0$ is separable.
+\end{cor}
+
+\begin{proofs}
+	Let $f(x)$ be an irreducible.
+	Since $\text{char } F = 0$, $\deg \mathrm{D} f = \deg f - 1$.
+	Then since $f$ is irreducible, we must have $(f, \mathrm{D} f) = 1$.
+	$\Rightarrow f$ is separable.
+\end{proofs}
+
+\begin{cor}[$\Char=p$的體中irreducible多項式inseperable則只有$p$次倍數的項]
+	Assume $\text{char } F = p$ ($p$ a prime).
+	An irreducible polynomial $f(x) \in F[x]$ is inseparable $\Leftrightarrow f(x) = g(x^p)$ for some $g(x) \in F[x]$.
+\end{cor}
+也就是說，如果有不被$p$整除的次方的項就會separable。
+
+\begin{proofs}
+	If $f(x) = g(x^p)$ for some $g(x) \in F[x]$, say $g(x) = a_n x^n + \cdots + a_0$.
+	Then 
+	\[
+		f(x) = a_n x^{pn} + a_{n - 1} x^{p (n - 1)} + \cdots + a_1 x^p + a_0
+	\]
+	\[
+		\mathrm{D} f(x) = pn a_n x^{pn - 1} + \cdots + p a_1 x^{p - 1} = 0
+	\]
+	$\Rightarrow (f, \mathrm{D} f) = f \neq 1$.
+	By prop 33, $f$ is inseparable.
+	\par Conversely if $f(x)$ is not of the form $g(x^p)$, i.e. $f(x) = b_n x^n + \cdots + b_0$ with $b_j \neq 0$ for some $j$ with $p \not| \; j$.
+	\[
+		\Rightarrow \mathrm{D} f = \cdots + j b_j x^{j - 1} + \cdots \neq 0
+	\]
+	\[
+		\Rightarrow (f, \mathrm{D} f) = 1
+	\]
+	$\Rightarrow f$ is separable.
+\end{proofs}
+
+We next show that if $F$ is a finite field of $\text{char } p$ then every polynomial of the form $g(x^p)$ is reducible.
+Thus, according to the corollary above, every irreducible polynomial over a finite field is separable.
+
+\begin{ex}
+	We have seen that $x^2 - t \in \mathbb{F}_2(t)[x]$ is inseparable.
+	It is irreducible.
+	This could happen because $\mathbb{F}_2(t)$ is an infinite field of $\text{char } \neq 0$.
+\end{ex}
+
+\begin{prop}[Proposition 35]
+	Assume that $\text{char } F = p$.
+	Then $\forall a, b \in F$, 
+	\[
+		(a + b)^p = a^p + b^p
+	\]
+	\[
+		(ab)^p = a^p b^p
+	\]
+	i.e. the function $a \mapsto a^p$ is an injective homomorphism from $F$ to $F$.
+\end{prop}
+
+\begin{proofs}
+	\[
+		(ab)^p = a^p b^p
+	\]
+	is clear.
+	Now
+	\[
+		(a + b)^p = a^p + \binom{p}{1} a^{p - 1} b + \cdots + \binom{p}{p - 1} a b^{p - 1} + b^p
+	\]
+	Observe that $p | \binom{p}{j}$ for $j = 1, ..., p - 1$.
+	$\Rightarrow (a + b)^p = a^p + b^p$.
+\end{proofs}
+
+\begin{cor}[Corollary 36]
+	If $F$ is a finite field of $\text{char } p$, then $a \mapsto a^p$ is an automorphism of $F$.
+\end{cor}
+
+\begin{proof}
+	Since $F$ is a finite field, any injective homorphism is an automorphism.
+\end{proof}
+
+\begin{dfn}
+	The function $a \mapsto a^p$ is called the \textbf{Frobenius endomorphism}. (or \textbf{Frobenius automorphism} when it is an isomorphism.)
+\end{dfn}
+
+\begin{ex}
+	For an infinite field of $\text{char } p$, the function $a \mapsto a^p$ may not be surjective.
+	For example, $K = \mathbb{F}_2(\sqrt{t})$. 
+	\begin{clm}
+		The image of the Frob. endo. is $\mathbb{F}_2(t)$, a proper subfield of $K$.
+	\end{clm}
+
+	\begin{proofs}
+		Say 
+		\[
+			r = \frac{a_n (\sqrt{t})^n + \cdots + a_0}{b_n (\sqrt{t})^n + \cdots + b_0} \in K
+		\]
+		Then 
+		\[
+			r^2 =\frac{\left(a_n (\sqrt{t})^n + \cdots + a_0\right)^2}{\left(b_n (\sqrt{t})^n + \cdots + b_0\right)^2} = \frac{a_n^2 t^n + \cdots + a_0^2}{b_n^2 t^n+ \cdots + b_0^2} \in \mathbb{F}_2(t)
+		\]
+	\end{proofs}
+\end{ex}
+
+\begin{prop}[Proposition 37]
+	Every irreducible polynomial over a finite field $F$ is separable.
+\end{prop}
+
+\begin{proofs}
+	Assume that $\text{char } F = p$ and $f(x)$ is an irreducible polynomial in $F[x]$.
+	Assume that $f(x)$ is inseparable.
+	By Corollary (the one after corollary 34), $f(x) = g(x^p)$ for some $g(x) \in F[x]$.
+	Say $g(x) = a_n x^n + \cdots + a_0$.
+	Now by corollary 36, $a \mapsto a^p$ is surjective.
+	Thus $\forall j, \exists b_j \in F$ such that $b_j^p = a_j$.
+	Then 
+	\[
+		f(x) = a_n x^{pn} + \cdots + a_0 = b_n^p x^{pn} + \cdots + b_0^p
+	\]
+	\[
+		= (b_n x^n + \cdots + b_0)^p
+	\]
+	which is not an irreducible, a contradiction.
+	Thus $f$ is separable.
+\end{proofs}
 
 \begin{thm}[Cyclomotic Polynomials are irreducible]
 	$\Phi_n(x)$ is the minimal polynomial of $\xi_n$ over $\QQ$, which irreducible over $\QQ$
@@ -1499,6 +1697,24 @@ such that $\sigma(a)=a$ for every $a\in F$ ).
 	Then for any $\sigma\in\Aut(K/F)$, $\sigma\alpha$ is a root of the minimal polynomial for $\alpha$ over $F$, 
 	i.e. $\Aut(K/F)$ permutes the roots of irreducible polynomials. Equivalently, any polynomial with coefficients in $F$ having $\alpha$ as a root also has $\sigma\alpha$ as a root.
 \end{prop}
+
+
+\begin{dfn}[conjugates over a field]
+	Given a field $F$. 
+	If $\alpha,\beta\in\bar{F}$
+	have the same minimal polynomial over $F$, then
+	we say they are conjugates over $F$.
+\end{dfn}
+
+If $\alpha,\beta\in \bar{F}$ are conjugates over $F$, then $\phi_{\alpha,\beta}$ is an isomorphism from $F(\alpha)$ to $F(\beta)$ such that $\phi_{\alpha,\beta}|_F=\id_F$.
+
+If $\alpha\in \bar{F}$ and an isomorphism $\phi$ from $F(\alpha)$ to a subfield of $\bar{F}$ fix $F$ (i.e. $\phi|_F=\id_F$).
+Then $\phi(\alpha)$ is a conjugate of $\alpha$ over $F$ (i.e. $\phi=\phi_{\alpha,\beta}$)
+
+
+
+注意到$i,-i$在$\RR$上是conjugates，因為他們的minimal polynomial都是$x^2+1$。
+但在$\CC$上不是，因為這時minimal polynomials是$x-i$和$x+i$。
 
 \end{document}
 

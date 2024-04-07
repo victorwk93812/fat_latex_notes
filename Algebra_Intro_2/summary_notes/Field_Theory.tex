@@ -298,6 +298,7 @@
 \DeclareMathOperator{\Char}{char}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\GCD}{GCD}
 
 \linespread{1.5}
 \pagestyle{fancy}
@@ -951,7 +952,7 @@ $\phi$的image就是$F$的prime subfield。所以由1st theorem of isomorphism�
 
 \begin{prop}[Minimal Polynomial: 以特定元素為根的多項式存在唯一的最小元素]
 	Assume $\alpha$ is algebraic over $F$.
-	Then $\exists !$ monic irredubcible polynomial $m_{\alpha, F}(x) \in F[x]$ s.t.
+	Then $\exists !$ monic irreducible polynomial $m_{\alpha, F}(x) \in F[x]$ s.t.
 	\[
 		\begin{cases}
 			\alpha \text{ is a root of } m_{\alpha, F}(x) \\
@@ -1313,6 +1314,7 @@ $$
 
 Notation: We let $\bar{F}$ denote the algebraic closure of $F$.
 
+\clearpage
 \section{Separable Extensions}
 
 \begin{dfn}
@@ -1321,16 +1323,25 @@ Notation: We let $\bar{F}$ denote the algebraic closure of $F$.
 	Otherwise, we say $f$ is \textbf{inseparable}.
 \end{dfn}
 
+注意到，我們會討論irreducible polynomial的separability，
+irreducibility是在原先的field中討論的，但separable與否，是在這個多項式的splitting field中討論，在裡面它就會reducible (split completely)。
+
 \ex 
 
 	\begin{enumerate}
-		\item[(1)] $f(x) = (x^2 - 2)^2 \in \mathbb{Q}[x]$ is inseparable.
+		\item[(1)] $f(x) = (x^2 - 2)^2 \in \mathbb{Q}[x]$ is reducible but inseparable:
+		\[f(x)=(x+\sqrt{2})^2(x-\sqrt{2})^2 \in \QQ(\sqrt2)[x]\]
 
-		\item[(2)] $F = \mathbb{F}_2(t), f(x) = x^2 - t \in F[x]$.
+		\item[(2)] $F = \mathbb{F}_2(t), f(x) = x^2 - t \in F[x]$ is irreducible.
 			Note that $\sqrt{t} = -\sqrt{t}$ in $F[x]$. 
-			Thus $f$ is inseparable.
+			Thus $f$ is inseparable:
+			\[f(x)=x^2-t=(x-\sqrt{t})^2\in \FF_2(\sqrt{t})[x]\]
+		\item[(3)] $F = \FF_3(t), f(x)=x^6-t\in F[x]$ is irreducible (By Eisenstein with $t$, which is prime in $\FF_3(t)$).
+		$f$ is inseparable since it has two repeated roots $t^{1/6}$ and $-t^{1/6}$:
+		\[f(x)=(x-t^{1/6})^3(x+t^{1/6})^3\in \FF_3(t^{1/6})[x]\]
 	\end{enumerate}
 
+我們定義導數作為一個檢查separability的方法。
 \begin{dfn}
 	Let $f(x) = a_n x^n + \cdots + a_0 \in F[x]$.
 	Then its \textbf{derivative} $\mathrm{D} f$ is defined to be 
@@ -1361,16 +1372,45 @@ Notation: We let $\bar{F}$ denote the algebraic closure of $F$.
 	Then $(\mathrm{D} f)(x) = g(x) + (x - \alpha) (\mathrm{D} g)(x) \Rightarrow (\mathrm{D} g)(\alpha) = g(\alpha) \neq 0$.
 \end{proofs}
 
-\ex
+\subsection{Separability and Characteristic}
 
-	$F = \mathbb{F}_2(t)$. $f(x) = x^2 - t \in F[x]$.
+如果$f$ irreducible，如果$Df\neq 0$，那因為$Df$的次數比irreducible的$f$小了1，一定有$\GCD(f,Df)=1$，
+所以$f$ separable。
+
+但在$\Char=p$的體中可能會有$Df=0$的情況，此時所有人都會是他的根，
+$\GCD(f,Df)=\GCD(f,0)=f$，$f$就會inseparable。
+
+\ex 用來檢查上面的兩個例子
+
+\begin{itemize}
+	\item 	$F = \mathbb{F}_2(t)$. $f(x) = x^2 - t \in F[x]$.
 	$\mathrm{D} f = 2x = 0$.
 	Indeeed $\sqrt{t}$ is a root of $\mathrm{D} f$.
+	\item $F = \FF_3(t), f(x)=x^6-t\in F[x], \mathrm{D}f=6x^5=0.$
+\end{itemize}
+我們現在來看什麼情況下$Df=0$，可以得出以下定理：
+\begin{thm}[$\Char=p$的體中irreducible多項式inseperable則只有$p$次倍數的項]\label{charp_irred_sep}
+	\ \newline \indent Assume $\text{char } F = p$ ($p$ a prime).
+	An irreducible polynomial $f(x) \in F[x]$ is inseparable $\Leftrightarrow f(x) = g(x^p)$ for some $g(x) \in F[x]$.
+\end{thm}
 
+\begin{proofs}
+	\noindent In a field $F$ with $\Char F=p$. If $f(x)=\sum_{k=0}^n a_k x^k$, 
+	then $f$ is inseparable
+	
+	$\iff Df(x)=\sum_{k=1}^n ka_k x^{k-1}=0$
+	
+	$\iff \forall k,\ ka_k=0$
+	
+	$\iff \forall k\neq 0, a_k=0$ （即那些次方不被$p$整除的項的係數要是0）
+	
+	$\iff f(x)=g(x^p) \text{ for some } g(x)\in F[x]$
+\end{proofs}
 
-\begin{cor}[$\Char=0$的體中irreducible就會separable]
+\noindent 但如果在$\Char=0$的體中就不會有$Df=0$，所以所有irreducible polynomial都會separable:
+\begin{thm}[$\Char=0$的體中irreducible就會separable]\label{char0_irred_sep}
 	Every irreducible polynomial over a field of $\text{char } 0$ is separable.
-\end{cor}
+\end{thm}
 
 \begin{proofs}
 	Let $f(x)$ be an irreducible.
@@ -1379,130 +1419,227 @@ Notation: We let $\bar{F}$ denote the algebraic closure of $F$.
 	$\Rightarrow f$ is separable.
 \end{proofs}
 
-\begin{cor}[$\Char=p$的體中irreducible多項式inseperable則只有$p$次倍數的項]
-	Assume $\text{char } F = p$ ($p$ a prime).
-	An irreducible polynomial $f(x) \in F[x]$ is inseparable $\Leftrightarrow f(x) = g(x^p)$ for some $g(x) \in F[x]$.
-\end{cor}
-也就是說，如果有不被$p$整除的次方的項就會separable。
-
-\begin{proofs}
-	If $f(x) = g(x^p)$ for some $g(x) \in F[x]$, say $g(x) = a_n x^n + \cdots + a_0$.
-	Then 
-	\[
-		f(x) = a_n x^{pn} + a_{n - 1} x^{p (n - 1)} + \cdots + a_1 x^p + a_0
-	\]
-	\[
-		\mathrm{D} f(x) = pn a_n x^{pn - 1} + \cdots + p a_1 x^{p - 1} = 0
-	\]
-	$\Rightarrow (f, \mathrm{D} f) = f \neq 1$.
-	By prop 33, $f$ is inseparable.
-	\par Conversely if $f(x)$ is not of the form $g(x^p)$, i.e. $f(x) = b_n x^n + \cdots + b_0$ with $b_j \neq 0$ for some $j$ with $p \not| \; j$.
-	\[
-		\Rightarrow \mathrm{D} f = \cdots + j b_j x^{j - 1} + \cdots \neq 0
-	\]
-	\[
-		\Rightarrow (f, \mathrm{D} f) = 1
-	\]
-	$\Rightarrow f$ is separable.
-\end{proofs}
-
 We next show that if $F$ is a finite field of $\text{char } p$ then every polynomial of the form $g(x^p)$ is reducible.
 Thus, according to the corollary above, every irreducible polynomial over a finite field is separable.
 
 \begin{ex}
-	We have seen that $x^2 - t \in \mathbb{F}_2(t)[x]$ is inseparable.
-	It is irreducible.
-	This could happen because $\mathbb{F}_2(t)$ is an infinite field of $\text{char } \neq 0$.
+We have seen that $x^2 - t \in \mathbb{F}_2(t)[x]$ is inseparable.
+It is irreducible.
+This could happen because $\mathbb{F}_2(t)$ is an infinite field of $\text{char } \neq 0$.
 \end{ex}
 
-\begin{prop}[Proposition 35]
-	Assume that $\text{char } F = p$.
-	Then $\forall a, b \in F$, 
-	\[
-		(a + b)^p = a^p + b^p
-	\]
-	\[
-		(ab)^p = a^p b^p
-	\]
-	i.e. the function $a \mapsto a^p$ is an injective homomorphism from $F$ to $F$.
+\begin{prop}[Freshman's Dream]
+Assume that $\text{char } F = p$.
+Then $\forall a, b \in F$, 
+\[
+(a + b)^p = a^p + b^p
+\]
 \end{prop}
 
 \begin{proofs}
-	\[
-		(ab)^p = a^p b^p
-	\]
-	is clear.
-	Now
-	\[
-		(a + b)^p = a^p + \binom{p}{1} a^{p - 1} b + \cdots + \binom{p}{p - 1} a b^{p - 1} + b^p
-	\]
-	Observe that $p | \binom{p}{j}$ for $j = 1, ..., p - 1$.
-	$\Rightarrow (a + b)^p = a^p + b^p$.
+\[
+(a + b)^p = a^p + \binom{p}{1} a^{p - 1} b + \cdots + \binom{p}{p - 1} a b^{p - 1} + b^p
+\]
+Observe that $p | \binom{p}{j}$ for $j = 1, ..., p - 1$.
+$\Rightarrow (a + b)^p = a^p + b^p$.
 \end{proofs}
 
-\begin{cor}[Corollary 36]
-	If $F$ is a finite field of $\text{char } p$, then $a \mapsto a^p$ is an automorphism of $F$.
-\end{cor}
+% \begin{cor}[Corollary 36]
+% If $F$ is a finite field of $\text{char } p$, then $a \mapsto a^p$ is an automorphism of $F$.
+% \end{cor}
 
-\begin{proof}
-	Since $F$ is a finite field, any injective homorphism is an automorphism.
-\end{proof}
+% \begin{proof}
+% Since $F$ is a finite field, any injective homorphism is an automorphism.
+% \end{proof}
 
+在$\Char=p$中的$p$th-power map很重要： 
 \begin{dfn}
-	The function $a \mapsto a^p$ is called the \textbf{Frobenius endomorphism}. (or \textbf{Frobenius automorphism} when it is an isomorphism.)
+	If $F$ is a field of $\Char F=p$, the function $\phi: F\to F, a \mapsto a^p$ is called the \textbf{Frobenius endomorphism}. (or \textbf{Frobenius automorphism} when it is an isomorphism.)
 \end{dfn}
-
-\begin{ex}
-	For an infinite field of $\text{char } p$, the function $a \mapsto a^p$ may not be surjective.
-	For example, $K = \mathbb{F}_2(\sqrt{t})$. 
-	\begin{clm}
-		The image of the Frob. endo. is $\mathbb{F}_2(t)$, a proper subfield of $K$.
-	\end{clm}
-
-	\begin{proofs}
-		Say 
-		\[
-			r = \frac{a_n (\sqrt{t})^n + \cdots + a_0}{b_n (\sqrt{t})^n + \cdots + b_0} \in K
-		\]
-		Then 
-		\[
-			r^2 =\frac{\left(a_n (\sqrt{t})^n + \cdots + a_0\right)^2}{\left(b_n (\sqrt{t})^n + \cdots + b_0\right)^2} = \frac{a_n^2 t^n + \cdots + a_0^2}{b_n^2 t^n+ \cdots + b_0^2} \in \mathbb{F}_2(t)
-		\]
-	\end{proofs}
-\end{ex}
-
-\begin{prop}[Proposition 37]
-	Every irreducible polynomial over a finite field $F$ is separable.
-\end{prop}
+$\phi$顯然保乘法，由Freshman's Dream可知$\phi$保加法，因此他是homomorphism。並且它injective:
+\[\phi(a)=\phi(b)\Rightarrow (a-b)^p=a^p-b^p=0 \Rightarrow a=b\]
+但是它不一定surjective，比如$K = \mathbb{F}_2(\sqrt{t})$上的Frobenius endomorphism
+\begin{clm}
+The image of the Frobenius endomorphism is $\mathbb{F}_2(t)$, a proper subfield of $K$.
+\end{clm}
 
 \begin{proofs}
-	Assume that $\text{char } F = p$ and $f(x)$ is an irreducible polynomial in $F[x]$.
-	Assume that $f(x)$ is inseparable.
-	By Corollary (the one after corollary 34), $f(x) = g(x^p)$ for some $g(x) \in F[x]$.
-	Say $g(x) = a_n x^n + \cdots + a_0$.
-	Now by corollary 36, $a \mapsto a^p$ is surjective.
-	Thus $\forall j, \exists b_j \in F$ such that $b_j^p = a_j$.
+Say 
+\[
+	r = \frac{a_n (\sqrt{t})^n + \cdots + a_0}{b_n (\sqrt{t})^n + \cdots + b_0} \in K
+	\]
 	Then 
 	\[
-		f(x) = a_n x^{pn} + \cdots + a_0 = b_n^p x^{pn} + \cdots + b_0^p
-	\]
-	\[
-		= (b_n x^n + \cdots + b_0)^p
-	\]
-	which is not an irreducible, a contradiction.
-	Thus $f$ is separable.
+r^2 =\frac{\left(a_n (\sqrt{t})^n + \cdots + a_0\right)^2}{\left(b_n (\sqrt{t})^n + \cdots + b_0\right)^2} = \frac{a_n^2 t^n + \cdots + a_0^2}{b_n^2 t^n+ \cdots + b_0^2} \in \mathbb{F}_2(t)
+\]
 \end{proofs}
 
-\begin{thm}[Cyclomotic Polynomials are irreducible]
-	$\Phi_n(x)$ is the minimal polynomial of $\xi_n$ over $\QQ$, which irreducible over $\QQ$
+% \begin{prop}[Irreducibility $\Rightarrow$ Separability in finite field]
+% 	Every irreducible polynomial over a finite field $F$ is separable.
+% \end{prop}
+
+% \begin{proofs}
+% 	Assume that $\text{char } F = p$ and $f(x)$ is an irreducible polynomial in $F[x]$.
+% 	Assume that $f(x)$ is inseparable.
+% 	By Corollary (the one after corollary 34), $f(x) = g(x^p)$ for some $g(x) \in F[x]$.
+% 	Say $g(x) = a_n x^n + \cdots + a_0$.
+% 	Now by corollary 36, $a \mapsto a^p$ is surjective.
+% 	Thus $\forall j, \exists b_j \in F$ such that $b_j^p = a_j$.
+% 	Then 
+% 	\[
+% 		f(x) = a_n x^{pn} + \cdots + a_0 = b_n^p x^{pn} + \cdots + b_0^p
+% 	\]
+% 	\[
+% 		= (b_n x^n + \cdots + b_0)^p
+% 	\]
+% 	which is not an irreducible, a contradiction.
+% 	Thus $f$ is separable.
+% \end{proofs}
+如果他surjective，那就太完美了\footnote{這裡的perfect的定義方式和上課不太一樣}：
+\begin{dfn}
+	If $F$ is a field of $\Char F=p$, and every element of $F$ is a $p$th power (i.e. $F^p=F$) then we say $F$ is a \textbf{perfect} field. 
+	(Fields of characteristic $0$ are also considered perfect fields.)
+\end{dfn}
+
+\ex 
+
+\begin{itemize}
+	\item 如果$F$是finite field，所以定義在其上的injective Frobenius map也會surjective。
+	\item The Function field $F=\FF_p(t)$ is not perfect, since the element $t\in F$ is not the $p$th power of any element of $F$. (注意到$\Char F=p$與$|F|=\infty$)
+\end{itemize}
+
+\begin{prop}[Separability and Perfect Fields]
+	If $F$ is a perfect field, then every irreducible polynomial in $F[x]$ is separable.
+	If $F$ is not perfect, then there exists an irreducible inseparable polynomial in $F[x]$.
+\end{prop}
+
+\begin{proofs}
+	在perfect的$F$上，對於任意irreducible的$f\in F[x]$
+	\begin{itemize}
+		\item Case 1: $\Char F=0$：由Theorem \ref{char0_irred_sep}可知其中 irreducible 就會 separable。
+		\item Case 2: $\Char F=p$：用反證法，假設$f$ inseparable，由Theorem \ref{charp_irred_sep}，$f(x)=g(x^p)$ for some $g\in F[x]$。
+		因為$F$是perfect，我們可能會把$g$的係數以$p$th power表示：
+		\[g(x)=a_0^p+a_1^p x+\dots+a_n^p x^n\]
+		所以
+		\[f(x)=g(x^p)=a_0^p+a_1^p x^p +\dots + a_n^p x^np=(a_0+a_1x+\dots+a_n x^n)^p\]
+		就會是reducible，矛盾。於是$f$ separable。
+	\end{itemize}
+
+	如果$F$不是perfect，$\exists \alpha\in F$不是$p$th power，也就是$\beta=\alpha^{1/p}\notin F$。考慮$f(x)=x^p-\alpha$，則在他的splitting field $F(\beta)$中
+	\[f(x)=x^p-\alpha=x^p-\beta^p=(x-\beta)^p\]
+	所以$f$ inseparable。事實上他還是irreducible。假設它不是所以就有個因式$a(x)=(x-\beta)^d, 0<d<p$。把他展開
+	\[a(x)=x^d-d\beta x^{d-1}+\dots+(-1)^d\beta^d\]
+	因為$a(x)\in F[x]$，所以係數$d\beta\in F$，但在$F$中$\beta\neq 0$（因爲$0<d<p$），因此$\beta \in F$，矛盾。
+\end{proofs}
+
+% \begin{dfn}
+% 	A field $F$ is said to be \textbf{perfect} if every irreducible polynomial in $F[x]$ is separable.
+% \end{dfn}
+
+% \begin{ex}
+% 	If $\text{char } F = 0$ or $|F| < \infty$, then $F$ is perfect.
+% \end{ex}
+
+\clearpage
+\begin{thm}[Uniqueness of Finite Fields]
+	Let $p$ be a prime.
+	For each positive integer $n, \exists$ a finite field of $p^n$ elements.
+	It is unique up to isomorphism.
+	More precisely, if we let 
+	\[
+		\mathbb{F}_{p^n}:= \{ \text{roots of } x^{p^n} - x \in \mathbb{F}_p[x] \text{ in } \overline{\mathbb{F}_p} \}
+	\]
+	Then $\mathbb{F}_{p^n}$ is a field of $p^n$ elements.
 \end{thm}
 
 \begin{proofs}
-	Let $m(x)=m_{\xi_n,\QQ}(x)$ be the minimal polynomial of $\xi_n$ over $\QQ$. Since $\Phi_n(\xi_n)=0$, by the minimalty of $m(x)$, $m(x)|\Phi_n(x)$. 
+	We first prove that $|\mathbb{F}_{p^n}| = p^n$, i.e. the polynomial $x^{p^n} - x$ has no repeated roots.(i.e. $x^{p^n} - x$ is separble.)
+	We have
+	\[
+		\mathrm{D}(x^{p^n} - x) = p^n x^{p^n - 1} - 1 = -1
+	\]
+	$\Rightarrow (x^{p^n} - x, \mathrm{D} (x^{p^n} - x)) = 1$.
+	By Prop 33, $x^{p^n} - x$ has no repeated roots (separable).
+	
+	We now show that $\mathbb{F}_{p^n}$ is a field.
+	It suffices to show that
+	\begin{enumerate}
+		\item[(1)] $\forall \alpha, \beta \in \mathbb{F}_{p^n}, \alpha - \beta \in \mathbb{F}_{p^n}$.
 
-	Now it suffices to show that $\Phi_n(x)|m(x)$, i.e. roots of $\Phi_n(x)$, $\xi_n^k$ with $ (k,n)=1$, are also roots of $m(x)$.
-	WIP
+		\item[(2)] $\forall \alpha, \beta \in \mathbb{F}_{p^n}, \beta \neq 0, \alpha/\beta \in \mathbb{F}_{p^n}$.
+	\end{enumerate}
+	Suppose $\alpha, \beta \in \mathbb{F}_{p^n}$, 
+	\[
+		(\alpha - \beta)^{p^n} - (\alpha - \beta) = (\alpha^p - \beta^p)^{p^{n - 1}} - (\alpha - \beta) = \cdots = \alpha^{p^n} - \beta^{p^n} - (\alpha - \beta)
+	\]
+	\[
+		= (\alpha^{p^n} - \alpha) - (\beta^{p^n} - \beta) = 0
+	\]
+	since $\alpha, \beta \in \mathbb{F}_{p^n}$ are roots of $x^{p^n} - x$.
+	Also, if $\alpha, \beta \neq 0 \in \mathbb{F}_{p^n}$, then
+	\[
+		\left(\frac{\alpha}{\beta}\right)^{p^n} - \frac{\alpha}{\beta} = \frac{\alpha^{p^n}}{\beta^{p^n}} - \frac{\alpha}{\beta} = \frac{\alpha}{\beta} - \frac{\alpha}{\beta} = 0
+	\]
+	$\Rightarrow \alpha/\beta \in \mathbb{F}_{p^n}$.
+	\par Now suppose that $E$ is another field of $p^n$ elements.
+	Since $|E^\times| = p^n - 1$, we have $\alpha^{p^n - 1} = 1 \sfa \alpha \in E^\times$.
+	$\forall \alpha \in E, \alpha^{p^n} - \alpha = \alpha(\alpha^{p^n - 1} - 1) = 0$.
+	i.e. every element of $E$ is a root of $x^{p^n} - x$.
+	Since $|E| = p^n = \deg(x^{p^n} - x)$, we find $x^{p^n} - x$ splits completely in $E[x]$.
+	Therefore $E$ is a splitting field for $x^{p^n} - x$, since $E, \mathbb{F}_{p^n}$ are both splitting fields for $x^{p^n} - x$.
+	By the uniqueness of the splitting fields, $E \simeq \mathbb{F}_{p^n}$.
 \end{proofs}
+
+\begin{prop}[Proposition 38]
+	Let $p(x)$ be an irreducible polynomial over a field of $\text{char } p$.
+	Then $\exists$ a unique integer $k \geq 0$ and a unique separable irreducible polynomial $p_{\text{sep}}(x) \in F[x]$ such that 
+	\[
+		p(x) = p_{\text{sep}}(x^{p^k})
+	\]
+\end{prop}
+
+\begin{proofs}
+	If $p(x)$ is separable, we let $k = 0$ and $p_{\text{sep}} = p$.
+	If not, by a corollary earlier,  $p(x) = p_1(x^p)$ for some $p_1(x) \in F[x]$.
+	It's clear that $p_1$ is irreducible in $F[x]$.
+	If $p_1$ is separable, we let $k = 1, p_{\text{sep}} = p_1$ and we are done.
+	If not, then $p_1(x) = p_2(x^p)$ for some $p_2(x) \in F[x]$ and hence $p(x) = p_2(x^{p^2})$.
+	Continuing this way, we see that $\exists k \geq 0, p_{\text{sep}}(x) \in F[x]$ such that $p(x) = p_{\text{sep}}(x^{p^n})$. 
+\end{proofs} 
+
+\begin{rem}
+	Let $p(x), k, p_{\text{sep}}(x)$ be given as in Prop 38.
+	Then the number of distinct roots of $p(x) = \#$ of roots of $p_{\text{sep}}(x) = \deg p_{\text{sep}}(x)$.
+	To see this, say $\alpha_1, ..., \alpha_d$ are the roots of $p_{\text{sep}}(x)$ in $\bar{F}$, where $d = \deg p_{\text{sep}}(x)$ 
+	\[
+		\Rightarrow p_{\text{sep}}(x) = (x - \alpha_1) \cdots (x - \alpha_d)
+	\]
+	\[
+		\Rightarrow p(x) = (x^{p^k} - \alpha_1) \cdots (x^{p^k} - \alpha_d)
+	\]
+	Let $\beta_j \in \bar{F}$ be elements such tthat $\beta_j^{p^k} = \alpha_j$.
+	Then 
+	\[
+		p(x) = (x^{p^k} - \beta_1^{p^k}) \cdots (x^{p^k} - \beta_d^{p^k})
+	\]
+	\[
+		= (x - \beta_1)^{p^k} \cdots (x - \beta_d)^{p^k}
+	\]
+	$\Rightarrow$ The number of distinct roots of $p(x)$ in $\bar{F}$ is $d = \deg p_{\text{sep}}(x)$.
+\end{rem}
+
+\begin{dfn}
+	We define the \textbf{separable degree} of $p$ to be $\deg p_{\text{sep}}(x)$ and is denoted by $\deg_s p(x)$. 
+	The integer $p^k$ is called the \textbf{inseparable degree} of $p(x)$ and is denoted by $\deg_i p(x)$.
+\end{dfn}
+
+\begin{dfn}
+	An algebraic extension $K/F$ is said to be \textbf{separable} if $\forall \alpha \in K, m_{\alpha, F}(x)$ is separable.
+\end{dfn}
+
+\begin{rem}
+	If $F$ is perfect, then every algebraic extension of $F$ is separable.
+\end{rem}
 
 \section{Cyclomotic Polynomials and Extensions}
 

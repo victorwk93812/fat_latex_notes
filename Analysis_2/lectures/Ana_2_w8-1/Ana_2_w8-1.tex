@@ -1,0 +1,643 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+\newenvironment{exs}[1][]{%
+  \begin{ex}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ex}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W8-1}
+\author{fat}
+% \date{\today}
+\date{April 9, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W8-1}
+
+Recall: (Sturm-Liouville problem)
+\[
+	-y'' + q(x) y = \mu y, \quad y(a) = y(b) = 0
+\]
+where 
+\[
+	L := -\dv[2]{x} + q(x)
+\]
+
+\begin{itemize}
+	\item $q$ is a continuous function on $[a, b]$.
+		
+	\item May assume $q > 0$.
+		In this case, if $\exists$ a nontrivial solution $y, \mu$ has to be positive.
+\end{itemize}
+
+Green's operator is defined as follows:
+Consider $-y'' + q(x) y = 0$.
+Pick two nontrivial solutions $h_a$ and $h_b$ such that $h_a(b) = h_b(a) = 0$.
+Then $h_a, h_b$ are linearly independent.
+Moreover, its Wronskian $W(x) = (h_a h_b' - h_a' h_b)(x)$ is a constant.
+Write $c = W(x)$.
+Define 
+\[
+	G(x, y) = 
+	\begin{cases}
+		\frac{1}{c} h_a(x) h_b(y) & \text{if } x \geq y\\
+		\frac{1}{c} h_a(y) h_b(x) & \text{if } x \leq y 
+	\end{cases}
+\]
+and 
+\[
+	(\G f)(x) = \int_a^b G(x, y) f(y) \dd{y}
+\]
+Then $\G \in \B(L^2([a, b]))$ is compact and self-adjoint.
+Set $E = \{\phi \in C^1([a, b]): \phi(a) = \phi(b) = 0\}$
+We proved/"believed" that
+
+\begin{enumerate}
+	\item[(a)] $\G:C^0([a, b]) \to C^2([a, b]) \cap E$
+		
+	\item[(b)] $L \G f = f \quad \forall f \in C^0([a, b])$
+
+	\item[(c)] $L: C^2([a, b]) \cap E \to C^0([a, b])$
+
+	\item[(d)] $\G L \phi = \phi \quad \forall \phi \in C^2([a, b]) \cap E$
+
+	\item[(e)] $\exists C > 0$ such that
+		\[
+			\|\G f\|_\infty + \|(\G f)' \|_\infty \leq C \|f\|_{L^2} \quad \forall f \in L^2([a, b])
+		\]
+		In fact, 
+		\[
+			(\G f)(x) = \int_a^x \frac{1}{c} h_a(x) h_b(y) f(y) \dd{y} + \int_x^b \frac{1}{c} h_a(y) h_b(x) f(y) \dd{y}
+		\]
+		\[
+			(\G f)'(x) = \int_a^x \frac{1}{c} h_a'(x) h_b(y) f(y) \dd{y} + \int_x^b \frac{1}{c} h_a(y) h_b'(x) f(y) \dd{y}
+		\]
+\end{enumerate}
+
+\begin{prop}
+	$N(\G) = \{0\}$.
+\end{prop}
+
+\begin{proofs}
+	Suppose that $\G f = 0$.
+	Want: $f = 0$.
+	Let $f_n \in C^0([a, b])$ such that $f_n \to f$ in $L^2([a, b])$.
+	Then 
+	\[
+		\|\G f_n - \G f\|_{\infty} \leq C \|f_n - f\|_{L^2}
+	\]
+	So $\G f_n \to \G f = 0$ in sup-norm.
+	Let $\varphi$ be a smooth function such that $\varphi(a) = \varphi(b) = 0$.
+	\[
+		\begin{split}
+			\langle f_n , \varphi \rangle &= \int_a^b f_n(x) \overline{\varphi(x)} \dd{x}\\
+			&= \int_a^b L \G f_n(x) \overline{\varphi(x)} \dd{x}\\
+			&= \int_a^b \left( - \dv[2]{x} + q(x) \right)(\G f_n)(x) \overline{\varphi(x)} \dd{x}\\
+			&= \int_a^b (\G f_n)(x) \overline{L \varphi(x)} \dd{x}
+		\end{split}
+	\]	
+	where the last equation is done by integration by parts with $\varphi(a) = \varphi(b) = (\G f_n)(a) = (\G f_n)(b) = 0$.
+	We have
+	\[
+		\int_a^b (\G f_n)(x) \overline{L \varphi(x)} \dd{x} \leq \int_a^b \|\G f_n\|_\infty \overline{L \varphi(x)} \dd{x} \to 0
+	\]
+	since $\|G f_n\|_\infty \to 0$.
+	$\Rightarrow \langle f, \varphi \rangle = 0 \quad \forall$ smooth $\varphi \in E$
+	$\Rightarrow \langle f, g \rangle = 0 \quad \forall g \in L^2([a, b])$, by denseness of smooth functions (smooth functions dense in continuous functions which are dense in $L^2$.)
+	$\Rightarrow f = 0$.
+\end{proofs}
+
+Apply the spectral theorem for compact, self-adjoint operators:
+$\exists$ orthonormal $\varphi_j^+, \varphi_j^- \in L^2([a, b]), \lambda_j^+ > 0, \lambda_j^- < 0$ such that $\G \varphi_j^+ = \lambda_j^+ \varphi_j^+, \G \varphi_j^- = \lambda_j^- \varphi_j^-$.
+$N(\G) = 0 \Rightarrow \{\varphi_j^+, \varphi_j^-: j \geq 1\}$ is a complete orthonormal set of $L^2([a, b])$.
+
+\begin{thm}
+	Let $q \in C^0([a, b])$.
+	The eigenvalue problem has infinitely many positive eigenvalues $\mu_j \to \infty$ and at most finitely many negative eigenvalues.
+	Each eigenvalue has simple multiplicity.
+	The normalized eigenfunctions $\varphi_j^+ \varphi_j^-$ belong to $C^2([a, b])$ with $\varphi_j^+(a) = \varphi_j^+(b) = \varphi_j^-(a) = \varphi_j^-(b) = 0$.
+	They form a complete orthonormal set in $L^2([a, b])$.
+\end{thm}
+
+\begin{proofs}
+	May assume $q > 0$ such that all eigevalues are positive.
+	\begin{clm}
+		$(\mu, \phi)$ is an eigenpair for $L$ (here $\phi$ is assumed to be in $C^2 \cap E$ since it must be operatable for $L$) $\Leftrightarrow (\lambda, \phi)$ is an eigenpair for $\G$, where $\lambda = 1/\mu$ (here $\phi$ could be assumed to be in $C^0$).
+	\end{clm}
+
+	\begin{proofs}
+		Suppose that $L \phi = \mu \phi, \phi \in C^2([a, b]) \cap E$.
+		\[
+			\phi = \Rightarrow \G L \phi = \mu \G \phi
+		\]
+		\[
+			\Rightarrow \G \phi = \frac{1}{\mu} \phi \quad \forall \phi \in C^2([a, b]) \cap E
+		\]
+		Converse can be shown similarly.
+		(Note that $\G \phi = \lambda \phi$ automatically promotes $\phi$ from $C^0$ to $C^2 \cap E$ since we've already knew that $\G: C^0 \to C^2 \cap E$.)
+	\end{proofs}
+	The claim shows that there are infinitely many (since $L^2$ is a infinite dimensional space there are infinitely many) positive eigenvalues $\mu_j \to \infty$.
+	\par For at most finitely many negative eigenvalues, note that we've replaced $q(x)$ with $q(x) + C$ for some $C$ such that $q > 0$ and all eigenvalues $> 0$, 
+	it suffices to state that there are at most finitely many eigenvalues $\mu$ in the interval $[0, C]$.
+	This is easy since if not, then there exists a sequence of $\mu$ that does not converge to $\infty$.
+	\par The normalized eigenfunctions part comes directly from the spectral theorem of compact, self-adjoint operators.
+	\par Remains to show every eigenvalue has a simple multiplicity.
+	If $\phi, \psi$ are eigenfunctions for the same eigenvalue $\mu$, choose $c_1, c_2 \in \CC$ ssuch that $c_1 \phi'(a) + c_2 \psi'(a) = 0$.
+	Define $g = c_1 \phi + c_2 \psi$.
+	Then $g(a) = 0, g'(a) = 0$.
+	Also, $g$ is a solution to 
+	\[
+		-y'' + q(x) y = \mu y
+	\]
+	So $g = 0$ by the uniqueness of the initial value problem for ODEs.
+	Thus $\phi$ and $\psi$ are linearly dependent.
+
+\end{proofs}
+
+\section{Weak Sequential Compactness}
+
+For simplicity, we assume that the scalar field is $\RR$.
+
+\begin{dfn}
+	Let $(X, \|\cdot\|)$ be a normed space.
+	A sequence $(x_n)$ in $X$ is called \textbf{weakly convergent} to some $x \in X$ if $\forall \Lambda \in X^*, \Lambda x_n \to \Lambda x$ as $n \to \infty$.
+	Write $x_n \rightharpoonup x$.
+\end{dfn}
+
+$x_n \to x \Leftrightarrow \|x_n - x \| \to 0$ is called \textbf{strong convergence}/\textbf{norm-convergence}.
+
+\par Basic properties:
+\begin{itemize}
+	\item $x_n \rightharpoonup x$ and $x_n \rightharpoonup y$ implies $x = y$.
+
+	\item $x_n \Rightarrow x \Rightarrow x_n \rightharpoonup x$.
+
+	\item If $x_n \rightharpoonup x$ then $\exists C > 0$ such that $\|x_n\| \leq C \quad \forall n$.
+		\begin{proofs}
+			Since $\Lambda x_n \to \Lambda x \quad \forall \Lambda \in X^*$, $(\Lambda x_n) = (\tilde{x_n}(\Lambda))$ is bounded.
+			By uniform boundedness prinnciple ($X^*$ is a Banach space), $(\tilde{x_n})$ is uniformly bounded.
+			$\Rightarrow (x_n)$ is uniformly bounded.
+		\end{proofs}
+
+	\item If $x_n \rightharpoonup x$ then $\|x\| \leq \liminf_{n \to \infty} \|x_n\|$.
+		\begin{proofs}
+			Pick $\Lambda_0 \in X^*$ such that $\Lambda_0 x = \|x\|$ and $\|\Lambda_0\| = 1$.
+			\[
+				\|x\| = \Lambda_0 x = |\Lambda_0 x| \leq |\Lambda_0 (x - x_n)| + |\Lambda_0 x_n| \leq \|\Lambda_0 \| \|x_n \| = \|x_n\|
+			\]
+			$\Ra \|x\| \leq \liminf_{n \to \infty} \|x_n\|$.
+		\end{proofs}
+
+	\item If $A \subseteq X$, the \textbf{convex hull} of $A$ is the smallest convex set that contains $A$.
+		If $x_n \ra x$ then $x \in \overline{\text{co}}(\{x_n\})$.
+		\begin{proofs}
+			Suppose $x \notin \overline{\text{co}}(\{x_n\})$.
+			$\{x\}$ compact, convex, nonempty.
+			$\overline{\text{co}}(\{x_n\})$ closed, convex, nonempty.
+			By geometric Hahn-Banach, $\exists \Lambda \in X^*$ and $\alpha$ such that 
+			\[
+				\Lambda x < \alpha < \Lambda y \quad \forall y \in \overline{\text{co}}(\{x_n\})
+			\]
+			Take $y = x_n$, let $n \to \infty$.
+			$\Rightarrow \Lambda x < \alpha \leq \Lambda x$, contradiction.
+		\end{proofs}
+\end{itemize}
+
+If $X$ is finite dimensional, then weak convergence $\Lra$ strong convergence.
+Why? Fix a basis $\{e_1, ..., e_n\}$ for $X$.
+For each $x \in X$, write $x = \sum_{j = 1}^n a_j e_j$.
+Define $\Lambda_j x = a_j$.
+If $x_k \ru x$, where $x_k = \sum_{j = 1}^n a_j^k e_j$, then 
+\[
+	a_j^i = \Lambda_j x_k \to \Lambda_j x = a_j \quad \forall j
+\]
+So $x_k \to x$.
+Not true in general when $X$ is infinite dimensional.
+\begin{exs}
+	\begin{enumerate}
+		\item[(a)] Fix $1 < p < \infty$ and consider $\ell^p$.
+			$e_j = (0, ..., 0, 1, 0, ...)$ where only the $j$-th position is 1.
+			$(e_j)$ does not have any convergent subsequence.
+			\begin{clm}
+				$e_j \ru 0$.
+			\end{clm}
+
+			\begin{proofs}
+				Recall: Every $\Lambda \in (\ell^p)^*$ can be identified with $\Lambda x = \sum_{j = 1}^\infty y_j x_j$ where $y \in \ell^q$.
+				$\Lambda e_j = y_j \to 0$ as $j \to \infty$.
+				So $e_j \ru 0$.
+			\end{proofs}
+
+		\item[(b)] For each $n \geq 1$, let $f_n(x) = \sin(nx)$.
+			View $(f_n)$ as a sequence in $L^2([0, \pi])$.
+			Can check:
+			\[
+				\int_0^\pi |f_n - f_m|^2 = 1 + \O\left(\frac{1}{n}\right) + \O \left( \frac{1}{m} \right) \text{ as } n, m \to \infty
+			\]
+			So $(f_n)$ does not converge strongly.
+			But $f_n \ru 0$ by self-duality and the Riemann-Lebesgue lemma.
+	\end{enumerate}
+\end{exs}
+
+\begin{dfn}
+	A set $E$ in a normed space is \textbf{weakly sequentially compact} if every sequence in $E$ contains a weakly convergent subsequence whose weak limit lies in $E$. 
+\end{dfn}
+
+\begin{thm}
+	Every closed ball in a reflexive space is weakly sequentially compact.
+\end{thm}
+
+\begin{proofs}
+	WLOG assume the ball is the closed unit ball centered at 0.
+	Let $(x_n)$ be a sequence in this ball.
+	Let $Y$ be the norm-closure of the subspace spanned by $\{x_n\}$.
+	Then $Y$ is separable.
+	Recall: Any closed subspace of a reflexive space is reflexive.
+	So $Y$ is reflexive.
+	Recall: $X^*$ is separable $\Ra X$ separable.
+	$Y$ reflexive and separable $\Ra Y^*$ separable.
+	Let $S$ be a countable dense subset of $Y^*$.
+	By a diagonal argument, find a subsequence $(y_n)$ of $(x_n)$ such that
+	\[
+		\lim_{n \to \infty} \Lambda y_n \text{ exists} \quad \forall \Lambda \in S
+	\]
+	Pick $\Lambda \in Y^*$.
+	\begin{clm}
+		$(\Lambda y_n)$ is Cauchy.
+	\end{clm}
+	\begin{proofs}
+		Fix $\epsilon > 0$.
+		Take $j_0$ such that $\|\Lambda_{j_0} - \Lambda\| < \epsilon/3$ where $\Lambda_{j_0} \in S$.
+		\[
+			\begin{split}
+				|\Lambda y_n - \Lambda y_m| & \leq |(\Lambda - \Lambda_{j_0}) y_n| + |\Lambda_{j_0} y_n - \Lambda_{j_0} y_m| + |(\Lambda j_0 - \Lambda) y_m|\\
+				&< \frac{2 \epsilon}{3} + |\Lambda_{j_0} y_n - \Lambda_{j_0} y_m|
+			\end{split}
+		\]
+		where the second term $\to 0$ as $n, m \to \infty$ since $\Lambda_{j_0} \in S$.
+		$\Ra (\Lambda y_n)$ is Cauchy.
+	\end{proofs}
+	Define $\sigma: Y^* \to \RR$ by
+	\[
+		\sigma(\Lambda) = \lim_{n \to \infty} \Lambda y_n
+	\]
+	$\sigma$ is linear.
+	Moreover, 
+	\[
+		|\sigma(\Lambda)| = \left|\lim_{n \to \infty} \Lambda y_n\right| \leq \|\Lambda \| \limsup_{n \to \infty} \|y_n\| \leq \|\Lambda\|
+	\]
+	$\Ra \sigma$ is bounded.
+	$\Ra \sigma \in Y^{**}$.
+	$Y$ reflexive $\Ra \exists ! y \in Y$ such that $\Lambda y = \sigma(\Lambda) \quad \forall \Lambda \in Y^*$.
+	So $\Lambda y_n \to \Lambda y \quad \forall \Lambda \in Y^*$.
+	$\Ra \Lambda y_n \to \Lambda y \quad \forall \Lambda \in X^*$.
+	$\Ra y_n \ru y$.
+	Finally, $\|y\| \leq \liminf_{n \to \infty} \|y_n\| \leq 1$, so $y$ is also in the closed unit ball.
+\end{proofs}
+
+\begin{cor}
+	Let $C$ be a nonempty convex subset of a reflexive space $X$.
+	$C$ is weakly sequentially compact $\Lra C$ is closed (norm-closed) and bounded.
+\end{cor}
+
+\begin{proofs}
+	"$\La$, $C$ is bounded $\Ra C$ is contained in some closed ball $B$.
+	So any sequence $(x_n)$ in $C$ has a subsequence that converges weakly to $x \in B$.
+	$C$ is closed and convex $\Ra x \in C$, since $x \in \overline{\text{co}}(\{x_{n_k}\}) \subseteq C$.
+	So $C$ is weakly sequentially compact.
+	\par "$\Ra$". Let $(x_n)$ be a sequence in $C$ that converges strongly to some $x \in X$.
+	Want: $x \in C$.
+\end{proofs}
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

@@ -1211,7 +1211,7 @@ $$
 我們只要說明，在兩個同構的體當中兩個對應的多項式，他們兩個的Splitting field一定同構。
 簡單來說，我們可以把體之間的同構提升到他們的extension之間，但是在原本的定義域上面和原本的同構完全一樣：
 
-\begin{thm}[Field Isomorphism can be Extended to Isomorphism Between \textit{Simple Extensions}]
+\begin{thm}[Field Isomorphism can be Extended to Isomorphism Between \textit{Simple Extensions}]\label{lift_simple}
 	Given a field isomorphism $\phi:F\to F'$ and a irreducible $f(x)\in F[x]$. Let ${\phi}:F[x]\to F'[x]$ be the ring homomorphism extending $\phi$, i.e.
 	\[f(x)=\sum_{i=0}^n a_i x^i \overset{{\phi}}{\mapsto} f'(x)=\sum_{i=1}^n \phi(a_i) x^i\]
 	Let $\alpha$ (resp. $\alpha'$) be a root of $p(x)$ (resp. $p'$) in some extension $F$ (resp. $F'$). Then there exists an isomorphism $\sigma$ between the simple extension
@@ -1236,26 +1236,26 @@ $$
 	where we can see $\sigma|_F=\phi$
 \end{proofs}
 
-\begin{thm}[Field Isomorphism can be Extended to Isomorphism Between \textit{Splitting Fields}]
-	Given a field homomorphism $\phi:F\to F'$ and a irreducible $f(x)\in F[x]$
-	Let $E$ and $E'$ be splitting fields of $f(x)$ over $F$ and $F'$ respectively. Then there exists a homomorphism 
-	\[\sigma:E\to E' \text{ scuh that }\sigma|_F=\phi\]
-\end{thm}
+% \begin{thm}[Field Isomorphism can be Extended to Isomorphism Between \textit{Splitting Fields}]
+% 	Given a field homomorphism $\phi:F\to F'$ and a irreducible $f(x)\in F[x]$
+% 	Let $E$ and $E'$ be splitting fields of $f(x)$ over $F$ and $F'$ respectively. Then there exists a homomorphism 
+% 	\[\sigma:E\to E' \text{ scuh that }\sigma|_F=\phi\]
+% \end{thm}
 
-\begin{proofs}
-	Let $\tilde{\phi}:F[x]\to F'[x]$ be the ring homomorphism extending $\phi$, i.e.
-	\[f(x)=\sum_{i=0}^n a_i x^i \overset{\tilde{\phi}}{\mapsto} f'(x)=\sum_{i=1}^n \phi(a_i) x^i\]
+% \begin{proofs}
+% 	Let $\tilde{\phi}:F[x]\to F'[x]$ be the ring homomorphism extending $\phi$, i.e.
+% 	\[f(x)=\sum_{i=0}^n a_i x^i \overset{\tilde{\phi}}{\mapsto} f'(x)=\sum_{i=1}^n \phi(a_i) x^i\]
 	
-	If $f(x)$ splits completely in $F[x]$, then $E=F$ and $f'$ also splits completely in $F'[x]$, thus $E'=F'$ will do the work.
+% 	If $f(x)$ splits completely in $F[x]$, then $E=F$ and $f'$ also splits completely in $F'[x]$, thus $E'=F'$ will do the work.
 
-	If $f(x)$ does not split in $F[x]$, then $f(x)$ has an irreducible factor $p(x)$ with $\deg p>1$.
-	Then let $F_1=F[x]/(p)$ and $F_1'=F'[x]/(\tilde{\phi}(p))$. Observe that
-	\[F_1\]
+% 	If $f(x)$ does not split in $F[x]$, then $f(x)$ has an irreducible factor $p(x)$ with $\deg p>1$.
+% 	Then let $F_1=F[x]/(p)$ and $F_1'=F'[x]/(\tilde{\phi}(p))$. Observe that
+% 	\[F_1\]
 
-\end{proofs}
+% \end{proofs}
 
-有兩個版本，證明不太一樣，需要再確認
-\begin{thm}[Field Isomorphism can be Extended to Isomorphism Between \textit{Splitting Fields}]
+% 有兩個版本，證明不太一樣，需要再確認
+\begin{thm}[Field Isomorphism can be Extended to Isomorphism Between \textit{Splitting Fields}]\label{lift_splitting}
 	Given a field isomorphism $\phi:F\to F'$, which induces a ring isomorphism $\Phi: F[x]\to F'[x]$. 
 	\[f(x)=\sum_{i=0}^n a_i x^i \overset{{\Phi}}{\mapsto} f'(x)=\sum_{i=1}^n \phi(a_i) x^i\]
 	If $\alpha$ (resp. $\beta$) is algebraic over $F$ (resp. $F'$) with minimal polynomial $p(x)$ (resp. $\Phi(p(x))$), whose splitting field is thus $F(\alpha)$ (resp. $F'(\alpha')$).
@@ -1836,22 +1836,311 @@ such that $\sigma(a)=a$ for every $a\in F$ ).
 \end{prop}
 
 
-\begin{dfn}[conjugates over a field]
+\begin{dfn}[Conjugates over a field]
 	Given a field $F$. 
 	If $\alpha,\beta\in\bar{F}$
 	have the same minimal polynomial over $F$, then
 	we say they are conjugates over $F$.
 \end{dfn}
 
-If $\alpha,\beta\in \bar{F}$ are conjugates over $F$, then $\phi_{\alpha,\beta}$ is an isomorphism from $F(\alpha)$ to $F(\beta)$ such that $\phi_{\alpha,\beta}|_F=\id_F$.
+\ex 
+
+注意到$i,-i$在$\RR$上是conjugates，因為他們的minimal polynomial都是$x^2+1$。
+但在$\CC$上不是，因為這時minimal polynomials是$x-i$和$x+i$。
+
+
+Let $\phi=\id_F$ in Theorem \ref{lift_simple}, we know that if $\alpha,\beta\in \bar{F}$ are conjugates over $F$, then $\phi_{\alpha,\beta}$ is an isomorphism from $F(\alpha)$ to $F(\beta)$ such that $\phi_{\alpha,\beta}|_F=\id_F$.
 
 If $\alpha\in \bar{F}$ and an isomorphism $\phi$ from $F(\alpha)$ to a subfield of $\bar{F}$ fix $F$ (i.e. $\phi|_F=\id_F$).
 Then $\phi(\alpha)$ is a conjugate of $\alpha$ over $F$ (i.e. $\phi=\phi_{\alpha,\beta}$)
 
 
 
-注意到$i,-i$在$\RR$上是conjugates，因為他們的minimal polynomial都是$x^2+1$。
-但在$\CC$上不是，因為這時minimal polynomials是$x-i$和$x+i$。
+
+
+If $\alpha, \beta \in \bar{F}$ are conjugates over $F$, then $\phi_{\alpha, \beta}$ 
+
+is an isomorphism from $F(\alpha)$ to $F(\beta)$ such that $\phi_{\alpha, \beta}|_F = \text{id}_F$.
+Conversely, 
+
+\begin{prop}
+	Assume that $\alpha \in \bar{F}$ and $\phi$ is an isomorphism from $F(\alpha)$ to a subfield of $\bar{F}$ such that $\phi|_F = \text{id}_F$.
+	Then $\phi(\alpha)$ is a conjugate of $\alpha$ over $F$. (so $\phi = \phi_{\alpha, \beta}$.)
+\end{prop}
+
+\begin{proofs}
+	Assume that $m_{\alpha, F}(x) = a_n x^n + \cdots + a_n$.
+	We have
+	\[
+		0 = \phi(0) = \phi(m_{\alpha, F}(\alpha)) = \phi(a_n \alpha^n + \cdots + a_0)
+	\]
+	\[
+		= \phi(a_n) \phi(\alpha)^n + \cdots + \phi(a_0) = a_n \phi(\alpha)^n + \cdots + a_0 = m_{\alpha, F}(\phi(\alpha))
+	\]
+	$\Rightarrow \phi(\alpha)$ is a conjugate of $\alpha$ over $F$.
+
+\end{proofs}
+
+The discussion above shows that there is a 1-1, onto correspondence between \{the conjugates of $\alpha$ over $F$ (including $\alpha$)\} and \{isomorphism $\phi$ from $F(\alpha)$ to a subfield of $\bar{F}$ such that $\phi|_F = \text{id}_F$\}.
+
+\par Notation: Let $E \leq \bar{F}$. We let $\text{Emb}(E/F) =$\{isomorphisms $\phi$ from $E$ to subfields of $\bar{F}$ such that $\phi|_F = \text{id}_F\}$.
+We also let $\{E:F\} = |\text{Emb}(E/F)|$.
+Recall that the number of distinct roots of $m_{\alpha, F}(x) = $ separable degree of $m_{\alpha, F}(x)$.
+(If $\text{char} F = 0$, then $m_{\alpha, F}(x)$ is separable.
+If $\text{char} F = p$, then by Prop 38 of Chap 13, $\exists ! k \geq 0$, and a separable $g(x) \in F[x]$ such that $m_{\alpha, F}(x) = g(x^{p^k})$.
+Then separable degree of $m_{\alpha, F}(x)$ is $\deg g$.)
+Moreover, if $g(x) = (x - \beta_1) \cdots (x - \beta_d)$, then
+\[
+	m_{\alpha, F}(x) = g(x^{p^k}) = (x^{p^k} - \beta_1) \cdots (x^{p^k} - \beta_d) = (x^{p^k} - \alpha_1^{p^k}) \cdots (x^{p^k} - \alpha_d^{p^k})
+\]
+\[
+	= \left( (x - \alpha_1) \cdots (x - \alpha_d) \right)^{p^k}
+\]
+where $\alpha_j \in \bar{F}$ satisfy $\alpha_j^{p^k} = \beta_j$.
+$\Rightarrow$ number of distinct roots of $m_{\alpha, F}(x) = \deg g(x) =$ separable degree of $m_{\alpha, F}(x)$.
+Thus, in the case of $E = F(\alpha)$, 
+\[
+	\{F(\alpha):F\} = \deg_s m_{\alpha, F}(x) \leq \deg m_{\alpha, F}(x) = [F(\alpha):F]
+\]
+
+\begin{thm}
+	If $F \leq K \leq E$ are finite extensions, then
+	\[
+		\{E:F\} = \{E:K\}\{K:F\}
+	\]
+\end{thm}
+
+\begin{proof}
+	Skipped.
+\end{proof}
+
+\begin{cor}
+	If $E/F$ is a finite extension, then $\{E:F\} \leq [E:F]$.
+\end{cor}
+
+\begin{dfn}
+	\begin{enumerate}
+		\item[(1)] We say $\alpha \in \bar{F}$ is \textbf{separable} over $F$ if $m_{\alpha, F}(x)$ is separable, i.e. if $\{F(\alpha):F\} = [F(\alpha):F]$.
+
+		\item[(2)] Let $E \leq \bar{F}$.
+			We say $E$ is a \textbf{separable extension} of $F$ if $\forall \alpha \in E$, $\alpha$ is separable over $F$.
+			(In the case $E/F$ is a finite extension, this is equivalent to $\{E:F\} = [E:F]$.)
+
+		\item[(3)] Let $E \leq \bar{F}$.
+			If $\forall \alpha \in E$, $m_{\alpha, F}(x)$ has only 1 distinct root in $\bar{F}$ (i.e. $\alpha$ has only 1 conjugate), then we say $E/F$ is \textbf{purely inseparable}.
+			For example, $F = \mathbb{F}_2(t), E = F(\sqrt{t})$.
+			Then $m_{\sqrt{t}, F}(x) = x^2 - t$ has only 1 distinct root $\Rightarrow \{F(\sqrt{t}):F\} = 1 \Rightarrow F(\sqrt{t})/F$ is purely inseparable.
+			(If $\alpha \in F(\sqrt{t})$ has 2 distinct conjugates over $F$, then $\{F(\alpha):F\} = 2$, which is absurd since we already know $\{F(\alpha):F\} = 1$.)
+	\end{enumerate}
+\end{dfn}
+
+\begin{thm}
+	If $\alpha, \beta \in \bar{F}$ are separable over $F$, then $F(\alpha, \beta)$ is a separable extension of $F$. 
+	In particular, $\alpha \pm \beta, \alpha \beta, \alpha/\beta$ are all separable over $F$.
+\end{thm}
+
+\begin{proofs}
+	We want to show $\{F(\alpha, \beta) :F\} = [F(\alpha, \beta):F]$.
+	We have	
+	\[
+		\{F(\alpha, \beta):F\} = \{ F(\alpha, \beta):F(\alpha)\}\{F(\alpha):F\} = \{ F(\alpha, \beta):F(\alpha)\}[F(\alpha):F]
+	\]
+	So it suffices to show that $\{F(\alpha, \beta:F\} = [F(\alpha, \beta):F]$.
+	Now $\{F(\alpha, \beta) :F(\alpha)\} = \deg_s m_{\beta, F(\alpha)}(x)$ = number of distinct roots of $m_{\beta, F(\alpha)}(x)$.
+	Now $m_{\beta, F(\alpha)}(x) | m_{\beta, F}(x)$.
+	By assumption that $\beta$ is separable over $F$, $m_{\beta, F}(x) = m_{\beta, F(\alpha)}(x)$ has no repeated roots.
+	$\Rightarrow \beta$ is separable over $F(\alpha)$ and $\{F(\alpha, \beta):F(\alpha)\} = [F(\alpha, \beta):F]$.
+\end{proofs}
+
+\begin{cor}
+	Given $E \leq \bar{F}$, the set $E_s = \{\alpha \in \bar{E}: \alpha \text{ is separable over }F\}$ is a subfield of $E$.
+\end{cor}
+
+\begin{dfn}
+	$E_s$ is called the \textbf{separable closure} of $F$ in $E$ and $\deg_s E/F := [E_s:F]$ is called the \textbf{separable degree} of $E$ over $F$, $\deg_i E/F := [E:E_s]$ is the \textbf{inseparable degree}.
+\end{dfn}
+
+\begin{rem}
+	$E/E_s$ is purely inseparable.
+\end{rem}
+
+\begin{dfn}
+	$[E_s:F] = $ \textbf{separable degree} of $E$ over $F$.
+	$[E:E_s] = $ \textbf{inseparable degree} of $E$ over $F$.
+\end{dfn}
+
+\begin{cor}
+	We have
+	\[
+		\left|\text{Emb}(\quot{E}{F})\right| = \{E:F\} = [E_s:F]
+	\]
+\end{cor}
+
+\begin{proof}
+	$\{E:F\} = \{E:E_s\}\{E_s:F\} = 1 \cdot [E_s:F]$.
+\end{proof}
+
+\begin{thm}[Primitive Element Theorem]
+	If $E/F$ is a finite separable extension, then $E/F$ is a simple extension.	
+	i.e. $E = F(\alpha)$ for some $\alpha \in E$.
+\end{thm}
+
+\begin{dfn}
+	The element $\alpha$ in the theorem is called a \textbf{primitive element} in the field extension.
+\end{dfn}
+
+\begin{proofs}
+	If $F$ is a finite field, then so is $E$ by Prop 18 of Chap 9.
+	$E^\times = \langle \alpha \rangle$ for some $\alpha \in E$.
+	Then $E = F(\alpha)$ is a simple extension.
+	Now assume that $|F| = \infty$.
+	It suffices to show that if $\alpha, \beta \in E$, then $\exists \gamma \in F$ such that $F(\gamma) = F(\alpha, \beta)$.
+	(Say $E = F(\alpha_1, ..., \alpha_n)$.
+	Then $F(\alpha_1, \alpha_2) = F(\beta_1) \Rightarrow F(\beta_1, \alpha_3) = F(\beta_2), ...$)\\
+	Let $f(x) = m_{\alpha, F}(x), g(x) = m_{\beta, F}(x)$.
+	Let $\alpha_1, ..., \alpha_n$ be the roots of $f(x)$, and $\beta_1, ..., \beta_n$ be the roots of $g(x)$.
+	Since $|F| = \infty$, $\exists a \in F$ such that $a \neq (\alpha_i - \alpha)/(\beta - \beta_j)$ for any $i, j$.
+	Let $\gamma = \alpha - a \beta$.
+	Consider the polynomial
+	\[
+		h(x) = f(\gamma - ax) \in F(\gamma)
+	\]
+	We have
+	\[
+		h(\beta) = f(\gamma - a \beta) = f(\alpha) = 0
+	\]
+	\[
+		\Rightarrow m_{\beta, F(\gamma)}(x) | h(x) \cdots (*)
+	\]
+	Also, 
+	\[
+		m_{\beta, F(\gamma)}(x) | g(x)
+	\]
+	by the definition of $g(x)$.
+	$\Rightarrow \{\text{the roots of }m_{\beta, F(\gamma)}(x)\} \subseteq \{\beta_1, ..., \beta_n\} \cdots (**)$.
+	\begin{clm}
+		If $\beta_i \neq \beta$, then $h(\beta_i) \neq 0$.
+	\end{clm}
+	Assume that the claim is true.
+	Then for any $\beta_i \neq \beta$, we have $m_{\beta, F(\gamma}(\beta_i) \neq 0 \cdots (***)$.
+	(Since $m_{\beta_i, F(\gamma)}(x) | h(x)$.)
+	Combining $(**)$ and $(***)$, we see that $\beta$ is the only root of $m_{\beta, F(\gamma)}(x)$. 
+	Since $E/F$ is a separable extension, we must have $m_{\beta, F(\gamma}(x) = x - \beta$.
+	$\Rightarrow \beta \in F(\gamma)$.
+	$\Rightarrow \alpha = \gamma - a \beta \in F(\gamma)$.
+	$\Rightarrow F(\alpha, \beta) \subseteq F(\gamma)$.
+	The converse is trivial.
+	$\Rightarrow F(\gamma) = F(\alpha, \beta)$.
+	\begin{proofs}[Proof of the Claim]
+		Assume $\beta_i \neq \beta$.
+		We have $h(\beta_i) = f(\gamma - a \beta_i)$.
+		Recall that the roots of $f$ are $\alpha_1, ..., \alpha_m$.
+		So it suffices to show that $\gamma - a \beta_i \neq \alpha_j$ for any $j$.
+		However, this follows from our choice of $a$.
+		(To see this, 
+		\[
+			a \neq \frac{\alpha_j - \alpha}{\beta - \beta_j} \quad \forall i, j \text{ such that } \beta_i \neq \beta
+		\]
+		\[
+			\Rightarrow a(\beta - \beta_i) \neq \alpha_j - \alpha \quad \forall i, j \text{ such that } \beta_i \neq \beta
+		\]
+		\[
+			\Rightarrow \gamma - a \beta_i \neq \alpha_j \forall i, j \text{ such that } \beta_i \neq \beta
+		\]
+		which gives our claim.)
+	\end{proofs}
+\end{proofs}
+
+Note that in general isomorphisms $\phi$ in $\text{Emb}(E/F)$ may not be composited with since $\phi(E)$ may not be $E$.
+(For example, $E = \mathbb{Q}(\sqrt[3]{2}), F = \mathbb{Q}$.
+We have $\phi_{\sqrt[3]{2}, \sqrt[3]{2} \zeta}: \mathbb{Q}(\sqrt[3]{2}) \to \mathbb{Q}(\sqrt[3]{2} \zeta), \zeta = e^{2 \pi i}{3}$ where $\phi_{\sqrt[3]{2}, \sqrt[3]{2} \zeta} \in \text{Emb}(E/F)$ is defined by $a_0 + a_1 \sqrt[3]{2} + a_2 \sqrt[3]{4} \mapsto a_0 + a_1 \sqrt[3]{2} \zeta + a_2 (\sqrt[3]{2} \zeta)^2$.)
+In order for elements of $\text{Emb}(E/F)$ to composite with each other, we need $\phi(E) = E \quad \forall \phi \in \text{Emb}(E/F)$.
+Now 
+\[
+	\phi(E) = E \quad \forall \phi
+\]
+\[
+	\Leftrightarrow \forall \alpha \in E, \forall \phi, \phi(\alpha) \in E
+\]
+(Recall that $\phi(\alpha)$ are conjugates of $\alpha$ over $F$.) 
+$\Leftrightarrow \forall \alpha \in E$, all the conjugates of $\alpha$ over $F$ are in $E$.
+$\Leftrightarrow E/F$ is a normal extension. 
+(We say $E/F$ is a normal extension if $\forall \alpha \in E$ all the conjugates of $\alpha$ over $F$ are in $E$.)
+$\Leftrightarrow \forall \alpha \in E, m_{\alpha, F}(x)$ splits completely over $E$.
+
+\begin{dfn}
+	If $E/F$ is separable and normal, then we say $E/F$ is a \textbf{Galois extension}.
+	In such a case, we let $\text{Gal}(E/F)$ denote $\text{Aut}(E/F)$ called the \textbf{Galois group} of $E$ over $F$.
+\end{dfn}
+
+\begin{ex}
+	\begin{enumerate}
+		\item[(1)] $\QQ(\sqrt{2})/\QQ$ is Galois. 
+			($\text{char} F = 0 \Rightarrow $ any $E/F$ is separable.
+			Also, $\QQ(\sqrt{2})$ is the splitting field of $x^2 - 2$, so $\QQ(\sqrt{2})/\QQ$ is normal.)
+			
+		\item[(2)] Any quadratic extension (i.e. $[E:F] = 2$) of a field of $\text{char} \neq 2$ is a Galois extension.
+
+		\item[(3)] $\QQ(\sqrt{2}, \sqrt{3})/\QQ$ is Galois since $\QQ(\sqrt{2}, \sqrt{3})$ is the splitting field of $(x^2 - 2)(x^2 - 3)$.
+
+		\item[(4)] $\QQ(\sqrt[3]{2})/\QQ$ is not Galois since $\QQ(\sqrt[3]{2})$ does not contain the other conjugates of $\sqrt[3]{2}$ over $\QQ$. 
+
+		\item[(5)] $\QQ(\sqrt{2})/\QQ$ and $\QQ(\sqrt[4]{2})/\QQ(\sqrt{2})$ are both Galois.
+			(Since $[\QQ(\sqrt[4]{2}:\QQ(\sqrt{2})] = 2$.)
+			But $\QQ(\sqrt[4]{2})/\QQ$ is not Galois since $\QQ(\sqrt[4]{2})$ does not contain the conjugates $\pm \sqrt[4]{2} i$ of $\sqrt[4]{2}$ over $\QQ$.
+	\end{enumerate}
+\end{ex}
+
+\begin{rem}
+	Let $E \leq \bar{F}$, then the following conditions are equivalent.
+	\begin{enumerate}
+		\item[(1)] $E$ is the splitting field of a collection of polynomials in $F[x]$.
+
+		\item[(2)] $\forall \alpha \in E$, the conjugates of $\alpha$ over $F$ are all in $E$. 
+	\end{enumerate}
+\end{rem}
+
+\begin{proofs}
+	\par (2) $\Rightarrow$ (1) Let $I = \{ m_{\alpha, F}(x): \alpha \in E\}$.
+	Then $E$ is the splitting field of polynomials in $I$.
+
+	\par (1) $\Rightarrow$ (2) Assume $E$ is the splitting field of a collection of polynomials $\{f_i(x): i \in I\}$ in $F[x]$.
+	Assume $\alpha \in E$.
+	Let $\beta$ be a root of $m_{\alpha, F}(x) \in \bar{F}$.
+	Let $\phi_{\alpha, \beta}$ be the isomorphism from $F(\alpha)$ to $F(\beta)$ introduced before.
+	Extend $\phi_{\alpha, \beta}$ to an embedding $\psi$ of $E$ into $\bar{F}$. 
+	(c.f. Theorem 27)
+	Now $\psi(E)$ is also a splitting field of $f_i, i \in I$.
+	(Say, $f(x)$ splits into $f(x) = \prod (x - r_j), r_j \in E$.
+	Then $f(x) = \psi(f(x)) = \psi(\prod (x - r_j)) = \prod (x - \psi(r_j))$.
+	So $f(x)$ splits completely over $\psi(E)$.)
+	Now by the uniqueness of a splitting field, we have $\psi(E) = E$.
+	Then $\beta = \phi_{\alpha, \beta}(\alpha) = \psi(\alpha) \in E$, which completes the proof.
+\end{proofs}
+
+\begin{rem}
+	If $E/F$ is Galois, then $|\text{Gal}(E/F)| = [E:F]$.
+\end{rem}
+
+\section*{14.2 Fundamental Theorem of Galois Extension}
+
+\begin{lem}
+	Let $E/F$ be a Galois extension.
+	\begin{enumerate}
+		\item[(1)] For any subset $S$ of $E$, the set 
+			\[
+				\lambda(S) := \{\sigma \in \text{Gal}\left( E/F  \right): \forall a \in S, \sigma(a) = a\}
+			\]
+			is a subgroup of $\text{Gal}(E/F)$.
+
+		\item[(2)] For any subset $A$ of $\text{Gal}(E/F)$, the set 
+			\[
+				\mu(A):= \{a \in E: \sigma(a) = a \quad \forall \sigma \in A\}
+			\]
+			is a subfield of $E$ containing $F$.
+	\end{enumerate}
+\end{lem}
+
 
 \end{document}
 

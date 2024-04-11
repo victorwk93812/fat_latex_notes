@@ -1,0 +1,654 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+\newenvironment{exs}[1][]{%
+  \begin{ex}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ex}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W8-2}
+\author{fat}
+% \date{\today}
+\date{April 11, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W8-2}
+
+Recall: Last time proved
+\begin{thm}
+	Every closed ball in a reflexive space is weakly sequentially compact.
+\end{thm}
+
+\begin{cor}
+	Let $C$ be a nonempty convex subset of a reflexive space $X$.
+	$C$ is weakly sequentiall compact if and only if $C$ is closed and bounded.
+\end{cor}
+
+\begin{proofs}
+	We showed "$\La$".
+	\par "$\Ra$" Suppose that $C$ is weakly sequentially compact.
+	Let $(x_n)$ be a sequence in $C$ such that $x_n \to x$ for some $x \in X$.
+	Want to show $x \in C$, so $C$ is closed.
+	By weak sequential compactness, $\exists$ a subsequence $(x_{n_k})$ of $(x_n)$ which converges weakly to $y \in C$.
+	By the uniqueness of weak limit, $x = y \in C$.
+	Therefore, $C$ is closed.
+	Suppose that $C$ is not bounded.
+	Then $\exists (x_n)$ in $C$ with $\|x_n\| \to \infty$.
+	$\exists$ a weakly convergent subsequence $(x_{n_j})$.
+	But such a sequence is uniformly bounded, contradiction.
+\end{proofs}
+
+\begin{thm}
+	Let $X$ be reflexive and let $C$ be nonempty, closed convex subset of $X$.
+	Then $\forall x \in X, \exists z \in C$ such that
+	\[
+		\|x - z\| = \inf\{ \|x - y\|: y \in C\}
+	\]
+	$z$ might not be unique: $(\RR^2, \|\cdot\|_1)$ is reflexive.
+\end{thm}
+
+\begin{proofs}
+	Let $(y_n)$ be a minimizing sequence.
+	\[
+		\|x - y_n\| \to \inf\{ \|x - y\|: y \in C\} =: d
+	\]
+	$(y_n)$ is bounded:
+	\[
+		\|y_n\| \leq \|x - y_n\| + \|x\| \to d + \|x\|
+	\]
+	So $(y_n)$ has a weakly convergent subsequence $(y_{n_k})$.
+	Call the weak limit $z$.
+	Then $z \in C$ and 
+	\[
+		\|x - z\| < \liminf_{k \to \infty} \|x - y_{n_k}\| = d
+	\]
+	So $z \in C$ minimizes the distance.
+\end{proofs}
+
+\begin{dfn}
+	We call a \textbf{sequence} $(\Lambda_k)$ in $X^*$ \textbf{converges} to $\Lambda$ \textbf{in weak*} if $\Lambda_k x \to \Lambda x \quad \forall x \in X$.
+	We denote this by $\Lambda_k \stackrel{*}{\ru} \Lambda$.
+	(This is a weaker requirement than weak convergence in $X^*$ since $\Lambda_k x = \tilde{x} \Lambda_k$.)
+\end{dfn}
+
+Basic properties:
+Let $X$ be a normed space, and let $\Lambda_k$. 
+\begin{itemize}
+	\item $\|\Lambda\| \leq \liminf_{k \to \infty} \|\Lambda_k\|$.
+		
+	\item If $X$ is a Banach space then $\exists C > 0$ such that $\|\Lambda_k\| \leq C \quad \forall k$.
+		\begin{proof}
+			Uniform boundedness principle.
+		\end{proof}
+
+	\item If $X$ is a Banach space and $x_k \to x$ in $X$ then 
+		\[
+			\Lambda_k x_k \to \Lambda x
+		\]
+
+		\begin{proofs}
+			\[
+				|\Lambda_k x_k - \Lambda x| \leq |\Lambda_k x_k - \Lambda_k x| + |\Lambda_k x - \Lambda| \leq \|\Lambda_k\|\|x_k - x\| + |\Lambda_k x - \Lambda x|
+			\]
+			Since $|\Lambda_k x - \Lambda x| \to 0$ and $\|x_k - x\| \to 0$, $\|\Lambda_k\| \leq C$, this must converge to 0.
+
+		\end{proofs}
+\end{itemize}
+
+\section{Topology Induced by Functionals}
+\noindent $X$: nonempty set.\\
+$\F$: A collection of functions from $X$ to $\RR$.\\
+$\B$: Collection of all finite intersections of unions of sets of the form $f^{-1}((a, b))$, where $a, b \in \RR, f \in \F$.\\
+Can check that $\B$ is a topological basis.
+Define $\tau = \tau(X, \F)$ to be the topology corresponding to $\B$.
+By construction, every $f \in \F$ is continuous in $(X, \tau)$.
+In fact, if $\T$ is a topology on $X$ such that every function in $\F$ is continuous with respect to $\T$, then $\tau \subseteq \T$.
+We call $\tau$ the \textbf{induced topology by} $\bm{f}$.
+
+\begin{prop}
+	If $\F$ separates points then $(X, \tau(X, \F))$ is Hausdorff.
+\end{prop}
+
+\begin{proofs}
+	Let $x, y \in X$ be distinct.
+	$\F$ separetes points $\Ra \exists f \in \F$ such that $f(x) \neq f(y)$.
+	WLOG assume $f(x) < f(y)$.
+	$\exists \alpha \in \RR$ such that $f(x) < \alpha < f(y)$.
+	Consider $x \in \{ z: f(z) < \alpha\}$ and $y \in \{z: f(z) > \alpha\}$.
+	The sets are open and disjoint, so $(X, \tau(X, \F))$ is Hausdorff.
+\end{proofs}
+
+Now we assume that $X$ is a vector space and $\F \subseteq L(X, \RR)$.
+
+\begin{prop}
+	Suppose that $X$ is a vector space and $\F \subseteq L(X, \RR)$.
+	Let $\U \subseteq X$ be nonempty.
+	\begin{enumerate}
+		\item[(a)] $\U$ is open if and only if $\forall x_0 \in \U, \exists V$ of the form 
+			\[
+				V = \{x: |\Lambda_j x| < \alpha \text{ for all } j = 1, ..., N\}
+			\]
+			for some $\Lambda_j \in \F$ and $\alpha > 0$ such that $x_0 + V \subseteq \U$.
+			$V$ here is called a $\bm{\tau}$\textbf{-open set} (centered at 0).
+
+		\item[(b)] $\U$ is open $\Lra x + \U$ is open $\forall x \in X$.
+
+		\item[(c)] $\U$ is open $\Lra \lambda \U$ is open $\forall \lambda \neq 0$.
+	\end{enumerate}
+	(b), (c) say that translations and dilations are homeomorphisms with respect to $\tau(X, \F)$.
+\end{prop}
+
+\begin{proofs}
+	\begin{enumerate}
+		\item[(a)] "$\La$" is obvious.
+			\par "$\Ra$" Suppose that $\U$ is open.
+			Let $x_0 \in \U$.
+			By definition, $\exists$ a set of the form $W = \{x: \Lambda_j x \in G_j \text{ for all } j = 1, ..., N\}$ such that $x_0 \in W \subseteq \U$, where $G_j$ are open in $\RR$. 
+			May assume that $G_j = (a_j, b_j)$.
+			If $x \in W$, then 
+			\[
+				\Lambda_j x - \Lambda_j x_0 \in (a_j - \Lambda_j x_0, b_j - \Lambda_j x_0)
+			\]
+			\[
+				\Ra x - x_0 \in \Lambda_j^{-1}((a_j - \Lambda_j x_0, b_j - \Lambda_j x_0))
+			\]
+			Note that $a_j - \Lambda_j x_0 < 0$ and $b_j - \Lambda_j x_0 > 0$.
+			We take $\alpha = \min\{ \Lambda_j x_0 - a_j, b_j - \Lambda_j x_0 \} > 0$.
+			Then we can see that $V$ is a $\tau$-open set such that $x_0 + V \subseteq \U$.
+
+		\item[(b)] "$\La$" is obvious.
+			\par "$\Ra$" Suppose that $\U$ is open, and fix $x \in X$.
+			Let $x_0 \in \U$.
+			By (a), $\exists V$ of the above form such that $x_0 + V \subseteq \U$.
+			$\Ra x_0 + (x + V) \subseteq x + \U$.
+
+		\item[(c)] Similar to (b)
+	\end{enumerate}
+\end{proofs}
+
+\begin{prop}
+	Let $\Lambda$ be a linear functional on $(X, \tau(X, \F))$, where $\F \subseteq L(X, \RR)$, $X$ is a vector space.
+	\begin{enumerate}
+		\item[(a)] $\Lambda$ is continuous $\Lra \Lambda$ is continuous at one point.
+
+		\item[(b)] $\Lambda$ is continuous $\Lra \Lambda$ is bounded on a $\tau$-ball.
+	\end{enumerate}
+\end{prop}
+
+\begin{proofs}
+	\begin{enumerate}
+		\item[(a)] Suppose that $\Lambda$ is continuous at $x_0 \in X$.
+			Let $x \in X$ be arbitrary.
+			Want: $\Lambda$ is continuous at $x$ (for all neighborhood of $\Lambda x$, its preimage contains a neighborhood of $x$.)
+			$\Lambda$ continuous at $x_0 \Ra \forall$ open interval $(a_0, b_0) \ni \Lambda x_0, \Lambda^{-1}((a_0, b_0))$ contains a $\tau$-open set $\U \ni x_0$.
+			Let $(a, b)$ be any open interval containing $\Lambda x$.
+			$(a_0, b_0) := (a, b) - \Lambda x + \Lambda x_0$ is an open interval containing $\Lambda x_0$.
+			By linearity, $\Lambda^{-1}((a_0, b_0)) = \Lambda^{-1}((a, b)) + x_0 - x$ contains a $\tau$-open set $\U \ni x_0$.
+			$\Ra \Lambda^{-1}((a, b))$ contains the open set $\U - x_0 + x \ni x$.
+			$\Ra \Lambda$ is continuous at $x$.
+
+		\item[(b)] Suppose that $\Lambda$ is continuous.
+			Then $\Lambda^{-1}((-1, 1))$ is $\tau$-open.
+			$O \in \Lambda^{-1}((-1, 1)) \Ra \Lambda^{-1}((-1, 1))$ contains a $\tau$-ball $V$ centered at 0.
+			$\Lambda(V) \subseteq (-1, 1)$.
+			So $\Lambda$ is bounded on $V$.
+			
+			\par Conversely, suppose that $V$ is a $\tau$-ball and $\Lambda(V) \subseteq (-M, M)$ for some $M > 0$.
+			It suffices to show $\Lambda$ is continuous at 0.
+			Let $(a, b) \ni 0$.
+			Pick $x_0 \in \Lambda^{-1}((a, b))$.
+			$\exists \epsilon > 0$ such that $(\Lambda x_0 - \epsilon, \Lambda x_0 + \epsilon) \subseteq (a, b)$.
+			Let $W = V\epsilon/(2M) $.
+			Can check that $x_0 + W$ is open, $x_0 \in x_0 + W \subseteq \Lambda^{-1}((a, b))$.
+			Thus $\Lambda^{-1}((a, b))$ is open.
+	\end{enumerate}
+\end{proofs}
+
+\begin{prop}
+	$X$ a vector space, $\F \subseteq L(X, \RR)$.
+	In $(X, \tau(X, \F))$, the collection of all continuous linear functionals is given by $\F$ if and only if $\F$ is a subspace of $L(X, \RR)$.
+\end{prop}
+
+\begin{proofs}
+	"$\Ra$" Exercise.
+	\par "$\La$" Let $\Lambda$ be continuous in $\tau(X, \F)$.
+	$\exists$ a $\tau$-ball $V$ such that
+	\[
+		V = \{ x: \Lambda_j x \in (-\alpha, \alpha) \quad \forall j = 1, ... K\} \subseteq \Lambda^{-1}((-1, 1))
+	\]
+	\begin{clm}
+		$\Lambda$ vanishes on $\cap_{j = 1}^K N(\Lambda_j)$.
+	\end{clm}
+
+	\begin{proofs}
+		Let $z \in \cap_{j = 1}^K N(\Lambda_j)$.
+		Then 
+		\[
+			\Lambda_j z = 0 \quad \forall j = 1, ..., K
+		\]
+		\[
+			\Ra \Lambda_j(\lambda z) = 0 \quad \forall j = 1, ..., K , \forall \lambda \in \RR
+		\]
+		\[
+			\Ra \lambda z \in V \quad \forall \lambda \in \RR
+		\]
+		\[
+			|\lambda||\Lambda z| = |\Lambda(\lambda z)| < 1 \quad \forall \lambda \in \RR
+		\]
+		$\Ra \Lambda z = 0$.
+	\end{proofs}
+	Claim $\Ra \Lambda$ is a linear combination of $\Lambda_1, ..., \Lambda_k$. (linear algebra!)
+	$\F$ is a subspace $\Ra \Lambda \in \F$.
+\end{proofs}
+
+\begin{lem}
+	$X$ vector space, $\F \subseteq L(X, \RR)$.
+	Let $C$ be an open convex set in $(X, \tau(X, \F))$ containing $O$ and let $p_C$ be the gauge of $C$. ($p_C(x) = \inf\{\alpha > 0: x \in \alpha C\}$.)
+	Then 
+	\[
+		C = \{x: p_C(x) < 1\}
+	\]
+\end{lem}
+
+\begin{rem}
+	$C$ is open, $O \in C \Ra C$ contains a $\tau$-ball.
+	$\forall x \in C, \exists \epsilon > 0$ such that $\epsilon x \in $ this $\tau$-ball $\subseteq C$.
+	So $p_C(x) < \infty \quad \forall x \in X$.
+\end{rem}
+
+\begin{proofs}
+	\begin{clm}
+		$\{x:p_C(x) < 1\} \subseteq C$ whenever $O \in C$, $C$ convex.
+	\end{clm}
+
+	\begin{proofs}
+		If $p_C(x) < 1, \exists \alpha \in (0, 1)$ such that $x \in \alpha C$.
+		By convexity, $x = (1 - \alpha) \cdot 0 + \alpha \cdot (x/\alpha) \in C$.
+	\end{proofs}
+	Now let $x \in C$.
+	Since $C$ is open, $\exists$ a $\tau$-ball $V$ such that $x + V \subseteq C$.
+	Since $V$ is a $\tau$-ball, $\exists \epsilon > 0$ such that $\epsilon x \in V$.
+	$\Ra x + \epsilon x \in C$.
+	$\Ra p_C(x) \leq 1/(1 + \epsilon) < 1$.
+\end{proofs}
+
+\begin{thm}
+	Let $A, B$ be disjoint nonempty convex sets in $(X, \tau(X, \F))$, where $X$ is a vector space, $\F \subseteq L(X, \RR)$.
+	\begin{enumerate}
+		\item[(a)] When $A$ is open, $\exists \tau$-continuous linear function $\Lambda$ such that $\Lambda x < \Lambda y \quad \forall x \in A, y \in B$.
+			
+		\item[(b)] When $A$ is compact and $B$ is closed, $\exists$ a $\tau$-continuous linear functional $\Lambda$ and $\alpha, \beta \in \RR$ such that $\Lambda x < \alpha < \beta < \Lambda y \quad \forall x \in A, y \in B$.
+	\end{enumerate}
+\end{thm}
+
+\begin{proofs}
+	\begin{enumerate}
+		\item[(a)] Consider $C = A - B + x_0$, where $x_0 \in B - A$.
+			Then 
+			\begin{itemize}
+				\item $C$ is convex.
+
+				\item $C$ is open, because $C = \cup_{x \in B} (A - x + x_0)$.
+
+				\item $O \in C$.
+			\end{itemize}
+			Define $\Lambda_0$ on $\text{span}(\{x_0\})$ by $\Lambda_0 (\alpha x_0) = \alpha$.
+			\begin{clm}
+				$\Lambda_0 \leq p_C$ on $\text{span}(\{x_0\})$.
+			\end{clm}
+			
+			\begin{proofs}
+				Nothing to prove if $\alpha \leq 0$.
+				\par If $\alpha > 0$, since $x_0 \notin C$, by lemma, $p_C(x_0) \geq 1$.
+				$\Ra \alpha > 0, p_C(\alpha x_0) = \alpha p_C(x_0) \geq \alpha = \Lambda_0(\alpha x_0)$.
+				By Hahn-Banach, $\exists \Lambda \in L(X, \RR)$ of $\Lambda_0$ such that $\Lambda \leq p_C$ on $X$ $\forall x \in A, y \in B$, then
+				\[
+					\Lambda(x - y + x_0) \leq p_C(x - y + x_0) < 1 = \Lambda_0 (x_0) = \Lambda x_0
+				\]
+				$\Ra \Lambda x < \Lambda y$.
+			\end{proofs}
+			We need to show that $\Lambda$ is continuous.
+			Let $V$ be a $\tau$-ball in $C$.
+			$x \in V \Ra -x \in V$.
+			So 
+			\[
+				|\Lambda x| \leq p_C(x) < 1 \quad \forall x \in V
+			\]
+			$\Lambda$ is bounded on the $\tau$-ball $V$.
+			$\Ra \Lambda$ is continuous!.
+
+	\end{enumerate}
+\end{proofs}
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

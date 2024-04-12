@@ -319,17 +319,210 @@
 
 \linespread{1.5}
 \pagestyle{fancy}
-\title{Template}
+\title{Intro to Algebra 1 W1-2}
 \author{fat}
 % \date{\today}
-\date{April 1, 2024}
+\date{Septempber 8, 2023}
 \begin{document}
 \maketitle
 \thispagestyle{fancy}
 \renewcommand{\footrulewidth}{0.4pt}
 \cfoot{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
-\fancyhead[L]{Template}
+\fancyhead[L]{Intro to Algebra 1 W1-2}
+
+\section*{Introduction to Groups}
+
+\section*{1.1 Basic Axioms and Examples}
+
+\begin{dfn}
+	A \textbf{binary operation} $*$ on a set $G$ is a function $*: G \times G \to G$.
+	Write $a * b$ for $*(a, b)$.
+	An \textbf{associative} binary operation satisfies 
+	\[
+		(a * b) * c = a * (b * c)
+	\]
+	We say $a, b \in G$ \textbf{commute} if 
+	\[
+		a * b = b * a
+	\]
+	If $\forall a, b \in G, a * b = b * a$, then $*$ is \textbf{commutative}.
+\end{dfn}
+
+\begin{ex}
+	\begin{enumerate}
+		\item[(1)] $+, \times$ on $\ZZ, \QQ, \RR, \CC$ are associative and commutative.
+
+		\item[(2)] $\times$ on $M(n, \ZZ)$ ($:= \{n \times n \text{ matrices over }\ZZ\}$) is associative bu not commutative.
+
+		\item[(3)] $-$ on $\NN, \RR^+$ is not a binary operation.
+
+		\item[(4)] On $M(n, \ZZ)$ the binary operation
+			\[
+				[A, B]:= AB - BA
+			\]
+			is neither associative nor commutative.
+	\end{enumerate}
+\end{ex}
+
+\begin{dfn}
+	\begin{enumerate}
+		\item[(1)] Assume that a binary operation $*$ on $G$ satisfies 
+			\begin{enumerate}
+				\item[($\GG 1$)] $*$ is associative.
+
+				\item[($\GG 2$)] $\exists e \in G$ the \textbf{identity element} of $G$ such that
+					\[
+						a * e = e * a = a \quad \forall a \in G
+					\]
+
+				\item[($\GG 3$)] $\forall a \in G \exists a^{-1} \in G$ the \textbf{inverse} of $a$ such that
+					\[
+						a * a^{-1} = a^{-1} * a = 3
+					\]
+			\end{enumerate}
+			Then $(G, *)$ is a \textbf{group} of $G$ is a group under $*$.
+
+		\item[(2)] If in addition, $*$ is commutative, then $G$ is an \textbf{abelian group}.
+	\end{enumerate}
+\end{dfn}
+
+\begin{ex}
+	\begin{enumerate}
+		\item[(1)] $\ZZ, \QQ, \RR, \CC$ are abelian under $+$ with $e = 0$ and $a^{-1} = -a$.
+
+		\item[(2)] $\ZZ, \QQ, \RR, \CC$ are not groups under $*$ since not every element has an inverse.
+
+		\item[(3)] For $R = \ZZ, \QQ, \RR, \CC$, let $R^\times = \{r \in R: r \neq 0\}$.
+			Then $\QQ^\times, \RR^\times, \CC^\times$ are groups under $\times$ with $e = 1, a^{-1} = a^{-1}$.
+
+		\item[(4)] $M(n, \QQ)$ is a group under $+$.
+
+		\item[(5)] Let $\bm{GL(n, \RR)} := \{A \in M(n, \RR): A \text{ is invertible}\}$ be the \textbf{general linear group}.
+			Then $GL(n, \RR)$ is a group under $\times$.
+			Check:
+			\begin{enumerate}
+				\item[(1)] Closed: $A, B \in GL(n, \RR)$, then $AB \in GL(n, \RR)$.
+
+				\item[(2)] Associative.
+
+				\item[(3)] $I_n$ is the identity.
+
+				\item[(4)] $A$ is invertible $\Ra \forall A \in GL(n, \RR), \exists A^{-1} \in GL(n, \RR)$ such that $A A^{-1} = A^{-1} A = I_n$.
+			\end{enumerate}
+			
+		\item[(6)] Let $SL(n, \RR) := \{A \in GL(n, \RR): \det A = 1\}$.
+			Then $(SL(n, \RR), \times)$ is a group.
+
+		\item[(7)] $\ZZ/n \ZZ$ is a group under $+$.
+			\begin{enumerate}
+				\item[($\GG 1$)] Indeed $(\overline{a} + \overline{b}) + \overline{c} = \overline{a + b} + \overline{c} = \overline{a + b + c} = \overline{a} + (\overline{b} + \overline{c}$)
+
+				\item[($\GG 2$)] $\overline{0}$ is an identity element.
+
+				\item[($\GG 3$)] Inverse of $\overline{a}$ is $\overline{-a}$.
+			\end{enumerate}
+
+		\item[(8)] $\ZZ/n \ZZ$ is not a group under $\cdot$, but 
+			\[
+				(\ZZ, n \ZZ)^\times := \{\overline{a} \in \ZZ/n \ZZ: \exists \overline{c} \in \ZZ/n \ZZ \text{ such that }\overline{ac} = \overline{1} \}
+			\]
+			is a group under $\cdot$.
+	\end{enumerate}
+\end{ex}
+
+\begin{prop}[Proposition 1]
+	If $G$ is a group under $*$, then
+	\begin{enumerate}
+		\item[(1)] The identity of $G$ is unique.
+
+		\item[(2)] For each $a \in G, a^{-1}$ is unique.
+			
+		\item[(3)] $(a^{-1})^{-1} = a \quad \forall a \in G$.
+
+		\item[(4)] $(a * b)^{-1} = b^{-1} * a^{-1}$
+
+		\item[(5)] For any $a_1, ..., a_n \in G$, $a_1 * a_2 * \cdots * a_n$ doesn't depend on how we bracket it.
+	\end{enumerate}
+\end{prop}
+
+\begin{proofs}
+	\begin{enumerate}
+		\item[(1)] Assume that $e, e'$ are both identities, then
+			\[
+				e = e * e' = e'
+			\]
+
+		\item[(2)] Let $a \in G$ and assume $b, c \in G$ both satisty 
+			\[
+				b * a = a * b = c * a = a * c = e
+			\]
+			then 
+			\[
+				b = b * e = b * (a * c) = (b * a) * c = e * c = e
+			\]
+			
+		\item[(3)] $a * a^{-1} = a^{-1} * a = e$, which means $a = (a^{-1})^{-1}$ by (2)
+
+		\item[(4)] $(a * b) * (b^{-1} * a^{-1}) = (b^{-1} * a^{-1}) * (a * b) = e$, thus $(a * b)^{-1} = b^{-1} * a^{-1}$.
+
+		\item[(5)] Skipped.
+	\end{enumerate}
+\end{proofs}
+
+Convention: Denote $\cdot$ by $*$ for simplification.
+Furthermore if no confusion we will write $ab$ for $a \cdot b$.
+Also for $n \in \NN, a \in G$, let
+\[
+	a^n = a \cdot a \cdots a
+\]
+denote multiplying $a$ $n$ times and 
+\[
+	a^{-n} = (a^{-1})^n
+\]
+By conevntion,  $a^0 = e$.
+
+\begin{prop}[Proposition 2]
+	Le $G$ be a group, then the left and right cancellation laws holds. 
+	i.e. $ab = ac \Ra b = c, ba = ca \Ra b = c$.
+	Consequently, given $a, b \in G$, the equations $ax = b$ and $ya = b$ have unique solutions $x = a^{-1} b$ and $y = a b^{-1}$.
+\end{prop}
+
+\begin{dfn}
+	Let $G$ be a group under $*$.
+	\begin{enumerate}
+		\item[(1)] If $H$ is a subset of $G$ such that $ab \in H \quad \forall a, b \in H$, then we say $H$ is \textbf{closed under } $\bm{*}$.
+
+		\item[(2)] If $H$ is a subset of $G$ such that $H$ is a group under $*$, then $H$ is a \textbf{subgroup} of $G$.
+			This is equivalent to 
+			\begin{enumerate}
+				\item[(i)] $H$ is closed under $*$
+
+				\item[(ii)] $e \in H$
+
+				\item[(iii)] $\forall a \in H, a^{-1} \in H$
+			\end{enumerate}
+			$\bm{H \leq G}$ denotes $H$ is a subgroup of $G$.
+			$\bm{H < G}$ means $H$ is a \textbf{proper subgroup} of $G$.
+	\end{enumerate}
+\end{dfn}
+
+\begin{exs}
+	\begin{enumerate}
+		\item[(1)] Under $+$, $\ZZ < \QQ < \RR < \CC$.
+
+		\item[(2)] $(\QQ^\times, \times)$ is not a subgroup of $(\QQ, +)$.
+
+		\item[(3)] Let $x \in G$, then the set $\bracket{x} := \{x^n: n \in \ZZ\}$ is a subgroup of $G$.
+	\end{enumerate}
+\end{exs}
+
+
+
+
+
+
+
 
 
 

@@ -499,9 +499,9 @@ $x_n \to x \Leftrightarrow \|x_n - x \| \to 0$ is called \textbf{strong converge
 		\begin{proofs}
 			Pick $\Lambda_0 \in X^*$ such that $\Lambda_0 x = \|x\|$ and $\|\Lambda_0\| = 1$.
 			\[
-				\|x\| = \Lambda_0 x = |\Lambda_0 x| \leq |\Lambda_0 (x - x_n)| + |\Lambda_0 x_n| \leq \|\Lambda_0 \| \|x_n \| = \|x_n\|
+				\|x\| = \Lambda_0 x = |\Lambda_0 x| \leq |\Lambda_0 (x - x_n)| + |\Lambda_0 x_n| \leq \epsilon + \|\Lambda_0 \| \|x_n \| = \epsilon + \|x_n\|
 			\]
-			$\Ra \|x\| \leq \liminf_{n \to \infty} \|x_n\|$.
+			where $\epsilon \to 0$ as $n \to \infty$.$\Ra \|x\| \leq \liminf_{n \to \infty} \|x_n\|$.
 		\end{proofs}
 
 	\item If $A \subseteq X$, the \textbf{convex hull} of $A$ is the smallest convex set that contains $A$.

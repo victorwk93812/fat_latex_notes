@@ -490,7 +490,7 @@ We will need the Hahn-Banach theorem.
 \end{thm}
 
 \begin{lem}[One-step extension]
-	Let $\Lambda \in L(Y, \mathbb{R})$ s.t. $\Lambda x \leq p(x) \sfa x \in Y$, ans let $x_0 \in X \setminus Y$. $\exists$ an extension $\Lambda_1$ of $\Lambda$ on $Y' =$ the space spanned by $x_0$ and $Y$ s.t. $\Lambda_1 x \leq p(x) \sfa x \in Y'$.
+	Let $\Lambda \in L(Y, \mathbb{R})$ s.t. $\Lambda x \leq p(x) \sfa x \in Y$, and let $x_0 \in X \setminus Y$. $\exists$ an extension $\Lambda_1$ of $\Lambda$ on $Y' =$ the space spanned by $x_0$ and $Y$ s.t. $\Lambda_1 x \leq p(x) \sfa x \in Y'$.
 \end{lem}
 
 \begin{proofs}
@@ -531,21 +531,22 @@ We will need the Hahn-Banach theorem.
 			\Lambda_1 (y \pm c x_0) = \Lambda y \pm c \Lambda_1x_0
 		\]
 		\[
-			= c\left( \Lambda \left(\frac{y}{c} \pm \Lambda_1 x_0 \right) \right) = c\left(\Lambda \left(\frac{y}{c} \pm x_0\right) \right) \leq c p\left(\frac{y}{c} \pm x_0\right) = p(y \pm c x_0)
-		\]
-		Remains to show $\alpha \leq \beta$.
-		Only need to show 
-		\[
-			\Lambda z - p(z - x_0) \leq p(y + x_0) - \Lambda y \sfa y, z \in Y
-		\]
-		\[
-			\Leftrightarrow \Lambda (y + z) \leq p (y + x_0) + p(z - x_0)
-		\]
-		$y + z \in Y$
-		\[
-			\Lambda (y + z) \leq p (y + z) = (y + x_0 + z - x_0) \leq p(y + x_0) + p(z - x_0)
+			= c\left( \Lambda \left(\frac{y}{c} \pm \Lambda_1 x_0 \right) \right) = c\left(\Lambda_1 \left(\frac{y}{c} \pm x_0\right) \right) \leq c p\left(\frac{y}{c} \pm x_0\right) = p(y \pm c x_0)
 		\]
 	\end{proofs}
+	Remains to show $\alpha \leq \beta$.
+	Only need to show 
+	\[
+		\Lambda z - p(z - x_0) \leq p(y + x_0) - \Lambda y \sfa y, z \in Y
+	\]
+	\[
+		\Leftrightarrow \Lambda (y + z) \leq p (y + x_0) + p(z - x_0)
+	\]
+	by definition, $\forall y + z \in Y$, we have
+	\[
+		\Lambda (y + z) \leq p (y + z) = (y + x_0 + z - x_0) \leq p(y + x_0) + p(z - x_0)
+	\]
+	which completes the proof. 
 
 \end{proofs}
 

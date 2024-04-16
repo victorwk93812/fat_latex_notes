@@ -1,0 +1,593 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+\newenvironment{exs}[1][]{%
+  \begin{ex}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ex}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+\newcommand{\bracket}[1]{\langle #1 \rangle}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W9-1}
+\author{fat}
+% \date{\today}
+\date{April 16, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W9-1}
+
+\noindent Last Time:
+\begin{thm}
+	Let $A, B$ be disjoint nonempty convex sets in $(X, \tau(X, \F))$ ($X$ vector space, $\F \subseteq L(X, \RR)$.)
+	\begin{enumerate}
+		\item[(a)] When $A$ open, $\exists \tau$-continuous $\lambda \in L(X, \RR)$ such that
+			\[
+				\Lambda x < \Lambda y \quad \forall x \in A, \quad \forall y \in B
+			\]
+
+		\item[(b)] When $A$ is compact and $B$ is closed, $\exists \tau$-continuous $\lambda \in L(X, \RR), \alpha, \beta \in \RR$ such that
+			\[
+				\Lambda x < \alpha < \beta < \Lambda y \quad \forall x \in A,, \quad \forall y \in B
+			\]
+	\end{enumerate}
+\end{thm}
+
+\begin{proofs}[Proof of (b)]
+	\begin{clm}
+		$\exists$ open set $W$ such that $A + W$ is open convex and is disjoint from $B$.
+	\end{clm}
+
+	\begin{proofs}
+		Will use a compactness argument.
+		For each $x \in A$, since $A \cap B = \phi$ and $B$ is closed, $\exists V_x = \{y: |\Lambda_j y| < \gamma_x \quad \forall j = 1, ..., N\}$, $\gamma_x > 0$ such that $W_x := x + V_x$ is disjoint from $B$.
+		$(W_x)_{x \in A}$ forms an open cover for $A$.
+		By compactness, $\exists$ a finite subcover $(W_{x_k})_{k = 1, ..., m}$, we write $W_{x_l} = \{y: |\Lambda_{j_l} y| < \gamma_{x_l} \quad \forall l = 1, ..., N(l)\}$.
+		Let 
+		\[
+			\gamma = \min\{\gamma_{x_1}, ..., \gamma_{x_m}\}, \quad W = \{y: |\Lambda_{j_k} y| < \gamma \quad \forall j_k\}
+		\]
+		Check: $A + W$ is open convex, $A + W$ is disjoint from $B$.
+	\end{proofs}
+	By (a), $\exists \tau$-continuous $\Lambda \in L(X, \RR)$ such that
+	\[
+		\Lambda x < \Lambda y \quad \forall x \in A + W, \quad \forall y \in B
+	\]
+	Also, a nonzero linear functional is an open map (check!).
+	$\Ra \Lambda(A + W)$ is open in $\RR$.
+	$\Lambda(A)$ is compact.
+	So we can find $\alpha, \beta$ such that
+	\[
+		\Lambda x < \alpha < \beta < \Lambda y \quad \forall x \in A, \quad \forall y \in B
+	\]
+\end{proofs}
+
+\section{Weak and Weak$^{*}$-Topologies}
+
+$X$: normed space.
+The topology $\tau(X, X^*)$ is called the weak topology of $X$.
+By Hahn-Banach, weak topology is Hausdorff.
+This weak topology is much weaker than the norm topology if $X$ is infinite dimensional.
+
+\begin{prop}
+	Let $X$ be an infinite dimensional normed space.
+	Every weakly open set conatin an infinite dimensional subspace of $X$.
+\end{prop}
+
+\begin{proofs}
+	Every weakly open set contains a weak ball (a $\tau(X, X^*)$-ball) $V$, we prove the result for $V = \{x: |\Lambda_j x| < \alpha \quad \forall j = 1, ..., N\}$.
+	Consider $\Phi: X \to \RR^N$ defined by 
+	\[
+		\Phi x = (\Lambda_1 x, ..., \Lambda_N x)
+	\]
+	$N(\Phi)$ is infinite dimensional, $N(\Phi) \subseteq V$.
+\end{proofs}
+
+\begin{prop}
+	The weak topology is not metrizable if $X$ is an infinite dimensional normed space.
+\end{prop}
+
+\begin{dfn}
+	$\B$ is a \textbf{local basis} for $(X, \T)$ at $x_0$ if 
+	\begin{enumerate}
+		\item[(a)] All $B \in \B$ is open and contains $x_0$
+
+		\item[(b)] $\forall$ open neighborhood $\U$ of $x_0, \exists B \in \B$ such that $B \subseteq \U$.
+	\end{enumerate}
+\end{dfn}
+
+Fact: The metric topology has a countable local basis
+\[
+	\left\{ \left\{ x: d(x, x_0) < \frac{1}{n} \right\}: n \geq 1 \right\}
+\]
+
+\begin{proofs}[Proof of Proposition]
+	Suppose that the weak topology comes from a metric $d$.
+	Then $\exists$ a countable local basis at $0$ consisting of weak balls $V_n = \{x: |\lambda_j^{(n)}x| < \alpha_n \quad \forall j = 1, ..., K(n)\}, n \geq 1$.
+	$(\Lambda_j^{(n)})$ forms a countable set in $X^*$.
+	$X^*$ is a Banach space.
+	Recall that every Hamel basis of $X^*$(a Banach space) is uncountable (by Baire-category in some homework last semester).
+	So $\exists \Lambda \in X^*$ such that $\Lambda$ is linearly independent of $\Lambda_j^{(n)}$.
+	Consider the open set $\U = \{x: |\Lambda x| < 1\}$.
+	$\U$ must contain some $V_{n_0}$.
+	$\Ra \Lambda$ vanishes on $\cap_{j = 1}^{K(n_0)} N(\Lambda_j^{(n_0)})$.
+	$\Ra \Lambda$ is a linear combination of $\Lambda_j^{(n_0)}$, a contradiction!
+	So the weak topology is not metrizable.
+\end{proofs}
+
+\begin{prop}
+	A convex set in a normed space $X$ is weakly closed if and only if it is norm-closed.
+\end{prop}
+
+\begin{proofs}
+	Weakly closed $\Ra$ Norm-closed.
+
+	\par Suppose that $C$ is norm-closed and convex.
+	Will show: $X \setminus C$ is weakly open.
+	Let $x \in X \setminus C$.
+	$\{x\}$ is compact.
+	By the separation theorem, $\exists \Lambda \in X^*$ and $\alpha \in \RR$ such that
+	\[
+		\Lambda x < \alpha < \Lambda y \quad \forall y \in C
+	\]
+	The $\tau$ ball $V = \{z: \Lambda z < \alpha\}$ is disjoint from $C$.
+	$x \in V \Ra X\setminus C$ is weakly open.
+\end{proofs}
+
+\begin{dfn}
+	Let $X$ be a normed space.
+	The \textbf{weak$^{\bm{*}}$-topology on $X^*$} is given by $\tau(X^*, J(X))$, where $J: X \to X^{**}$ is the canonical identification.
+	Again, the weak$^*$-topology is Hausdorff.
+	\textbf{Weak$^{\bm{*}}$-balls} are of the form
+	\[
+		V = \{\Lambda: |\Lambda x_j| < \alpha \quad \forall j = 1, ..., N\}
+	\]
+	where $N \geq 1, \alpha > 0, x_j \in X$.
+\end{dfn}
+
+\noindent Weak topology on $X$: Weakest topology on $X$ such that all bounded linear functionals are continuous.\\
+Weak$^*$-topology on $X^*$: Weakest topology on $X^*$ such that all the evaluation maps are continuous.\\
+Can also talk about weak topology on $X^*$.\\
+Weak topology on $X^*$: Weakest topology on $X^*$ such that all bounded linear functionals in $X^{**}$ are continuous, which is a stronger requirement than in the weak$^*$-topology.
+
+\par In general, on $X^*$, weak$^*$-topology is weaker than the weak topology.
+
+\begin{thm}[Banach-Alaoglu]
+	A closed ball in $X^*$ is weak$^*$-compact.
+\end{thm}
+
+\begin{proofs}
+	We will prove that $B = \overline{B(0, 1)}$ in $X^*$ is weak$^*$-compact.
+	Consider the product space
+	\[
+		Y = \prod_{x \in X} [-\|x\|, \|x\|]
+	\]
+	Then $Y$ is compact by Tychonoff's theorem.
+	Define $\Phi: B \to Y$ by $\Phi(\Lambda) = (\Lambda x)_{x \in X}$.
+	(Note that this is well-defined since $\|\Lambda\| \leq 1$, $|\Lambda x| \leq \|x\|$.)
+	Recall: The product topology is generated by sets of the form
+	\[
+		\{z \in Y: |z_{x_j} - y_{x_j}| < \alpha \quad \forall j = 1, ..., N\}
+	\]
+	where $N \geq 1, x_j \in X, \alpha > 0$.
+	The topology induced on $B$ by the product topology on $Y$ is exactly the weakest topology on $B$ that makes all $\Lambda \mapsto \Lambda x$ continuous $\forall x \in X$.
+	This is the weak$^*$-topology.
+	So $\Phi$ is continuous.
+	To prove $B$ is compact, it suffices to show that $\Phi(B)$ is closed in $Y$.
+	(Since $\Phi(B)$ will then be compact; 
+	also, $\Phi: B \to \Phi(B)$ is a homoemorphism, so this implies that $B$ is also compact.)
+	Let $y \in \overline{\Phi(B)}$.
+	Define a map $\Lambda: X \to \RR$ by $\Lambda x = y_x$.
+	To show $y \in \Phi(B)$, we need to show that $\Lambda$ is linear and $\|\Lambda\| \leq 1$.
+	Fix $\alpha > 0$ and $x_1, x_2 \in X$.
+	Consider the following neighborhood $V$ of $y$:
+	\[
+		V = \left\{z \in Y: |z_{x_1} - y_{x_1}|, |z_{x_2} - y_{x_2}|, |z_{x_1 + x_2} - y_{x_1 + x_2}| < \frac{\alpha}{3} \right\}
+	\]
+	\[
+		\Ra |y_{x_1} + y_{x_2} - y_{x_1 + x_2}| < \alpha
+	\]
+	$\alpha$ is arbitrary $\Ra y_{x_1 + x_2} = y_{x_1} + y_{x_2} \Ra \Lambda (x_1 + x_2) = \Lambda x_1 + \Lambda x_2$.
+	Similarly, $\Lambda (cx) = c \Lambda x \quad \forall c \in \RR, \quad \forall x \in X$.
+	Finally, 
+	\[
+		|\Lambda x| = |y_x| \leq \|x\|
+	\]
+	$\Ra \|\Lambda\| \leq 1$.
+\end{proofs}
+
+\begin{cor}
+	A bounded set in $X^*$ is weak$^*$-compact $\Lra$ it is weak$^*$-closed.
+\end{cor}
+
+\begin{proofs}
+	Weak$^*$-topology is Hausdorff, so weak$^*$-compact $\Ra$ weak$^*$-closed.
+
+	\par Conversely, every bounded set is containd in some closed ball, which is weak$^*$-compact.
+	$\Ra$ a bounded weak$^*$-closed set is also weak$^*$-compact.
+\end{proofs}
+
+\begin{lem}
+	The closed unit ball in a normed space $X$ is dense in the closed unit ball in $X^{**}$ under tthe $\tau(X^{**}, J^*(X^*))$ topology, where $J^*: X^* \to X^{***}$ is the canonical identification.
+\end{lem}
+
+\begin{proofs}
+	Let $B, B^{**}$ be the closed unit balls in $X, X^{**}$ respectively.
+	$J: X \to X^{**}$ canonical identification.
+	Write $C$ for the weak$^*$-closure of $J(B)$.
+	Want: $C = B^{**}$.
+	Suppose not.
+	$\exists p \in B^{**}$ such that $p \notin C$.
+	$B^{**}$ is weak$^*$-compact $\Ra B^{**}$ is weak$^*$-closed.
+	Since $J(B) \subseteq B^{**}$, we have $C \subseteq B^{**}$.
+	$\{p\}$ compact, $C$ weak$^*$-closed.
+	Thus $\exists J^*(\Lambda) \in J^*(X^*), \alpha, \beta \in \RR$ such that
+	\[
+		J^*(\Lambda) q < \alpha < \beta < J^*(\Lambda) p \quad \forall q \in C
+	\]
+	Take $q = Jx$, where $x \in B$.
+	Then
+	\[
+		\Lambda x = J^*(\Lambda) J x < \alpha
+	\]
+	$\Ra \|\Lambda\| \leq \alpha$.
+	On the other hand, 
+	\[
+		\beta < |J^*(\Lambda) p| \leq \|\Lambda\| \|p\| \leq \|\Lambda\|
+	\]
+	a contradiction.
+\end{proofs}
+
+\begin{thm}
+	The closed unit ball in a normed space is weakly compact if and only if the space is reflexive.
+\end{thm}
+
+\begin{proofs}
+	Suppose that $X$ is reflexive.
+	The weak topology on $X$ can be idenntified with the weak$^*$-topoloby on $X^{**}$.
+	So the closed unit ball of $X$ is weakly compact by Banach-Alaoglu.
+	
+	\par Conversely, suppose that $B = \overline{B(0, 1)} \subseteq X$ is weakly compact.
+	Then $J(B)$ is compact in $\tau(X^{**}, J^*(X^*))$. (Check!)
+	$\Ra J(B)$ is closed in $\tau(X^{**}, J^*(X^*))$ (Hausdorff).
+	$\Ra J(B) = B^{**}$ by lemma.
+	So $J$ is surjective and thus $X$ is reflexive.
+\end{proofs}
+
+\section{Extreme Points in Convex Sets}
+
+\begin{dfn}
+	Let $X$ be a vector space and let $E \subseteq X$ be nonempty.
+	A point $x \in E$ is called an \textbf{extreme point} if whenever it is expressed as $\lambda x_1 + (1 - \lambda) x_2$ for some $x_1, x_2 \in E, \lambda \in (0, 1)$, then $x_1 = x_2 = x$.	
+\end{dfn}
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

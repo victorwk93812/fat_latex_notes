@@ -1,0 +1,585 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+\newenvironment{exs}[1][]{%
+  \begin{ex}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ex}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+\newcommand{\bracket}[1]{\langle #1 \rangle}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Intro to Algebra 2 W9-1}
+\author{fat}
+% \date{\today}
+\date{April 17, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Intro to Algebra 2 W9-1}
+
+\section*{14.2}
+
+\begin{lem}
+	Let $E/F$ be a Galois extension
+	\begin{enumerate}
+		\item[(1)] For any subset $S$ of $E$, the set 
+			\[
+				\lambda(S) := \{\sigma \in \text{Gal}(E/F): \sigma(a) = a \quad \forall a \in S\}
+			\]
+			is a subgroup of $\text{Gal}(E/F)$.
+			
+		\item[(2)] For any subset $A$ of $\text{Gal}(E/F)$, the set
+			\[
+				\mu(A) := \{\alpha \in E: \sigma(\alpha) = \alpha \quad \forall \sigma \in A\}
+			\]
+			is a subfield of $E$ containing $F$ called the \textbf{fixed field} of $A$.
+	\end{enumerate}
+\end{lem}
+
+\begin{thm}[Fundamental Theorem of Galois Theory]
+	Let $E/F$ be a finite Galois extension
+	\begin{enumerate}
+		\item[(1)] If $F \leq K \leq E$, then $E/K$ is a Galois extension and $\text{Gal}(E/K)$ is a subgroup of $\text{Gal}(E/F)$ with 
+			\[
+				|\text{Gal}(E/K)| = [E:K]
+			\]
+			and
+			\[
+				(\text{Gal}(E/F):\text{Gal}(E/K)) = [K:F]
+			\]
+
+		\item[(2)] For $K$ with $F \leq K \leq E$, let 
+			\[
+				\lambda(K) := \text{Gal}(E/K)
+			\]
+			For $H \leq \text{Gal}(E/F)$.
+			Let 
+			\[
+				\mu(H) := \text{the fixed field of }H
+			\]
+			Then there exists a bijective relation between \{subfields of $E$ containing $F$\} and \{subgroup of $\text{Gal}(E/F)$\} and
+			\[
+				\mu \circ \lambda(K) = K
+			\]
+			\[
+				\lambda \circ \mu(H) = H
+			\]
+
+		\item[(3)] If $F \leq K_1 \leq K_2 \leq E$, then 
+			\[
+				\lambda(K_2) \leq \lambda(K_1)
+			\]
+			If $H_1 \leq H_2 \leq \text{Gal}(E/F)$, then
+			\[
+				\mu(H_2) \leq \mu(H_1)
+			\]
+
+		\item[(4)] If $F \leq K_1, K_2 \leq E$, then
+			\[
+				\lambda(K_1 \cap K_2) = \ev{\lambda(K_1), \lambda(K_2)}
+			\]
+			If $H_1, H_2 \leq \text{Gal}(E/F)$, then
+			\[
+				\mu(H_1 \cap H_2) = \mu(H_1) \mu(H_2)
+			\]
+			where $\mu(H_1) \mu(H_2)$ is the compositum field of $\mu(H_1)$ and $\mu(H_2)$.
+
+		\item[(5)] If $F \leq K \leq E$
+			\[
+				K/F \text{ is Galois} \quad \Lra \quad \text{Gal}(E/K) \trianglelefteq \text{Gal}(E/F)
+			\]
+			In such a case
+			\[
+				\text{Gal}(K/F) \simeq \quot{\text{Gal}(E/F)}{\text{Gal}(E/K)}
+			\]
+	\end{enumerate}
+\end{thm}
+
+\begin{ex}
+	$E = \QQ(\sqrt{2}), F = \QQ$.
+	Then $\text{Aut}(E/F) = \text{Gal}(E/F) = \{ \text{id}, \sigma: a + b \sqrt{2} \mapsto a - b \sqrt{2}\}$.
+	(will write $\sigma: \sqrt{2} \mapsto -\sqrt{2}$ for simplicity.)
+	\[
+		\{\text{subfields of }\QQ(\sqrt{2}) \text{ containing }\QQ\} = \{\QQ(\sqrt{2}), \QQ\}
+	\]
+	\[
+		\{\text{subgroups of } G := \text{Gal}(E/F)\} = \{G, \text{id}\}
+	\]
+	Then
+	\[
+		\lambda(\QQ) = G
+	\]
+	\[
+		\lambda(\QQ(\sqrt{2})) = \text{id}
+	\]
+	\[
+		\mu(G) = \QQ
+	\]
+	\[
+		\mu(\text{id}) = \QQ(\sqrt{2})
+	\]
+\end{ex}
+
+\begin{proofs}[Proof of Theorem]
+	\begin{enumerate}
+		\item[(1)] Let $F \leq K \leq E$.
+			For $\alpha \in E$, we clearly have
+			\[
+				m_{\alpha, K}(x) | m_{\alpha, F}(x)
+			\]
+			(In general, if $f(x) \in K[x]$ satisfies $f(\alpha) = 0$, then $f_{\alpha, K}(x) | f(x)$.
+			Here clearly $m_{\alpha, F}(x) \in K[x]$ has $\alpha$ as a root.)
+			Two consequences
+			\begin{enumerate}
+				\item[(i)] If $m_{\alpha, F}(x)$ is separable (i.e. no repeated root), then so is $m_{\alpha, K}(x)$.
+					Thus if $E/F$ is separable, then so is $E/K$.
+
+				\item[(ii)] If all conjugates of $\alpha$ over $F$ are in $E$, then all conjugates of $\alpha$ over $K$ are in $E$.
+					Thus if $E/F$ is normal, then so is $E/K$.
+			\end{enumerate}
+			(i) + (ii) $\Ra$ If $E/F$ is Galois, then $E/K$ is also Galois.
+			Clearly 
+			\[
+				\text{Gal}(E/K) \leq \text{Gal}(E/F)
+			\]
+			and
+			\[
+				|\text{Gal}(E/K)| = |\text{Emb}(E/K)| = \{E:K\} = [E:K]
+			\]
+			since $E/K$ is separable.
+			\[
+				(\text{Gal}(E/F): \text{Gal}(E/K)) = \frac{|\text{Gal}(E/F)|}{|\text{Gal}(E/K)|} = \frac{[E:F]}{[E:K]} = \frac{[E:K][K:F]}{[E:K]} = [K:F]
+			\]
+
+		\item[(2)] Prove later
+
+		\item[(3)] Obvious
+
+		\item[(4)] Assume that $F \leq K_1, K_2 \leq E$.
+			Clearly we have $\lambda(K_1), \lambda(K_2) \subseteq \lambda(K_1 \cap K_2)$.
+			(If $\sigma$ fixes $K_1$, then clearly $\sigma$ fixes $K_1 \cap K_2$.)
+			Thus $\ev{\lambda(K_1), \lambda(K_2)} \subseteq \lambda(K_1 \cap K_2)$.
+			We now prove that
+			\[
+				\lambda(K_1 \cap K_2) \subseteq \ev{\lambda(K_1), \lambda(K_2)}
+			\]
+			Observe that if we can show that
+			\[
+				\mu(\ev{\lambda(K_1), \lambda(K_2)}) \subseteq K_1 \cap K_2 \cdots (*)
+			\]
+			then by (3)
+			\[
+				\lambda(K_1 \cap K_2) \subseteq \lambda \circ \mu(\ev{\lambda(K_1), \lambda(K_2)}) \stackrel{(2)}{=} \ev{\lambda(K_1), \lambda(K_2)}
+			\]
+			We now prove $(*)$.
+			If $a \in \mu(\ev{\lambda(K_1), \lambda(K_2)})$, i.e., if $a \in E$ is fixed by every element of $\ev{\lambda(K_1), \lambda(K_2)}$, then $a$ is fixed by every element of $\lambda(K_1)$ and $\lambda(K_2)$.
+			\[
+				a \in \mu(\lambda(K)) \cap \mu(\lambda(K_2)) \stackrel{(2)}{=} K_1 \cap K_2
+			\]
+			This proves $(*)$.
+			Assume that $H_1, H_2 \leq \text{Gal}(E/F)$.
+			Let $K_1 = \mu(H_1), K_2 = \mu(H_2)$.
+			The statement says
+			\[
+				\mu(H_1 \cap H_2) = K_1 K_2
+			\]
+			If $\sigma \in H_1 \cap H_2$, then $\sigma$ fixes $K_1 = \mu(H_1)$ and $K_2 = \mu(H_2)$.
+			$\Ra \sigma$ fixes $K_1 K_2$.
+			$\Ra K_1 K_2 \subseteq \mu(H_1 \cap H_2)$.
+			We now prove that
+			\[
+				\mu(H_1 \cap H_2) \subseteq K_1 K_2
+			\]
+			Observe that if we can show that
+			\[
+				\lambda(K_1 K_2) \subseteq H_1 \cap H_2 \cdots (*)
+			\]
+			then by (3)
+			\[
+				\mu(H_1 \cap H_2) \subseteq \mu(\lambda(K_1 K_2)) \stackrel{(2)}{=} K_1 K_2
+			\]
+			Now if $\sigma \in \lambda(K_1 K_2)$, i.e., if $\sigma$ fixes every element of $K_1 K_2$, then $\sigma$ fixes every element $K_1$ and $K_2$.
+			\[
+				\Ra \sigma \in \lambda(K_1) \cap \lambda(K_2) = \lambda(\mu(H_1)) \cap \lambda(\mu(H_2)) \stackrel{(2)}{=} H_1 \cap H_2
+			\]
+			This proves $(*)$.
+
+		\item[(5)] We first prove a lemma.
+
+			\begin{lem}
+				In general, given $H \leq \text{Gal}(E/F)$ with $K = \mu(H)$ and $\tau \in \text{Gal}(E/F)$, then the fixed field of $\tau H \tau^{-1}$ is $\tau(K)$.
+			\end{lem}
+
+			\begin{proofs}
+				$\beta$ fixed by every element $\tau \sigma \tau^{-1}$ of $\tau H \tau^{-1}$, where $\sigma \in H$
+				\[
+					\Lra \tau \sigma \tau^{-1}(\beta) = \beta \quad \forall \sigma \in H
+				\]
+				\[
+					\Lra \sigma(\tau^{-1}(\beta)) = \tau^{-1}(\beta) \quad \forall \sigma \in H
+				\]
+				\[
+					\Lra \tau^{-1}(\beta) \in \text{fixed field of }H = \mu(H) = K
+				\]
+				\[
+					\Lra \beta \in \tau(K)
+				\]
+				$\Ra$ The fixed field of $\tau H \tau^{-1}$ is $\tau(K)$.
+			\end{proofs}
+
+			Now let's prove (5).
+			Assume $F \leq K \leq E$.
+			Then 
+			\[
+				H := \text{Gal}(E/K) \trianglelefteq \text{Gal}(E/F)
+			\]
+			\[
+				\Lra \tau H \tau^{-1} H \quad \forall \tau \in \text{Gal}(E/F)
+			\]
+			\[
+				\stackrel{(2)}{\Lra} \text{ the fixed field of } \tau H \tau^{-1} = \text{ the fixed field of }H
+			\]
+			\[
+				\Lra \tau(K) = K \quad \forall \tau
+			\]
+			by the discussion above.
+			\[
+				\Lra K/F \text{ is a normal extension}
+			\]
+			($K/F$ is normal $\Lra \forall \alpha \in K$, all conjugates of $\alpha$ over $F$ are in $K$.
+			$\Lra$ all $\phi \in \text{Emb}(K/F)$ maps $K$ to $K$.
+			Now $\phi \in \text{Emb}(K/F)$ can be extended to an element of $\text{Gal}(E/F)$.
+			Thus the property $\tau(K) = K \quad \forall \tau \in \text{Gal}(E/F)$ implies $K/F$ is a normal extension.)
+	\end{enumerate}
+\end{proofs}
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

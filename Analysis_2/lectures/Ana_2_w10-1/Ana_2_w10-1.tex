@@ -1,0 +1,656 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+\newenvironment{exs}[1][]{%
+  \begin{ex}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ex}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+\newcommand{\bracket}[1]{\langle #1 \rangle}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W10-1}
+\author{fat}
+% \date{\today}
+\date{April 23, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W10-1}
+
+Last time:
+\begin{thm}
+	Let $f \in L^1([-\pi, \pi])$ and assume that $\hat{f}(|n|) = - \hat{f}(-|n|) \geq 0 \quad n \in \ZZ$.
+	Then 
+	\[
+		\sum_{n \neq 0} \frac{1}{n} \hat{f}(n) < \infty
+	\]
+\end{thm}
+
+\begin{proofs}
+	\[
+		\frac{1}{2 \pi} \int_{-\pi}^\pi f(x) \dd{x} \hat{f}(0) = 0
+	\]
+	Define $F(x) = \int_{-\pi}^x f(t) \dd{t}$.
+	Then $F$ is continuous, $2 \pi$-periodic, and 
+	\[
+		\hat{F}(n) = \frac{1}{in} \hat{f}(n) \quad \text{if }n \neq 0
+	\]
+	by integration by parts.
+	Since $F$ is continuous, its Ces\`aro mean $\sigma_N(F)$ converges to $F$ uniformly.
+	\[
+		\widehat{\sigma_N(F)}(n) = \widehat{F * F_N}(n) = \widehat{F}(n) \widehat{F_N}(n)
+	\]
+	since if $g, h \in L^1(\RR)$, then
+	\[
+		\begin{split}
+			\widehat{g * h}(n) & = \frac{1}{2 \pi} \int_{- \pi}^\pi g * h(x) e^{-inx} \dd{x}\\
+			& = \frac{1}{2 \pi} \int_{- \pi}^{\pi} \frac{1}{2 \pi} g(x - y) h(y) \dd{y} e^{-inx} \dd{x}\\
+			& = \frac{1}{2 \pi} \int_{- \pi}^\pi \frac{1}{2 \pi} \int_{- \pi}^\pi g(x - y) e^{-in (x - y)} \dd{x} h(y) e^{-iny} \dd{y}\\
+			& = \frac{1}{2 \pi} \int_{- \pi}^\pi \frac{1}{2 \pi} \widehat{g}(n) h(y) e^{- iny} \dd{y}
+		\end{split}
+	\]
+	Since $\sigma_N(F)(0) \to F(0)$, and by symmetry on $\pm N$, we have
+	\[
+		\sigma_N(F)(0) = \lim_{N \to \infty} 2 \sum_{n = 1}^{N - 1} \left(1 - \frac{n}{N} \right) \frac{\widehat{f}(n)}{n} = i (F(0) - \widehat{F}(0))
+	\]
+	\[
+		\Ra \lim_{N \to \infty} 2 \left( \sum_{n  = 1}^{N - 1} \frac{\widehat{f}(n)}{n} - \frac{1}{N} \sum_{n = 1}^{N - 1} \widehat{f}(n) \right) = i(F(0) - \widehat{F}(0))
+	\]
+	Note that $|\widehat{f}(n)| \leq \|f\|_{L^1}$, the second term in the limit is bounded by $\|f\|_{L^1}$.
+	Moreover, $\hat{f}(n) \geq 0$, thus the first term is monotone.
+	Thus 
+	\[
+		\Ra \lim_{N \to \infty} \sum_{n = 1}^{N - 1} \frac{\widehat{f}(n)}{n} < \infty
+	\]
+
+\end{proofs}
+
+\section{Functional Analytic Point of View}
+
+$\F: L^1([-\pi, \pi]) \to \ell^\infty$ defined by $f \mapsto (\widehat{f}(n))_{n \in \ZZ}$ defined a linear map.
+Moreover, by Riemann-Lebesgue lemma, $\lim_{|n| \to \infty} \widehat{f}(n) = 0$, thus in fact the range could be restricted to $c_0$.
+Also, 
+\[
+	\|\F f\|_{\ell^\infty} = \|\widehat{f}\|_{\ell^\infty} \leq \|f\|_{L^1}
+\]
+Thus $\F$ is bounded with $\|\F\|_{L^1 \to c_0} \leq 1$.
+On the other hand, by the Parseval identity, 
+\[
+	\F: L^2([-\pi, \pi]) \to \ell^2(\ZZ)
+\]
+is an isomretric linear isomorphism.
+\[
+	\|\F f\|_{\ell^2} = \|f\|_{L^2}
+\]
+What if $f \in L^p([-\pi, \pi]), p \neq 1, 2$?
+Guess: $\widehat{f} \in \ell^q, q = p/(p - 1)$.
+This is not true for $p > 2$!
+
+\par Fact: $\exists 2 \pi$-periodic (continuous) $f$ such that for all $\epsilon > 0$, we have
+\[
+	\sum_{n = -\infty}^\infty |\widehat{f}(n)|^{2 - \epsilon} = \infty
+\]
+Thus the guess is true when $1 < p < 2$.
+
+\begin{thm}[Hausdorff-Young]
+	Let $1 \leq p \leq 2$ and let $q = p/(p - 1)$.
+	If $f \in L^p([-\pi, \pi])$ then 
+	\[
+		\|\hat{f}\|_{\ell^q} \leq \|f\|_{L^p}
+	\]
+\end{thm}
+
+This is actually a consequence of the following theorem:
+
+\begin{thm}[Riesz-Thorin]
+	Let $(X, \mu)$ and $(Y, \nu)$ be two $\sigma$-finite measure spaces.
+	Let $B = L^{p_0}(\mu) \cap L^{p_1}(\mu)$ and $B' = L^{p_0'}(\nu) \cap L^{p_1'}(\nu)$.
+	Suppose that $T: B \to B'$ is linear such that $T: (B, \|\cdot\|_{L^{p_j}}) \to (B', \|\cdot\|_{L^{p_j'}})$ is bounded, $j = 0, 1$.
+	For $\alpha \in [0, 1]$, define
+	\[
+		p_{\alpha} = \frac{p_0 p_1}{\alpha p_0 + (1 - \alpha) p_1} \quad \left( \frac{1}{p_\alpha} = \frac{1 - \alpha}{p_0} + \frac{\alpha}{p_1} \right)
+	\]
+	(if $p_1 = \infty$, define $p_\alpha = p_0/(1 - \alpha)$.) 
+	Define $p_\alpha'$ similarly.
+	Then $T: (B, \|\cdot\|_{L^{p_j}}) \to (B', \|\cdot\|_{L^{p_j'}})$ is also bounded.
+	Furthermore, $\|T\|_{\alpha} \leq \|T\|_0^{1 - \alpha} \|T\|_1^{\alpha}$.
+\end{thm}
+
+\section{An Application}
+
+$\alpha \in \RR$, write $[\alpha]$ for the integer part of $\alpha$.
+$\{\alpha\} = \alpha - [\alpha]$ is the fractional part of $\alpha$.
+Want to understand the sequence $\{\alpha\}, \{2 \alpha\}, \{3 \alpha\}, ...$.
+If $\alpha \in \QQ$, this sequence is periodic.
+If $\alpha \in \QQ^c$, then these numbers are all distinct.
+Can even show that $(\{n \alpha\})$ is dense in $[0, 1)$ if $\alpha \in \QQ^c$.
+We will prove something stronger.
+
+\begin{dfn}
+	A sequence $(\xi_n)$ in $[0, 1)$ is said to be \textbf{equidistributed} if for all interval $(a, b) \subseteq [0, 1)$, we have
+	\[
+		\lim_{N \to \infty} \frac{|\{1 \leq n \leq N: \xi_n \in (a, b)\}|}{N} = b - a
+	\]
+\end{dfn}
+
+\begin{thm}[Weyl]
+	If $\alpha \in \QQ^c$, then $(\{n \alpha\})$ is equidistributed.
+\end{thm}
+
+\begin{proofs}
+	Consider $\chi_{(a, b)}$ and extend it to a function with period 1.
+	Then
+	\[
+		|\{1 \leq n \leq N: \{n \alpha\} \in (a, b)\}| = \sum_{n = 1}^N \chi_{(a, b)}(n \alpha)
+	\]
+	Need to show
+	\[
+		\frac{1}{N} \sum_{n = 1}^N \chi_{(a, b)}(n \alpha) \to \int_0^1 \chi_{(a, b)}(x) \dd{x}
+	\]
+	Can approximate $\chi_{(a, b)}$ by a continuous function with period 1>
+	Suffices to show for such an $f$, 
+	\[
+		\frac{1}{N} \sum_{n = 1}^N f(n \alpha) \to \int_0^1 f(x) \dd{x}
+	\]
+	By Ces\`aro mean/Weierstrass approximation theorem, suffices to verify this for trigonometric polynomials.
+	If $f \equiv 1$, this holds obviously.
+	If $f(x) = e^{2 \pi i kx}$, where $k \in \ZZ \setminus \{0\}$, then
+	\[
+		\frac{1}{N} \sum_{n = 1}^N e^{2 \pi i kn \alpha} = \frac{e^{2 \pi i k \alpha}}{N} \frac{1 - e^{2 \pi  i k N \alpha}}{1 - e^{2 \pi i k \alpha}} \to 0 = \int_0^1 e^{2 \pi i k x} \dd{x}
+	\]
+	and we are done.
+\end{proofs}
+
+Can show something more:
+
+\begin{thm}[Weyl's Criterion]
+	$(\xi_n)$ is equidistributed $\Lra \forall k \neq 0$, we have
+	\[
+		\frac{1}{N} \sum_{n = 1}^N e^{2 \pi k \xi_n} \to 0 \quad \text{as }N \to \infty
+	\]
+\end{thm}
+
+Can view the problem ($(\{n\alpha\})$ is equidistributed) by using a dynamical system.
+$T:[0, 1) \to [0, 1)$ defined by $T(x) = (x + \alpha) \pmod{1} = \{x + \alpha\}$.
+$T^{\circ n}(x) = (x + n \alpha) \pmod{1}$.
+We proved that if $\alpha \in \QQ^c$ then for all continuous function $f$, 
+\[
+	\lim_{N \to \infty} \frac{1}{N} \sum_{n = 1}^N f( T^{\circ n}(0)) \to \int_0^1 f(y) \dd{y}
+\]
+Which is time average converges to space average.
+The orbit ($T^{\circ n}(0)$) spreads around the whole space evenly.
+In this case, we say that this dynamical system is \textbf{ergodic}. 
+
+\section{Fourier Transform}
+
+Goal: Develop an analogous theory for nonperiodic functions.
+If $f$ is a nice function (say, smooth, supported on $[-M, M]$), then fixing $L > 2M$, one can write
+\[
+	f(x) = \sum_{n = -\infty}^\infty a_n(L) e^{ \frac{2 \pi i n x}{L}}
+\]
+\[
+	a_n(L) = \frac{1}{L} \int_{-\frac{L}{2}}^{\frac{L}{2}} f(x) e^{-\frac{2 \pi i n x}{L}} \dd{x} =: \frac{1}{L} \widehat{f} \left( \frac{n}{L} \right)
+\]
+Set $\delta = 1/L$, then
+\[
+	\widehat{f}(\delta n) = \int_{- \frac{1}{2 \delta}}^{\frac{1}{2 \delta}} f(x) e^{- 2 \pi i \delta n x} \dd{x}
+\]
+Pretend that $\widehat{f}$ can be extended to a nice continuous function on $\RR$.
+For any $\xi \in RR$, we can choose $\delta$ depending on $n$ such that $\delta n \to \xi$.
+We obtain
+\[
+	\widehat{f}(\xi) = \int_{- \infty}^\infty f(x) e^{- 2 \pi i \xi x} \dd{x}
+\]
+
+\begin{dfn}
+	If $f \in L^1(\RR)$ then we define its \textbf{Fourier transform} as
+	\[
+		\widehat{f}(\xi) = \int f(x) e^{- 2 \pi i \xi x} \dd{x} \quad \forall \xi \in \RR
+	\]
+\end{dfn}
+
+Similar to Fourier coefficients, but now we have a function on $\RR$.\\
+Basic properties: let $f, g \in L^1(\RR)$.
+\begin{itemize}
+	\item $\|\widehat{f}\|_{L^\infty} \leq \|f\|_{L^1}$.	
+
+	\item $\widehat{f + ag} = \widehat{f} + a \widehat{g} \quad \forall a \in \CC$.
+
+	\item $\widehat{\overline{f}}(\xi) = \overline{\widehat{f}(- \xi)}$.
+
+	\item Writing $f_y(x) = f(x - y)$, where $y \in \RR$, then $\widehat{f}_y (\xi) = \widehat{f}(\xi) e^{- 2 \pi i \xi y}$.
+
+	\item Writing $f_\lambda(x) = \lambda f(\lambda x)$,where $\lambda > 0$, then $\widehat{f}_\lambda(\xi) = \widehat{f}(\xi/\lambda)$.
+
+	\item $\widehat{f * g} = \widehat{f} \widehat{g}$.
+
+	\item If $f' \in L^1(\RR)$, then $\widehat{f'}(\xi) = 2 \pi i \xi \widehat{f}(\xi)$.
+\end{itemize}
+
+\begin{prop}
+	Let $f \in L^1(\RR)$.
+	Then $\widehat{f}$ is uniformly continuous on $\RR$.
+	If further $x f(x0 \in L^1(\RR)$, then $\widehat{f}$ is differentiable and 
+	\[
+		\dv{\widehat{f}(\xi)}{\xi} = \widehat{(- 2 \pi i x f)} (\xi)
+	\]
+\end{prop}
+
+\begin{proofs}
+	For any $\xi, \eta \in \RR$, 
+	\[
+		\widehat{f}(\xi + \eta) - \widehat{f}(\xi) = \int f(x) (e^{- 2 \pi i (\xi + \eta) x} - e^{- 2 \pi i \xi x}) \dd{x}
+	\]
+	\[
+		\Ra |\widehat{f}(\xi + \eta) - \widehat{f}(\xi)| \leq \int |f(x)| |e^{- 2 \pi i \eta x} - 1| \dd{x} 
+	\]
+	where $|e^{- 2 \pi i \eta x} - 1| \to 0$ as $\eta \to 0$.
+	By the dominated convergence theorem, the right sides in the inequalities goes to 0 uniformly in $\xi$.	
+	This shows uniform continuity.
+	Another statement: exercise.
+\end{proofs}
+
+\begin{thm}[Riemann-Lebesgue lemma]
+	If $f \in L^1(\RR)$, then
+	\[
+		\lim_{|\xi| \to \infty} \widehat{f}(\xi) = 0
+	\]
+\end{thm}
+
+\begin{proofs}
+	If $f \in C^1$ with compact support then by the last basic property, 
+	\[
+		|2 \pi i \xi \widehat{f}(\xi)| \leq \|f'\|_{L^1} \quad \forall \xi \in RR
+	\]
+	\[
+		\Ra |\widehat{f}(\xi)| \leq \frac{1}{2 \pi |\xi|} \|f'\|_{L^1} \quad \forall \xi \neq 0
+	\]
+	\[
+		\Ra \lim_{|\xi| \to \infty} |\widehat{f}(\xi)| = 0
+	\]
+	Let $f \in L^1(\RR)$ be arbitrary.
+	Fix $\epsilon > 0$, and choose a $C^1$-function $g$ with compact support such that $\|f - g\|_{L^1} < \epsilon$.
+	Then 
+	\[
+		|\widehat{f}(\xi) - \widehat{g}(\xi)| \leq \|f - g\|_{L^1} < \epsilon
+	\]
+	Let $|\xi| \to \infty$, 
+	\[
+		\limsup_{|\xi| \to \infty} |\widehat{f}(\xi)| \leq \epsilon
+	\]
+	$\epsilon > 0$ is arbitrary, and we are done.
+\end{proofs}
+
+\begin{dfn}
+	Define the \textbf{Fej\'er kernel} on $\RR$ by 
+	\[
+		F_\lambda(x) = \lambda \left( \frac{\sin (\pi \lambda x)}{\pi \lambda x} \right)^2 \quad (F_\lambda(0) = \lambda)
+	\]
+\end{dfn}
+
+$F_\lambda$ comes from the Fourier transform of 
+\[
+	f(x) = 
+	\begin{cases}
+		1 - |x| & \text{if } |x| \leq 1\\
+		0 & \text{otherwise}
+	\end{cases}
+\]
+we have
+\[
+	\int_{-1}^1 (1 - |x|) e^{- 2 \pi i \xi x} \dd{x} = \left( \frac{\sin (\pi \xi)}{\pi \xi} \right)^2 \cdots (\dagger)
+\]
+Check: $(F_\lambda)$ is an approximation to the identity as $\lambda \to \infty$.
+We have $f * F_\lambda(x) \to f$ almost everywhere and in $L^1$ as $\lambda \to \infty$.
+
+\begin{clm}
+	\[
+		f(x) = \lim_{\lambda \to \infty} \int_{-\lambda}^\lambda \left( 1 - \frac{|\xi|}{\lambda} \right) \widehat{f}(\xi) e^{2 \pi i \xi x} \dd{\xi}
+	\]
+\end{clm}
+
+\begin{lem}
+	Let $f, g \in L^1(\RR)$ and $g(x) = \int G(\xi) e^{2 \pi i \xi x} \dd{\xi}$ for some $G \in L^1(\RR)$.
+	Then 
+	\[
+		f * g(x) = \int G(\xi) \widehat{f}(\xi) e^{2 \pi i \xi x} \dd{\xi}
+	\]
+\end{lem}
+
+we have
+\[
+	F_\lambda(x) = \int_{- \lambda}^\lambda \left(1 - \frac{|\xi|}{\lambda} \right) e^{2 \pi i \xi x} \dd{x}
+\]
+by $(\dagger)$ and symmetry.
+Thus lemma implies claim.
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

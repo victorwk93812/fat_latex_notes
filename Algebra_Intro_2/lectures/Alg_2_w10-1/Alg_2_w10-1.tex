@@ -1,0 +1,553 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+\newenvironment{exs}[1][]{%
+  \begin{ex}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ex}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+\newcommand{\bracket}[1]{\langle #1 \rangle}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Intro to Algebra 2 W10-1}
+\author{fat}
+% \date{\today}
+\date{April 24, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Intro to Algebra 2 W10-1}
+
+\begin{proofs}[Proof of (2) of FTGT, continued]
+	Conversely, assume that $|G| , [E:K]$, i.e. $n < m$.
+	Consider the system of $n$ linear equations
+	\[
+		\left\{
+			\begin{split}
+				\sigma_1(\alpha_1) x_1 + \cdots + \sigma_1 (\alpha_m) x_m = 0\\
+				\vdots \quad \quad \quad \quad \quad \quad \\
+				\sigma_n(\alpha_1) x_1 + \cdots + \sigma_n (\alpha_m) x_m = 0
+			\end{split}
+			\right.
+	\]
+	Since $m > n$, the system has a nontrivial solution.
+	Among all nontrivial solutions, we choose a solution $(\beta_1, ..., \beta_m)$ with the smallest number of nonzero entries.
+	By a suitable reumbering, wea assume that $\beta_1, ..., \beta_r \neq 0, \beta_{r + 1} = \cdots = \beta_m = 0$.
+	Let $\beta_j' = \beta_j/\beta_r$.
+	Then $(\beta_1', ..., \beta_{r - 1}', 1, 0, ..., 0)$ is again a nontrivial solution.
+	Note that $\beta_1', ..., \beta_{r - 1}'$ cannot be all in $K$: 
+	If $\beta_1', ..., \beta_{r - 1}'$ are all in $K$, then the case $\sigma_1 = \text{id}$ (the group $G$ always contains an identity, choose $\sigma_1$ WLOG) yields $\alpha_1 \beta_1' + \alpha_{r - 1} \beta_{r - 1}' + \alpha_r = 0$.
+	This contradicts to the assumption that $\{\alpha_1, ..., \alpha_m\}$ is a basis of $E$ over $K$.
+	Say $\beta_1' \notin K$.
+	Then $\exists \sigma_i \in G$ such that $\sigma_i (\beta_1') \neq \beta_1'$.
+	Applying $\sigma_i$ on the identity, 
+	\[
+		\sigma_j (\alpha_1) \beta_1' + \cdots + \sigma_j (\alpha_{r - 1}) \beta_{r - 1}' + \sigma_j (\alpha_r) = 0 \cdot (*)
+	\]
+	we obtain
+	\[
+		\sigma_i \sigma_j (\alpha_1) \sigma_j(\beta_1') + \cdots + \sigma_i \sigma_j(\alpha_{r - 1}) \sigma_i (\beta_{r - 1}') + \sigma_i \sigma_j (\alpha_r) = 0 \quad \forall j = 1, ..., n 
+	\]
+	As $j$ goes through $1, ..., n$, $\sigma_i \sigma_j$ goes through the set $\{\sigma_1, ..., \sigma_n\}$.
+	Thus we have
+	\[
+		\sigma_j(\alpha_1) \sigma_i (\beta_1') + \cdots + \sigma_j(\alpha_{r - 1})\sigma(\beta_{r - 1}') + \sigma_j(\alpha_r) = 0 \quad \forall j \cdots (**)
+	\]
+	Evaluating $(**) - (*)$, 
+	\[
+		\sigma_j(\alpha_1) (\sigma_i(\beta_1') - \beta_1') + \cdots + \sigma_j(\alpha_{r - 1})(\sigma_j (\beta_{r - 1}' - \beta_{r - 1}')) = 0 \quad \forall j
+	\]
+	Let $\beta_j'' = \sigma_i(\beta_j') - \beta_j'$, then $(\beta_1'', ..., \beta_m'')$ is a new nontrivial solution with a smaller number of nonzero entries, a contradiction.
+	Therefore, $n \not< m$.
+	This completes the proof of (2).
+\end{proofs}
+
+\begin{rem}
+	Proof of a statement in (5) of FTGT, which is assume that $\text{Gal}(E/K) \trianglelefteq \text{Gal}(E/F)$, then $\text{Gal}(K/F) \simeq \text{Gal}(E/F) / \text{Gal}(E/K)$.
+	Note that since elements of $\text{Gal}(E/K)$ fixed $K$ (elementwise), there is a well-defined function from $\text{Gal}(E/F)/\text{Gal}(E/K) \to \text{Gal}(K/F)$ given by 
+	\[
+		\tau \text{Gal}(E/K) \mapsto (\alpha \mapsto \tau(\alpha))
+	\]
+	which indeed maps $\alpha \in K$ to $\tau(\alpha) \in K$.(If $\tau \text{Gal}(E/K) = \tau' \text{Gal}(E/K)$, then $\tau = \tau' \sigma$ for some $\sigma \in \text{Gal}(E/K) \Ra \tau(\alpha) = \tau'(\sigma(\alpha)) = \tau'(\alpha)$)
+	Note that $\Phi$ is injective.
+	(If $\Phi( \tau \text{Gal}(E/K)) = \text{id}_K$, then $\tau(\alpha) = \alpha \quad \forall \alpha \in K$.
+	$\Ra \tau \in \text{Gal}(E/K)$.
+	$\Ra \ker \Phi = \{e \text{Gal}(E/K)\}$ is trivial.)
+	Now $\Phi$ is injective 
+	\[
+		\Ra |\text{Im}\Phi| = \left|\quot{\text{Gal}(E/F)}{\text{Gal}(E/K)} \right| = \frac{[E:F]}{[E:K]} = [K:F] = |\text{Gal}(F/K) |
+	\]
+	Therefore $\Phi$ is surjective and 
+	\[
+		\text{Gal}(K/F) \simeq \quot{\text{Gal}(E/F)}{\text{Gal}(E/K)}
+	\]
+\end{rem}
+
+\begin{exs}
+	Examples of Galois correspondence (test problems may come out of here!)
+	\begin{enumerate}
+		\item[(1)] $\QQ(\sqrt{2})/\QQ$, $G = \{\text{id}, \sigma:\sqrt{2} \mapsto -\sqrt{2}\}$.
+			% Then 
+			% \[
+			% 	\begin{split}
+				
+
+		\item[(2)] $\QQ(\sqrt{2}, \sqrt{3})/\QQ$.
+			\[
+				\begin{split}
+					G = \text{Gal} = \{&\text{id},\\
+					& \sigma_1: \sqrt{2} \mapsto \sqrt{2}, \sqrt{3} \mapsto - \sqrt{3}\\
+					& \sigma_2: \sqrt{2} \mapsto - \sqrt{2}, \sqrt{3} \mapsto \sqrt{3}\\
+					& \sigma_3: \sqrt{2} \mapsto -\sqrt{2}, \sqrt{3} \mapsto -\sqrt{3}\}
+				\end{split}
+			\]
+			Note that $\sigma_1^2 = \sigma_2^2 = \sigma_3^2 = \text{id}, \sigma_1 \sigma_2 = \sigma_3$.
+			$\Ra G \simeq C_2 \times C_2$.
+
+				\begin{figure}[H]
+					\centering
+					\begin{tikzpicture}
+						\node (N1) at (0, 0) {$\{\text{id}, \QQ(\sqrt{2}, \sqrt{3})\}$};
+						\node (N2) [align=center] at (2, 2) {$\ev{\sigma_3}$ \\ $\QQ(\sqrt{6})$};
+						\node (N3) [align=center] at (0, 2) {$\ev{\sigma_2}$\\$\QQ(\sqrt{3})$};
+						\node (N4) [align=center] at (-2, 2) {$\ev{\sigma_1}$\\$\QQ(\sqrt{2})$};
+						\node (N5) [align=center] at (0, 4) {$G, \QQ$};
+
+						\draw (N1)--(N2);
+						\draw (N1)--(N3);
+						\draw (N1)--(N4);
+						\draw (N5)--(N2);
+						\draw (N5)--(N3);
+						\draw (N5)--(N4);
+					\end{tikzpicture}
+					\caption{Example 2}
+				\end{figure}
+
+		\item[(3)] $f(x) = x^3 - 2$.
+				Roots are $\sqrt[3]{2}, \sqrt[3]{2} \tau, \sqrt[3]{2} \tau^2$, where $\tau = e^{2 \pi i/3}$.
+				So the splitting field of $f$ is $\QQ(\sqrt[3]{2}, \tau)$.
+				Conjugates of $\sqrt[3]{2}$ over $\QQ$ are $\sqrt[3]{2}, \sqrt[3]{2} \tau, \sqrt[3]{2} \tau^2$.
+				Conjugates of $\tau$ over $\QQ$ are $\tau, \tau^2$.
+				\[
+					\begin{split}
+						G = \text{Gal} = \{&\text{id},\\
+						&\sigma: \sqrt[3]{2} \mapsto \sqrt[3]{2} \tau, \tau \mapsto \tau\\
+						&\sigma^2: \sqrt[3]{2} \mapsto \sqrt[3]{2} \tau^2, \tau \mapsto \tau\\
+						&\tau: \sqrt[3]{2} \mapsto \sqrt[3]{2}, \tau \mapsto \tau^2\\
+						&\sigma \tau: \sqrt[3]{2} \mapsto \sqrt[3]{2} \tau, \tau \mapsto \tau^2\\
+						&\sigma^2 \tau: \sqrt[3]{2} \mapsto \sqrt[3]{2} \tau^2, \tau \mapsto \tau^2\}
+					\end{split}
+				\]
+				Note that in the proof of Theorem 14 (5), we have shown that if $H \leq \text{Gal}(E/F)$ and $K$ is the fixed field of $H$< then for $\phi \in \text{Gal}(E/F)$, the fixed field of $\phi H \phi^{-1}$ is $\phi(K)$.
+				Now we have
+				\[
+					\sigma \tau = \sigma^2 \tau \sigma^{-2}
+				\]
+				$\Ra$ Fixed field of $\ev{\sigma \tau}$ is $\sigma^2 (\text{the fixed field of }\ev{\tau}) = \sigma^2 (\QQ(\sqrt[3]{2}) = \QQ(\sqrt[3]{2} \tau^2)$.
+				Some observation leads to the fact that $\text{Gal} \simeq S_3 \simeq D_6$.
+
+				\begin{figure}[H]
+					\centering
+						\begin{tikzpicture}
+							\node (N1) [align=center] at (0, 0) {$\{\text{id}\}, \QQ(\sqrt[3]{2}, \tau)$};
+							\node (N2) [align=center] at (2, 2) {$\ev{\sigma\tau}$\\$\QQ(\sqrt[3]{2} \tau^2)$};
+							\node (N3) [align=center] at (4, 2) {$\ev{\sigma^2\tau}$\\$\QQ(\sqrt[3]{2} \tau)$};
+							\node (N4) [align=center] at (-2, 2) {$\ev{\tau}$\\$\QQ(\sqrt[3]{2})$};
+							\node (N5) [align=center] at (0, 3) {$\ev{\sigma}$\\$\QQ(\tau^2)$};
+							\node (N6) [align=center] at (0, 5) {$\text{Gal}, \QQ$};
+
+							\draw (N1)--(N2) node [midway, below] {2};
+							\draw (N1)--(N3) node [midway, below] {2};
+							\draw (N1)--(N4) node [midway, below] {2};
+							\draw (N1)--(N5) node [midway, right] {3};
+							\draw (N6)--(N2) node [midway, above] {3};
+							\draw (N6)--(N3) node [midway, above] {3};
+							\draw (N6)--(N4) node [midway, above] {3};
+							\draw (N6)--(N5) node [midway, right] {2};
+
+						\end{tikzpicture}
+					\caption{Example 3}
+				\end{figure}
+
+			\item[(4)] $\Phi_5(x) = (x^5 - 1)/(x - 1) = x^4 + x^3 + x^2 + x + 1$, roots are $\tau, \tau^2, \tau^3, \tau^4 (\tau = e^{2 \pi i/s})$.
+				The splitting field is $\QQ(\tau)$
+				\[
+					\begin{split}
+						\text{Gal} = \{&\text{id},\\
+						&\sigma: \tau \mapsto \tau^2\\
+						&\sigma^2: \tau \mapsto \tau^4\\
+						&\sigma_3: \tau \mapsto \tau^8 = \tau^3\}
+					\end{split}
+				\]
+				$\Ra \text{Gal} = \ev{\sigma} \simeq C_4$.
+
+				\begin{figure}[H]
+					\centering
+					\begin{tikzpicture}
+						\node (N1) [align=center] at (0, 0) {id, $\QQ(\tau)$};
+						\node (N2) [align=center] at (0, 2) {$\ev{\sigma^2}, \QQ(\sqrt{d})$\\ for some $d$};
+						\node (N3) [align=center] at (0, 4) {$\text{Gal} = \ev{\sigma}, \QQ$};
+
+						\draw (N1)--(N2) node [midway, left] {2};
+						\draw (N2)--(N3) node [midway, left] {2};
+					\end{tikzpicture}
+					\caption{Example 4}
+				\end{figure}
+				To determine $d$, we note that $\tau + \tau^4$ is fixed by $\sigma^2 (\sigma^2 (\tau + \tau^4) = \tau^4 + (\tau^4)^4  \tau^4 + \tau))$.
+				Note that the Galois conjugate of $\tau + \tau^4$ over $\QQ$ are $\tau + \tau^4, \tau^2 + \tau^3 = \sigma(\tau + \tau^4)$.
+				$\Ra \tau + \tau^4, \tau^2 + \tau^3$ are rooots of a degree 2 polynomial over $\QQ$, i.e. $(x - (\tau + \tau^4))(x - (\tau^2 + \tau^3)) \in \QQ[x]$.
+				This polynomial, by some easy calculation, is just $x^2 + x - 1$.
+				$\Ra \tau + \tau^4 = (-1 + \sqrt{5})/2$.
+
+			\item[(5)] $x^4 - 2 \in \QQ[x]$.
+				Roots are $\pm \sqrt[4]{2}, \sqrt[4]{2} i$.
+				The splitting field is $\QQ(\sqrt[4]{2}, \sqrt[4]{2} i) = \QQ(\sqrt[4]{2}, i)$.
+				Note that 
+				\[
+					[\QQ(\sqrt[4]{2}, i):\QQ] = [\QQ(\sqrt[4]{2}, i):\QQ(\sqrt[4]{2})][\QQ(\sqrt[4]{2}):\QQ] = 2 \cdot 4 = 8
+				\]
+				The conjugates of $\sqrt[4]{2}$ over $\QQ$ are $\pm \sqrt[4]{2}, \sqrt[4]{2} i$, and the conjugates of $i$ are $\pm i$.
+				\[
+					\begin{split}
+						\text{Gal} = \{&\text{id}\\
+						&\sigma: \sqrt[4]{2} \mapsto \sqrt[4]{2} i, i \mapsto -i\\
+						&\sigma^2: \sqrt[4]{2} \mapsto -\sqrt[4]{2}, i \mapsto i\\
+						&\sigma^3: \sqrt[4]{2} \mapsto -\sqrt[4]{2} i, i \mapsto i\\
+						&\tau: \sqrt[4]{2} \mapsto \sqrt[4]{2}, i \mapsto -i\\
+						&\sigma \tau: \sqrt[4]{2} \mapsto \sqrt[4]{2} i, i \mapsto -i\\
+						&\sigma^2 \tau: \sqrt[4]{2} \mapsto - \sqrt[4]{2}, i \mapsto -i\\
+						&\sigma^3 \tau: \sqrt[4]{2} \mapsto -\sqrt[4]{2} i, i \mapsto -i\}
+					\end{split}
+				\]
+				It is easy to see that $\text{Gal} \simeq D_8$.
+	\end{enumerate}
+\end{exs}
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

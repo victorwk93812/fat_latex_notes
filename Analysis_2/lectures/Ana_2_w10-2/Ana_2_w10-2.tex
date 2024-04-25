@@ -1,0 +1,704 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+\newenvironment{exs}[1][]{%
+  \begin{ex}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ex}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+\newcommand{\bracket}[1]{\langle #1 \rangle}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W10-2}
+\author{fat}
+% \date{\today}
+\date{April 25, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W10-2}
+
+Last time: 
+If $f \in L^1(\RR)$, then
+\[
+	f(x) = \lim_{\lambda \to \infty} \left( 1 - \frac{|\xi|}{\lambda} \right) \widehat{f}(\xi) e^{2 \pi i \xi x} \dd{x}
+\]
+holds for almost every $x$ and in $L^1$.
+To show this, we need the following lemma.
+
+\begin{lem}
+	Let $f, g \in L^1(\RR)$ and suppose that
+	\[
+		f(x) = \int G(\xi) e^{2 \pi i \xi x} \dd{x}
+	\]
+	for some $G \in L^1(\RR)$.
+	Then
+	\[
+		(f*g)(x) = \int G(\xi) \widehat{f}(\xi) e^{2 \pi i \xi x} \dd{\xi}
+	\]
+\end{lem}
+
+\begin{proofs}
+	$(\xi, y) \mapsto G(\xi) f(y)$ is integrable.
+	\[
+		\begin{split}
+			(f * g)(x) &= \int f(y) g(x - y) \dd{y}\\
+			&= \iint G(\xi) e^{2 \pi i \xi x} e^{-2 \pi i \xi y} f(y) \dd{\xi} \dd{y}\\
+			&\stackrel{\text{Fubini}}{=} \iint e^{-2 \pi i \xi y}f(y) \dd{y} G(\xi) e^{2 \pi i \xi x} \dd{\xi}\\
+			&= \int G(\xi) \widehat{f}(\xi) e^{2 \pi i \xi x} \dd{\xi}
+		\end{split}
+	\]
+\end{proofs}
+
+\begin{cor}[Uniqueness Theorem]
+	If $f \in L^1(\RR)$ and $\widehat{f}(\xi) = 0  \quad \forall \xi \in \RR$, then $f = 0$ almost everywhere.
+\end{cor}
+
+\begin{cor}[Fourier Inversion]
+	If $f, \widehat{f} \in L^1(\RR)$, then
+	\[
+		f(x) = \int \widehat{f}(\xi) e^{2 \pi i \xi x} \dd{\xi}
+	\]
+\end{cor}
+
+\begin{proofs}
+	$\widehat{f} \in L^1(\RR)$,
+	\[
+		\Ra \lim_{\lambda \to \infty} \int_{-\lambda}^\lambda \left( 1 - \frac{|\xi|}{\lambda} \right) \widehat{f}(\xi) e^{2 \pi i \xi x} \dd{\xi} \stackrel{\text{DCT}}{=}\int \widehat{f}(\xi) e^{2 \pi i \xi x} \dd{\xi}
+	\]
+\end{proofs}
+
+\begin{cor}
+	The functions whose Fourier transforms are compactly supported form a dense subspace of $L^1(\RR)$.
+\end{cor}
+
+\begin{proofs}
+	$f*F_\lambda \to f$ in $L^1$, where 
+	\[
+		\widehat{f*F_\lambda} (\xi) = \left( 1 - \frac{|\xi|}{\lambda} \right) \widehat{f}(\xi) \chi_{[-\lambda, \lambda]} (\xi)
+	\]
+	is compact supported.
+\end{proofs}
+
+\section{Poisson Summation Formula}
+
+For $f \in L^1(\RR)$, define 
+\[
+	\varphi(x) = \sum_{n = -\infty}^\infty f(x + n)
+\]
+$\varphi$ can be seen as a 1-periodic function on $\RR$.
+Well-defined?
+\[
+	\begin{split}
+		\int_0^1 |\varphi(x)| \dd{x} &\leq \sum_{n = -\infty}^\infty \int_0^1 |f(x + n)| \dd{x}\\
+		&= \sum_{n = -\infty}^\infty \int_n^{n + 1} |f(x)| \dd{x}\\
+		&= \int_{\RR} |f(x)| \dd{x} = \|f\|_{L^1}
+	\end{split}
+\]
+$\varphi$ makes sense as an $L^1$-function on $[0, 1]$.
+\[
+	\begin{split}
+		\widehat{\varphi}(k) = \int_0^1 \varphi(x) e^{2 \pi i k x} &= \int_0^1 \sum_{n = -\infty}^\infty f(x + n) e^{-2 \pi i k x} \dd{x}\\
+		&\stackrel{\text{DCT}}{=} \sum_{n = -\infty}^\infty \int_0^1 f(x + n) e^{- 2 \pi i k x} \dd{x}\\
+		&= \int_{- \infty}^\infty f(x) e^{-2 \pi i k x} \dd{x} = \widehat{f}(k)
+	\end{split}
+\]
+The Fourier coefficients of $\varphi$ are just $\widehat{f}|_{\ZZ}$.
+
+\begin{thm}[Poisson Summation Formula]
+	Let $f \in L(\RR)$ and let $\varphi$ be as above.
+	Suppose that the Fourier series of $\varphi$ converges to $\varphi$ at $x$.
+	Then
+	\[
+		\sum_{n = -\infty}^\infty f(x + n) = \sum_{n = -\infty}^\infty \widehat{f}(n) e^{2 \pi i n x}
+	\]
+	(In particular, if the Fourier series of $\varphi$ converges to $\varphi$ at 0, then $\sum_{n = -\infty}^\infty f(n) = \sum_{n = -\infty}^\infty \widehat{f}(n)$.)
+\end{thm}
+
+\begin{rem}
+	Even if $f, \widehat{f}$ are continuous and if both sides converge absolutely at $x$, the Poisson summation formula might not hold.
+	However, if we replace the RHS by
+	\[
+		\lim_{N \to \infty} \sum_{n = -(N - 1)}^{N - 1} \left( 1 - \frac{|n|}{N} \right) \widehat{f}(n) e^{2 \pi i n x}
+	\]
+	which is the Ces\`aro mean of the Fourier series of $\varphi$, then the formula holds whenever $\varphi$ is continuous at $x$.
+\end{rem}
+
+\section{Fourier Transforms in \boldmath$L^p, 1 < p \leq 2$\unboldmath}
+
+For Fourier series, $L^p([-\pi, \pi]) \subseteq L^1([-\pi, \pi]) \quad \forall p \geq 1$.
+Can talk about the Fourier series of $f$ if $f \in L^-([-\pi, \pi])$.
+However, $L^p(\RR) \not\subseteq L^1(\RR) \quad \forall p > 1$.
+Need to define Fourier transform in some other way for functions in $L^p(\RR)$.
+Start with $L^2(\RR)$.
+
+\begin{lem}
+	If $f$ is continuous with compact support on $\RR$ then
+	\[
+		\|\widehat{f}\|_{L^2} = \|f\|_{L^2}
+	\]
+\end{lem}
+
+\begin{proofs}
+	Write $\tilde{f}(x) = \overline{f(-x)}$.
+	Let $g = f * \tilde{f}$.
+	Then 
+	\[
+		g(0) = (f * \tilde{f})(0) = \int f(y) \tilde{f}(-y) \dd{y} = \int |f(y)|^2 \dd{y} = \|f\|_{L^2}^2
+	\]
+
+	Also, $\widehat{g}(\xi) = |\widehat{f}(\xi)|^2$.
+	Moreover, $g$ is continuous
+	\[
+		\begin{split}
+			\|f\|_{L^2}^2 = g(0) &= \lim_{\lambda \to \infty} \int_{-\lambda}^\lambda \left( 1 - \frac{|\xi|}{\lambda} \right) \widehat{g}(\xi) e^{2 \pi i \xi 0} \dd{\xi}\\
+			&= \lim_{\lambda \to \infty} \int_{-\lambda}^\lambda \left(1 - \frac{|\xi|}{\lambda} \right) |\widehat{f}(\xi)|^2 \dd{\xi}\\
+			&\stackrel{\text{MCT}} = \int |\widehat{f}(\xi)|^2 \dd{\xi} = \|\widehat{f}\|_{L^2}^2
+		\end{split}
+	\]
+\end{proofs}
+
+\begin{thm}[Plancherel]
+	$\exists !$ surjective operator $\F \in \B(L^2(\RR))$ such that $\F f = \hat{f} \quad \forall f \in L^1(\RR) \cap L^2(\RR)$ and 
+	\[
+		\| \F f\|_{L^2(\RR)} = \|f\|_{L^2(\RR)} \quad \forall f \in L^2(\RR)
+	\]
+\end{thm}
+
+\begin{proofs}
+	First, $L^1(\RR) \cap L^2(\RR)$ is dense in $L^2(\RR)$. (Check)
+	So any operator in $\B(L^2(\RR))$ is determined by its value on $L^1(\RR) \cap L^2(\RR)$.
+	So there is at most one such operator.
+	By the lemma, the isometry property holds for all continuous $f$ with compact support.
+	Such functions are dense in $L^1(\RR) \cap L^2(\RR)$ with respec to to the norm $\|\cdot\|_{L^1} + \|\cdot\|_{L^2}$.
+	By continuity, the isometry property holds $\forall f \in L^1(\RR) \cap L^2(\RR)$.
+	Again by continuity, $\F$ defines an isometry from $L^2(\RR)$ to $L^2(\RR)$.
+	Remains to show $\F$ is onto.
+	\begin{clm}
+		Let $g$ be a twice differentiable function with compact support.
+		Then $g$ is the Fourier transform of some bounded $f \in L^1(\RR)$.
+		(such $f$ belongs to $L^2(\RR)$.)
+	\end{clm}
+
+	\begin{proofs}
+		Define $f(x) = \int g(\xi) e^{2 \pi i \xi x} \dd{\xi}$.
+		$g$ has compact support $\Ra g''$ has compact suppoer.
+		Define 
+		\[
+			h(x) = \int g''(\xi)e^{2 \pi i \xi x} \dd{\xi}
+		\]
+		By integration by parts, 
+		\[
+			h(x) = - 4 \pi^2 x^2 \int g(\xi) e^{2 \pi i \xi x} \dd{\xi} = -4 \pi^2 x^2 f(x)
+		\]
+		\[
+			\Ra f(x) = -\frac{1}{4 \pi^2 x^2} h(x) \text{ if }x \neq 0
+		\]
+		$f$ is bounded and $f(x) = \O(1/x^2)$ as $|x| \to \infty$.
+		So $f \in L^1(\RR)$.
+		By Fourier inversion, $g = \widehat{f}$.
+	\end{proofs}
+	By Claim, the range of $\F$ is dense in $L^2(\RR)$.
+	Remains to show that the range is closed.
+	Let $(\F f_n)$ be a Cauchy sequence in $\F(L^2(\RR))$.
+	Since $\F$ is an isometry $(f_n)$ is Cauchy in $L^2(\RR)$.
+	So $f_n \to f$ for some $f \in L^2(\RR)$.
+	$\Ra \F f_n \to \F f$ in $L^2(\RR)$.
+	So $\F(L^2(\RR))$ is closed.
+\end{proofs}
+
+\begin{rem}
+	$ $\par\nobreak\ignorespaces
+	\begin{enumerate}
+		\item If $f \in L^2(\RR)$, we just define $\widehat{f} = \F f$.
+			Equivalently, given $f \in L^2(\RR)$, we can define $\widehat{f}$ to be the $L^2$-limit of $\widehat{f_n}$, where $(f_n)$ is any sequence in $L^1(\RR) \cap L^2(\RR)$ that converges to $f$ in $L^2(\RR)$.
+			An easy choice is $f_n = f \chi_{[-n, n]}$.
+			\[
+				\widehat{f_n}(\xi) = \int_{-n}^n f(x) e^{-2 \pi i \xi x} \dd{x} \to \widehat{f}(\xi) \text{ in } L^2
+			\]
+
+		\item $\F$ is invertible.
+			We can obtain the inverse map by $f(x) = \lim_{n \to \infty} \int_{-n}^n \widehat{f}(\xi) e^{2 \pi i \xi x} \dd{\xi}$ in $L^2$.
+
+		\item By polarization, we have the following:
+			\[
+				\ev{f, g} = \ev{\widehat{f}, \widehat{g}} \quad \forall f, g \in L^2(\RR)
+			\]
+			We also call this the Parseval identity.
+	\end{enumerate}
+\end{rem}
+
+For $1 < p < 2$, we use Riesz-Thorin again to obtain the following:
+\begin{thm}[Hausdorff-Young]
+	Let $1 \leq p \leq 2$ and $q = p/(p - 1) \quad \forall f \in L^1(\RR) \cap L^2(\RR)$, one has
+	\[
+		\| \widehat{f} \|_{L^q} \leq \|f\|_{L^p}
+	\]
+\end{thm}
+Can use this to define $\widehat{f}$ for $f \in L^p(\RR), 1 < p < 2$.
+What about $p > 2$?
+A crazy idea:
+Suppose that $f \in L^p(\RR)$ and $g \in L^q(\RR), 2 < p \leq \infty, q = p/(p - 1)$.
+Then $\int f(x) \overline{g(x)} \dd{x}$ makes sense by H\"older's inequality.
+Pretend that we can apply the Parseval identity:
+\[
+	\int f(x) \overline{g(x)} \dd{x} = \int \widehat{f}(\xi) \overline{\widehat{g}(\xi)} \dd{\xi}
+\]
+But what is $\widehat{f}$? 
+We know $\widehat{g}$ at least.
+Let's define $\widehat{f}$ as a function such that
+\[
+	\ev{\widehat{f}, \widehat{g}} = \ev{f, g} \quad \forall g \in L^q(\RR)
+\]
+Questions
+\begin{enumerate}
+	\item Does this $\widehat{f}$ really exist?
+
+	\item Can we replace $L^q(\RR)$ by a better class of functions?
+\end{enumerate}
+
+Goal: Find a class $\C$ of functions such that
+
+\begin{enumerate}
+	\item $g \in \C \Ra \widehat{g} \in \C$.
+
+	\item $\int f \overline{g}$ makes sense for "many" $f$.
+\end{enumerate}
+
+\begin{dfn}
+	The \textbf{Schwartz space} $S(\RR)$ on $\RR$ is space of smooth functions $f$ such that
+	\[
+		\sup_{x \in \RR} |x|^k |f^{(l)}(x)| < \infty \quad \forall k, l \geq 0
+	\]
+\end{dfn}
+
+$S(\RR)$ is a vector space over $\CC$.
+
+\par Put a metric on $S(\RR)$ as follows:\\
+$\forall k, l \geq 0$, write $\|f\|_{k, l} = \sup_{x \in \RR} |x|^k |f^{(l)}(x)|$.
+Define 
+\[
+	d(f, g) = \sum_{k, l \geq 0} \frac{1}{2^{k + l}} \frac{\|f - g\|_{k, l}}{1 + \|f - g\|_{k, l}}
+\]
+
+So a sequence of functions $(f_n)$ in $S(\RR)$ converges to f $\Lra \|f_n - f\|_{k, l} \to 0$ as $n \to \infty$.
+Verify by yourself: $S(\RR)$ is complete.\\
+Observations:
+\begin{itemize}
+	\item If $f \in S(\RR)$, then $f' \in S(\RR)$ and $x f(x) \in S(\RR)$.
+
+	\item If $f \in S(\RR)$, then $\widehat{f} \in S(\RR)$.
+		
+		\begin{proofs}
+			$\forall k, l \geq 0$, $\xi^k \widehat{f}^{(l)} (\xi)$ is the Fourier transform of $1/(2 \pi i)^k (\dv*{x})^k [(-2 \pi i x)^l f(x)] \in S(\RR)$.
+			So $\xi^k \widehat{f}^{(l)} (\xi)$ is uniformly bounded.
+			So $\widehat{f} \in S(\RR)$.
+		\end{proofs}
+
+	\item $f \mapsto \widehat{f}$ and $\widehat{f} \mapsto f$ are continuous in $S(\RR)$.
+\end{itemize}
+
+\begin{dfn}
+	A \textbf{tempered distribution} is an element of $S(\RR)^*$.
+	For any $\mu \in S(\RR)^*$, we define its Fourier transform $\widehat{\mu}$ by
+	\[
+		\widehat{\mu}(\widehat{\varphi}) = \mu(\varphi) \quad \forall \varphi \in S(\RR)
+	\]
+\end{dfn}
+
+\begin{rem}
+	$ $\par\nobreak\ignorespaces
+	\begin{itemize}
+		\item For $\mu$ being continuous, we need:\\
+			$\varphi_n \to \varphi$ in $S(\RR)$ then $\mu(\varphi_n) \to \mu(\varphi)$.
+
+		\item If we use the pairing notation 
+			\[
+				\ev{\widehat{\mu}, \widehat{\varphi}} = \ev{\mu, \varphi}
+			\]
+			It looks like the Parseval identity.
+	\end{itemize}
+\end{rem}
+
+We will only talk about some examples.
+
+\begin{exs}
+	\begin{enumerate}
+		\item[(a)] Let $f \in L^2(\RR)$.
+			Define $|mu \in S(\RR)^($ by 
+			\[
+				\mu(\varphi) = \int \varphi(x) \overline{f(x)} \dd{x}
+			\]
+			Check: $\mu$ is continuous.
+			\[
+				\widehat{\mu}(\widehat{\varphi}) = \mu(\varphi) = \int \varphi(x) \overline{f(x)} \dd{x} \stackrel{\text{Parseval}}{=} \int \widehat{\varphi}(\xi) \overline{\widehat{f}(\xi)} \dd{\xi}
+			\]
+			So 
+			\[
+				\widehat{\mu}(\cdot) = \int \cdot \overline{\widehat{f}(\xi)} \dd{\xi}
+			\]
+			$\mu \leftrightarrow f, \widehat{\mu} \leftrightarrow \widehat{f}$.
+			This recovers the Fourier transform in $L^2$.
+
+		\item[(b)] Similarly, if $f \in L^1(\RR)$ and define 
+			\[
+				\mu(\varphi) = \int \varphi(x) \overline{f(x)} \dd{x}
+			\]
+			Then $\widehat{\mu}$ can be identified with $\widehat{f}$.
+			Need to verify
+			\[
+				\int \varphi(x) \overline{f(x)} \dd{x} = \int \widehat{\varphi}(\xi) \overline{\widehat{f}(\xi)} \dd{\xi}
+			\]
+			Just approximate $f$ by $f_n \in L^1(\RR) \cap L^2(\RR)$.
+			
+		\item[(c)] Consider 
+			\[
+				\mu(\varphi) = \varphi(0)
+			\]
+			Then $\mu \in S(\RR)^*$. 
+			($\mu$ is the Dirac delta.)
+			\[
+				\widehat{\mu}(\widehat{\varphi}) = \mu(\varphi) = \varphi(0) \stackrel{\text{Inversion}}{=} \int \widehat{\varphi}(\xi) \dd{\xi}
+			\]
+			So $\widehat{\mu}$ is identified with the constant function 1.
+
+		\item[(d)] Define 
+			\[
+				\mu(\varphi) = \int \varphi
+			\]
+			\[
+				\widehat{\mu}(\widehat{\varphi}) = \int \varphi = \widehat{\varphi}(0)
+			\]
+			So $\widehat{\mu}$ is the Dirac delta.
+	\end{enumerate}
+\end{exs}
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

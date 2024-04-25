@@ -132,17 +132,6 @@
 \DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
 \DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
 
-% Defining a command
-% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
-% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
-% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
-\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
-% \renewcommand{\figurename}{圖}
-\newcommand{\sfa}{\text{  } \forall}
-\newcommand{\floor}[1]{\lfloor #1 \rfloor}
-\newcommand{\ceil}[1]{\lceil #1 \rceil}
-
-
 %%
 %%
 % A very large matrix
@@ -207,6 +196,11 @@
 }{%
   \end{ex}
 }
+\newenvironment{rems}[1][]{%
+  \begin{rem}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{rem}
+}
 %%%%
 %Lists
 %\begin{itemize}
@@ -226,6 +220,17 @@
 %\end{enumerate}
 %%%%
 % \usepackage{mathabx}
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
 \usepackage{xfrac}
 %\usepackage{faktor}
 %% The command \faktor could not run properly in the pc because of the non-existence of the 
@@ -312,10 +317,12 @@
 \newcommand{\Ra}{\Rightarrow}
 \newcommand{\La}{\Leftarrow}
 \newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\lra}{\leftrightarrow}
 \newcommand{\ru}{\rightharpoonup}
 \newcommand{\lu}{\leftharpoonup}
 \newcommand{\rd}{\rightharpoondown}
 \newcommand{\ld}{\leftharpoondown}
+\newcommand{\Gal}{\text{Gal}\,}
 
 \linespread{1.5}
 \pagestyle{fancy}

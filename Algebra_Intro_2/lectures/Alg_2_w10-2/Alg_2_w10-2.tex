@@ -1,0 +1,635 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+\newenvironment{exs}[1][]{%
+  \begin{ex}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ex}
+}
+\newenvironment{rems}[1][]{%
+  \begin{rem}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{rem}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+\newcommand{\bracket}[1]{\langle #1 \rangle}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+\newcommand{\Gal}{\text{Gal}\,}
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Intro to Algebra 2 W10-2}
+\author{fat}
+% \date{\today}
+\date{April 26, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Intro to Algebra 2 W10-2}
+
+\begin{enumerate}
+	\item[(5)] (Continued)
+				\begin{figure}[H]
+					\centering
+						\begin{tikzpicture}
+							\node (N1) [align=center] at (0, 0) {$\{\text{id}\}, E = \QQ(\sqrt[4]{2}, i)$};
+							\node (N2) [align=center] at (0, 2) {$\ev{\sigma^2}$\\$\QQ(\sqrt{2}, i)$};
+							\node (N3) [align=center] at (2, 2) {$\ev{\sigma \tau}$\\$\QQ(\sqrt[4]{2}(1 + i))$};
+							\node (N4) [align=center] at (4, 2) {$\ev{\sigma^3 \tau}$\\$\QQ(\sqrt[4]{2}(1 - i))$};
+							\node (N5) [align=center] at (-4, 2) {$\ev{\tau}$\\$\QQ(\sqrt[4]{2})$};
+							\node (N6) [align=center] at (-2, 2) {$\ev{\sigma^2 \tau}$\\$\QQ(\sqrt[4]{2}i)$};
+							\node (N7) [align=center] at (0, 4) {$\ev{\sigma}$\\$\QQ(i)$};
+							\node (N8) [align=center] at (-2, 4) {$\ev{\sigma^2, \tau}$\\$\QQ(\sqrt{2})$};
+							\node (N9) [align=center] at (2, 4) {$\ev{\sigma^2, \sigma\tau}$\\$\QQ(\sqrt{-2})$};
+							\node (N10) [align=center] at (0, 6) {$\Gal \simeq \ev{\sigma, \tau} \simeq D_8, \QQ$};
+
+							\draw (N1)--(N2) node [midway, right] {2};
+							\draw (N1)--(N3) node [midway, above] {2};
+							\draw (N1)--(N4) node [midway, below] {2};
+							\draw (N1)--(N5) node [midway, below] {2};
+							\draw (N1)--(N6) node [midway, above] {2};
+							\draw (N5)--(N8) node [midway, above] {2};
+							\draw (N6)--(N8) node [midway, right] {2};
+							\draw (N2)--(N8) node [midway, below] {2};
+							\draw (N2)--(N7) node [midway, right] {2};
+							\draw (N2)--(N9) node [midway, above] {2};
+							\draw (N3)--(N9) node [midway, right] {2};
+							\draw (N4)--(N9) node [midway, below] {2};
+							\draw (N7)--(N10) node [midway, left] {2};
+							\draw (N8)--(N10) node [midway, above] {2};
+							\draw (N9)--(N10) node [midway, below] {2};
+
+						\end{tikzpicture}
+					\caption{Example 3}
+				\end{figure}
+
+		Note that $\ev{\sigma^2, \tau}, \ev{\sigma}, \ev{\sigma^2, \sigma^2 \tau}$ all have index $2$ in $\Gal$, so their fixed fields have degree $2$ over $\QQ$.
+		Recall that 
+		\[
+			\begin{split}
+				\sigma: 
+				\begin{cases}
+					\sqrt[4]{2} \mapsto \sqrt[4]{2} i\\
+					i \mapsto i
+				\end{cases}
+				\\
+				\tau:
+				\begin{cases}
+					\sqrt[4]{2} \mapsto \sqrt[4]{2}\\
+					i \mapsto -i
+				\end{cases}
+			\end{split}
+		\]
+		Observe that $E$ contains $i, \sqrt{2}, \sqrt{2} i = \sqrt{-2}$.
+		Clearly $\QQ(i)$ is the fixed field of $\ev{\sigma}$.
+		Now $\tau(\sqrt{2}) = \tau(\sqrt[4]{2})^2 = \sqrt{2}$, so the fixed field of $\ev{\sigma^2, \tau}$ must be $\QQ(\sqrt{2})$.
+		$\Ra$ The fixed field of $\ev{\sigma^2, \sigma \tau}$ is $\QQ(\sqrt{-2})$.
+		\[
+			\begin{split}
+				(\sigma \tau(\sqrt{-2}) &= \sigma(\tau(\sqrt{2} i)) = \sigma(\sqrt{2} (-i))\\
+				&= \sigma(\sqrt[4]{2})^2 \cdot \sigma(-i) = (-\sqrt{2}) (-i)\\
+				&= \sqrt{2} i = \sqrt{-2})
+			\end{split}
+		\]
+		The fixed field of $\ev{\sigma^2}$ contains the fixed field of $\ev{\sigma}, \ev{\sigma^2, \tau}, \ev{\sigma^2, \sigma \tau}$, so must be $\QQ(\sqrt{2}, i)$.
+		Also, clearly the fixed field of $\ev{\tau}$ is $\QQ(\sqrt[4]{2})$.
+		(Note that $[\text{fixed field of }\ev{\tau}:\QQ] = 4$, $\sqrt[4]{2}$ is fixed by $\tau$, so $\QQ(\sqrt[4]{2}) \subseteq \text{ fixed field of }\ev{\tau}$. The converse is obvious.)
+		Moreover, since $\ev{\sigma^2 \tau} = \sigma \ev{\tau} \sigma^{-1}$, the fixed field of $\ev{\sigma^2 \tau}$ is $\sigma(\text{fixed field of }\QQ(\sqrt[4]{2})) = \QQ(\sqrt[4]{2} i)$
+		\[
+			(\sigma^2 \tau(\sqrt[4]{2} i) = \sigma^2 (- \sqrt[4]{2} i) = -\sigma (\sqrt[4]{2} i \cdot i) = \sigma(\sqrt[4]{2}) = \sqrt[4]{2} i)
+		\]
+		Note that for any $\alpha \in E$, $\alpha + \sigma \tau(\alpha)$ is fixed by $\ev{\sigma \tau}$. (since $\sigma \tau$ has order $2$)
+		Here, we choose $\alpha = \sqrt[4]{2}$.
+		Then $\sqrt[4]{2} + \sigma \tau(\sqrt[4]{2}) = \sqrt[4]{2} + \sqrt[4]{2} i$ is fixed by $\ev{\sigma \tau}$.
+		Note that $(\sqrt[4]{2}(1 + i))^2 = \sqrt{2} \cdot 2 i \Ra (\sqrt[4]{2}(1 + i))^4 = -8$.
+		We find $m_{\sqrt[4]{2}(1 + i), \QQ}(x) =  x^4 + 8 \Ra [\QQ(\sqrt[4]{2}(1 + i) : \QQ] = 4$.
+		By the same argument, we see that the fixed field of $\ev{\sigma^2 \tau}$ is $\QQ(\sqrt[4]{2}(1 - i))$.
+	
+	\item[(6)] $f(x) = x^4 - 2x^2 - 1$.
+		The roots are $\pm \sqrt{1 + \sqrt{2}}, \pm \sqrt{1 - \sqrt{2}}$ ($\pm \alpha, \pm i/\alpha$).
+		Let $\alpha = \sqrt{1 + \sqrt{2}}$.
+		Note that $\sqrt{1 - \sqrt{2}} = i/\alpha$. ($\sqrt{1 + \sqrt{2}} \cdot \sqrt{1 - \sqrt{2}} = \sqrt{-1}$)
+		The splitting field is $\QQ(\alpha, i)$.
+
+		\[
+			\begin{split}
+				\Gal = \{ &\text{id}\\
+				&\sigma: \alpha \mapsto \frac{i}{\alpha}, i \mapsto -i\\
+				&\sigma^2: \alpha \mapsto -\alpha, i \mapsto i\\
+				&\sigma^3:  \alpha \mapsto \frac{-i}{\alpha}, i \mapsto -i\\
+				&\sigma \tau: \alpha \mapsto \frac{i}{\alpha}, i \mapsto i\\
+				&\sigma^2 \tau: \alpha \mapsto -\alpha, i \mapsto -i\\
+				&\sigma^3 \tau: \alpha \mapsto -\frac{i}{\alpha}, i \mapsto i\}
+			\end{split}
+		\]
+		where we chose $\sigma$ to be an element of order $4$.
+		Note that $\sigma^4 = \tau^2 = \text{id}$ and $\tau \sigma^3 = \sigma^3 \tau$.
+		So $\Gal \simeq D_8$.
+
+				\begin{figure}[H]
+					\centering
+						\begin{tikzpicture}
+							\node (N1) [align=center] at (0, 0) {$\{\text{id}\}, E = \QQ(\alpha, i)$};
+							\node (N2) [align=center] at (0, 2) {$\ev{\sigma^2}$\\$\QQ(\sqrt{2}, i)$};
+							\node (N3) [align=center] at (2, 2) {$\ev{\sigma \tau}$\\$\QQ(\sqrt{2}(1 + i))$};
+							\node (N4) [align=center] at (4, 2) {$\ev{\sigma^3 \tau}$\\$\QQ(\sqrt{2}(1 - i))$};
+							\node (N5) [align=center] at (-4, 2) {$\ev{\tau}$\\$\QQ(\alpha)$};
+							\node (N6) [align=center] at (-2, 2) {$\ev{\sigma^2 \tau}$\\$\QQ(\sqrt{1 - \sqrt{2}})$};
+							\node (N7) [align=center] at (0, 4) {$\ev{\sigma}$\\$\QQ(\sqrt{-2})$};
+							\node (N8) [align=center] at (-2, 4) {$\ev{\sigma^2, \tau}$\\$\QQ(\sqrt{2})$};
+							\node (N9) [align=center] at (2, 4) {$\ev{\sigma^2, \sigma\tau}$\\$\QQ(i)$};
+							\node (N10) [align=center] at (0, 6) {$\Gal \simeq \ev{\sigma, \tau} \simeq D_8, \QQ$};
+
+							\draw (N1)--(N2) node [midway, right] {2};
+							\draw (N1)--(N3) node [midway, above] {2};
+							\draw (N1)--(N4) node [midway, below] {2};
+							\draw (N1)--(N5) node [midway, below] {2};
+							\draw (N1)--(N6) node [midway, above] {2};
+							\draw (N5)--(N8) node [midway, above] {2};
+							\draw (N6)--(N8) node [midway, right] {2};
+							\draw (N2)--(N8) node [midway, below] {2};
+							\draw (N2)--(N7) node [midway, right] {2};
+							\draw (N2)--(N9) node [midway, above] {2};
+							\draw (N3)--(N9) node [midway, right] {2};
+							\draw (N4)--(N9) node [midway, below] {2};
+							\draw (N7)--(N10) node [midway, left] {2};
+							\draw (N8)--(N10) node [midway, above] {2};
+							\draw (N9)--(N10) node [midway, below] {2};
+
+						\end{tikzpicture}
+					\caption{Example 3}
+				\end{figure}
+		
+		\par Now we determine the Galois correspondence.
+		$E$ contains $i, \sqrt{2} = \alpha^2 - 1, \sqrt{-2}$.
+		Now $\sigma(\alpha^2 - 1) = \sigma(\alpha)^2 - 1 = -1/\alpha^2 - 1 \neq \alpha^2 - 1$.
+		So $\sqrt{2}$ is not fixed by $\ev{\sigma}$.
+		$\Ra$ The fixed field of $\ev{\sigma}$ is $\QQ(\sqrt{-2})$.
+		Also, $\tau(i) = -i \neq i$, so $\ev{\sigma^2, \tau}$ does not fix $i$.
+		$\Ra$ The fixed field of $\ev{\sigma^2, \tau}$ is $\QQ(\sqrt{2})$.
+		(Indeed $\tau(\sqrt{2} = \tau(\alpha^2 - 1) = \alpha^2 - 1 = \sqrt{2}$)
+		Clearly, the fixed field of $\ev{\tau}$ is $\QQ(\alpha)$ and the fixed field of $\ev{\sigma^2 \tau} = \sigma \ev{\tau} \sigma^{-1}$ is $\sigma(\text{fixed field of }\ev{\tau}) = \sigma(\QQ(\alpha)) = \QQ(i/\alpha) = \QQ(\sqrt{1 - \sqrt{2}})$.
+		$\sigma \tau$ fixed $\alpha + \sigma \tau(\alpha) = \alpha + \sigma(\alpha) = \alpha + i/\alpha$.
+		We hope that $\alpha + i/\alpha$ has degree $4$ over $\QQ$.
+		Indeed 
+		\[
+			\begin{split}
+				\beta^2 := \left(\alpha + \frac{i}{\alpha}\right)^2 &= \alpha^2 + 2 i - \frac{1}{\alpha^2}\\
+				&= 1 + \sqrt{2} + 2i - \frac{1}{1 +  \sqrt{2}}\\
+				&= 1 + \sqrt{2} + 2i + (1 - \sqrt{2}) = 2 + 2i
+			\end{split}
+		\]
+		$\Ra (\beta^2 - 2)^2 = (2i)^2 \Ra \beta^4 - 4 \beta^2 + 8 = 0$.
+		$\Ra m_{\beta, \QQ}(x) = x^4 - 4x^2 + 8$, so $[\QQ(\beta):\QQ] = 4$.
+		$\Ra$ The fixed field of $\ev{\sigma \tau}$ is $\QQ(\beta)$.
+		Similarly the field of $\ev{\sigma^3 \tau}$ is $\QQ(\sqrt{2(1 - i)})$.
+
+\end{enumerate}
+
+\begin{rem}
+	In the exam, there should not appear problems too easy or to complicated.
+	Thus splitting fields like examples (5) and (6) are most likely the problems that will be in the exam (something like the splitting field of $x^4 + ax^2 + b$)
+\end{rem}
+
+\section*{14.3 Finite Fields}
+
+Recall a theorem from Chapter 13.
+
+\begin{thm}
+	Let $p$ be a prime.
+	For each positive integer $n$, there exists a ield of $p^n$ elements.
+	More precisely, let 
+	\[
+		\FF_{p^n} := \{\alpha \in \overline{\FF_p}: \alpha \text{ is a root of }x^{p^n} - x\}
+	\]
+	Then $\FF_{p^n}$ is a field of $p^n$ elements.
+	Moreover, every field of $p^n$ elements is isomorphic to $\FF_{p^n}$.
+\end{thm}
+
+\begin{thm}[Theorem 15]
+	\begin{enumerate}
+		\item[(1)] $\FF_{p^n}/\FF_p$ is a Galois extension
+
+		\item[(2)] $\Gal(\FF_{p^n}/\FF_p)$ is cyclic of order $n$ generated by the Frobenius automorphism $\sigma: \alpha \mapsto \alpha^p$.
+
+		\item[(3)] (The Galois correspondence)
+
+				\begin{figure}[H]
+					\centering
+						\begin{tikzpicture}
+							\node (N1) [align=center] at (0, 0) {\{$\FF_{p^m}: m|n\}$\\$\{\text{subfields of }\FF_{p^m} (\text{ containing } \FF_p)\}$};
+							\node (N2) [align=center] at (0, 3.5) {$\{\text{subgroups of } \ev{\sigma^n}\}$\\$\{\ev{\sigma^m}: m | n\}$};
+
+							\draw (N1)--(N2) node [midway, right] {Galois correspondence};
+
+						\end{tikzpicture}
+					\caption{Example 3}
+				\end{figure}
+
+			(In particular, $\FF_{p^k} \subseteq \FF_{p^n} \Lra k|n$.)
+	\end{enumerate}
+\end{thm}
+
+\begin{proofs}
+	\begin{enumerate}
+		\item[(1)] $\FF_{p^n} = \{\text{roots of }x^{p^n} - x\}$, so it is the splitting field of $x^{p^n} - x$.
+			Therefore $\FF_{p^n}/\FF_p$ is normal.
+			Also, $x^{p^n} - x$ has no repeated roots.
+			So $\FF_{p^n} /\FF_p$ is separable.
+			$\Ra \FF_{p^n}/\FF_p$ is Galois.
+
+		\item[(2)] $|\Gal(\FF_{p^n}:\FF_p)| = [\FF_{p^n}:\FF_p] = n$.
+			So it suffices to show that the order of $\sigma$ is $n$.
+			Let $k$ be the order of $\sigma$.
+			Then $\sigma^k = \text{id} \Ra \sigma^k(\alpha) = \alpha \quad \forall \alpha \in \FF_{p^n}$.
+			$\Ra \alpha^{p^k} = \alpha \quad \forall \alpha \in \FF_{p^n}$.
+			$\forall \alpha \in \FF_{p^n}$, $\alpha$ is a root of $x^{p^k} - x \cdots (*)$.
+			This polynomial has $p^k$ roots.
+			Thus if $k < n$,$(*)$ cannot hold.
+			$\Ra$ order of $\sigma$ is $n$ and the $\Gal$ is cyclic generated by $\sigma$.
+
+		\item[(3)] Subgroups of $\ev{\sigma}$ are $\ev{\sigma^m}, m | n$.
+			Now $\alpha$ is fixed by $\ev{\sigma^m} \Lra \sigma^m(\alpha) = \alpha \Lra \alpha^{p^m} - \alpha = 0 \Lra \alpha \in \FF_{p^m}$.
+	\end{enumerate}
+\end{proofs}
+
+\begin{prop}[Proposition 17]
+	$\FF_{p^n}$ is a simple extension of $\FF_p$.
+\end{prop}
+
+\begin{proof}
+	This has been discussed in the proof of Theorem 25 (Primitive Element Theorem)
+\end{proof}
+
+\begin{prop}[Proposition 18]
+	$x^{p^n} - x = \prod (\text{irreducible polynomials of degree }\alpha | n \text{ over }\FF_p)$.
+\end{prop}
+
+\begin{proofs}
+	We have seen that $\FF_{p^m} \subseteq \FF_{p^n} \Lra m | n$.
+	So the degree of an element of $\FF_{p^m}$ over $\FF_p$ must be a divisor of $n$.
+	$\Ra$ the degree of an irreducible factor of $x^{p^n} - x$ must be a divisor of $n$.
+
+	\par Conversely, if $f(x)$ is an irreducible polynomial of degree $d, d|n$, over $\FF_p$ and $\alpha$ is a root of $f(x)$, then $[\FF_p(\alpha) : \FF_p] = d$ and $\FF_p(\alpha) = \FF_{p^d}$.
+	$\Ra \alpha \in \FF_{p^d} \subseteq \FF_{p^n}$.
+	$\Ra \alpha$ is a root of $x^{p^n} - x$.
+	$\Ra f(x) | x^{p^n} - x$.
+\end{proofs}
+
+\begin{ex}
+	$x^4 - x \in \FF_p[x]$.
+	$x^4 - x = x(x^3 - 1) = x(x - 1)(x^2 + x + 1)$.
+\end{ex}
+
+\begin{exs}
+	The number of irreducible polynomials of degree 6 over $\FF_p$ is $(p^6 - p^3 - p^2 + p)/6$.
+
+				\begin{figure}[H]
+					\centering
+						\begin{tikzpicture}
+							\node (N1) [align=center] at (0, 0) {$\FF_p$};
+							\node (N2) [align=center] at (1, 1) {$\FF_{p^2}$}; 
+							\node (N3) [align=center] at (-1, 1.5) {$\FF_{p^3}$}; 
+							\node (N4) [align=center] at (0, 2.5) {$\FF_{p^6}$}; 
+
+							\draw (N1)--(N2); 
+							\draw (N2)--(N4);
+							\draw (N1)--(N3);
+							\draw (N3)--(N4);
+
+						\end{tikzpicture}
+					\caption{Example 3}
+				\end{figure}
+	
+	\par Explanation: Each irreducible polynomial of degree 6 has 6 distinct roots, each of which has degree 6 over $\FF_p$.
+	$\Ra$ The number of irreducible polynomials of degree 6 over $\FF_p = 1/6$ (the number of elements of $\overline{\FF_p}$ of degree 6 over $\FF_p$)
+	$=1/6$ (number of elements of $\FF_{p^6}$ not in a proper subfield of $\FF_{p^6}$) $=1/6 (|\FF_{p^6}| - |\FF_{p^3}| - |\FF_{p^2}| +  |\FF_p|$)
+\end{exs}
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

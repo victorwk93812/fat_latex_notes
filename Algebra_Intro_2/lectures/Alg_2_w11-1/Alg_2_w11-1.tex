@@ -1,0 +1,550 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+\newenvironment{exs}[1][]{%
+  \begin{ex}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ex}
+}
+\newenvironment{rems}[1][]{%
+  \begin{rem}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{rem}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+\newcommand{\bracket}[1]{\langle #1 \rangle}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+\newcommand{\Gal}{\text{Gal}\,}
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Intro to Algebra 2 W11-1}
+\author{fat}
+% \date{\today}
+\date{April 30, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Intro to Algebra 2 W11-1}
+
+\section*{14.4 Skipped}
+
+\section*{14.5 Cyclotomic Extensions and Abelian Extensions}
+
+Recall from section 13.6 that the $n$-th cyclotomic polynomial
+\[
+	\Phi_n(x) = \prod_{\substack{a = 1 \\ (a, n) = 1}} (x - \zeta_n^a), \quad \zeta_n = e^{\frac{2 \pi i}{n}}
+\]
+is an irreducible polynomial over $\QQ$.
+Thus the conjugates of $\zeta_n$ over $\QQ$ are $\zeta_n^a, (a, n) = 1$, and $\QQ(\zeta_n)$ is a Galois extension of $\QQ$ ($\QQ$ has characteristic 0 and it is a splitting field).
+
+\begin{thm}[Theorem 26]
+	$\Gal(\QQ(\zeta_n)/\QQ) \simeq (\ZZ/n \ZZ)^\times$.
+\end{thm}
+
+\begin{proofs}
+	For $a \in \ZZ$ with $(a, n) = 1$, define $\sigma_a \in \Gal(\QQ(\zeta_n)/\QQ)$ by $\sigma_a: \zeta_n \mapsto \zeta_n^a$.
+	Clearly $\sigma_a$ depends on the residue class of $a$ modulo $n$.
+	Therefore, we have a well-defined function $\Psi: (\ZZ/n \ZZ)^\times \to \Gal(\QQ(\zeta_n)/\QQ)$ defined by $\underline{a} \mapsto \sigma_a$.
+	Note that $\Psi(\underline{ab}) = \sigma_{ab}$, while $\Psi(\underline{a}) \circ \Psi(\underline{b}) = \sigma_a \circ \sigma_b$.
+	Now 
+	\[
+		\sigma_a \circ \sigma_b(\zeta_n) = \sigma_a ( \zeta_n^b) = (\zeta_n^a)^b = \sigma_{ab}(\zeta_n)
+	\]
+	$\Ra \sigma_a \circ \sigma_b = \sigma_{b}$, i.e. $\Psi(\underline{a}) \circ \Psi(\underline{b}) = \Psi(\underline{ab})$.
+	Thus $\Psi$ is a group homomorphism.
+	Furthermore, 
+	\[
+		\begin{split}
+			\ker \Psi &= \{ \underline{a} : \sigma_a(\zeta_n) = \zeta_n\}\\
+			&= \{\underline{a}: \zeta_n^a = \zeta_n\}\\
+			&= \{\underline{a}: a \equiv 1 \pmod{n}\}\\
+			&= \{\underline{1}\}\\
+		\end{split}
+	\]
+	$\Ra \Psi$ is injective.
+	Since $|\Gal(\QQ(\zeta_n)/\QQ)| = |\{1 \leq a \leq n: (a, n) = 1\}| = |(\ZZ/n \ZZ)^\times|$, $\Psi$ is also surjective. 
+	Therefore $\Gal(\QQ(\zeta_n)/\QQ) \simeq (\ZZ/n \ZZ)^\times$.
+\end{proofs}
+
+\begin{ex}
+	$n = 12$, $\Gal (\QQ(\zeta_n)/\QQ) = \{\sigma_1, \sigma_5, \sigma_7, \sigma_{11}\} \simeq (\ZZ/12 \ZZ)^\times \simeq C_2 \times C_2$.
+
+	\begin{figure}[H]
+		\centering
+			\begin{tikzpicture}
+				\node (N1) [align=center] at (0, 0) {\{$\sigma_1$\}, $\QQ(\zeta_{12})$};
+				\node (N2) [align=center] at (2, 2) {$\ev{\sigma_{11}}$\\$\QQ(\sqrt{3})$}; 
+				\node (N3) [align=center] at (0, 2) {$\ev{\sigma_7}$\\$\QQ(\sqrt{-3})$}; 
+				\node (N4) [align=center] at (-2, 2) {$\ev{\sigma_5}$\\$\QQ(i)$}; 
+				\node (N5) [align=center] at (0, 4) {$\Gal(\QQ(\zeta_{12})/\QQ)$, $\QQ$}; 
+
+				\draw (N1)--(N2) node [midway, right] {2}; 
+				\draw (N1)--(N3) node [midway, right] {2};
+				\draw (N1)--(N4) node [midway, left] {2};
+				\draw (N2)--(N5) node [midway, right] {2};
+				\draw (N3)--(N5) node [midway, right] {2};
+				\draw (N4)--(N5) node [midway, left] {2};
+
+			\end{tikzpicture}
+		\caption{Example 1}
+	\end{figure}
+	
+	The subgroup $\ev{\sigma_5}$ fixes $\zeta_{12} + \sigma_5(\zeta_{12}) = \zeta_{12} + \zeta_{12}^5 = (\sqrt{3} + i)/2 + (-\sqrt{3} + i)/2 = i$.
+	$\Ra$ The fixed field of $\ev{\sigma_5}$ is $\QQ(i)$.
+	The subgroup $\ev{\sigma_7}$ fixes $\zeta_{12} \sigma_7 (\zeta_{12})$ (note that $\zeta_{12} + \sigma_7 (\zeta_{12}) = 0$) $= \zeta_{12}^8 = (-1 - \sqrt{3})/2$.
+	$\Ra$ The fixed field of $\ev{\sigma_7}$ is $\QQ(\sqrt{-3})$.
+	The field $\QQ(\zeta_{12})$ contains $i, \sqrt{-3}$, so it also contains $\sqrt{3}$.
+	The field $\QQ(\sqrt{3}$ must be the fixed field of $\ev{\sigma_{11}}$. 
+	(Indeed, $\sqrt{3} = \zeta{12} + \zeta_{12}^{11} = \zeta_{12} + \sigma_{11} (\zeta_{12})$, so it is fixed by $\sigma_{11}$.)
+\end{ex}
+
+\begin{ex}
+	The group $(\ZZ/7 \ZZ)^\times$ is cyclic and generated by $3$.
+	So $\Gal(\QQ(\zeta_7)/\QQ) = \ev{\sigma_3}$.
+
+
+	\begin{figure}[H]
+		\centering
+			\begin{tikzpicture}
+				\node (N1) [align=center] at (0, 0) {\{$\text{id}$\}, $\QQ(\zeta_{7})$};
+				\node (N2) [align=center] at (2, 2) {$\ev{\sigma_{3}^2}$\\$\QQ\left(\cos \frac{2 \pi}{7}\right)$}; 
+				\node (N3) [align=center] at (-2, 3) {$\ev{\sigma_3^3}$\\$\QQ(\sqrt{-7})$}; 
+				\node (N4) [align=center] at (0, 5) {$\ev{\sigma_3}, \QQ$}; 
+
+				\draw (N1)--(N2) node [midway, right] {2}; 
+				\draw (N1)--(N3) node [midway, left] {3}; 
+				\draw (N2)--(N4) node [midway, right] {3}; 
+				\draw (N3)--(N4) node [midway, left] {2}; 
+
+			\end{tikzpicture}
+		\caption{Example 2}
+	\end{figure}
+
+	$\sigma_3^2 = \sigma_2$ has order $3$ and fixes $\zeta_7 + \sigma_2 (\zeta_7) + \sigma_2^2 (\zeta_7) = \zeta_7 + \zeta_7^2 + \zeta_7^4$.
+	Note that the Galois conjugates of $\zeta_7 + \zeta_7^2 + \zeta_7^4$ are $\sigma_3^j(\zeta_7 + \zeta_7^2 + \zeta_7^4), j = 0, 1, 2, 3, 4, 5$.
+	Now 
+	\[
+		(\zeta_7 + \zeta_7^2 + \zeta_7^4) + (\zeta_7^3 + \zeta_7^5 + \zeta_7^6) = -1
+	\]
+	\[
+		(\zeta_7 + \zeta_7^2 + \zeta_7^4) (\zeta_7^3 + \zeta_7^5 + \zeta_7^6) = 3 + \zeta_7 + \cdots + \zeta_7^6 = 2
+	\]
+	$\Ra \zeta_7 + \zeta_7^2 + \zeta_7^4$ is a root of $x^2 + x + 2$, i.e. $\zeta_7 + \zeta_7^2 + \zeta_7^4= (-1 + \sqrt{-7})/2$ (not the negative root by observation).
+	The fixed field of $\ev{\sigma_3^2}$ is $\QQ(\sqrt{-7})$.
+	The fixed field of $\sigma_3^3 = \sigma_{-1}$ is $\QQ(\zeta_7 + \zeta_7^{-1})$ = $\QQ(2 \cos(2 \pi/7))$.
+	Note that the conjugates of $\zeta_7 + \zeta_7^{-1}$ over $\QQ$ are $\alpha_1 := \zeta_7 + \zeta_7^{-1}, \alpha_2 := \sigma_3 (\zeta_7 + \zeta_7^{-1})$, and $\alpha_3 := \sigma_3^2 (\zeta_7 + \zeta_7^{-1})$.
+	We have
+	\[
+		\alpha_1 + \alpha_2 + \alpha_3 = -1
+	\]
+	\[
+		\alpha_1 \alpha_2 + \alpha_2 \alpha_3 + \alpha_3 \alpha_1 = 2 (\zeta_7 + \zeta_7^2 + \cdots + \zeta_7^6) = -2
+	\]
+	\[
+		\alpha_1 \alpha_2 \alpha_3 = 2 ( \zeta_7 + \cdots + \zeta_7^6) = -1
+	\]
+	Thus the minimal polynomial of $2 \cos (2 \pi/7)$ over $\QQ$ is $x^3 + x^2 - 2x - 1$.
+\end{ex}
+
+Notice that $(\ZZ/n \ZZ)^\times$ is abelian.
+
+\begin{dfn}
+	We say a field extension $E/F$ is an \text{abelain extension} if $E/F$ is Galois and $\Gal(E/F)$ is abelian.
+\end{dfn}
+
+\begin{rem}
+	Using the fact that $\Gal(\QQ(\zeta_n)/\QQ) \simeq (\ZZ/n \ZZ)^\times$ and Galois correspondence, we can show that if $G$ is a finite abelian group, then $\exists$ an abelian extension $E/F$ such that $\Gal(E/F) \simeq G$.
+
+	\begin{thm}[Kronecker-Weber]
+		If $E$ is an abelian extension of $\QQ$, then $E \subseteq \QQ(\zeta_n)$ for some $n$.
+	\end{thm}
+
+	Note that $\zeta_n$ is a special value of the analytic function $e^{2 \pi i z}$ at $z = 1/n$.
+	Kronecker's Jungentraum (youth dream): 
+	Given a finite extension $K$ of $\QQ$.
+	Does there exist an analytic function whose special values generate all the finite abelian extensions of $K$.
+	This is Hilbert's twelfth problem.
+	The answer is affirmative where $K = \QQ(\sqrt{-d}), d > 0$.
+	The analytic functions in this case are elliptic functions and modular functions.
+
+\end{rem}
+
+\section*{14.6 Galois Group of a Polynomial}
+
+\begin{dfn}
+	Let $f(x)$ be a separable polynomial over $F$.
+	Let $E$ be the splitting field of $f$.
+	Then the \textbf{Galois group} of $f$, denoted by $\Gal(f)$ is defined to be $\Gal(E/F)$. 
+\end{dfn}
+
+General discussion:\\
+Let $f$ be separable.
+Let $n = \deg f$ and $\alpha_1, ..., \alpha_n$ be roots of $f$.
+Note that $\sigma \in \Gal(f)$ maps $\alpha_i$ to $\alpha_{i'}$ for some $i'$ and different $\alpha_i$ are mapped to different $\alpha_{i'}$.
+Thus the correspondence $i \mapsto i'$ is a permutation of $\{1, ..., n\}$.
+In this way we get a group homomorphism $\Phi: \Gal(f)\to S_n$.
+This homomorphism is injective. 
+Indeed, if $\sigma \in \Gal(f)$ maps $i$ to $i$ for all $i$, then $\sigma$ fixes every $\alpha_i$.
+By the fundamental theorem of Galois theory, $\sigma = \text{id}$.
+Therefore $\Phi$ is injective.
+In other woords, there is an embedding of $\Gal(f)$ into $S_n$ and we may regard $\Gal(f)$ as a subgroup of $S_n$.
+(So for example, the Galois group of a polynomial of degree 4 cannot be $\simeq Q_8$ since $S_4$ does not have a subgroup isomorphic to $Q_8$.)
+
+\par When $f$ is irreducible over $F$ for each pair $(i, j)$, there is $\sigma \in \Gal(f)$ such that $\sigma(\alpha_i) = \alpha_j$.
+This means that $\Gal(f)$ is a transitie subgroup if $S_n$.
+(We call a subgroup $H$ of $S_n$ is transitive if $\forall i,j \in \{1, ..., n\}$, $\exists \sigma \in H$ such that $\sigma(i) = j$.)
+Recall that a transitive subgroup $H$ of $S_n$ must satisfy $n | |H|$.
+(A short proof:\\
+Let $H$ act on $\{1, ..., n\}$ in the natural way.
+$H$ transitive $\Ra$ the orbit of 1 is $\{1, ..., n\}$.
+Now we have (orbit-stabilizer)
+\[
+	|Hx| = (H:H_x)
+\]
+which is the size of the orbit of $x$ equals to the index of the stabilizer of $x$.
+Now $|H|/|H_1| = |H1| = n \Ra n | |H|$.)
+(Thus if $f$ is irreducible of deg 3, then $\Gal(f)$ is either $S_3$ or $A_3$. 
+If $f$ is irrefucible of degree 4 then $\Gal(f)$ is $S_4, A_4, D_8, C_4, C_2 \times C_2$.)
+
+\par We next describe ideas to determine $\Gal(f)$ when $n = 2, 3, 4$.
+
+\begin{dfn}
+	Let $f(x)$ be a monic polynomial of degree $n$ over $F$ and let $\alpha_1, ..., \alpha_n$ be its roots (possible repeated).
+	Then the \textbf{discriminant} of $f$, denoted by $\Delta(f)$ (or $\text{disc}(f)$) is defined by 
+	\[
+		\Delta(f) := \prod_{i < j} (\alpha_i - \alpha_j)^2
+	\]
+\end{dfn}
+
+\begin{rem}
+	Clearly, $\Delta(f) = 0 \Lra f$ has a repeated root.
+\end{rem}
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

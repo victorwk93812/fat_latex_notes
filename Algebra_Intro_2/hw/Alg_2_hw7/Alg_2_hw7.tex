@@ -1,0 +1,694 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[Path = ../../../fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+\newenvironment{exs}[1][]{%
+  \begin{ex}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ex}
+}
+\newenvironment{rems}[1][]{%
+  \begin{rem}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{rem}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+\newcommand{\bracket}[1]{\langle #1 \rangle}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+\newcommand{\Gal}{\text{Gal}\,}
+\newcommand{\id}{\text{id}}
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Introduction to Algebra 2 HW7}
+\author{B11202041 物理二 \, 劉晁泓}
+% \date{\today}
+\date{May 2, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Introduction to Algebra 2 HW7}
+
+\section*{14.2}
+
+\setcounter{prob}{4}
+\begin{prob}
+	Prove that the Galois group of $x^p - 2$ for $p$ a prime is isomorphic to the group of matrices $\begin{psmallmatrix} a & b\\ 0 & 1 \end{psmallmatrix}$ where $a, b \in \FF_p, a \neq 0$.
+\end{prob}
+
+\begin{sols}
+	The roots of $x^p - 2$ are $\sqrt[p]{2} \zeta_p^a, a = 0, 1, ..., p - 1$, where $\zeta_p = e^{2 \pi i/p}$ is the $p$-th root of unity.
+	It is easy to see (in fact verified many times before) that the splitting field of $x^p - 2$ over $\QQ$ is therefore $\QQ(\sqrt[p]{2}, \zeta_p)$.
+	Since $x^p - 2$ is an irreducible and is obviously separable, $\QQ(\sqrt[p]{2})/\QQ$ is Galois.
+	Now every $\sigma \in \Gal(\QQ(\sqrt[p]{2}, \zeta_p)/\QQ)$ maps a root to its conjugate.
+	Denote the element $\sigma_{ab}$ defined by
+	\[
+		\sigma_{ab}:
+		\begin{cases}	
+			\zeta_p \mapsto \zeta_p^a\\
+			\sqrt[p]{2} \mapsto \sqrt[p]{2} \zeta_p^b
+		\end{cases}
+	\]
+	Note that this is a well-defined automorphism of $\QQ(\sqrt[p]{2}, \zeta_p)/\QQ$ since the conjugates of $\zeta_p$ are $\zeta_p^a (a \neq 0)$ and the conjugates for $\sqrt[p]{2}$ are $\sqrt[p]{2} \zeta_p^b$. 
+	Call the set of matrices $K := \{\begin{psmallmatrix} a & b\\ 0 & 1 \end{psmallmatrix}: a, b \in \FF_p, a \neq 0\}$.
+		We define a map $\phi: \Gal(\QQ(\sqrt[p]{2}, \zeta_p)/\QQ) \to K$ by
+		\[
+			\phi(\sigma_{ab}) = 
+			\begin{pmatrix}
+				a & b\\
+				0 & 1
+			\end{pmatrix}
+		\]
+		we check that this is a group isomorphism.
+		First we have
+		\[
+			\begin{split}
+				&\sigma_{a_1 b_1} \sigma_{a_2 b_2} (\zeta_p) = \zeta_p^{a_1 a_2}\\
+				&\sigma_{a_1 b_1} \sigma_{a_2 b_2} (\sqrt[p]{2}) = \sigma_{a_1 b_1} \sqrt[p]{2} \zeta_p^{b_2} = \sqrt[p]{2} \zeta_p^{a_1 b_2 + b_1}					
+			\end{split}
+		\]
+		\[
+			\Ra \sigma_{a_1 b_1} \sigma_{a_2 b_2} = \sigma_{(a_1 a_2) (a_1 b_2 + b_1)}
+		\]
+		On the other hand
+		\[
+			\phi(\sigma_{a_1 b_1}) \phi(\sigma_{a_2 b_2}) = 
+			\begin{pmatrix}
+				a_1 & b_1\\
+				0 & 1
+			\end{pmatrix}
+			\begin{pmatrix}
+				a_2 & b_2\\
+				0 & 1
+			\end{pmatrix}
+			= 
+			\begin{pmatrix}
+				a_1 a_2 & a_1 b_2 + b_1\\
+				0 & 1
+			\end{pmatrix}
+			= \phi(\sigma_{(a_1 a_2) (a_1 b_2 + b_1)})
+		\]
+		\[
+			\Ra \phi(\sigma_{a_1 b_1}) \phi(\sigma_{a_2 b_2}) = \phi(\sigma_{a_1 b_1} \sigma_{a_2 b_2})
+		\]
+		Thus $\phi$ is an homomorphism.
+		Surjective is trivial just by the definition of $a, b$.
+		Thus $\phi$ is an isomorphism from $\Gal(\QQ(\sqrt[p]{2}, \zeta_p)/\QQ)$ to $K$.
+\end{sols}
+
+\setcounter{prob}{11}
+\begin{prob}
+	Determine the Galois group of the splitting field over $\QQ$ of $x^4 - 14 x^2 + 9$.
+\end{prob}
+
+\begin{sols}
+	The roots of $x^4 - 14 x^2 + 9$ are $\pm \sqrt{2} \pm \sqrt{5}$ (easy to verify).
+	Thus the splitting field of $x^4 - 14 x^2 + 9$ over $\QQ$ is $\QQ(\sqrt{2}, \sqrt{5})$ (pretty trivial).
+	It is also trivial that there are only 4 distinct automorphisms (mapping $\sqrt{2}$ to $\pm \sqrt{2}$ and $\sqrt{5}$ to $\pm \sqrt{5}$ has 4 combinations), thus $|\Gal(\QQ(\sqrt{2}, \sqrt{5})/\QQ)| = 4$.
+	Hence there should be only two possiblities: $Z_4$ the cyclic group and $V_4$ the Klein 4-group. 
+	Note that obviously there are at least 3 nontrivial proper subgroups of $\Gal(\QQ(\sqrt{2}, \sqrt{5})/\QQ)$ since there are 3 proper field extensions: $\QQ(\sqrt{2})/\QQ, \QQ(\sqrt{5})/\QQ$ and $\QQ(\sqrt{10})/\QQ$.
+	Since the cyclic group $Z_4$ has only 1 nontrivial proper subgroup, we must have $\Gal(\QQ(\sqrt{2}, \sqrt{5})/\QQ) \simeq V_4$.
+\end{sols}
+
+\begin{prob}
+	Prove that if the Galois group of the splitting field of a cubic over $\QQ$ is the cyclic group of order 3 then all the roots of the cubic are real.
+\end{prob}
+
+\begin{sols}
+	If we have some complex root $z$, then the complex conjugate $\bar{z}$ would have the same minimal polynomial as $z$ over $\QQ$.
+	Thus there exists an automorphism $\sigma \in \Gal$ that maps $z$ to $\bar{z}$.
+	Consider the generating cyclic subgroup $\ev{\sigma}$. 
+	We know that $\sigma^2 = 1$ since it is just complex conjugate operation, but $|\Gal| = 3$ immediately yields a contradiction by Lagrange's theorem and $2 \not| \;3$.
+	Thus a splitting field of a cubic over $\QQ$ must not have complex roots.
+\end{sols}
+
+\begin{prob}
+	Show that $\QQ(\sqrt{2 + \sqrt{2}})$ is a cyclic quartic field, i.e., is a Galois extension of degree 4 with cyclic Galois group.
+\end{prob}
+
+\begin{sols}
+	Consider the minimal polynomial of $\sqrt{2 + \sqrt{2}}$, which is $x^4 - 4 x^2 + 2 = 0$.
+	If we could prove that the splitting field of $x^4 - 4 x^2 + 2$ over $\QQ$ is $\QQ(\sqrt{2 + \sqrt{2}})$, $\QQ(\sqrt{2 + \sqrt{2}})$ must be Galois.
+	Thus we shall prove that $\QQ(\sqrt{2 + \sqrt{2}})$ contains all the conjugates of $\sqrt{2 + \sqrt{2}}$, i.e. contains $\pm \sqrt{2 \pm \sqrt{2}}$.
+	It suffices to prove that $\sqrt{2 - \sqrt{2}} \in \QQ(\sqrt{2 + \sqrt{2}})$.
+	Now $\sqrt{2} \in \QQ(\sqrt{2 + \sqrt{2}})$, thus 
+	\[
+		\frac{\sqrt{2}}{\sqrt{2 + \sqrt{2}}} = \sqrt{\frac{2}{2 + \sqrt{2}} \frac{2 - \sqrt{2}}{2 - \sqrt{2}}} = \sqrt{2 - \sqrt{2}} \in \QQ\left(\sqrt{2 + \sqrt{2}}\right)
+	\]
+	Hence $\QQ(\sqrt{2 + \sqrt{2}})/\QQ$ is indeed Galois.
+	We next prove that $\Gal(\QQ(\sqrt{2 + \sqrt{2}})/\QQ) \simeq Z_4$.
+	It is trivial that $|\Gal| = 4$ since there are 4 conjugates of $\sqrt{2 + \sqrt{2}}$.
+	The only possibilities are $Z_4$ and $V_4$.
+	Note that $V_4$ contains no degree 4 element, thus if we find a degree 4 element in $\Gal$, then $\Gal \simeq Z_4$ must hold.
+	consider $\sigma \in \Gal(\QQ(\sqrt{2 + \sqrt{2}})$ defined by $\sqrt{2 + \sqrt{2}} \mapsto \sqrt{2 - \sqrt{2}}$.
+	Then 
+	\[
+		\sigma\left( \left( \sqrt{2 + \sqrt{2}} \right)^2 \right) = \left( \sqrt{2 - \sqrt{2}} \right)^2
+	\]
+	\[
+		\Ra \sigma(2 + \sqrt{2}) = 2 - \sqrt{2}
+	\]
+	\[
+		\Ra \sigma(\sqrt{2}) = - \sqrt{2}
+	\]
+	since $\sigma$ fixes $2$.
+	Thus
+	\[
+		\sigma \left( \sqrt{2 - \sqrt{2}}\right) = \sigma \left( \frac{\sqrt{2}}{\sqrt{2 + \sqrt{2}}} \right) = \frac{- \sqrt{2}}{\sqrt{2 - \sqrt{2}}} = -\sqrt{2 + \sqrt{2}}
+	\]
+	Thus $\sigma^2$ maps $\sqrt{2 + \sqrt{2}}$ to $-\sqrt{2 + \sqrt{2}}$.
+	Hence $\sigma \in \Gal$ has order 4, and we are done.
+\end{sols}
+
+\setcounter{prob}{15}
+\begin{prob}
+	\begin{enumerate}
+		\item[(a)] Prove that $x^4 - 2 x^2 - 2$ is irreducible over $\QQ$.
+
+		\item[(b)] Show the roots of this quartic are 
+			\[
+				\begin{split}
+					\alpha_1 = \sqrt{1 + \sqrt{3}} \qquad \alpha_3 = - \sqrt{1 + \sqrt{3}}\\
+					\alpha_2 = \sqrt{1 - \sqrt{3}} \qquad \alpha_4 = - \sqrt{1 - \sqrt{3}}
+				\end{split}
+			\]
+					
+		\item[(c)] Let $K_1 = \QQ(\alpha_1)$ and $K_2 = \QQ(\alpha_2)$. 
+			Show that $K_1 \neq K_2$ and $K_1 \cap K_2 = \QQ(\sqrt{3}) = F$.
+			
+		\item[(d)] Prove that $K_1, K_2$ and $K_1 K_2$ are Galois over $F$ with $\Gal(K_1 K_2/F)$ the Klein 4-group.
+			Write out the elements of $\Gal(K_1 K_2/F)$ explicitly.
+			Determine all the subgroups of the Galois group and give their corresponding fixed subfields of $K_1 K_2$ containing $F$.
+
+		\item[(e)] Prove that the splitting field of $x^4 - 2 x^2 - 2$ over $\QQ$ is of degree 8 with dihedral Galois group.
+	\end{enumerate}
+\end{prob}
+
+\begin{sols}
+	\begin{enumerate}
+		\item[(a)] This is directly by Eisenstein's criterion and $4 \not| \; -2$. 
+
+		\item[(b)] The roots $\alpha_i$ all satisfy $(x^2 - 1)^2 = 3$, which is exactly $x^4 - 2x^2 - 2 = 0$.
+
+		\item[(c)] Note that $\sqrt{1 + \sqrt{3}} \in \RR$ but $\sqrt{1 - \sqrt{3}} \notin \RR$.
+			Thus $K_1 \subseteq \RR$ and $K_2 \nsubseteq \RR$.
+			It is trivial that $\sqrt{3}$ is contained $\QQ(\sqrt{1 - \sqrt{3}})$ and $\QQ(\sqrt{1 + \sqrt{3}})$, thus $F = \QQ(\sqrt{3}) \subseteq K_1 \cap K_2$.
+			Now note that $[K_1:F] = 2$ and $[K_2:F] = 2$, there exists no field extension between $K_i$ and $F$.
+			Thus since $K_1 \neq K_2$, we must have $F = K_1 \cap K_2$.
+
+		\item[(d)] Since $[K_1:F] = 2$ and $[K_2:F] = 2$ (minimal polynomials $x^2 - (1 \pm \sqrt{3})$), $K_1/F$ and $K_2/F$ must be Galois.
+			Note that $K_1 K_2 = \QQ(\sqrt{1 + \sqrt{3}}, \sqrt{1 - \sqrt{3}})$ is the splitting field of $x^4 - 2 x^2 + 2$ over $F$, thus is a normal extension.
+			$x^4 - 2 x^2 + 2$ is also separable over $F$, thus $K_1 K_2/F$ is Galois.
+			The automorphisms are
+			\[
+				\Gal = \left\{
+				\begin{aligned}
+					&\id\\
+					&a: 
+					\begin{cases}
+						\sqrt{1 + \sqrt{3}} \mapsto - \sqrt{1 + \sqrt{3}}\\
+						\sqrt{1 - \sqrt{3}} \mapsto \sqrt{1 - \sqrt{3}}
+					\end{cases}\\
+					&b: 
+					\begin{cases}
+						\sqrt{1 + \sqrt{3}} \mapsto \sqrt{1 + \sqrt{3}}\\
+						\sqrt{1 - \sqrt{3}} \mapsto - \sqrt{1 - \sqrt{3}}
+					\end{cases}\\
+					&ab: 
+					\begin{cases}
+						\sqrt{1 + \sqrt{3}} \mapsto - \sqrt{1 + \sqrt{3}}\\
+						\sqrt{1 - \sqrt{3}} \mapsto - \sqrt{1 - \sqrt{3}}
+					\end{cases}
+				\end{aligned}
+				\right\}
+			\]
+			It is easy to check that $a \cdot b = ab$ and $a^2 = b^2 = (ab)^2 = \id$, thus $\Gal \simeq V_4$.
+			The subgroups and their fixed fields are to be seen in the subgroup diagram:
+
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}
+					\node (N1) [align=center] at (0, 0)  {$\{\id\}, K_1 K_2$}; 
+					\node (N2) [align=center] at (3, 3)  {$\ev{b}$\\$F(\sqrt{1 + \sqrt{3}})$}; 
+					\node (N3) [align=center] at (0, 3)  {$\ev{ab}$\\$F(\sqrt{2} i) = F(\sqrt{-2})$}; 
+					\node (N4) [align=center] at (-3, 3)  {$\ev{a}$\\$F(\sqrt{1 - \sqrt{3}})$}; 
+					\node (N5) [align=center] at (0, 6)  {$\Gal, F$}; 
+
+					\draw (N1)--(N2) node [midway, below] {2};
+					\draw (N1)--(N3) node [midway, right] {2};
+					\draw (N1)--(N4) node [midway, below] {2};
+					\draw (N2)--(N5) node [midway, above] {2};
+					\draw (N3)--(N5) node [midway, right] {2};
+					\draw (N4)--(N5) node [midway, above] {2};
+				\end{tikzpicture}
+				\caption{Subgroup diagram of $\Gal(K_1 K_2/F)$}
+			\end{figure}
+
+			where $\sqrt{2}i = \sqrt{-2} = \sqrt{1 + \sqrt{3}} \cdot \sqrt{1 - \sqrt{3}}$ is fixed by $ab$.
+
+		\item[(e)] To determine an element in $\Gal$, it suffices to determine the image of $\alpha_1$ and $\alpha_2$.
+			Note that if $\alpha_1$ maps to one of $\alpha_1$ or $\alpha_3$, then $\alpha_2$ must be mapped to $\alpha_2$ or $\alpha_4$.
+			This is to maintain the well-definedness of the image of $\sqrt{3}$.
+			By these condition one may count that there are indeed 8 automorphisms in total in the Galois group.
+			To write this out explicitly, 
+			\[
+				\Gal = \ev{\sigma, \tau\left| \sigma = 
+				\begin{cases}
+					\alpha_1 \mapsto \alpha_3\\
+					\alpha_3 \mapsto \alpha_2
+				\end{cases}, \tau =
+				\begin{cases}
+					\alpha_1 \mapsto \alpha_3\\
+					\alpha_3 \mapsto \alpha_1
+				\end{cases}
+				\right.}
+			\]
+			One may easily check that $\sigma^4 = \tau^2 = 1$ and $\sigma \tau = \tau \sigma^{-1}$.
+			Therefore $\Gal(K_1 K_2/\QQ) \simeq D_8$.
+
+	\end{enumerate}
+\end{sols}
+
+\section*{14.3}
+
+\setcounter{prob}{0}
+\begin{prob}
+	Factor $x^8 - x$ into irreducibles in $\ZZ[x]$ and in $\FF_2[x]$.
+\end{prob}
+
+\begin{sols}
+	\[
+		x^8 - x = x (x - 1) (x^6 + \cdots + x + 1) \in \ZZ[x]
+	\]
+	where $x^6 + \cdots + x + 1 = \Phi_7(x)$ is the 7-th cyclotomic polynomial in $\ZZ[x]$.
+	In $\FF_2[x]$, we have
+	\[
+		x^8 - x = x (x - 1) (x^3 + x + 1) (x^3 + x^2 + 1)
+	\]
+	By examining the irreducibles of order $d, d | 3$.
+\end{sols}
+
+\setcounter{prob}{3}
+\begin{prob}
+	Construct the finite field of 16 elements and find a generator for the multiplicative group.
+	How many generators are there?
+\end{prob}
+
+\begin{sols}
+	It is mentioned in the textbook and probably verified before (?) that $x^4 + x + 1$ is an irreducible in $\FF_2[x]$.
+	(It is also easy to verify, since it has no roots and just check that there are no quadratic factors) 
+	Thus $\FF_2[x]/(x^4 + x + 1) \simeq \FF_{16}$ is a field of order $16$.
+	To check that $x$ is a generator, note that the group $(\FF_2[x]/(x^4 + x + 1))^\times$ has order 15, it suffices to check that $x^3 \neq 1$ and $x^5 \neq 1$.
+	Obviously $x^3 \neq 1$ and $x^5 = x^2 + x \neq 1$, thus $x$ is a generator.
+	Last, there should be $\varphi(15) = 15 \cdot (2/3) \cdot (4/5) = 8$ generators.
+\end{sols}
+
+\setcounter{prob}{7}
+\begin{prob}
+	Determine the splitting field of the polynomial $x^p - x - a$ over $\FF_p$ where $a \neq 0, a \in \FF_p$.
+	Show explicitly that the Galois group is cyclic.
+	[Show $\alpha \mapsto \alpha + 1$ is an automorphism.]
+	Such an extension is called an \textit{Artin-Schreier extension} (cf. Exercise 9 of Section 7)
+\end{prob}
+
+\begin{sols}
+	By Fermat's little theorem, $x^p - x - a$ has no roots over $\FF_p$.
+	Let $\alpha$ be a root of $x^p - x - a$.
+	We find that $(\alpha + 1)^p - (\alpha + 1) - a = \alpha^p + 1 - \alpha - 1 - a = \alpha^p - \alpha - a = 0$, thus $\alpha + 1$ is also a root of $x^p - x - a$.
+	Inductively, we find $\alpha + j, j = 0, ..., p - 1$ is a set of roots of $x^p - x - a$.
+	But $x^p - x - a$ could have at most $p$ roots, thus $\alpha + j$ are the $p$ distinct roots of $x^p - x - a$.
+	Thus the splitting field of $x^p - x - a$ over $\FF_p$ is just $\FF_p(\alpha)$.
+	By our discussion $x^p - x - a$ is separable, thus $\FF_p(\alpha)$ being also a splitting field should be Galois.
+	Note that the conjugates of $\alpha$ are just $\alpha + j, j = 0, ..., p - 1$.
+	Thus all the $p$ elements in $\Gal(\FF_p(\alpha)/\FF_p)$ are just $\sigma_j: \alpha \mapsto \alpha + j$.
+	Obviously this could be generated by the map $\sigma_1: \alpha \mapsto \alpha + 1$, thus $\Gal(\FF_p(\alpha)/\FF_p)$ is cyclic.
+\end{sols}
+
+\begin{prob}
+	Let $q = p^m$ be a power of the prime $p$ and let $\FF_q = \FF_{p^m}$ be the finite field with $q$ elements.
+	Let $\sigma_q = \sigma_p^m$ be the $m^{\text{th}}$ power of the Frobenius automorphism $\sigma_p$, called the $q$-Frobenius automorphism.
+
+	\begin{enumerate}
+		\item[(a)] Prove that $\sigma_q$ fixes $\FF_q$.
+
+		\item[(b)] Prove that every finite extension of $\FF_q$ of degree $n$ is the splitting field of $x^{q^n} - x$ over $\FF_q$, hence is unique.
+
+		\item[(c)] Prove that every finite extension of $\FF_q$ of degree $n$ is cyclic with $\sigma_q$ as generator.
+
+		\item[(d)] Prove that the subfields of the unique extension of $\FF_q$ of degree $n$ are in bijective correspondence with the divisors $d$ of $n$.
+	\end{enumerate}
+\end{prob}
+
+\begin{sols}
+	\begin{enumerate}
+		\item[(a)] Let $\alpha \in \FF_q$.
+			Then $\alpha^q - \alpha = 0$.
+			The map $\sigma_q = \sigma_p^m$ is defined by $\sigma_q(x) = x^{p^m} = x^q$.
+			Thus $\sigma_q(\alpha) = \alpha^q = \alpha \Ra \sigma_q$ fixes $\FF_q$.
+
+		\item[(b)] Every finite extension of degree $n$ of $\FF_q$ is a degree $mn$ extension of $\FF_p$, which is $\FF_{p^{mn}} = \{\text{roots of }x^{p^{mn}} - x = 0\}$.
+			Thus all the elements in the extension satisfies $x^{p^{mn}} - x = x^{q^n} - x = 0$ and there are exactly $p^{mn} = q^n$ distinct elements.
+			This implies $x^{p^{mn}} - x = x^{q^n} - x$ must have all distinct roots and must split under $\FF_q$, i.e. the extension is a splitting field of $x^{q^n} - x$ over $\FF_q$, which must be unique.
+
+		\item[(c)] Note that for all $i$ with $1 \leq i < n$, elements in the fixed field of the automorphism $\sigma_q^i$ satisfies $\sigma_q^i(x) = x^{q^i} = x \Ra x^{q^i} - x = 0$.
+			We know that this equation has exactly $q^i$ distinct roots, but the field $\FF_{q^n}$ has $q^n$ elements.
+			Thus there are always elements that are not fixed, which is $\sigma_q^i \neq \id$.
+			Hence the order of $\sigma_q$ must be $n$.
+			But the Galois extension $\FF_{q^n}/\FF_q$ has order $n$, therefore we must have $\Gal(\FF_{q^n}/\FF_q) = \ev{\sigma_q}$ is cyclic.
+
+		\item[(d)] We proved that any finite extension of degree $n$ is the splitting field of $x^{q^n} - x$ over $\FF_q$, and $x^{q^n} - x$ is separable.
+			Thus $\FF_{q^n}/\FF_q$ is Galois.
+			By the Fundamental theorem of Galois Theory, there is a bijective correspondence between the field extensions and the subgroups of the Galois group $\Gal(\FF_{q^n}/\FF_q) \simeq Z_n$.
+			For every divisor $d|n$, there exists a subgroup $\ev{\sigma^{d/n}}$ of $Z_n$ where $\sigma \in Z_n$ is the generator.
+			In fact they are the only subgroups in $Z_n$.
+			Thus there exists a bijective correspondence between the field extensions and all $d|n$.
+	\end{enumerate}
+\end{sols}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

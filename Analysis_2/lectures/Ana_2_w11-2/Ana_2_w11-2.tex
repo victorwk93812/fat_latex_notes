@@ -361,6 +361,296 @@ Characterize the maximl ideals in $C^0(X)$ in another way.
 
 Evaluation map $\varphi_{x_0}(f) = f(x_0)$ is an example of characters.
 Will prove later that this is the only example.
+$\ker \varphi$ is a maximan ideal. ($\CC$ is a field.)
+\[
+	\begin{split}
+		X &\lra \{ \varphi: \varphi \text{ is a character on }C^0(X)\}\\
+		& \lra \{ J: J \subseteq C^0(X) \text{ is a maximal ideal}\}
+	\end{split}
+\]
+\[
+	x_0 \lra \varphi_{x_0} \lra \ker \varphi_{x_0}
+\]
+How to "topologize" them such that they are homeomorphic?
+
+\begin{dfn}
+	Let $A$ be a \textbf{unital commutatative algebra}.
+	That is, $\exists 1 \in A$ such that $1 \cdot x = x \cdot 1 = x \quad \forall x \in A$.
+	Define the \textbf{maximal ideal space} $M_A$ by 
+	\[
+		M_A = \{\varphi: \varphi \text{ is a character on } A\}
+	\]
+	$\forall a \in A$, we define $\hat{a}: M_A \to \CC$ by $\hat{a}(\varphi) = \varphi(a)$.
+	We define the topology on $M_A$ to be the weakest topology such that $\hat{a}$ is continuous $\forall a \in A$.
+\end{dfn}
+
+Let $X, Y$ be compact Hausdorff spaces.
+$u: X \to Y$ continuous.
+Can define $u^*: C^0(Y) \to C^0(X)$ by $u^*(f) = f \circ u$.
+This is a unital algebra homomorphism.
+On the other hand, if $\Phi: C^0(Y) \to C^0(X)$ is a unital algebra homomorphism, then we can define $\Phi^*: M_{C^0(X)} \to M_{C^0(Y)}$ by $\Phi^*(\varphi) = \varphi \circ \Phi$.
+Check: $\Phi^*$ is continuous.
+Note that this gives a correspondence between $\text{Top}(X, Y)$, the space of continuous functions from $X$ to $Y$, and $\text{Alg}(C^0(Y), C^0(X))$, the space of all unital algebra homomorphism from $C^0(Y)$ to $C^0(X)$.
+Given an algebra $A$, can we identify $A$ with some topological space such that we have correspondences similar to above?
+Counterexample: $A = M_n(\CC), n \geq 1$.
+The only 2-sided maximal ideal is $\{0\}$.
+Cannot recover $A$ from it.
+In order for the story to happen, we should look for algebras that behave similarly to $C^0(X)$.
+$C^0(X)$ is a unital commutative algebra.
+It has a further algebraic structure, complex conjugation.
+Also, it has the norm topology.
+
+\begin{dfn}
+	A \textbf{normed algebra} $A$ is an algebra with a norm and the norm satisfies $\|ab\| \leq \|a\|\|b\| \quad \forall a, b \in A$.
+	The condition is called the continuity of product.
+	A \textbf{Banach algebra} is a complete normed algebra.
+\end{dfn}
+
+\begin{exs}
+	\begin{enumerate}
+		\item[(a)] $C^0(X)$, $X$ compact Hausdorff.
+
+		\item[(b)] $\ell^1(\ZZ)$.
+			$\forall a, b \in \ell^1(\ZZ)$, define
+			\[
+				a * b = \left( \sum_{k = -\infty}^\infty a_k b_{n - k} \right)_{n \in \ZZ}
+			\]
+			Then $\ell^1(\ZZ)$ is a unitla commutative Banach algebra with $1 = (1, 0, ...) =: e_0$, also called the \textbf{Wiener algebra}.
+
+		\item[(c)] More generally, for a group $G$ define 
+			\[
+				\ell^1(G) = \left\{ f: G \to \CC \left| \sum_{g \in G} |f(g)| < \infty \right.\right\}
+			\]
+			With product:
+			\[
+				(u * v) (g) = \sum_{h \in G} u(h^{-1} g) v(h)
+			\]
+			$\ell^1(G)$ is a unital Banach algebra.
+			It is commutative $\Lra G$ is abelian.
+
+		\item[(d)] $L^1(\RR^d)$ with convolution is a commutative Banach algebra but not unital.
+	\end{enumerate}
+\end{exs}
+
+\begin{rem}
+	For any algebra $A$, $A \oplus \CC$ is an algebra with unit, with multiplication defined as
+	\[
+		(a, \lambda) \cdot (b, \mu) = (ab + \lambda b + \mu a, \lambda \mu)
+	\]
+	where we often write $(a, \lambda)$ as $a + \lambda 1$ and we will have
+	\[
+		(a + \lambda 1)(b + \mu 1) = ab + \mu a + \lambda b + \lambda \mu 1
+	\]
+	Any algebra can be turned into a unital algebra.
+	If $A$ is normed, $A \oplus \CC$ can be normed as well.
+	A possible norm: $\|(a, \lambda)\| = \|a\| + |\lambda|$.
+\end{rem}
+
+\begin{dfn}
+	An algebra is said to be a $\bm{^*}$\textbf{-algebra} if $\exists$ a map $*: A \to A$, called \textbf{involution}, satisfying
+	\begin{enumerate}
+		\item $(a + b)^* = a^* + b^*$
+
+		\item $(\lambda a)^* = \overline{\lambda} a^*$
+
+		\item $(a^*)^* = a$
+
+		\item $(ab)^* = b^* a^*$
+	\end{enumerate}
+	for all $a, b \in A$ and $\lambda \in \CC$.
+	$A$ is said to be a \textbf{Banach$\bm{^*}$-algebra} if it is a Banach algebra and a $^*$-algebra, with $\|a^*\| = \|a\| \quad \forall a \in A$.
+	$A$ is said to be a \textbf{C$\bm{^*}$-algebra} if it is a Banach$^*$-algebra together with $\|a^* a\| = \|a\|^2 \quad \forall a \in A$.
+\end{dfn}
+
+\begin{exs}
+	\begin{enumerate}
+		\item[(a)] $C^0(X)$ is a C$^*$-algebra with $f^* = \overline{f}$.
+
+		\item[(b)] $\ell^1(G), f^*(g) = \overline{f(g^{-1})}$.
+			It is a Banach $^*$-algebra, but not a C$^*$-algebra.
+
+		\item[(c)] $L^1(\RR^d), f^*(t) = \overline{f(-t)}$ is a Banach $^*$-algebra but not a C$^*$-algebra.
+
+		\item[(d)] Let $X$ be a Hilbert space.
+			$\BB(X)$ is a C$^*$-algebra.
+
+		\item[(e)] $\ell^1$ is a subalgebra of $\ell^1(\ZZ)$, but not a $^*$-subalgebra.
+	\end{enumerate}
+\end{exs}	
+
+\section{Complex Analysis}
+
+Will accept some facts without a proof.
+Let $X, Y$ be Banach spaces over $\CC$.
+Let $f: \Omega \to Y$, where $\Omega \subseteq X$ is open.
+
+\begin{dfn}
+	$f$ is \textbf{Fr\'echet differentiable} at $x_0 \in \Omega$ is $\exists L \in \BB(X, Y)$ such that
+	\[
+		\lim_{\|h\| \to 0} \frac{\|f(x_0 + h) - f(x_0) - L h\|}{\|h\|} = 0
+	\]
+\end{dfn}
+
+Even in Banach spaces over $\CC$, differentiability $\Lra$ analyticity.
+To define analyticity, we need to define polynomials.
+
+\begin{dfn}
+	Let $u: X^n \to Y$ be a continuous $n$-multilinear map.
+	$p: X \to Y$ defined by $p(x) = u(x, ..., x)$ is called a \textbf{continuous homogeneous polynomial of degree} $n$.
+\end{dfn}
+
+\begin{dfn}
+	$f$ is analytic at $x_0$ if $\exists$ homogeneous polynomials $p_n: X \to Y$, where $p_n$ has degree $n$ such that
+	\[
+		f(x) = f(x_0) + \sum_{n = 1}^\infty p_n(x - x_0)
+	\]
+	in a neighborhood of $x_0$.
+\end{dfn}
+
+Facts:
+\begin{itemize}
+	\item $f$ is differentiable in $\Omega \Lra f$ is analytic in $\Omega$.
+
+	\item Let $X = \CC$ and $\Omega = \{\lambda \in \CC: |\lambda| < r\}$.
+		Then $f: \Omega \to Y$ is analytic $\Ra f(\lambda) = \sum_{n = 0}^\infty (1/n!) f^{(n)} (0) \lambda^n \quad \forall |\lambda| < r$.
+
+	\item (Liouville's Theorem).
+		If $X = \CC$ and if $f: X \to Y$ is analytic and bounded then $f$ is a constant.
+\end{itemize}
+
+Will focus on the case $X = Y = A$, where $A$ is a Banach algebra.
+Let $\Omega = \{a \in A: \|a\| < 1\}$.
+Then $f(x) = \sum_{n = 1}^\infty x^n$ is analytic on $\Omega$.
+
+\begin{lem}
+	Let $A$ be a untital Banach algebra, and let $x \in A$ be such that $\|x\| < 1$.
+	Then $1 - x$ is invertible, and $(1 - x)^{-1} = \sum_{n = 0}^\infty x^n$, where $x^0 = 1$.
+\end{lem}
+
+\begin{cor}
+	Let $A$ be a unital Banach algebra, and let $A^{-1} = \{x \in A: x \text{ is invertible}\}$.
+	Then $A^{-1}$ is open in $A$ and the map $x \mapsto x^{-1}$ is analytic on $A^{-1}$.
+\end{cor}
+
+\begin{proofs}
+	Formally, 
+	\[
+		(x + h)^{-1} = (x (1 + x^{-1} h))^{-1} = (1 + x^{-1} h)^{-1} \cdot x^{-1} = \left( \sum_{n = 0}^\infty (-1)^n (x^{-1} h)^n \right) x^{-1}
+	\]
+	where the last series only makes sense if $\|h\| < \|x^{-1}\|^{-1}$.
+	If $x \in A^{-1}$ and $\|h\| < \|x^{-1}\|^{-1}$, then $x + h$ is invertible.
+	So $A^{-1}$ is open.
+	\[
+		\|(x + h)^{-1} - x^{-1}\| \leq \sum_{n = 1}^\infty \|x^{-1}\|^{n + 1} \|h\|^n = \frac{\|h\| \|x^{-1}\|^2}{1 - \|h\|\|x^{-1}\|}\
+	\]
+	for $\|h\| < \|x^{-1}\|^{-1}$.
+	$\Ra (x + h)^{-1} - x^{-1}$ can be written as a convergent power series.
+	$\Ra x \mapsto x^{-1}$ is analytic on $A^{-1}$.
+\end{proofs}
+
+\begin{cor}
+	Let $A$ be a unital Banach algebra.
+	Let $x \in A$ and $\lambda \in \CC$ such that $|\lambda| > \|x\|$.
+	Write $\lambda - x = \lambda 1 - x$.
+	Then $\lambda - x$ is invertible, and
+	\[
+		\|(\lambda - x)^{-1}\| \leq \frac{1}{|\lambda| - \|x\|}
+	\]
+\end{cor}
+
+\begin{proof}
+	Exercise.
+\end{proof}
+
+\begin{cor}
+	Let $A$ be a unital Banach algebra.
+	Then $\forall x \in A, \exists \lambda \in \CC$ such that $\lambda - x$ is not invertible.
+\end{cor}
+
+\begin{proof}
+	Same as $\sigma(T) \neq \phi$.
+\end{proof}
+
+\begin{thm}[Gelfand-Mazur]
+	If $A$ is a unital Banach algebra and is a division algebra ($A^{-1} = A \setminus \{0\}$) then $A = \CC \cdot 1$.
+\end{thm}
+
+\begin{proofs}
+	Let $x \in A$.
+	$\exists \lambda \in \CC$ such that $\lambda - x$ is not invertible.
+	But the only non-invertible element is 0.
+	So $x = \lambda \cdot 1$.
+\end{proofs}
+
+\section{Ideals and Characters}
+
+Let $A$ be commutative unital Banach algebra.
+\begin{itemize}
+	\item If $J$ is a proper ideal, then $\text{dist}(1, J) \geq 1$.
+		\begin{proof}
+			If $\|x - 1\| < 1$, then $1 - (1 - x) = x$ is invertible.
+			Hence $x \notin J$.
+		\end{proof}
+
+	\item If $J$ is a proper ideal then so is $\overline{J}$.
+		\begin{proofs}
+			We just show $\overline{J}$ is an ideal.
+			Let $x \in \overline{J}$ and let $y \in A$.
+			Let $x_n \in J$ be such that $x_n \to x$.
+			Then $xy = (\lim x_n) y = \lim (x_n y) \in \overline{J}$ since product is continuous.
+		\end{proofs}
+
+	\item Maximal ideals in $A$ are closed.
+
+	\item If $J$ is a closed ideal, then $A/J$ is a banach space with quotientt norm $\|a + J\| := \inf_{b \in J} \|a + b\| = \text{dist}(a, J)$.
+		Indeed, $A/J$ is a unital Banach algebra.
+
+		\begin{proofs}
+			We just show that the norm on $A/J$ is multiplicative.
+			For $a, b \in A$, 
+			\[
+				\begin{split}
+					\|ab + J\| &= \inf_{x \in J} \|ab + x\| \\
+					&\leq \inf_{x, y \in J} \|ab + ax + yb + yx\|\\
+					&= \inf_{x, y \in J} \|(a + x) (b + y)\|\\
+					&\leq \|a + J\| \|b + J\|
+				\end{split}
+			\]
+		\end{proofs}
+
+	\item If $M$ is a maximal ideal in $A$, then $\exists ! \varphi A \to \CC$ a character such that $M = \ker \varphi$.
+
+		\begin{proofs}
+			Let $\phi: A \to A/M$ be the canonical algebra homomorphism.
+			$A/M$ is a Banach algebra and is a field.
+			By Gelfand-Mazur, $A/M = \CC \cdot 1$.
+			Define $\xi: \CC \cdot 1 \to \CC$ by $\xi(\lambda 1) = \lambda$.
+			Then $\varphi:= \xi \circ \phi$ is our desired character.
+		\end{proofs}
+
+	\item If $\varphi$ is a character then $\varphi$ is continuous and $\|\varphi\| = 1$.
+
+		\begin{proofs}
+			$\varphi(1) = 1 \Ra \|\varphi\| \geq 1$.
+			Suppose $\exists x \in A$ such that $|\varphi(x)| > \|x\|$.
+			Then $\varphi(x) - x$ is invertible.
+			But $\varphi(x) - x \in \ker \varphi$, so $\varphi(x) - x$ is not invertible, a contradiction.
+			So $\|\varphi\| = 1$ and $\varphi$ is continuous.
+		\end{proofs}
+
+	\item Let $x \in A$ and $\lambda \in \CC$.
+		Then $\lambda - x$ is not invertible $\Lra \exists$ a character $\varphi$ such that $\varphi(x) = \lambda$.
+
+		\begin{proofs}
+			"$\La$" $\lambda - x = \varphi(x) - x$ is not invertible.
+			
+			\par "$\Ra$" Suppose that $\lambda - x$ is not invertible.
+			Then $J = (\lambda - x) A$ is a proper ideal.
+			Let $M$ be a maximal ideal containing $J$.
+			Then $M = \ker \varphi$ for some character $\varphi$.
+			$\varphi(x) = \lambda$.
+		\end{proofs}
+\end{itemize}
 
 
 

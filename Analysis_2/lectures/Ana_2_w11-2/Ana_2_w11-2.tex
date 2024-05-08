@@ -415,7 +415,7 @@ Also, it has the norm topology.
 			\[
 				a * b = \left( \sum_{k = -\infty}^\infty a_k b_{n - k} \right)_{n \in \ZZ}
 			\]
-			Then $\ell^1(\ZZ)$ is a unitla commutative Banach algebra with $1 = (1, 0, ...) =: e_0$, also called the \textbf{Wiener algebra}.
+			Then $\ell^1(\ZZ)$ is a unital commutative Banach algebra with $1 = (1, 0, ...) =: e_0$, also called the \textbf{Wiener algebra}.
 
 		\item[(c)] More generally, for a group $G$ define 
 			\[
@@ -472,7 +472,7 @@ Also, it has the norm topology.
 		\item[(c)] $L^1(\RR^d), f^*(t) = \overline{f(-t)}$ is a Banach $^*$-algebra but not a C$^*$-algebra.
 
 		\item[(d)] Let $X$ be a Hilbert space.
-			$\BB(X)$ is a C$^*$-algebra.
+			$\B(X)$ is a C$^*$-algebra.
 
 		\item[(e)] $\ell^1$ is a subalgebra of $\ell^1(\ZZ)$, but not a $^*$-subalgebra.
 	\end{enumerate}
@@ -485,7 +485,7 @@ Let $X, Y$ be Banach spaces over $\CC$.
 Let $f: \Omega \to Y$, where $\Omega \subseteq X$ is open.
 
 \begin{dfn}
-	$f$ is \textbf{Fr\'echet differentiable} at $x_0 \in \Omega$ is $\exists L \in \BB(X, Y)$ such that
+	$f$ is \textbf{Fr\'echet differentiable} at $x_0 \in \Omega$ is $\exists L \in \B(X, Y)$ such that
 	\[
 		\lim_{\|h\| \to 0} \frac{\|f(x_0 + h) - f(x_0) - L h\|}{\|h\|} = 0
 	\]
@@ -500,7 +500,7 @@ To define analyticity, we need to define polynomials.
 \end{dfn}
 
 \begin{dfn}
-	$f$ is analytic at $x_0$ if $\exists$ homogeneous polynomials $p_n: X \to Y$, where $p_n$ has degree $n$ such that
+	$f$ is \textbf{analytic} at $x_0$ if $\exists$ homogeneous polynomials $p_n: X \to Y$, where $p_n$ has degree $n$ such that
 	\[
 		f(x) = f(x_0) + \sum_{n = 1}^\infty p_n(x - x_0)
 	\]

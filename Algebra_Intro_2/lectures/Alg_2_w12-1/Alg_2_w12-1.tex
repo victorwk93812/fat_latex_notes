@@ -109,7 +109,7 @@
 % Set title format
 % \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
 \usepackage{amsthm}
-\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{shapes.geometric, arrows, trees}
 % https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
 
 % \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
@@ -200,6 +200,11 @@
   \begin{rem}[#1]$ $\par\nobreak\ignorespaces
 }{%
   \end{rem}
+}
+\newenvironment{dfns}[1][]{%
+  \begin{dfn}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{dfn}
 }
 %%%%
 %Lists
@@ -322,201 +327,212 @@
 \newcommand{\lu}{\leftharpoonup}
 \newcommand{\rd}{\rightharpoondown}
 \newcommand{\ld}{\leftharpoondown}
-\newcommand{\Gal}{\text{Gal}\,}
+\newcommand{\Gal}{\text{Gal}}
+\newcommand{\id}{\text{id}}
+\newcommand{\dist}{\text{dist}}
+\newcommand{\cha}{\text{char}}
 
 \linespread{1.5}
 \pagestyle{fancy}
-\title{Intro to Algebra 2 W11-2}
+\title{Intro to Algebra 2 W12-1}
 \author{fat}
 % \date{\today}
-\date{May 3, 2024}
+\date{May 8, 2024}
 \begin{document}
 \maketitle
 \thispagestyle{fancy}
 \renewcommand{\footrulewidth}{0.4pt}
 \cfoot{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
-\fancyhead[L]{Intro to Algebra 2 W11-2}
+\fancyhead[L]{Intro to Algebra 2 W12-1}
 
-\begin{lem}
-	Let $x_1, ..., x_n$ be indeterminates.
-	Define the action of $S_n$ on $F[x_1, ..., x_n]$ by $\sigma: x_i \mapsto x_{\sigma(i)}$.
-	Set $D = \prod_{i < j} (x_i - x_j)$.
-	Then
-	\[
-		\sigma \cdot D = 
-		\begin{cases}
-			D, &\text{if } \sigma \text{ is even}\\
-			-D, &\text{if } \sigma \text{ is odd}
-		\end{cases}
-		\cdots (*)
-	\]
-\end{lem}
+We continue the discussion on $f$ a separable, irreducible of degree 4.
 
-\begin{proofs}
-	Let's compute $(1 \, 2) D$.
-	We have
-	\[
-		\begin{split}
-			D &= (x_1 - x_2) (x_1 - x_3) \cdots (x_1 - x_n)\\
-			&(x_2 - x_3) (x_2 - x_4) \cdots (x_2 - x_n)\\
-			&\cdots \\
-		\end{split}
-	\]
-	Then 
-	\[
-		\begin{split}
-			(1 \, 2) D &= (x_2 - x_1) (x_2 - x_3) \cdots (x_2 - x_n)\\
-			&(x_1 - x_3) \cdots (x_1 - x_n)\\
-			&\cdots \\
-			&= -D
-		\end{split}
-	\]
-	For general transposition $(i \, j)$, we note that $(i \, j) = \sigma (1 \, 2) \sigma^{-1}$ where $\sigma = (1 \, i) (2 \, j)$.
-	Suppose that $\sigma \cdot D = \epsilon D, \epsilon = \{\pm 1\}$.
-	Then $\sigma^{-1} D$ is also equal to $\epsilon D$.
-	(Let $\sigma^{-1}$ act on $\sigma D = \epsilon D \Ra D = \epsilon \sigma^{-1} D$.)
-	\[
-		\begin{split}
-			\Ra (i \, j) D &= \sigma (1 \, 2) \sigma^{-1} D\\
-			&= \epsilon \sigma (1 \, 2) D\\
-			&= - \epsilon \sigma D = -D
-		\end{split}
-	\]
-	Therefore $(*)$ holds.
-\end{proofs}
-
-\begin{prop}[Proposition 30]
-	Let $f$ be a separable polynomial of degree $n$ over $F$.
-	Regard $\Gal(f)$ as a subroup of $S_n$.
-	Then $\Gal(f) \leq A_n \Lra \Delta(f)$ is a square in $F$.
-\end{prop}
-
-\begin{proofs}
-	\begin{gather*}
-		\Delta (f) \text{ is a square in } F \\
-		\Lra \prod_{1 \leq i < j \leq n} (\alpha_i - \alpha_j) \in F\\ 
-		\stackrel{\text{Theorem 14}}{\Lra} \sigma \cdot \prod_{i < j} (\alpha_i - \alpha_j) = \prod_{i < j} (\alpha_i - \alpha_j) \quad \forall \sigma \in \Gal(f)\\
-		\Lra  \prod_{i < j} (\alpha_{\sigma(i)} - \alpha_{\sigma(j)}) = \prod_{i < j} (\alpha_i - \alpha_j) \quad \forall \sigma \in \Gal(f)\\
-		\stackrel{\text{Lemma}}{\Lra} \sigma \in A_n \quad \forall \sigma \in \Gal(f) \Lra \Gal(f) \leq A_n
-	\end{gather*}
-\end{proofs}
-
-\subsection*{Galois Groups of Polynomials of Small Degree}
-
-$f$ is separable and irreducible on $F$.
-
-\subsection*{Degree 2}
+\par Let $\alpha_1, ..., \alpha_4$ be the roots of $f$.
 \[
-	\Gal(f) \simeq S_2 (C_2)
+	\begin{split}
+		\theta_1 = (\alpha_1 + \alpha_2) (\alpha_3 + \alpha_4)\\
+		\theta_2 = (\alpha_1 + \alpha_3) (\alpha_2 + \alpha_4)\\
+		\theta_3 = (\alpha_1 + \alpha_4) (\alpha_2 + \alpha_3)
+	\end{split}
 \]
-Note that $f(x) = x^2 + ax + b$ is irreducible $\Lra a^2 - 4b = \Delta(f)$ is not a square in $F$ since $(\alpha_1 - \alpha_2)^2 = (\alpha_1 + \alpha_2)^2 - 4 \alpha_1 \alpha_2 = a^2 - 4b$.
-Prop 30 then says $\Gal(f) \nsubseteq A_2 = \{e\} \Ra \Gal(f) = S_2$.
-
-\subsection*{Degree 3}
-$f$ is irreducible $\Ra Gal(f)$ is a transitive subgroup of $S_3$.
-Transitive subgroups of $S_3$ are $A_3$ and $S_3$.
-So by Prop 30, 
+We have seen that
 \[
-	\Gal(f) \simeq
-	\begin{cases}
-		A_3 & \text{if } \Delta(f) \text{ is a square in }F\\
-		S_3 & \text{if } \Delta(f) \text{ is not a square in }F
-	\end{cases}
+	g(x) = (x - \theta_1) (x - \theta_2) (x - \theta_3) \in F[x]
 \]
-Note that if $f(x) = x^3 + ax^2 + bx + c$, then $\Delta(f) = a^2 + b^2 - 4 b^3 - 4 a^3 c - 27c^2 + 18 abc$.
+Indeed, if $f(x) = x^4 + a x^3 + b x^2 + cx + d$, then $g(x) = x^3 - 2 bx^2 + (b^2 + ac - 4d) x + (c^2 - abc + a^2 d)$.
+Furthermore, we can check that $\Delta(g) = \Delta(f)$.
 
-\begin{exs}
-	\begin{enumerate}
-		\item[(1)] $f = x^3 - 2 \in \QQ[x]$.
-			$\Delta(f) = - 108$ is not a square in $\QQ \Ra \Gal(f) \simeq S_3$.
+\par Consider the case that $\Delta(f)$ is a square in $F$.
+Note that in this case, $g(x)$ is either irreducible over $F$ or splits completely.
+(Explanation: (Constants $a, b, c$ in the following remark are indepedent of which in our main discussion.)
+If $g(x) = (x - a) (x^2 + bx + c)$, where $b^2 - 4c$ is not a square, then the roots are $a, (-b \pm \sqrt{b^2 - 4c})/2$.
+\[
+	\Ra \Delta(g) = \left( \left(a - \frac{-b + \sqrt{b^2 - 4c}}{2}\right) \left( a - \frac{-b - \sqrt{b^2 - 4c}}{2} \right) (\sqrt{b^2 - 4c})\right)^2
+\]
+$\Ra \Delta(g) = \alpha^2 (b^2 - 4c)$ with $\alpha \in F$ and $b^2 - 4c$ not a square.
+So $\Delta(g)$ is not a square in $F$, but $\Delta(g) = \Delta(f)$ is assumed to be a square, a contradiction.)
+Let $E$ be the splitting field of $f$.
+If $g(x)$ is irreducible, then $[F(\theta_1):F] = 3 \Ra 3 | [E:F]$.
+$\Ra 3 | |\Gal(E/F)| \cdots (**)$.
+Recall that if $\Delta(f)$ is a square, then $\Gal(f) = A_4$ or $C_2 \times C_2$, otherwise $\Gal(f) = S_4, D_8$ or $C_4$.
+Since $3 \not| \, |C_2 \times C_2|$, in this case we must have $\Gal(f) = \Gal(E/F) \simeq A_4$.
+On the other hand if $g(x)$ splits completely over $F$, i.e., if $\theta_1, \theta_2, \theta_3 \in F$, we may check that the only elements of $S_4$ that fixes each of $\theta_i$ are $e, (1 \, 2) (3 \, 4), (1 \, 3) (2 \, 4), (1 \, 4) (2 \, 3) \cdots (*)$
+$\Ra \Gal(f) \simeq C_2 \times C_2$.
 
-		\item[(2)] $f(x) = x^3 + x^2 - 2x - 1$
-			\[
-				\begin{split}
-					\Delta(f) &= 1^2 \cdot (-2)^2 - 4 (-2)^3 - 4 \cdot 1 \cdot (-1) - 27 (-1)^2 + 18 \cdot 1 \cdot (-2)(-1)\\
-					&= 4 + 32 + 4 = 27 + 36 = 49 = 7^2
-				\end{split}
-			\]
-			$\Ra \Gal(f) \simeq A_3 = C_3$.
-			Note that $f(x)$ is the minimal polynomial of $2 \cos (2 \pi/7)$.
+\par Now consider the case that $\Delta(f)$ is not a square in $F$.
+Note that in this case, $g(x)$ cannot split completely over $F$ by $(*)$
+If $g(x)$ is irreducible over $F$, then by the same reason as in $(**)$, we have $3 | |\Gal(f)| \Ra \Gal(f) \simeq S_4$. 
+If $g(x)$ is not irreducible over $F$, we consider the factorization of $f$ over $F(\sqrt{\Delta(f)})$.
+If $f$ is irreducible over $F(\sqrt{\Delta(f)})$, then $[E:F] = [E:F(\sqrt{\Delta(f)})] [F(\sqrt{\Delta(f)}):F] \geq 4 \cdot 2 = 8$. 
+$\Ra \Gal(f) \simeq D_8$.
+Finally if $f$ is not irreducible over $F(\sqrt{\Delta(f)})$, then $\Gal(f) \simeq C_4$.
 
-	\end{enumerate}
-\end{exs}
+\par Let's summarize the case of $f$ of degree 4.
 
-\subsection*{Degree 4}
-Transitive subgroups of $S_4$ are $S_4, A_4, D_8 = \ev{(1 \, 2 \, 3 \, 4), (1 \, 3)}, C_4 = \ev{(1 \, 2 \, 3 \, 4)}, C_2 \times C_2 = $ \\
-$\{e, (1 \, 2) (3 \, 4), (1 \, 3) (2 \, 4), (1 \, 4) (2 \, 3)\}$.
-So if $\Delta(f)$ is a square $\Ra \Gal(f) = A_4$ or $C_2 \times C_2$.
-If not then $\Gal(f)$ is $S_4, D_8$ or $C_4$.
-
+\tikzstyle{level 1}=[level distance=20mm, sibling distance=30mm]
+\tikzstyle{level 2}=[level distance=40mm, sibling distance=15mm]
+\tikzstyle{level 3}=[level distance=50mm]
 \begin{figure}[H]
 	\centering
 	\begin{tikzpicture}
-		\node (N1) [align=center] at (0, 0) {$C_2 \times C_2$};
-		\node (N2) [align=center] at (1.5, 1.5) {$D_8$};
-		\node (N3) [align=center] at (-1.5, 2.5) {$A_4$};
-		\node (N4) [align=center] at (0, 4) {$S_4$};
-		\node (N5) [align=center] at (3, 0) {$C_4$};
-
-		\draw (N1)--(N2) node [midway,right] {2};
-		\draw (N1)--(N3) node [midway,left] {3};
-		\draw (N4)--(N2) node [midway,right] {3};
-		\draw (N3)--(N4) node [midway,left] {2};
-		\draw (N5)--(N2) node [midway,right] {2};
+		\node {} [grow'=right]
+		child {node {$\Delta(f)$ square}
+			child {node {$g$ irr. over $F \Ra A_4$}}
+			child {node {$g$ splits comp. over $F \Ra C_2 \times C_2$}}
+		}
+		child {node {$\Delta(f)$ not square}
+		  child {node {$g$ irr. over $F \Ra S_4$}}
+		  child {node {$g$ red. over $F$}
+		  	child {node {$f$ irr. over $F(\sqrt{\Delta(f)}) \Ra D_8$}}
+		  	child {node {$f$ red. over $F(\sqrt{\Delta(f)}) \Ra C_4$}}
+		  }
+		};
 	\end{tikzpicture}
-	\caption{Subgroup Diagram of $S_4$}
+	\caption{Summary}
 \end{figure}
 
-\par To determine $\Gal(f)$, we introduce the notion of the cubic resolvent of $f$.
-Let $x_1, ..., x_4$ be indeterminates.
-Let $S_4$ act on $F[x_1, ..., x_4]$ as usual.
-Set 
-\[
-	\begin{split}
-		y_1 = (x_1 + x_2) (x_3 + x_4)\\
-		y_2 = (x_1 + x_3) (x_2 + x_4)\\
-		y_3 = (x_1 + x_4) (x_2 + x_3)
-	\end{split}
-\]
-
-\begin{lem}
-	Any symmetric sum of $y_i$ is inraviant under $S_4$.
-	(e.g. $y_1 + y_2 + y_3 + y_1 y_2 + y_2 y_3 + y_3 y_1 + y_1 y_2 y_3$.)
-\end{lem}
-
-\begin{proofs}
+\begin{exs}
+	$f(x) = x^4 + x^3 + x^2 + x + 1$.
+	$\Delta(f) = 125$.
+	$g(x) = x^3 - 2 x^2 - 2x + 1 = (x + 1) (x^2 - 3x + 1)$.
+	Over $\QQ(\sqrt{5})$, we have
 	\[
-		(1 \, 2): 
-		\begin{cases}
-			y_1 \mapsto y_1\\
-			y_2 \mapsto (x_2 + x_3) (x_1 + x_2) = y_3\\
-			y_3 \mapsto y_2
-		\end{cases}
+		f(x) = \left(x^2 - \frac{1 + \sqrt{5}}{2} x + 1\right) \left( x^2 - \frac{-1 - \sqrt{5}}{2} x + 1 \right)
 	\]
-\end{proofs}
+	$\Ra \Gal(f) \simeq C_4$.
+\end{exs}
 
-\begin{cor}
-	Let $f$ be a separable polynomial of degree 4 over $F$.
-	Let $\alpha_1, ..., \alpha_4$ be its roots and set
-	\[
-		\begin{split}
-			\theta_1 = (\alpha_1 + \alpha_2) (\alpha_3 + \alpha_4)\\
-			\theta_2 = (\alpha_1 + \alpha_3) (\alpha_2 + \alpha_4)\\
-			\theta_3 = (\alpha_1 + \alpha_4) (\alpha_2 + \alpha_3)
-		\end{split}
-	\]
-	Then $g(x) := (x - \theta_1) (x - \theta_2) (x - \theta_3) \in F[x]$.
-\end{cor}
-
-\begin{proof}
-	Lemma above implies the coefficients of $g$ are all fixed by $\Gal(f)$.
-	Sy by Theorem 14, they are all in $F$.
-\end{proof}
+\section*{14.7 Radical Extensions : Insolvability of Quintic Polynomials}
 
 \begin{dfn}
-	The polynomial $g(x)$ is called the \textbf{cubic resolvent} of $f$.
+	If $K = F(\sqrt[n]{a})$ for some $a \in F, n \in \NN$, then we say $K$ is a \textbf{simple radical extension} of $F$.
 \end{dfn}
+
+Note that in general $F(\sqrt[n]{a})/F$ may not be a Galois extension.
+For example $\QQ(\sqrt[3]{2})/\QQ$ is not a Galois extension.
+$(*)$ In order for $F(\sqrt[n]{a})/F$ to be Galois 
+\begin{enumerate}
+	\item[(a)] $\cha F \not| \, n$ (so that $x^n - a$ is separable)
+
+	\item[(b)] All $n$-th roots of unity are in $F$. 
+		(So that $F(\sqrt[n]{a})$ contains all conjugates of $\sqrt[n]{a}$ over $F$, i.e. $F(\sqrt[n]{a})$ is the splitting field of $x^n - a$.)
+\end{enumerate}
+
+\begin{prop}[Proposition 36]
+	Assume that $(*)$ holds, then $F(\sqrt[n]{a})/F$ is a Galois extension.
+	Moreover, if $a$ is not of the form $a = h^k$ for some $k| n, k \geq 2, h \in F$ (so that $x^n - a$ is irreducible), then $\Gal(F(\sqrt[n]{a})/F)$ is cyclic of order $n$, generated by $\sigma: \sqrt[n]{a} \mapsto \sqrt[n]{a} \zeta$, where $\zeta$ is a primitive $n$-th root of unity.
+\end{prop}
+
+\begin{proofs}
+	We have seen that under $(*)$, $F(\sqrt[n]{a})/F$ is Galois.
+	Now if $a$ is not of the form $a = b^k, k | n, k \geq 2, b \in F$, then $x^n - a$ is irreducible, so the conjugates of $\sqrt[n]{a}$ over $F$ are $\sqrt[n]{a} \zeta^k, k = 0, ..., n - 1$ and $|\Gal(F(\sqrt[n]{a})/F)| = n$.
+	Now, we check that
+	\begin{align*}
+		\sigma(\sqrt[n]{a}) &= \sqrt[n]{a} \zeta\\
+		\sigma^2 (\sqrt[n]{a}) &= \sigma (\sqrt[n]{a} \zeta) = (\sqrt[n]{a} \zeta) \zeta = \sqrt[n]{a} \zeta^2\\
+		\vdots\\
+		\sigma^k(\sqrt[n]{a}) &= \sqrt[n]{a} \zeta^k
+	\end{align*}
+	Since $\zeta$ is a primitive $n$-th root of unity, the smallest positive integer $k$ such that $\sigma^k(\sqrt[n]{a}) = \sqrt[n]{a}$ is $k = n$.
+	$\Ra \sigma$ has order $n$.
+	$\Ra \Gal(F(\sqrt[n]{a})/F) = \ev{\sigma}$ is cyclic.
+\end{proofs}
+
+\begin{dfn}
+	A finite field extension $E/F$ is a \textbf{cyclic extension} if $E/F$ is Galois and $\Gal(E/F)$ is cyclic.
+\end{dfn}
+
+\begin{prop}[Proposition 37]
+	Assume that $(*)$ holds and $E/F$ is a cyclic extension.
+	Then $E = F(\sqrt[n]{a})$ for some $a \in F$.
+\end{prop}
+
+\begin{rem}
+	The statement cyclic extension $\Ra$ simple radical extension holds \textit{only under the assumption} $(*)$.
+	There are cyclic extensions that are not simple radical extensions.
+	For example $\QQ(\cos 2 \pi/7)/\QQ$ is cyclic but not a simple radical extension.
+\end{rem}
+
+Before the proof of proposition let's recall a lemma.
+
+\begin{lem}[Lemma 7]
+	Let $G = \{\sigma_1, ..., \sigma_n\} \leq \text{Aut}(E)$.
+	Then $\nexists \beta_1, ..., \beta_n \in E$ such that $\sigma_1(\alpha) \beta_1 + \cdots + \sigma_n(\alpha) \beta_n = 0 \quad \forall \alpha \in E$.
+\end{lem}
+
+\begin{proofs}[Proof of Proposition]
+	Assume that $\Gal(E/F) = \ev{\sigma}$.
+	Let $\zeta$ be a primitive $n$-th root of unity.
+	By Lemma 7, there exists $\alpha \in E$ such that
+	\[
+		\beta := \alpha + \zeta \sigma(\alpha) + \cdots + \zeta^{n -1} \sigma^{n - 1} (\alpha) \neq 0
+	\]
+	Now 
+	\[
+		\sigma(\beta) = \sigma(\alpha) + \zeta \sigma^2 (\alpha) + \cdots + \zeta^{n - 1} \sigma^{n - 1} (\alpha) + \zeta^{n - 1} \alpha = \zeta^{-1} \beta
+	\]
+	$\Ra \sigma^k(\beta) = \zeta^{-k}(\beta)$.
+	$\Ra$ The onlyl element of $\Gal(E/F)$ that fixes $\beta$ is $\id$.
+	$\E = F(\beta)$.
+	By Galois correspondence, $\beta$ is not contained in any proper subfield of $E$ containing $F$.
+	$\Ra E = F(\beta)$.
+	Moreover, we have
+	\[
+		\sigma(\beta^n) = (\zeta^{-1} \beta)^n = \beta^n
+	\]
+	$\Ra \beta^n \in F$, say $a = \beta^n$.
+	Then $\beta = \sqrt[n]{a}$ and $E = F(\sqrt[n]{a})$.
+\end{proofs}
+
+\begin{dfns}
+	\begin{enumerate}
+		\item[(1)] A field extension $K/F$ is said to be a \textbf{radical extension} (called a \textbf{root extension} in the book) if $\exists$ subfields $K_1, K_2, ..., K_{s - 1}$ with $F = K_0 \leq K_1 \leq K_2 \leq \cdots \leq K_{s - 1} \leq K_s = K$ and $K_{i + 1}/K_i$ is a simple radical extension for all $i = 0, ..., s - 1$.
+
+		\item[(2)] If $\alpha \in \overline{F}$ is contained in some radical extension of $F$, then we say $\alpha$ can be \textbf{expressed by radicals}.
+
+		\item[(3)] A polynomial $f(x) \in F[x]$ is said to be \textbf{solvable by radicals} if all its roots are expressible by radicals.
+	\end{enumerate}
+\end{dfns}
+
+\begin{thm}[Theorem 39]
+	A polynomial $f(x) \in F[x]$ is solvable by radicals $\Lra \Gal(f)$ is a solvable group.
+	(We say a group $G$ is \textbf{solvable} if $\exists H_0 = \{e\} \triangleleft H_1 \triangleleft \cdots \triangleleft H_n = F$ such that $H_i \triangleleft H_{i + 1}$ and $H_{i + 1}/H_i$ is cyclic (or abelian))
+\end{thm}
+
+Note that when $n \geq 5$, $S_n$ is not solvable.
+(When $n \geq 5$, the only normal subgroups of $S_n$ are $\{e\}, A_n, S_n$.
+Also $A_n$ is simple.
+From this, it's clear that $S_n$ is not solvable by radicals.)
+
+\begin{cor}[Corollary 40]
+	A generic polynomial of degree 5 cannot be solved by radicals.
+\end{cor}
+
+\begin{rem}
+	There are expressions for roots of polynomials of degree $\geq 5$, but they are simply not in terms of radicals. 
+\end{rem}
+
 
 
 

@@ -344,6 +344,33 @@
 	Determine the minimal polynomials satisfied by the primitive generators given in the text for the subfields of $\QQ(\zeta_{13})$.
 \end{prob}
 
+\begin{sols}
+	\par For the first generator $\zeta + \zeta^{-1}$, consider $a_n := \zeta^n + \sigma^6 \zeta^n$ with $n = 1, ..., 6$ and $\sigma(\zeta) = \zeta^2$.
+	By calculation we could see that
+	\[
+		\begin{split}
+			a_1 \cdots a_6 &= 7 \left(\sum_{i = 1}^{16} \zeta^i\right) - 8 = -1\\
+			\sum_{i, j, k, l, m \text{ distinct}} a_i a_j a_k a_l a_m &= -3\\
+			\sum_{i, j, k, l \text{ distinct}} a_i a_j a_k a_l &= 6\\
+			\sum_{i, j, k \text{ distinct}} a_i a_j a_k &= 4\\
+			\sum_{i \neq j} a_i a_j &= -5\\
+			\sum_i a_i &= -1
+		\end{split}
+	\]
+	Moreover we know that the minimal polynomial of $\zeta + \zeta^{-1}$ is of degree 6.
+	(Since $\QQ(\zeta + \zeta^{-1})$ is fixed by $\ev{\sigma^6}$ which has index 6 to $(\ZZ/13 \ZZ)^\times$ and by the fundamental theorem of Galois theory.)
+	Thus the minimal polynomial must be $m_{\zeta + \zeta^{-1}, \QQ} (x)= x^6 + x^5 - 5 x^4 - 4 x^3 + 6 x^2 + 3 x - 1$. 
+
+	\par Copying all the above argument, we may find the minimal polynomials of the primitive generators are:
+	\[
+		\begin{split}
+			m_{\zeta + \zeta^3 + \zeta^9, \QQ} (x)&= x^4 + x^3 + 2 x^2 - 4x + 3\\
+			m_{\zeta + \zeta^8 + \zeta^{12} + \zeta^5, \QQ} (x)&= x^3 + x^2 - 4x + 1\\
+			m_{\zeta + \zeta^4 + \zeta^3 + \zeta^{12} + \zeta^9 + \zeta^{10}, \QQ} (x)&= x^2 + x - 3
+		\end{split}
+	\]
+\end{sols}
+
 \setcounter{prob}{4}
 \begin{prob}
 	Let $p$ be a prime and let $\epsilon_1, \epsilon_2, ..., \epsilon_{p - 1}$ denote the primitive $p^{\text{th}}$ roots of unity.
@@ -352,16 +379,62 @@
 	[One approach: $p_1 = -1$ from $\Phi_p(x)$; show that $p_n$ is a Galois conjugate of $p_1$ for $p$ not dividing $n$, hence is also $-1$.]
 \end{prob}
 
+\begin{sols}
+	We could assume that $\epsilon_1 = \zeta_p = e^{2 \pi i/p}$ the $p$-th root of unity and $\epsilon_i = \epsilon_1^i$ WLOG.
+	The case $p_1 = -1$ is obvious by the definition of the $p$-th cyclotomic polynomial and $\epsilon_i$.
+	Note that multiplication in the group $(\ZZ/p \ZZ)^\times$ is a group automorphism.
+	Thus if $p \not| \, n$, then $\overline{n} \in (\ZZ/n \ZZ)^\times$.
+	Now $p_n = \epsilon_1^n + \epsilon_2^n + \cdots + \epsilon_{p - 1}^n = \zeta_p^{\overline{n}}+ \zeta_p^{ \overline{2 \cdot n}} + \cdots + \zeta_p^{\overline{(p - 1) n}}$.
+	Since multiplication by $\overline{n}$ is an automorphism, $\{\overline{n}, \overline{2n}, ..., \overline{(p - 1)n}\}$ is just a permutation of $\{\overline{1}, \overline{2}, ..., \overline{p - 1}\}$.
+	Thus we see that $p_n = \zeta_p + \zeta_p^2 + \cdots + \zeta^{p - 1} = p_1 = -1$ if $p \not| \, n$.
+	Else if $p | n$, then all $\epsilon_i^n = (\epsilon^p)^{n/p} = 1$, we have $p_n = p - 1$.
+\end{sols}
+
 \begin{prob}
-	Let $\zeta_n$ denote a primitive $n^{\text{th}}$ root of unity and let $K = \QQ(\zeta_n)$ ve the associated cyclotomic field.
+	Let $\zeta_n$ denote a primitive $n^{\text{th}}$ root of unity and let $K = \QQ(\zeta_n)$ be the associated cyclotomic field.
 	Let $a$ denote the trace of $\zeta_n$ from $K$ to $\QQ$ (cf. Exercise 18 of Section 2).
 	Prove that $a = 1$ if $n = 1, a = 0$ if $n$ is divisible by the square of a prime, and $a = (-1)^r$ if $n$ is the product of $r$ distinct primes.
 \end{prob}
+
+\begin{sols}
+	For each $n$, define the function $f(n)$:  
+	\[
+		f(n) = a_n = \Tr_{\QQ(\zeta_n)/\QQ}(\zeta_n) = \sum_{\substack{1 \leq k < n \\ \gcd (k, n) = 1}}\zeta_n^k
+	\]
+	which is the sum of all primitive $n$-th roots of unity.
+	Consider the sum of all $n$-th roots of unity $F(n)$, this is just the sum of all primitive $d$-th roots of unity where $d|n$.
+	Thus we have $F(n) = \sum_{d | n} f(d)$.
+	By the M\"obius inversion formula, we have 
+	\[
+		f(n) = \sum_{d|n} \mu(d) F\left(\frac{n}{d}\right)
+	\]
+	But each $F(k) = 0$ for $k > 1$ and $F(1) = 1$ since it is just the sum of all $k$-th roots of unity.
+	Thus the only nontrivial term in the summation is $f(n) = \mu(n) F(1) = \mu(n)$.
+	$\mu(n)$ is nothing but the M\"obius function:
+	\[
+		\mu(n) = 
+		\begin{cases}
+			1 & \text{if } n = 1\\
+			0 & \text{if } n \text{ has a square factor}\\
+			(-1)^r & \text{if } n \text{ is the product of } r \text{ distinct primes}
+		\end{cases}
+	\]
+	By definition each trace of $\zeta_n$ is just $a_n = f(n) = \mu(n)$, and we are done.
+\end{sols}
 
 \setcounter{prob}{9}
 \begin{prob}
 	Prove that $\QQ(\sqrt[3]{2})$ is not a subfield of any cyclotomic field over $\QQ$.
 \end{prob}
+
+\begin{sols}
+	Suppose that $\QQ(\sqrt[3]{2})$ is a subfield of some $\QQ(\zeta_n)$.
+	Then since $\QQ(\zeta_n)/\QQ$ is an abelian extension, every subgroup of $\Gal(\QQ(\zeta_n)/\QQ)$ is normal.
+	Thus $\Gal(\QQ(\zeta_n)/\QQ(\sqrt[3]{2})) \trianglelefteq \Gal(\QQ(\zeta_n)/\QQ)$.
+	By the fundamental theorem of Galois theory, $\QQ(\sqrt[3]{2})/\QQ$ is Galois.
+	But $\QQ(\sqrt[3]{2})/\QQ$ does not contain the conjugates of $\sqrt[3]{2}$, which is not Galois, a contradiction.
+	Thus $\QQ(\sqrt[3]{2})$ must not be a subfield of any cyclotomic field over $\QQ$.
+\end{sols}
 
 \setcounter{prob}{11}
 \begin{prob}
@@ -369,6 +442,37 @@
 	Viewing $\FF_q$ as a vector space $V$ of dimension $n$ over $\FF_p$ we can consider $\sigma_p$ as a linear transformation of $V$ to $V$.
 	Determine the characteristic polynomial of $\sigma_p$ and prove that the linear transformation $\sigma_p$ is diagonalizable over $\FF_p$ if and only if $n$ divided $p - 1$, and is diagonalizable over the algebraic closure of $\FF_p$ if and only if $(n, p) = 1$.
 \end{prob}
+
+\begin{sols}
+	We have $\sigma_p^n = 1$ under $\FF_{p^n}$ since $\sigma_p^n(x) = x^{p^n} = x$ for all $x \in \FF_{p^n}$.
+	Thus $\sigma_p$ satisfies $x^n - 1 = 0$.
+	Now $\FF_{p^n}$ is a $n$ dimension vector space over $\FF_p$, the linear transform must have a degree $n$ characteristic polynomial.
+	Thus by Cayley-Hamilton, $x^n - 1$ must be the characteristic polynomial of $\sigma_p$.
+	
+	\par Suppose $\sigma_p$ is diagonalizable over $\FF_{p^n}$.
+	Then the characteristic polynomial must have distinct roots in $\FF_p$.
+	In fact the $n$ distinct roots in $\FF_p$ form a subgroup in $\FF_p^\times$ (since if $a^n - 1 = b^n - 1 = 0$, then $(ab)^n - 1 = a^n b^n - 1 = 0$).
+	Then since $|\FF_p^\times| = p - 1$ we must have $n| p - 1$.
+	
+	\par Conversely, suppose that $n | p - 1$.
+	Consider $\overline{2} \in \FF_p^\times$ a generator.
+	Then we have $\overline{2}^{p - 1} = 1$.
+	This means that all $2^{k(p - 1)/n}$ has order $n$ for all $k = 0, 1, ..., n - 1$.
+	Thus they are the $n$ distinct roots of $x^n - 1$ in $\FF_p[x] \Ra x^n - 1$. 
+	Hence $\sigma_p$ with characteristic polynomial $x^n - 1$ must be diagonalizable.
+
+	\par Suppose that $\sigma_p$ is diagonalizable over $\overline{\FF_p} = \cup_{n \in \NN} \FF_{p^n}$.
+	Then $x^n - 1$ has $n$ distinct roots $\{\alpha_1, ..., \alpha_n\}$ in $\overline{\FF_p}$.
+	Since $\overline{\FF_p} = \cup_{n \in \NN} \FF_{p^n}$, $\exists k \in \NN$ such that $\alpha_i \in \FF_{p^k}$ for all $i = 1, ..., n$. 
+	A similar argument in the case above gives $n | p^k - 1 = |\FF_{p^k}^\times|$, thus $\gcd(n, p) = 1$.
+	
+   	\par For the converse, suppose that $(n, p) = 1$.
+	We prove that $x^n - 1$ has $n$ distinct roots in $\overline{\FF_p}$.
+	It must have $n$ roots since $\overline{\FF_p}$ is algebraically closed.
+	We have $\gcd(x^n - 1, \text{D}(x^n - 1)) = \gcd(x^n - 1, n x^{n - 1}) = 1$ since the only factors of $n x^{n - 1}$ are powers of $x$ which obviously does not divide $x^n - 1$.
+	Thus $x^n - 1$ is separable, hence indeed $x^n - 1$ has $n$ distinct roots.
+	We conclude that $\sigma_p$ with characteristic polynomial $x^n - 1$ must be diagonalizable over $\overline{\FF_p}$.
+\end{sols}
 
 \setcounter{prob}{13}
 \begin{prob}
@@ -395,6 +499,36 @@
 		\item[(d)] Prove that $\eta_1''$ and $\eta_2''$ are roots of the equation $x^2 - \eta_1' x + \eta_4' = 0$.
 	\end{enumerate}
 \end{prob}
+
+\begin{sols}
+	\begin{enumerate}
+		\item[(a)] Note that $\zeta^n + \zeta^{-n} = 2 \cos (2 \pi n/17)$ is a real number.
+			Thus $\eta_1'' = 2 \cos (2 \pi n/17)$ and we could rewrite each of the periods by
+			
+			\begin{align*}
+				&\eta_1 = 2 \left( \cos \frac{2 \pi}{17} + \cos \frac{4 \pi}{17} + \cos \frac{8 \pi}{17} + \cos \frac{16 \pi}{17} \right) & &\eta_3' = 2 \left( \cos \frac{12 \pi}{17} + \cos \frac{14 \pi}{17}\right)\\
+				&\eta_2 = 2 \left( \cos \frac{6 \pi}{7} + \cos \frac{10 \pi}{17} + \cos \frac{12 \pi}{17} + \cos \frac{14 \pi}{17} \right) & &\eta_4' = 2 \left( \cos \frac{6 \pi}{7} + \cos \frac{10 \pi}{17}\right)\\
+				&\eta_1' = 2 \left( \cos \frac{2 \pi}{17} + \cos \frac{8 \pi}{17}\right) & &\eta_1'' = 2 \cos \frac{2 \pi}{17}\\
+				&\eta_2' = 2 \left( \cos \frac{4 \pi}{17} + \cos \frac{16 \pi}{17}\right) & &\eta_2'' = 2 \cos \frac{8 \pi}{17} 
+			\end{align*}
+
+			If we know the value of $\cos (2 \pi/17)$, then all the other cosines could be derived from the formula $\cos 2 \theta = 2 \cos^2 \theta - 1$.
+			It is then clear that by calculation, we will arrive at the above approximations.
+
+		\item[(b)] Clearly $\eta_1 + \eta_2 = -1$.
+			By calculation (or just believe this) we could find that $\eta_1 \eta_2$ has a total of $8 \cdot 8 = 64$ terms that runs through $\zeta$ to $\zeta^{16}$ 4 times.
+			Thus $\eta_1 \eta_2 = -4$.
+			Thus $\eta_1, \eta_2$ are the two roots of $x^2 - x + 4$.
+
+		\item[(c)] It is clear that $\eta_1' + \eta_2' = \eta_1$.
+			Also $\eta_1' + \eta_2' = \sum_{i = 1}^{16} \zeta_i = -1$.
+			Thus $\eta_1', \eta_2'$ are the two roots of $x^2 - \eta_1 - 1 = 0$.
+			For the same reason $\eta_3'$ and $\eta_4'$ are the roots of $x^2 - \eta_2 x - 1 = 0$.
+
+		\item[(d)] It is clear that $\eta_1'' + \eta_2'' = \eta_1'$ and $\eta_1'' \eta_2'' = \eta_4'$.
+			Thus $\eta_1'', \eta_2''$ are the two roots of $x^2 - \eta_1' + \eta_4' = 0$.
+	\end{enumerate}
+\end{sols}
 
 
 

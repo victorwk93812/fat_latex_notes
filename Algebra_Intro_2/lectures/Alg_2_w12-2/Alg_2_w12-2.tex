@@ -1,0 +1,445 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+\newenvironment{exs}[1][]{%
+  \begin{ex}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ex}
+}
+\newenvironment{rems}[1][]{%
+  \begin{rem}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{rem}
+}
+\newenvironment{dfns}[1][]{%
+  \begin{dfn}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{dfn}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+\newcommand{\bracket}[1]{\langle #1 \rangle}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+\newcommand{\Gal}{\text{Gal}}
+\newcommand{\id}{\text{id}}
+\newcommand{\dist}{\text{dist}}
+\newcommand{\cha}{\text{char}}
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Intro to Algbra 2 W12-2}
+\author{fat}
+% \date{\today}
+\date{May 10, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Intro to Algbra 2 W12-2}
+
+Some additional explanation for the case of degree 4.
+Recall the last case:
+$\Delta(f)$ is not a square and $g(x)$ is reducible.
+We claimed that $f(x)$ is irreducible in $F(\sqrt{\Delta(f)})$ implies $\Gal(f) \simeq D_8$.
+In fact the converse is also true.
+We write $D_8 = \ev{\sigma := (1 \, 2 \, 3 \, 4), \tau := (1 \, 3)}$.
+Then one of the index 2 subgroups, i.e., one of $\ev{\sigma^2, \tau}, \ev{\tau}, \ev{\sigma^2, \sigma^2 \tau}$ corresponds to $F(\sqrt{\Delta(f)})$.
+Observe that $\Delta(f)$ is a square in $F(\sqrt{\Delta(f)})$, so $\Gal(E/F(\sqrt{\Delta(f)})) \leq A_4$.
+Now
+\begin{align*}
+	\ev{\sigma^2, \tau} &= \ev{(1 \, 3)(2 \, 4), (1 \, 3)}\\
+	\ev{\sigma} &= \ev{(1 \, 2 \, 3 \, 4)}\\
+	\ev{\sigma^2, \sigma \tau} &= \ev{(1 \, 3) (2 \, 4), (1 \, 4) (2 \, 3)}
+\end{align*}
+Where only the $\ev{\sigma^2, \sigma \tau} \leq A_4$.
+$\Ra \Gal(E/F(\sqrt{\Delta(f)})) = \ev{\sigma^2, \sigma \tau}$.
+Now $\ev{\sigma^2, \sigma \tau}$ is a transitive subgroup of $S_4$.
+$\Ra$ Each $\alpha_i$ is a conjugate of $\alpha_1$ over $F(\sqrt{\Delta(f)})$.
+$\Ra f(x)$ is irreducible over $F(\sqrt{\Delta(f)})$.
+
+\begin{rem}
+	Reason why we assume $a$ is not of the form $a = b^k$ for some $b | n, k \geq 2, b \in F$ in Proposition 36.
+	If $a = b^k$ for some $k | n, k \geq 2, b \in F$, then $x^n - a = x^n - b^k = (x^{n/k} - b) (x^{n/k(k - 1)} + \cdots + b^{k - 1})$ is not irreducible (so $\sqrt[n]{a}\zeta$ is not a conjugate of $\sqrt[n]{a}$).
+	Note that $F(\sqrt[n]{a})/F$ is still Galois (under the assumption $(*)$).
+	It is just that $\Gal(F(\sqrt[n]{a})/F)$ is not of order $n$ and is not generated by $\sigma: \sqrt[n]{a} \mapsto \sqrt[n]{a} \zeta$.
+	(For example, $\QQ(\sqrt[4]{4})/\QQ = \QQ(\sqrt{2})/\QQ \Ra \Gal(\QQ(\sqrt{2})/\QQ) \simeq C_2$.)
+\end{rem}
+
+In Exercise 11 of section 14.6 we will encounter the "Galois closure" of a field extension:
+
+\begin{dfn}
+	If $K/F$ is a separable extension, then the \textbf{Galois closure} of $K$ over $F$ is the smallest extension $E$ of $K$ such that $E/F$ is Galois.
+\end{dfn}
+
+In the finite extension case, by the primitive element theorem, $K = F(\alpha)$ is simple.
+The Galois closure of $F(\alpha)$ over $F$ is simply the splitting field of $m_{\alpha, F(x)}$, i.e. the field generated by conjugates of $\alpha$ over $F$.
+
+\par We continue our discussion.
+
+\begin{ex}
+	$f(x) = x^5 - 6x + 3 \in \QQ[x]$.
+	It is irreducible over $\QQ$ and has 3 real roots and a pair of complex conjugate roots.
+	Thus $\Gal(f)$ contains a transposition (corresponding to complex conjugation).
+	Moreover $\Gal(f)$ is a transitive subgroup of $S_5$.
+	$\Ra 5 | |\Gal(f)|$.
+	$\Ra \Gal(f)$ contains a 5-cycle.
+	But a transposition and a $p$-cycle generates the entire $S_p$ with $p$ a prime.
+	(Recall that we proved that $(1 \, 2) (1 \, 2 \, ..., \, n)$ generates $S_n$, but in our case the transposition is not necessarily $(1 \, 2)$.
+	But restricting $n$ to a prime then any transposition would generate $S_n$ with a $n$-cycle.)
+	Thus $\Gal(f) = S_5$, which is not solvable.
+	By Theorem 39, $f$ is not solvable by radicals.
+\end{ex}
+
+Before proving Theorem 39, we shall prove a lemma.
+
+\begin{lem}[Lemma 38]
+	Suppose that $K/F$ is a radical extension.
+	Then $\exists$ s sequence of fields $F = K_0 \leq K_1 \leq \cdots \leq K_n$ such that $K \leq K_n$, $K_n/F$ is Galois (and radical) and $K_{i + 1}/K_i$ is Galois and a simple radical extension.
+\end{lem}
+
+We introduce another lemma to prove this lemma.
+
+\begin{lem}
+	If $E/F, E'/F$ are radical extension, then $E E'/F$ is also a radical extension.
+\end{lem}
+
+\begin{proofs}
+	Say 
+	\begin{align*}
+		F = F_0 \leq F_1 \leq \cdots \leq F_n = E\\
+		F = F_0' \leq F_1' \leq \cdots \leq F_n' = E'
+	\end{align*}
+	where $F_{i + 1} = F_i(\sqrt[n_i]{a_i}), n_i \in \NN, a_i \in F_i$ and same for the ones with $'$. 
+	We first show that $F_1 F_1'$ is a radical extension of $F ( = F_0 = F_0')$.
+	Indeed, we have $F = F_0 \leq F_1 \leq F_1 F_1'$.
+	Now $F_1' = F_0'(\sqrt[n_0]{a_0'}), a_0' \in F$.
+	\[
+		F_1 F_1' = F_1 F(\sqrt[n_0]{a_0'}) = F_1(\sqrt[n_0]{a_0'})
+	\]
+	Thus $F_1/F_0$ and $F_1 F_1'/F$ are simple radical extensions $\Ra F_1 F_1'/F$ is a radical extension.
+\end{proofs}
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

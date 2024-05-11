@@ -331,6 +331,7 @@
 \newcommand{\id}{\text{id}}
 \newcommand{\dist}{\text{dist}}
 \newcommand{\cha}{\text{char}}
+\newcommand{\diam}{\text{diam}}
 
 \linespread{1.5}
 \pagestyle{fancy}
@@ -405,7 +406,183 @@ Define $\varphi_\gamma: L^1(G) \to \CC$ by
 			&= \varphi_\gamma(u) \varphi_\gamma(v)
 		\end{split}
 	\]
+	Also, $|\varphi_\gamma(f)| = |\int_G f(g) \overline{\gamma(g)} \dd{g}| \leq \|f\|_{L^1}(G)$ since $|\overline{\gamma(g)}| = 1$ ($\gamma \in \SS^1$).
+	So $\varphi_\gamma$ is bounded.
+	Finally, we need to show $\varphi_\gamma \not\equiv 0$.
+	Pick $f \in L^1(G)\setminus \{0\}$ nonnegative.
+	Consider 
+	\[
+		\varphi_\gamma(\gamma f) = \int f(g) |\gamma(g)|^2 \dd{g} = \int f(g) \dd{g} > 0
+	\]
+	So $\varphi_\gamma \in M_{L^1(G)}$.
+	Next, we show $\gamma \mapsto \varphi_\gamma$ is injective.
+	let $\gamma, \gamma' \in \widehat{G}$ be wuch that
+	\[
+		0 = \gamma_\varphi(f) - \varphi_{\gamma'}(f) = \int f(g) (\overline{\gamma(g)} - \overline{\gamma'(g)}) \dd{g} \quad \forall f \in L^1(G)
+	\]
+	Since $(L^1(G))^* = L^\infty(G), \gamma = \gamma'$ almost everywhere.
+	Since $\gamma, \gamma'$ are continuous, $\gamma = \gamma'$.
+	Last, we need to show given any $\varphi \in M_{L^1(G)}, \exists \gamma \in \widehat{G}$ such that $\varphi = \varphi_\gamma$.
+	Since $(L^1(G))^* = L^\infty(G), \exists \chi \in L^\infty(G)$ such that
+	\[
+		\varphi(f) = \int_G f(g) \chi(g) \dd{g}
+	\]
+	$\chi(g)$ essentially has to be in $\widehat{G}$, but here we have no idea that if it is continuous or not.
+	We find a better representation of $\chi$.
+	Fix $v \in L^1(G)$ such that $\varphi(v) = 1$.
+	(This is always possible since $\varphi$ is nonzero and just normalize $\varphi$.)
+	By Fubini (again not proved in Haar measures), $\forall f \in L^1(G)$, 
+	\[
+		\begin{split}
+			\varphi(f) &= \varphi(f) \varphi(v) = \varphi(f * v)\\
+			&= \int \chi(g) \left( \int f(h) v(h^{-1} g) \dd{h} \right) \dd{g}\\
+			&= \int f(h) \left( \int v(h^{-1} g) \chi(g) \dd{g} \right) \dd{h}\\
+			&= \int f(h) \varphi(L_h v) \dd{h}
+		\end{split}
+	\]
+	where $L_h v(g) = v(h^{-1} g)$ is the traslation of $v$.
+	Define $\gamma: G \to \CC$ by $\gamma(h) = \overline{\varphi(L_h v)}$.
+	Check:
+	\begin{itemize}
+		\item $\gamma$ is continuous (translation is continuous in $L^1(G)$.)
+
+		\item $v * L_{gh} v = L_g v * L_h v$
+	\end{itemize}
+	So 
+	\[
+		\begin{split}
+			\gamma(g h) &= \overline{\varphi(L_{gh} v)} = \overline{\varphi(v) \varphi(L_{gh} v)}\\
+			&= \overline{\varphi(v * L_{gh} v)} = \overline{\varphi(L_g v) \varphi(L_h v)} = \gamma(g) \gamma(h)
+		\end{split}
+	\]
+	Finally need to show $|\gamma(g)| = 1$.
+	Since the $L^1$ norm of $v$ is invariant under translation, we have
+	\[
+		|\gamma(g)| = |\varphi(L_g v)| \leq \|L_g v\|_{L^1(G)} = \|v\|_{L^1(G)} \quad \forall g \in G
+	\]
+	since $g^n \in G$, we also have
+	\[
+		|\gamma(g^n)| = |\gamma(g)|^n \leq \|v\|_{L^1(G)} \quad \forall n \in \NN
+	\]
+	Thus we must have $|\gamma(g)| \leq 1 \quad \forall g \in G$.
+	By taking $g^{-1}$ we see that $|\gamma(g)| \geq 1$, thus $|\gamma(g)| = 1$.
 \end{proofs}
+
+Last few words on non-commutative $C^*$-algebra.
+
+\begin{thm}[Gelfand-Naimark-Segal]
+	If $A$ is a $C^*$-algebra, then $\exists$ a Hilbert space $X$ and an isometric $^*$-isomorphism from $A$ onto a closed subalgebra of $\B(X)$.
+\end{thm}
+
+\section{Hausdorff Measure}
+
+Suppose that $E \subseteq \RR^d$ is a set such that $\exists n \geq 1$ such that $nE = E_1 \cup \cdots \cup E_m$, where $E_j$ are almost disjoint and are congruent to $E$.
+If $E$ is a square (cube), then $m = n^2 (n^3)$.
+We "say" that $E$ has dimension $\alpha$ if $m = n^\alpha$.
+For example let $E$ be the middle third Cantor set.
+We have $3E = E_1 \cup E_2 \Ra m = 2, n = 3$.
+$m = n^\alpha \Ra \alpha = \log 2/\log 3$.
+So Cantor set should have dimension $\log 2/\log 3$.
+This definition is bad, since it can only handle objects with many symmetries.
+Will define dimension in some other ways.
+Given any reasonable set $E$ and any $\alpha \geq 0$, we assign a quantity $H_\alpha(E)$ to $E$, which can be interpreted as the $\alpha$-dimensional measure of $E$.
+If $E$ has dimension larger (smaller) than $\alpha$, then $H_\alpha(E) = \infty (0)$.
+
+\begin{dfn}
+	For $E \subseteq \RR^d$, we define the \textbf{outer $\bm{\alpha}$-dimensional Hausdorff measure} of $E$ by
+	\[
+		\begin{split}
+			H_\alpha^*(E) &= \lim_{\delta \to 0} \inf \left\{ \sum_{k = 1}^\infty (\text{diam}(F_k))^\alpha: E \subseteq \bigcup_{k = 1}^\infty F_k, \text{diam}(F_k) \leq \delta \quad \forall k \right\}\\
+			&:= \lim_{\delta \to 0} H_\alpha^\delta(E)
+		\end{split}
+	\]
+	where $\text{diam}(A) = \sup \{|x - y|: x, y \in A\}$ is the usual diameter.
+\end{dfn}
+
+$H_\alpha^\delta$ increases as $\delta$ decreases, so the limit always exists (can be $\infty$).
+Also $H_\alpha^\delta(E) \leq H_\alpha^*(E) \quad \forall \delta > 0$. 
+Basic properties:
+
+\begin{itemize}
+	\item If $E_1 \subseteq E_2$ then $H_\alpha^*(E_1) \leq H_\alpha^*(E_2)$.
+
+	\item $H_\alpha^*(\cup_{j = 1}^\infty E_j) \leq \sum_{j = 1}^\infty H_\alpha^*(E_j) \quad \forall E_j \subseteq \RR^d$.
+
+		\begin{proof}
+			$\epsilon/2^j$-argument.
+		\end{proof}
+
+	\item If $d(E_1, E_2) > 0$ then $H_\alpha^*(E_1 \cup E_2) = H_\alpha^*(E_1) + H_\alpha^*(E_2)$.
+
+		\begin{proofs}
+			Suffices to show $\geq$.
+			Fix $\epsilon \in (0, d(E_1, E_2))$.
+			Let $\delta \in (0, \epsilon)$.
+			Let $(F_j)$ be a cover of $E_1 \cup E_2$ with diameter $\leq \delta$.
+			Set 
+			\[
+				F_j' = E_1 \cap F_j \quad F_j'' = E_2 \cap F_j
+			\]
+			$(F_j')$ covers $E_1$, $(F_j'')$ covers $E_2$.
+			Also, these two covvers are disjoint, i.e. each $F_j' \cap F_j'' = \phi$, since $\delta < d(E_1 E_2)$.
+			$\Ra \sum_j \text{diam}(F_j')^\alpha + \sum_j \text{diam}(F_j'')^\alpha \leq \sum_j \text{diam}(F_j)^\alpha$.
+			Taking infimum over all $(F_j)$ and letting $\delta \to 0$, we are done.
+		\end{proofs}
+\end{itemize}
+
+Fact: Can show $H_\alpha^*$ is a countable additive measure when restriced to Borel sets. 
+(Stein-Shakarchi, Chap 6, Theorem 1.2)
+Will write $H_\alpha(E) = H_\alpha^*(F)$ if $E$ is Borel.
+$H_\alpha$ is called the \textbf{$\bm{\alpha}$-dimensional Hausdorff measure}.
+Let $E \subseteq \RR^d$ be a Borel set.
+Basic properties:
+
+\begin{itemize}
+	\item $H_\alpha(E + h) = H_\alpha(E) \quad \forall h \in \RR^d$.
+
+	\item $H_\alpha(OE) = H_\alpha(E)$ for all orthogonal transformation $O$.
+
+	\item $H_\alpha(\lambda E) = \lambda^\alpha H_\alpha(E) \quad \forall \lambda > 0$.
+
+	\item $H_0(E)$ is the counting measure.
+		$H_1(E) = m(E)$ where $m(E)$ is the Lebesgue measure if $d = 1$.
+		In fact, $H_d(E) = c_d m(E)$ for some constant $c_d$ depending only on $d$.
+
+	\item If $H_\alpha^*(E) < \infty$ and $\beta > \alpha$ then $H_\beta^*(E) = 0$.
+		If $H_\alpha^*(E) > 0$ and $\beta < \alpha$ then $H_\beta^*(E) = \infty$.
+
+		\begin{proofs}
+			Suppose that $H_\alpha^*(E) < \infty$ and $\beta > \alpha$.
+			If $\text{diam}(F) \leq \delta$ then 
+			\[
+				\diam(F)^\beta = \diam(F)^{\beta - \alpha} \diam(F)^\alpha \leq \delta^{\beta - \alpha} \diam(F)^\alpha
+			\]
+			\[
+				\Ra H_\beta^\delta(E) \leq \delta^{\beta - \alpha} H_\alpha^\delta(E) \leq \delta^{\beta - \alpha} H_\alpha^*(E)
+			\]
+			$\Ra H_\beta^*(E) = 0$.
+			The second statement is the contrapositive of the first one.
+		\end{proofs}
+\end{itemize}
+
+\section{Hausdorff Dimension}
+
+If $E \subseteq \RR^d$ is Borel, then $\exists ! \alpha$ such that
+\[
+	H_\beta(E) = 
+	\begin{cases}
+		\infty & \text{if } \beta < \alpha\\
+		0 & \text{if } \beta > \alpha
+	\end{cases}
+\]
+Can also define this $\alpha$ as
+\[
+	\alpha = \sup\{\beta: H_\beta(E) = \infty\} = \inf\{\beta: H_\beta(E) = 0\}
+\]
+We say $E$ has \textbf{Hausdorff dimension} $\alpha$.
+Write $\alpha = \dim_H(E)$.
+Finding/computing Hausdorff measure is difficult.
+But to find the Hausdorff dimension, we just need to bound the measure above and below.
 
 
 

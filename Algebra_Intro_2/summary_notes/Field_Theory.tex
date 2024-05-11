@@ -297,6 +297,7 @@
 \newcommand{\ZZ}{\mathbb Z}
 \DeclareMathOperator{\Char}{char}
 \DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Gal}{Aut}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\GCD}{GCD}
 \DeclareMathOperator{\Emb}{Emb}
@@ -1712,6 +1713,8 @@ $\phi$顯然保乘法，由Freshman's Dream可知$\phi$保加法，因此他是h
 	If $F$ is perfect, then every algebraic extension of $F$ is separable.
 \end{rem}
 
+
+
 \section{Cyclomotic Polynomials and Extensions}
 
 \begin{dfn}[$n$th root of unity]
@@ -1727,26 +1730,50 @@ $\phi$顯然保乘法，由Freshman's Dream可知$\phi$保加法，因此他是h
 \begin{rem}
 	可以recall一些group theory的東西:
 	\begin{itemize}
-		\item $\ZZ/n\ZZ$和$\mu_n$之間有一個isomorphism: $a\mapsto \zeta_n^a$，且$\mu_n$中有$\varphi(n)$個primitive的元素。
-		\item $|\zeta_n^i|=n/(n,i)$
+		\item $\ZZ/n\ZZ$和$\mu_n$之間有一個isomorphism: $\overline{k}\mapsto \zeta_n^k$
+		\item $|\zeta_n^k|=|\bar{k}|=n/(n,k)$
+		\item $\mu_n$中有$\abs{(\ZZ/n\ZZ)^\times}=:\varphi(n)$個primitive的元素。
+		\item $\phi(p)=p-1$
+		\item $\phi(p^k)=p^k - p^{k-1}$
+		\item $\phi(n)=n \prod_i (1-1/p_i)$, where $n=\prod_i p_i^{e_i}$
 	\end{itemize}
 \end{rem}
 
 \begin{dfn}[Cyclomotic Polynomial]\label{cyclomotic_polynomial}
 	Define the $n$th cyclotomic polynomial $\Phi_n(x)$ to be the polynomial whose roots are the primitive $n$th roots of unity:
 	\[
-		\Phi_n(x):=\prod_{\zeta\text{ primitive }\in \mu_n}(x-\zeta)=\prod_{\substack{ 1\le k < n \\ (k,n)=1}}(x-\zeta_n^k)\in E[x]
+		\Phi_n(x):=\prod_{\zeta\text{ primitive }\in \mu_n}(x-\zeta)
+		=\prod_{\substack{ 1\le k < n \\ (k,n)=1}}(x-\zeta_n^k)
+		=\prod_{\overline{k}\in(\ZZ/n\ZZ)^\times}(x-\zeta_n^k)
+		\in E[x]
 	\]
 	so $\deg \Phi_n = \varphi(n)$
 \end{dfn}
 
-現在我們來看一個包含完整的root of unity的$x^n-1$如何拆分成Cyclomotic Polynomials:
-如果$n=p$是質數，則
-\[x^p-1=(x-1)(x^{p-1}+x^{p-2}+\dots+1)=(x-1)\Phi_p(x)\]
-如果$n$不是質數，比如
-\[x^4-1=(x-1)(x+1)(x^2+1)\]
-\[x^6-1=(x^3-1)(x^3+1)=(x-1)(x+1)(x^2+x+1)(x^2-x+1)\]
+\ex
 
+\begin{center}
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		$n$   & root of unity           & $(\ZZ/n\ZZ)^\times$ & $\Phi_n(x)$                                 \\ \hline
+		$n=1$ & $\{\zeta_1=1\}$         & $\{1\}$             & $x-\zeta_1 = x-1$                           \\ \hline
+		$n=2$ & $\{1,\zeta_2=-1\}$      & $\{1\}$             & $x-\zeta_2 = x+1$                           \\ \hline
+		$n=3$ & $\{1,\omega,\omega^2\}$ & $\{1,2\}$           & $\frac{x^3-1}{x-1}=x^2+x+1$                 \\ \hline
+		$n=4$ & $\{1,i,-1,-i\}$         & $\{1,3,4\}$         & $(x-\zeta_4)(x-\zeta_4^3)=(x-i)(x+i)=x^2+1$ \\ \hline
+		$n=5$ & $\{1,\zeta_5,\ldots\}$  & $\{1,2,3,4\}$       & $\frac{x^5-1}{x-1}=x^4+x^3+x^2+x+1$         \\ \hline
+		$n=6$ & $\{1,\zeta_6,\ldots\}$  & $\{1,5\}=\{1,-1\}$  & $(x-\zeta_6)(x-\overline{\zeta_6})=x^2-x+1$ \\ \hline
+	\end{tabular}
+\end{center}
+
+現在我們來看一個包含完整的root of unity的$x^n-1$如何拆分成Cyclomotic Polynomials:
+如果$n=p$是質數，$(\ZZ/p\ZZ)^\times=\left\{1,p\right\}$，所以
+\[x^p-1=(x-1)(x^{p-1}+x^{p-2}+\dots+1)=\Phi_1\Phi_p\]
+如果$n$不是質數，比如$n=4$，$(\ZZ/4\ZZ)^\times=\left\{1,2,4\right\}$
+\[x^4-1=(x-1)(x+1)(x^2+1)=\Phi_1\Phi_2\Phi_4\]
+\[x^6-1=(x^3-1)(x^3+1)=(x-1)(x+1)(x^2+x+1)(x^2-x+1)=\Phi_1\Phi_2\Phi_3\Phi_6\]
+可以觀察到
+\[x^n-1 = \prod_{d|n} \Phi_d \]
+要說明這一點，我們先寫下
 \[
 	x^n-1=\prod_{\zeta\in\mu_n}(x-\zeta)
 \]
@@ -1796,7 +1823,7 @@ $\phi$顯然保乘法，由Freshman's Dream可知$\phi$保加法，因此他是h
 更進一步，我們還能發現它們irreducible
 
 \begin{thm}
-	$\Phi_n(x)$ is irreducible over $\mathbb{Q}$
+	$\Phi_n(x)$ is irreducible over $\mathbb{Q}$, and therefore $[\QQ(\zeta_n):\QQ]=\phi(n)$
 \end{thm}
 
 \begin{proofs}
@@ -1856,6 +1883,8 @@ $\phi$顯然保乘法，由Freshman's Dream可知$\phi$保加法，因此他是h
 \clearpage
 \section{Galois Theory}
 
+\subsection{Automorphisms of Simple Extensions}
+
 \begin{dfn}[field automorphism, automorphism group]
 	Let $K$ be a field. A field automorphism of $K$ is a ring isomorphism $\sigma$ of $K$ with itself
 	\[\sigma:K\to K\]
@@ -1887,41 +1916,184 @@ trivial group $\{\id\}$，因為$\QQ$和$\FF_p$的prime subfield就是自己。
 \end{dfn}
 而他會是原本的automorphism group的子群：$\Aut(K/F)\le \Aut(K)$。
 
-\subsubsection*{Find all automorphisms of $\QQ(\sqrt{D})/\QQ$ ($D$ is squarefree)}
-每個$\Aut(\QQ(\sqrt{D})/\QQ)$中的automorphism都由其在generator上的值決定，在這裡就是$\sigma(\sqrt{D})$。
-因為
-\[\sigma(\sqrt{D})^2=\sigma(\sqrt{D}^2)=\sigma(D)=D\]
-所以$\sigma(\sqrt{D})$只能是$\pm\sqrt{D}$。分別對應到identity automorphism和conjugation automorphism。
-因此$|\Aut(\QQ(\sqrt{D})/\QQ)|=2$，更進一步，$\Aut(\QQ(\sqrt{2})/\QQ)$和$\ZZ/2\ZZ$同構。
+\begin{ex}
+	Find all automorphisms of $\QQ(\sqrt{D})/\QQ$ ($D$ is squarefree)
 
-\subsubsection*{Find all automorphisms of $\Aut(\QQ(\sqrt[3]{2})/\QQ)$}
-\[\sigma(\sqrt[3]{2})^3=\sigma(2)=2\]
-所以$\sigma(\sqrt[3]{2})\in \{\sqrt[3]{2},\sqrt[3]{2}\zeta_3, \sqrt[3]{2}\zeta_3^2\}$
-但後兩者都不在$\QQ(\sqrt[3]{2})$裡，所以$\sigma(\sqrt[3]{2})=\sqrt[3]{2}$，$\sigma$只是identity automorphism。
+	每個$\Aut(\QQ(\sqrt{D})/\QQ)$中的automorphism都由其在generator上的值決定，在這裡就是$\sigma(\sqrt{D})$。
+	因為
+	\[\sigma(\sqrt{D})^2=\sigma(\sqrt{D}^2)=\sigma(D)=D\]
+	所以$\sigma(\sqrt{D})$只能是$\pm\sqrt{D}$。分別對應到identity automorphism和conjugation automorphism。
+	因此$|\Aut(\QQ(\sqrt{D})/\QQ)|=2$，更進一步，$\Aut(\QQ(\sqrt{2})/\QQ)$和$\ZZ/2\ZZ$同構。
+\end{ex}
 
-\begin{prop}
-	Let $K/F$ be a field extension and let $\alpha\in K$ be algebraic over $F$.
+\begin{ex} Find all automorphisms of $\Aut(\QQ(\sqrt[3]{2})/\QQ)$
 
-	Then for any $\sigma\in\Aut(K/F)$, $\sigma\alpha$ is a root of the minimal polynomial for $\alpha$ over $F$,
-	i.e. $\Aut(K/F)$ permutes the roots of irreducible polynomials. Equivalently, any polynomial with coefficients in $F$ having $\alpha$ as a root also has $\sigma\alpha$ as a root.
-\end{prop}
+	\[\sigma(\sqrt[3]{2})^3=\sigma(2)=2\]
+	所以$\sigma(\sqrt[3]{2})\in \{\sqrt[3]{2},\sqrt[3]{2}\zeta_3, \sqrt[3]{2}\zeta_3^2\}$
+	但後兩者都不在$\QQ(\sqrt[3]{2})$裡，所以$\sigma(\sqrt[3]{2})=\sqrt[3]{2}$，$\sigma$只是identity automorphism。
+
+\end{ex}
+
+比起看更多的例子，讓我們利用Lifting Isomorphism的概念來看到形式化地說明：在Theorem \ref{lift_splitting}中設$\phi=\id_F$：
+\begin{thm}[Simple Extensions的Automorphism]\leavevmode
+	\begin{itemize}
+		\item 若$\alpha$是algebra over $F$且有minimal polynomial $m(x)$，$K=F(\alpha)$的Simple Extention
+		      （也可以說是$m(x)$的spltting field），那麼對於任意$\sigma\in\Aut(K/F)$，$\sigma(\alpha)$也是$m(x)$在$K$中的根。
+		\item 反過來說，如果$\beta$是$m(x)$在$K$中的根，那存在一個$\tau\in\Aut(K/F)$使得$\tau(\alpha)=\beta$
+
+	\end{itemize}\end{thm}
+
+\begin{proofs}
+	設$m(x)=a_n x^n+\cdots+a_1x+ a_0\in F[x]$，注意到$\sigma(a_i)=a_i$因為$\sigma$ fixes $F$，
+	所以$\sigma(\alpha)$也是$m(x)$的根：
+	\[m(\sigma(\alpha))=a_n\sigma(\alpha)^n+\cdots+a_1 \sigma(\alpha)+\alpha_0=\sigma(a_n \alpha^n +\cdots + a_0)=\sigma(0)=0\]
+
+	反過來說，如果$\beta$是$m(x)$在$K$中的根，在Theorem \ref{lift_splitting}中設$\phi=\id_F$，可以把他lift成$\tau:F(\alpha)\to F(\beta)$使得$\tau(\alpha)=\beta$。
+	因為$F(\alpha)=K=F(\beta)$，所以$\tau\in\Aut(K/F)$。
+\end{proofs}
+
+\begin{cor}[Simple Extention的Automorphisms的數量上界]
+	$$\left|\Aut(K/F)\right|=\text{Number of roots of $m(x)$}\le [K:F]$$
+\end{cor}
+\begin{proofs}
+	我們得到$K$中$m(x)$的根和$\Aut(K/F)$之間的雙射，並且由於$m(x)$具有階數$[K: F]$，考慮到可能有重根的情況，我們有$\left|\Aut(K/F)\right| < [K: F]$。
+\end{proofs}
+
+利用這個特性，我們原則上可以算出任何Simple Extensions $F(\alpha)$的Automorphism和他的Group structure。
+只要我們知道$\alpha$的minimal polynomial的根
+
+.............再來看一個例子:
+
+\begin{ex} Find all automorphisms of $\Aut(\QQ(\sqrt{2}+\sqrt{3})/\QQ)$
+
+	我們已經知道$K=\QQ(\sqrt2+\sqrt3)=\QQ(\sqrt2,\sqrt3)$
+	且$\sqrt2+\sqrt3$有minimal polynomial $m(x)=x^4-10x^2+1$，他的四個根就是$\pm\sqrt{2}\pm\sqrt{3}\in K$。
+	所以四個Automorphism就分別是
+	\begin{align*}
+		\Aut(K/F)=\{
+		 & \id_K,                                                                  \\
+		 & a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6}\mapsto a-b\sqrt{2}+c\sqrt{3}-d\sqrt{6}, \\
+		 & a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6}\mapsto a+b\sqrt{2}-c\sqrt{3}-d\sqrt{6}, \\
+		 & a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6}\mapsto a-b\sqrt{2}-c\sqrt{3}+d\sqrt{6}
+		\}
+	\end{align*}
+
+\end{ex}
+
+% WIP: https://web.northeastern.edu/dummit/teaching_fa20_5111/5111_lecture_18_semidirect_products_field_automorphisms.pdf
+% 有更多例子之後再看
+
+% \begin{prop}
+% 	Let $K/F$ be a field extension and let $\alpha\in K$ be algebraic over $F$.
+
+% 	Then for any $\sigma\in\Aut(K/F)$, $\sigma\alpha$ is a root of the minimal polynomial for $\alpha$ over $F$,
+% 	i.e. $\Aut(K/F)$ permutes the roots of irreducible polynomials. Equivalently, any polynomial with coefficients in $F$ having $\alpha$ as a root also has $\sigma\alpha$ as a root.
+% \end{prop}
+
+
+
+% https://web.northeastern.edu/dummit/teaching_fa20_5111/5111_lecture_18_semidirect_products_field_automorphisms.pdf
+
 
 \subsection{Automorphisms of Splitting Fields}
 
+我們將首先看一個關於多項式根的有用性質：
 \begin{thm}[Normality (有一個根就有全部) of Splitting Fields]
-	If $K$ is a splitting field over $F$ and $p(x)\in F[x]$ is irreducible,
-	if $p(x)$ has a root in $K$ then $p(x)$ splits completely in $K$ (i.e. all roots of $p(x)$ are in $K$)
+	如果$K$是$F$上的一個spltting field，且$p(x)\in F[x]$是irreducible。那麼：
+	如果$p(x)$在$K$有一個根，$p(x)$就在$K$中splits completely
+	(i.e. $p(x)$的所有根都在$K$中)
 \end{thm}
 
+\begin{proofs}
+	假設$K$是某個多項式$q(x)$在$F$上的splitting field，這個多項式有根$r_1,\ldots,r_n$，所以$K=F(r_1,\ldots, r_n)$
+	。若$p$有個根$\alpha\in K$，且有另外一個根$\beta$(尚未確定是否$\in K$)。有個Lifting Isomophism
+	$\sigma:F(\alpha)\to F(\beta)$ fixing $F$使得$\sigma(\alpha)=\beta$。所以有$K(\beta)
+		=F(r_1,\ldots,r_n,\beta)=F(\beta)(r_1,\ldots,r_n)$，因此$K(\beta)$
+	是$q(x)$在$F(\beta)$上的splitting field。又因為$\alpha\in K$，$K=K(\alpha)$，
+	可以發現$K$是$q(x)$在$F(\alpha)$的spltting field。
+	再次把$\sigma$ lift 成$\tau: K\to K(\beta)$ fixing $F$。特別地，因為isomorphism保degree，$[K:F]=[K(\beta):F]$，所以$K=K(\beta)$，$\beta\in K$。
+\end{proofs}
+
+\begin{thm}[Splitting Fields的Automorphisms的數量上界]
+	如果$K$是$F$上的一個Splitting Field，那麼$\abs{\Aut(K/F)} \le [K:F]$。
+	等號成立若且唯若$K/F$ separable。
+\end{thm}
+
+\begin{proofs}
+	這很像上面的，但證明要用歸納法$n=[K:F]$，WIP (lec 19 p 8)
+\end{proofs}
+
+當等號成立時，這個Extension被稱為是Galois的:
+\begin{dfn}[Galois Extension]
+	如果$\abs{\Aut(K/F)} = [K:F]$，稱$K$是$F$的一個Galois Extention，
+	$K/F$的Automorphism被記為$\Gal(K/F)$，稱為Galois Group。
+\end{dfn}
+
+\begin{ex}
+	Find the Galois group of the splitting field of $p(x)=x^3-2$ over $\QQ$
+
+	WIP
+\end{ex}
+
+\begin{ex}
+	Find the Galois group of the splitting field of $p(x)=x^4-3$ over $\QQ$
+
+	WIP
+\end{ex}
+
+\begin{ex}
+	Find the Galois group of $\QQ(\zeta_p)/\QQ$, where $p$ is a prime
+
+	WIP
+\end{ex}
+
+\begin{ex}
+	Find the Galois group of $\FF_{p^n}/\FF_p$, where $p$ is a prime
+
+	WIP
+\end{ex}
 
 
+\subsection{Fixed Fields}
 
+\subsection{The Fundamental Theorem of Galois Theory}
 
+\begin{thm}[FTGT]\leavevmode
+	$K/F$: Galois Extension，$G=\Gal(K/F)$
+	任意一個夾在$K,F$中間的Field $E$ ($K/E/F$)，我們能找到以下的Galois correspondence：
+	\[
+		\left\{\text{Subfields $E$ of $K$ containing $F$}\right\}
+		\begin{matrix}
+			\underrightarrow{\text{Elements of $G$ fixing $E$}} \\
+			\underleftarrow{\text{Elements of $K$ fixed by $H$}}
+		\end{matrix}
+		\left\{\text{Subgroups $H$ of $G$}\right\}
+	\]
+	\begin{enumerate}
+		\item $[K:E]=|H|$和$[E:F]=|G:H|$
+		\item $\Gal(K/E)=H$
+		\item If Fbar is a fixed algebraic closure of F, then the embeddings of E into
+		      F are in bijection with the left cosets of H in G.
+		\item $E/F$是Galois $\iff$ $H\lhd G$，在這個情況下$\Gal(E/F)\cong G/H$
+		\item  Intersections of subgroups correspond to joins of fields, and joins of
+		      subgroups correspond to intersections of fields.
+		\item  The lattice of subgroups of G is the same as the lattice of
+		      intermediate fields of K/F turned upside-down
+	\end{enumerate}
+\end{thm}
 
+\subsection{Applications of the FTGT}
 
+\subsubsection{Finite Fields and Irreducible Polynomials in $\FF_p[x]$}
+\subsubsection{The Primitive Element Theorem}
+\subsubsection{Properties of Composite Extensions}
 
+\subsubsection{Cyclotomic and Abelian Extensions}
 
-
+\begin{thm}[Galois Group of $\QQ(\zeta_n)$]
+	$\QQ(\zeta_n)/\QQ$是Galois的且$\Gal(QQ(\zeta_n))\cong (\ZZ/n\ZZ)^\times$。
+	更明確地說，$a\in (\ZZ/n\ZZ)$對應到一個automorphism $\sigma_a: \zeta_n\mapsto \zeta_n^a$。
+\end{thm}
 
 
 

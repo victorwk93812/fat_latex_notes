@@ -9,7 +9,7 @@
 \usepackage{ulem}
 \usepackage{fontspec}
 \usepackage{xeCJK}
-% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+\setCJKmainfont[Path = ../../../fonts/, AutoFakeBold]{edukai-5.0.ttf}
 % \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
 % set your own font :
 % \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
@@ -201,6 +201,11 @@
 }{%
   \end{rem}
 }
+\newenvironment{dfns}[1][]{%
+  \begin{dfn}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{dfn}
+}
 %%%%
 %Lists
 %\begin{itemize}
@@ -322,201 +327,72 @@
 \newcommand{\lu}{\leftharpoonup}
 \newcommand{\rd}{\rightharpoondown}
 \newcommand{\ld}{\leftharpoondown}
-\newcommand{\Gal}{\text{Gal}\,}
+\newcommand{\Gal}{\text{Gal}}
+\newcommand{\id}{\text{id}}
+\newcommand{\dist}{\text{dist}}
+\newcommand{\cha}{\text{char}}
+\newcommand{\diam}{\text{diam}}
 
 \linespread{1.5}
 \pagestyle{fancy}
-\title{Intro to Algebra 2 W11-2}
-\author{fat}
+\title{Introduction to Algebra 2 HW9}
+\author{B11202041 物理二 \, 劉晁泓}
 % \date{\today}
-\date{May 3, 2024}
+\date{May 13, 2024}
 \begin{document}
 \maketitle
 \thispagestyle{fancy}
 \renewcommand{\footrulewidth}{0.4pt}
 \cfoot{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
-\fancyhead[L]{Intro to Algebra 2 W11-2}
+\fancyhead[L]{Introduction to Algebra 2 HW9}
 
-\begin{lem}
-	Let $x_1, ..., x_n$ be indeterminates.
-	Define the action of $S_n$ on $F[x_1, ..., x_n]$ by $\sigma: x_i \mapsto x_{\sigma(i)}$.
-	Set $D = \prod_{i < j} (x_i - x_j)$.
-	Then
-	\[
-		\sigma \cdot D = 
-		\begin{cases}
-			D, &\text{if } \sigma \text{ is even}\\
-			-D, &\text{if } \sigma \text{ is odd}
-		\end{cases}
-		\cdots (*)
-	\]
-\end{lem}
+\section*{14.6}
 
-\begin{proofs}
-	Let's compute $(1 \, 2) D$.
-	We have
-	\[
-		\begin{split}
-			D &= (x_1 - x_2) (x_1 - x_3) \cdots (x_1 - x_n)\\
-			&(x_2 - x_3) (x_2 - x_4) \cdots (x_2 - x_n)\\
-			&\cdots \\
-		\end{split}
-	\]
-	Then 
-	\[
-		\begin{split}
-			(1 \, 2) D &= (x_2 - x_1) (x_2 - x_3) \cdots (x_2 - x_n)\\
-			&(x_1 - x_3) \cdots (x_1 - x_n)\\
-			&\cdots \\
-			&= -D
-		\end{split}
-	\]
-	For general transposition $(i \, j)$, we note that $(i \, j) = \sigma (1 \, 2) \sigma^{-1}$ where $\sigma = (1 \, i) (2 \, j)$.
-	Suppose that $\sigma \cdot D = \epsilon D, \epsilon = \{\pm 1\}$.
-	Then $\sigma^{-1} D$ is also equal to $\epsilon D$.
-	(Let $\sigma^{-1}$ act on $\sigma D = \epsilon D \Ra D = \epsilon \sigma^{-1} D$.)
-	\[
-		\begin{split}
-			\Ra (i \, j) D &= \sigma (1 \, 2) \sigma^{-1} D\\
-			&= \epsilon \sigma (1 \, 2) D\\
-			&= - \epsilon \sigma D = -D
-		\end{split}
-	\]
-	Therefore $(*)$ holds.
-\end{proofs}
-
-\begin{prop}[Proposition 30]
-	Let $f$ be a separable polynomial of degree $n$ over $F$.
-	Regard $\Gal(f)$ as a subroup of $S_n$.
-	Then $\Gal(f) \leq A_n \Lra \Delta(f)$ is a square in $F$.
-\end{prop}
-
-\begin{proofs}
-	\begin{gather*}
-		\Delta (f) \text{ is a square in } F \\
-		\Lra \prod_{1 \leq i < j \leq n} (\alpha_i - \alpha_j) \in F\\ 
-		\stackrel{\text{Theorem 14}}{\Lra} \sigma \cdot \prod_{i < j} (\alpha_i - \alpha_j) = \prod_{i < j} (\alpha_i - \alpha_j) \quad \forall \sigma \in \Gal(f)\\
-		\Lra  \prod_{i < j} (\alpha_{\sigma(i)} - \alpha_{\sigma(j)}) = \prod_{i < j} (\alpha_i - \alpha_j) \quad \forall \sigma \in \Gal(f)\\
-		\stackrel{\text{Lemma}}{\Lra} \sigma \in A_n \quad \forall \sigma \in \Gal(f) \Lra \Gal(f) \leq A_n
-	\end{gather*}
-\end{proofs}
-
-\subsection*{Galois Groups of Polynomials of Small Degree}
-
-$f$ is separable and irreducible on $F$.
-
-\subsection*{Degree 2}
-\[
-	\Gal(f) \simeq S_2 (C_2)
-\]
-Note that $f(x) = x^2 + ax + b$ is irreducible $\Lra a^2 - 4b = \Delta(f)$ is not a square in $F$ since $(\alpha_1 - \alpha_2)^2 = (\alpha_1 + \alpha_2)^2 - 4 \alpha_1 \alpha_2 = a^2 - 4b$.
-Prop 30 then says $\Gal(f) \nsubseteq A_2 = \{e\} \Ra \Gal(f) = S_2$.
-
-\subsection*{Degree 3}
-$f$ is irreducible $\Ra \Gal(f)$ is a transitive subgroup of $S_3$.
-Transitive subgroups of $S_3$ are $A_3$ and $S_3$.
-So by Prop 30, 
-\[
-	\Gal(f) \simeq
-	\begin{cases}
-		A_3 & \text{if } \Delta(f) \text{ is a square in }F\\
-		S_3 & \text{if } \Delta(f) \text{ is not a square in }F
-	\end{cases}
-\]
-Note that if $f(x) = x^3 + ax^2 + bx + c$, then $\Delta(f) = a^2 + b^2 - 4 b^3 - 4 a^3 c - 27c^2 + 18 abc$.
-
-\begin{exs}
+\setcounter{prob}{1}
+\begin{prob}
+	Determine the Galois groups of the following polynomials:
 	\begin{enumerate}
-		\item[(1)] $f = x^3 - 2 \in \QQ[x]$.
-			$\Delta(f) = - 108$ is not a square in $\QQ \Ra \Gal(f) \simeq S_3$.
+		\item[(a)] $x^3 - x^2 - 4$
 
-		\item[(2)] $f(x) = x^3 + x^2 - 2x - 1$
-			\[
-				\begin{split}
-					\Delta(f) &= 1^2 \cdot (-2)^2 - 4 (-2)^3 - 4 \cdot 1 \cdot (-1) - 27 (-1)^2 + 18 \cdot 1 \cdot (-2)(-1)\\
-					&= 4 + 32 + 4 = 27 + 36 = 49 = 7^2
-				\end{split}
-			\]
-			$\Ra \Gal(f) \simeq A_3 = C_3$.
-			Note that $f(x)$ is the minimal polynomial of $2 \cos (2 \pi/7)$.
+		\item[(b)] $x^3 - 2x + 4$
 
+		\item[(c)] $x^3 - x + 1$
+
+		\item[(d)] $x^3 + x^2 - 2x - 1$ 
 	\end{enumerate}
-\end{exs}
+\end{prob}
 
-\subsection*{Degree 4}
-Transitive subgroups of $S_4$ are $S_4, A_4, D_8 = \ev{(1 \, 2 \, 3 \, 4), (1 \, 3)}, C_4 = \ev{(1 \, 2 \, 3 \, 4)}, C_2 \times C_2 = $ \\
-$\{e, (1 \, 2) (3 \, 4), (1 \, 3) (2 \, 4), (1 \, 4) (2 \, 3)\}$.
-So if $\Delta(f)$ is a square $\Ra \Gal(f) = A_4$ or $C_2 \times C_2$.
-If not then $\Gal(f)$ is $S_4, D_8$ or $C_4$.
+\setcounter{prob}{3}
+\begin{prob}
+	Determine the Galois group of $x^4 - 25$.
+\end{prob}
 
-\begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-		\node (N1) [align=center] at (0, 0) {$C_2 \times C_2$};
-		\node (N2) [align=center] at (1.5, 1.5) {$D_8$};
-		\node (N3) [align=center] at (-1.5, 2.5) {$A_4$};
-		\node (N4) [align=center] at (0, 4) {$S_4$};
-		\node (N5) [align=center] at (3, 0) {$C_4$};
+\begin{prob}
+	Determine the Galois group of $x^4 + 4$.
+\end{prob}
 
-		\draw (N1)--(N2) node [midway,right] {2};
-		\draw (N1)--(N3) node [midway,left] {3};
-		\draw (N4)--(N2) node [midway,right] {3};
-		\draw (N3)--(N4) node [midway,left] {2};
-		\draw (N5)--(N2) node [midway,right] {2};
-	\end{tikzpicture}
-	\caption{Subgroup Diagram of $S_4$}
-\end{figure}
+\setcounter{prob}{6}
+\begin{prob}
+	Determine the Galois group of $x^4 + 2x^2 + x + 3$
+\end{prob}
 
-\par To determine $\Gal(f)$, we introduce the notion of the cubic resolvent of $f$.
-Let $x_1, ..., x_4$ be indeterminates.
-Let $S_4$ act on $F[x_1, ..., x_4]$ as usual.
-Set 
-\[
-	\begin{split}
-		y_1 = (x_1 + x_2) (x_3 + x_4)\\
-		y_2 = (x_1 + x_3) (x_2 + x_4)\\
-		y_3 = (x_1 + x_4) (x_2 + x_3)
-	\end{split}
-\]
+\setcounter{prob}{10}
+\begin{prob}
+	Let $F$ be an extension of $\QQ$ of degree 4 that is not Galois over $\QQ$.
+	Prove that the Galois closure of $F$ has Galois group either $S_4, A_4$ or the dihedral group $D_8$ of order 8.
+	Prove that the Galois group is dihedral if and only if $F$ contains a quadratic extension of $\QQ$.
+\end{prob}
 
-\begin{lem}
-	Any symmetric sum of $y_i$ is inraviant under $S_4$.
-	(e.g. $y_1 + y_2 + y_3 + y_1 y_2 + y_2 y_3 + y_3 y_1 + y_1 y_2 y_3$.)
-\end{lem}
+\setcounter{prob}{17}
+\begin{prob}
+	Let $\theta$ be a root of $x^3 - 3 x + 1$.
+	Prove that the splitting field of this polynomial is $\QQ(\theta)$ and that the Galois group is cyclic of order 3.
+	In particular the other roots of this polynomial can be written in the form $a + b \theta + c \theta^2$ for some $a, b, c \in \QQ$.
+	Determine the other roots explicitly in terms of $\theta$.
+\end{prob}
 
-\begin{proofs}
-	\[
-		(1 \, 2): 
-		\begin{cases}
-			y_1 \mapsto y_1\\
-			y_2 \mapsto (x_2 + x_3) (x_1 + x_2) = y_3\\
-			y_3 \mapsto y_2
-		\end{cases}
-	\]
-\end{proofs}
 
-\begin{cor}
-	Let $f$ be a separable polynomial of degree 4 over $F$.
-	Let $\alpha_1, ..., \alpha_4$ be its roots and set
-	\[
-		\begin{split}
-			\theta_1 = (\alpha_1 + \alpha_2) (\alpha_3 + \alpha_4)\\
-			\theta_2 = (\alpha_1 + \alpha_3) (\alpha_2 + \alpha_4)\\
-			\theta_3 = (\alpha_1 + \alpha_4) (\alpha_2 + \alpha_3)
-		\end{split}
-	\]
-	Then $g(x) := (x - \theta_1) (x - \theta_2) (x - \theta_3) \in F[x]$.
-\end{cor}
-
-\begin{proof}
-	Lemma above implies the coefficients of $g$ are all fixed by $\Gal(f)$.
-	So by Theorem 14, they are all in $F$.
-\end{proof}
-
-\begin{dfn}
-	The polynomial $g(x)$ is called the \textbf{cubic resolvent} of $f$.
-\end{dfn}
 
 
 

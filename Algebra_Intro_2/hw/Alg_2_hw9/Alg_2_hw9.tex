@@ -363,19 +363,95 @@
 	\end{enumerate}
 \end{prob}
 
+\begin{sols}
+	\begin{enumerate}
+		\item[(a)] It is easy to see that 2 is a root of $x^3 - x^2 - 4$.
+			Thus $x^3 - x^2 - 4 = (x - 2) (x^2 + x + 2)$.
+			$x^2 + x + 2$ is an irreducible $\Ra \Gal(f) \simeq C_2$.
+
+		\item[(b)] It is easy to see that $-2$ is a root of $x^3 - 2x + 4$.
+			Thus $x^3 - 2x + 4 = (x + 2) (x^2 - 2x + 4)$.
+			$x^2 - 2x + 4$ is an irreducible $\Ra \Gal(f) \simeq C_2$.
+
+		\item[(c)] First $x^3 - x + 1$ is an irreducible.
+			To see this, since $x^3 - x + 1 \in \ZZ[x]$ is monic, it suffices to evaluate that it has no integer roots.
+			Also $x^3 - x \geq 0$ for all $x \geq 0$ and $x^3 - x \leq -4$ for all $x \leq -2$ and $x = -1$ is not a root.
+			Thus $x^3 - x + 1$ is indeed an irreducible.
+			$\Delta(f) = (-1)^2 - 4 (-1)^3 - 27 (1)^2 = 1 + 4 - 27 = -22$ is not a square.
+			$\Ra \Gal(f) \simeq S_3$.
+
+		\item[(d)] Again $x^3 + x^2 - 2x - 1$ is an irreducible.
+			To see this, again we evaluate that is has no integer roots.
+			Now $x^3 + x^2 - 2x \geq 2$ for all $x \geq 2$, $x^3 + x^2 - 2x \leq 0$ for all $x \leq -2$, and $x = -1, 0, 1$ are all not roots.
+			Thus $x^3 + x^2 - 2x - 1$ is indeed an irreducible.
+			$\Delta(f) = (-2)^2 - 4 (-2)^3 - 4 (1)^3(-1) - 27 (-1)^2 + 18 (1)(-2)(-1) = 4 + 32 + 4 - 27 + 36 = 49$ is a square.
+			$\Ra \Gal(f) \simeq A_3$.
+	\end{enumerate}
+\end{sols}
+
 \setcounter{prob}{3}
 \begin{prob}
 	Determine the Galois group of $x^4 - 25$.
 \end{prob}
 
+\begin{sols}
+	We have $x^4 - 25 = (x^2 + 5)(x^2 - 5) = (x + \sqrt{5})(x - \sqrt{5}) (x + \sqrt{5} i) (x - \sqrt{5} i)$.
+	Thus it is obvious that the splitting field of $x^4 - 25$ over $\QQ$ is $\QQ(\sqrt{5}, i)$.
+	Note that $[\QQ(\sqrt{5}, i):\QQ] = [\QQ(\sqrt{5}, i):\QQ(\sqrt{5})][\QQ(\sqrt{5}):\QQ] = 2 \cdot 2 = 4$.
+	Thus $|\Gal(f)| = 4$.
+	The only groups of order 4 are $V_4$ the Klein-4 group and $C_4$ the cyclic group.
+	But we know that $\QQ(\sqrt{5}, i)$ at least contains 3 proper subfields $\QQ(\sqrt{5}), \QQ(i), \QQ(\sqrt{5} i)$, but $C_4$ has only 1 nontrival proper subgroup.
+	By the fundamental theorem of Galois theory, we must have $\Gal(f) \simeq V_4$.
+\end{sols}
+
 \begin{prob}
 	Determine the Galois group of $x^4 + 4$.
 \end{prob}
+
+\begin{sols}
+	First $x^4 + 4 = (x^2 + 2x + 2) (x^2 - 2x + 2)$ is reducible with roots $\pm 1 \pm i$.
+	Thus the splitting field of $x^4 + 4$ is $\QQ(i)$.
+	Therefore obviously $\Gal(f) = \Gal(\QQ(i)/\QQ) \simeq C_2$.
+\end{sols}
 
 \setcounter{prob}{6}
 \begin{prob}
 	Determine the Galois group of $x^4 + 2x^2 + x + 3$
 \end{prob}
+
+\begin{sols}
+	First $f(x) := x^4 + 2x^2 + x + 3$ is irreducible.
+	To see this, first $f(x)$ has no roots because $x^4 + 2 x^2 + x \geq 0$ for all $x \neq 0 \in \ZZ$, and	also $x = 0$ is not a root.
+	Thus $x^4 + 2x^2 + x + 3$ should only have quadratic factors if reducible.
+	Since the coefficient of $x^3$ is 0, combine this with the constant coefficient 3, we find the factorization of $f(x)$ in $\ZZ[x]$ should either be $f(x) = (x^2 + ax + 3) (x^2 - ax + 1)$ or $f(x) = (x^2 + ax - 1) (x^2 - ax - 3)$ where $a \in \ZZ$.
+	But in both cases, comparing the linear term gives $2a = 1$ or $-2 a = 1$, contradicting the fact that $a \in \ZZ$.
+	Thus $f(x)$ is indeed an irreducible.
+	For a degree 4 polynomial $f(x) = x^4 + a x^3 + b x^2 + c x + d$, the discriminant could be written as
+	\[
+		\begin{split}
+			\Delta(f) &= 256 d^3 - 192 a c d^2- 128 b^2 d^2 + 144 b c^2 d - 27 c^4 + 144 a^2 b d^2 - 6 a^2 c^2 d - 80 a b^2 c d + 18 a b c^2 + 16 b^4 d\\
+			&- 4 b^3 c^2 - 27 a^4 d^2 + 18 a^3 bcd - 4 a^3 c^3 - 4 a^2 b^3 d + a^2 b^2 c^2
+		\end{split}
+	\]
+	We consider the discriminant in our case $f(x) = x^4 + 2x^2 + x + 3$:
+	\[
+		\Delta(f) = 256 (3)^3  - 128 (2)^2 (3)^2  + 144 (2) (1)^2 (3) - 27 (1)^4 + 16 (2)^4 (3)  - 4 (2)^3 (1)^2 = 3877 
+	\]
+	which is not a square.
+	We further consider the cubic resolvent
+	\[
+		g(x) = x^3 - 2 b x^2 + (b^2 + ac - 4d) x + (c^2 - abc + a^2 d)
+	\]
+	In our case this is 
+	\[
+		g(x) = x^3 - 2 (2) x^2 + ((2)^2 - 4 (3)) x + (1)^2 = x^3 - 4 x^2 - 8x + 1
+	\]
+	We evaluate that if $g(x)$ is an irreducible over $\QQ$.
+	Again this is a monic polynomial in $\ZZ[x]$, thus we examine if it has roots in $\ZZ$ or not.
+	Since the constant term is 1, the only roots possible are $\pm 1$, but obviously none of them are roots.
+	Thus $g(x)$ is an irreducible over $\QQ$. 
+	By our discussion in class, we have $\Gal(f) \simeq S_4$.
+\end{sols}
 
 \setcounter{prob}{10}
 \begin{prob}

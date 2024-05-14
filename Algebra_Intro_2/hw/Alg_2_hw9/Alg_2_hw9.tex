@@ -460,6 +460,45 @@
 	Prove that the Galois group is dihedral if and only if $F$ contains a quadratic extension of $\QQ$.
 \end{prob}
 
+\begin{sols}
+	Given $\alpha \in F \setminus \QQ$.
+	Since $[\QQ(\alpha):\QQ] | [F:\QQ]$, we must have $[\QQ(\alpha):\QQ] = 2$ or 4.
+	Now if there exists $\beta \in F \setminus \QQ$ such that $\deg m_{\beta, \QQ}(x) = 4$, then we must have $F = \QQ(\beta)$.
+	Thus if $F \neq \QQ(\alpha)$ for all $\alpha \in F \setminus \QQ$, then all the minimal polynomials of $\alpha \in F\setminus \QQ$ must have degree 2.
+	\par First consider the case that $F \neq \QQ(\alpha)$ for all $\alpha$ (i.e., $\deg m_{\alpha, \QQ}(x) = 2 \quad \forall \alpha \in F \setminus \QQ$.)
+	Then we have $[\QQ(\alpha):\QQ] = 2$.
+	In this case if $\beta \in F \setminus \QQ(\alpha)$, then we must have $F = \QQ(\alpha)(\beta) = \QQ(\alpha, \beta)$.
+	Now since $\beta \in F \setminus \QQ(\alpha)$, in particular we have $\beta \in F \setminus \QQ$.
+	By assumption the minimal polynomial of $\beta$ could only be of degree 2.
+	Since $\alpha$ has minimal polynomial of degree 2 over $\QQ$, every extension of $\QQ$ containing $\alpha$ must also contain the conjugate of $\alpha$.
+	Same works for $\beta$ since it also has degree 2.
+	We find $F = \QQ(\alpha, \beta)$ must contain all the conjugates of $\alpha, \beta$.
+	Since $[F:\QQ] = 4$ we find $F$ must be the splitting field of $g(x) := m_{\alpha, \QQ}(x) m_{\beta, \QQ}(x)$.
+	Thus $F$ is Galois, a contradiction.
+
+	\par Therefore we must have $F = \QQ(\beta)$ for some $\beta \in F\setminus \QQ$ with $h(x) := \deg m_{\beta, \QQ}(x) = 4$.
+	Note that $\QQ$ has characteristic 0, thus any irreducible is separable.
+	Thus the Galois closure of $F$ is just the splitting field of $h(x)$ over $\QQ$.
+	Since $\deg h = 4$, by our discussion, the Galois group $\Gal(h)$ must be a subgroup of $S_4$ with $4||\Gal(h)|$.
+	Now the splitting field of $h(x)$ over $\QQ$, call it $F'$, is not equal to $F$.
+	Thus we have $[F':\QQ] = [F':F][F:\QQ]$ with $[F':F] \geq 2$.
+	$\Ra [F':\QQ] \geq 2 \cdot 4 = 8$.
+	By the fundamental theorem of Galois theory, $|\Gal(h)| = [F':\QQ] \geq 8$.
+	The only subgroups of $S_4$ with order $\geq 8$ are $S_4, A_4$ and $D_8$, thus $\Gal(h)$ must be one of them.
+
+	\par Next we prove that $F$ contains a quadratic extension, say $\QQ(\sqrt{D})$, if and only if $\Gal(h) \simeq D_8$.
+	$\La$ is trivial since $D_8$ contains index 2 subgroups, e.g. $\ev{\sigma}$, thus by the fundamental theorem of Galois theory, $\QQ$ must have a degree 2 extension, which must be quadratic.
+	We next prove $\Ra$.
+	First note that $\Gal(h)$ cannot be $A_4$ since it has no index 2 subgroups.
+	Note that since $[F:\QQ(\sqrt{D})] = 2$, we could write $F = \QQ(\sqrt{D})(\sqrt{a + b \sqrt{D}})$ for some $a, b \in \QQ$.
+	But this is just $F = \QQ(\sqrt{a + b\sqrt{D}})$.
+	Now the minimal polynomial of $\sqrt{a + b\sqrt{D}}$ is $h(x) = x^4 - 2a x^2 + a^2 - b^2 D$, which has cubic resolvent $g(x) = x^3 + 4 a x^2 + 4 b^2 D x$.
+	Since $\Gal(h)$ is the splitting field of the minimal polynomial $h(x)$ we could evaluate if the cubic resolvent of $h(x)$ is reducible or not.
+	But $g(x) = x^3 + 4 a x^2 + 4 b^2 D x = x (x^2 + 4 a x + 4 b^2 D)$ is reducible.
+	By discussion in class, we must have $\Gal(h) \simeq D_8$.
+
+\end{sols}
+
 \setcounter{prob}{17}
 \begin{prob}
 	Let $\theta$ be a root of $x^3 - 3 x + 1$.
@@ -467,6 +506,49 @@
 	In particular the other roots of this polynomial can be written in the form $a + b \theta + c \theta^2$ for some $a, b, c \in \QQ$.
 	Determine the other roots explicitly in terms of $\theta$.
 \end{prob}
+
+\begin{sols}
+	First I claim that $x^3 - 3x + 1$ is an irreducible.
+	To see this, since $x^3 - 3x + 1$ is a degree 3 monic polynomial in $\ZZ[x]$, it suffices to evaluate that it has no integer roots.
+	Now again $x^3 - 3x + 1 \geq 3$ for all $x \geq 2$ and $x^3 - 3x + 1 \leq -1$ for all $x \leq -2$.
+	Moreover it is easy to see that $-1, 0, 1$ are all not roots of $x^3 - 3x + 1$.
+	Thus indeed $x^3 - 3x + 1$ has no integer roots, hence is an irreducible.
+	In this case we should examine the discriminant $\Delta(f) = -4 (-3)^3 - 27 (1)^2 = 27 \cdot 3 = 81$.
+	$\Delta(f)$ is a square $\Ra \Gal(f) \simeq A_3 \simeq C_3$ by our discussion in class.
+	Note that $[\QQ(\theta):\QQ] = 3$ since the minimal polynomial of $\theta$ is just $x^3 - 3x + 1$.
+	Thus $\QQ(\theta)$ must be the splitting field of $x^3 - 3x + 1$ over $\QQ$.
+	It is then clear that the other roots could be written as a linear combination of $1, \theta, \theta^2$ with coefficients in $\QQ$.
+
+	\par Now let's determine the other two roots $\alpha, \beta$ in terms of $\theta$.
+	First by Vieta's formula, one has
+	\[
+		\alpha + \beta = - \theta, \quad \alpha \beta = -\frac{1}{\theta} \cdots (*)
+	\]
+	This implies that $\alpha, \beta$ are the two roots of the quadratic 
+	\[
+		g(x) := x^2 + \theta x - \frac{1}{\theta} = (x - \alpha) (x - \beta) 
+	\]
+	Consider the the discriminant of the original polynomial $f$ we have
+	\[
+		\Delta(f) = (\beta - \theta) (\theta - \alpha) (\alpha - \beta) = \sqrt{ -4 (-3)^3 - 27 (1)^2} = \sqrt{81} = 9
+	\]
+	Now observe that $(\theta - \beta) (\theta - \alpha)$ is just $g(\theta) = \theta^2 + \theta \cdot \theta - 1/\theta = 2 \theta^2 - 1/\theta$.
+	Thus rearraging the above equation we have
+	\[
+		\alpha - \beta = \frac{9}{2 \theta^2 - \frac{1}{\theta}} = \frac{9 \theta}{2 \theta^3 - 1} = \frac{9 \theta}{6 \theta - 3} = \frac{3 \theta}{2 \theta - 1}
+	\]
+	Next by solving $(c_2 \theta^2 + c_1 \theta+ c_0)(2 \theta - 1) = 1$ using the fact that $\theta^3 - 3 \theta + 1 = 0$, we obtain 
+	\[
+		\frac{1}{2 \theta - 1} = \frac{1}{3} (4 \theta^2 + 2 \theta - 11) 
+	\]
+	\[
+		\Ra \alpha - \beta = \theta (4 \theta^2 + 2 \theta - 11) = 4 \theta^3 + 2 \theta^2 - 11 \theta = 2 \theta^2 + \theta - 4 \cdots (**)
+	\]
+	Comparing $(*)$ and $(**)$ we get
+	\[
+		\alpha = \theta^2 - 2, \quad \beta = - \theta^2 - \theta + 2
+	\]
+\end{sols}
 
 
 

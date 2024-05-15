@@ -342,19 +342,176 @@
 
 \linespread{1.5}
 \pagestyle{fancy}
-\title{Template}
+\title{Intro to Algebra 2 W13-1}
 \author{fat}
 % \date{\today}
-\date{May, 2024}
+\date{May 15, 2024}
 \begin{document}
 \maketitle
 \thispagestyle{fancy}
 \renewcommand{\footrulewidth}{0.4pt}
 \cfoot{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
-\fancyhead[L]{Template}
+\fancyhead[L]{Intro to Algebra 2 W13-1}
 
+Recall the sublemma stated last time:
+\begin{lem}
+	If $E/F, E'/F$ are radical extensions, then $E E'/F$ is a radical extension.
+\end{lem}
 
+\begin{proofs}
+	Last time we have proved that if $K/F, K'/F$ are simple radical extensions, then $K K'/F$ is a radical extension $\cdots (*)$.
+	Now suppose that 
+	\[
+		F = F_0 \leq F_1 \leq \cdots \leq F_m = E
+	\]
+	\[
+		F = F_0' \leq F_1' \leq \cdots \leq F_n' = E'
+	\]
+	with $F_{i + 1} = F_i(\sqrt[n_i]{a_i}), a_i \in F_i$ and $F_{i + 1}' = F_i'(\sqrt[n_i']{a_i}), a_i \in F_i'$.
+	By $(*)$, $F_1 F_1'/F$ is a radical extension. 
+	(This was proved last time.)
+	We next show that $F_2 F_2'$ is a radical extension of $F_1 F_1'$.
+	We have
+	\[
+		F_1 F_2' = F_1 F_1'(\sqrt[n_0']{a_0'})
+	\]
+	\[
+		F_1' F_2 = F_1' F_1(\sqrt[n_1]{a_1})
+	\]
+	i.e. $F_1 F_2', F_1' F_2$ are simple radical extensions of $F_1 F_1'$.
+	By $(*)$, $F_1 F_2' F_1' F_2 = F_2 F_2'$ is a radical extension of $F_1 F_1'$.
+	Hence $F_2 F_2'$ is a radical extension of $F_0 F_0' = F$.
+	In general, we find $F_{i + 1} F_{i + 1}'$ is a radical extension of $F_i F_i'$ and hence a radical extension of $F_0 F_0' = F$.
+	$\Ra$ In particular, $E E' = F_m F_n'$ is a radical extension of $F$.
+\end{proofs}
+
+For simplicity, from now on we assume $\cha F = 0$.
+Recall the main lemma we desire to prove:
+
+\begin{lem}[Lemma 38]
+	Suppose that $K/F$ is a radical extension.
+	Then there exists an extension field $K'$ of $K$ such that $K'/F$ is Galois and there exist
+	\[
+		F = K_0' \leq K_1' \leq \cdots \leq K_n' = K'
+	\]
+	such that $K_{i + 1}'/K_i'$ is Galois and a simple radical extension (and hence a cyclic extension).
+\end{lem}
+
+\begin{proofs}
+	Assume that $K/F$ is a radical extension.
+	Let $L$ be the Galois closure of $K$ over $F$.
+	Note that $L$ is equal to the composite of $\sigma(K)$, where $\sigma \in \text{Emb}(K/F)$.
+	(For example, $K = \QQ(\sqrt[3]{2}), F = \QQ, \text{Emb}(K/F)$ consists of id, $\sigma_1: \sqrt[3]{2} \mapsto \sqrt[3]{2} \zeta, \sigma_2: \sqrt[3]{2} \mapsto \sqrt[3]{2} \zeta^2, \zeta = e^{2 \pi i/3}$.
+	Then $\sigma_1(K) = \QQ(\sqrt[3]{2} \zeta), \sigma_2(K) = \QQ(\sqrt[3]{2} \zeta^2)$.
+	The composite of $K, \sigma_1(K), \sigma_2(K)$ is $\QQ(\sqrt[3]{2}, \sqrt[3]{2} \zeta, \sqrt[3]{2} \zeta^2) = \QQ(\sqrt[3]{2}, \zeta)$, which is indeed the Galois closure of $\QQ(\sqrt[3]{2})$ over $\QQ$.)
+	Now it's easy to see that if $K$ is a radical extension of $F$, then $\sigma(K)$ is also a radical extension of $F$ for any $\sigma \in \text{Emb}(K/F)$.
+	(For example, if $K = F(\sqrt[n]{a}), a \in F$, then $\sigma(K) = F(\sigma(\sqrt[n]{a}))$.
+	Now $\sigma(\sqrt[n]{a})^n = \sigma(a) = a$.
+	Thus $\sigma(\sqrt[n]{a})$ is also a $n$-th root of $a \Ra \sigma(K)$ is a radical extension.)
+	Thus by the sublemma, the composite of $\sigma(K), \sigma \in \text{Emb}(K/F)$ is a radical extension of $F$, i.e. $L/F$ is a radical extension.
+	Say 
+	\[
+		F = L_0 \leq L_1 \leq \cdots \leq L_n = L
+	\]
+	where $L_{i + 1} = L_i(\sqrt[n_i]{a_i}), a_i \in L_i$.
+	Now let $F' = F(\text{all } n_i \text{-th roots of unity})$ and set $L_i' = L_i F'$ and $K' = L_n' = L F'$.
+	Note that $K'$ is a Galois extension over $F$.
+	(By Prop 21, if $K_1, K_2$ are Galois extensions of $F$, then $K_1 K_2$ is also a Galois extension of $F$.
+	In our case, $L$ being the Galois closure of $K$ over $F$ is Galois over $F$, and $F' = F(\text{roots of unity})$ is also Galois over $F$.)
+	Now consider 
+	\[
+		F \leq F' = L_0' \leq L_1' \leq \cdots \leq L_n' = K'
+	\]
+	Since $\Gal(F'/F)$ is abelian, we have 
+	\[
+		F = F_0 \leq F_1 \leq \cdots \leq F_m = F'
+	\]
+	such that $F_{i + 1}/F$ is a cyclic extension (by FTFGAG and separate the cyclic groups).
+	In fact, $F_{i + 1}/F_i$ is a simple radical extension by Prop 37.
+	Moreover, $L_{i + 1}' = L_{i + 1} F' = F' L_i(\sqrt[n]{a_i}) = L_i'(\sqrt[n]{a_i})$.
+	$\Ra L_{i + 1}'$ is a simple radical extension of $L_i'$.
+	Since $L_i$ contains all $n_i$-th roots of unity, by Prop 36, $L_{i + 1}'/L_i'$ is a cyclic extension.
+	In summary, 
+	\[
+		F = F_0 \leq F_1 \leq \cdots \leq F_m = F' = L_0' \leq \cdots \leq L_n' = K'
+	\]
+	is a sequence of cyclic extensions and they are all simple radical extensions.
+\end{proofs}
+
+\begin{proofs}[Proof of Theorem 39]
+	(For simplicity, we assume $\cha F = 0$.)
+	\par ($\Ra$) Assume that $f(x)$ is solvable by radicals.
+	Then its splitting field $K$ is a radical extension.
+	(Say $\alpha_i$ are roots of $f$.
+	Then $K = \prod_i F(\alpha_i)$.
+	By the sublemma, $K/F$ is radical.)
+	By Lemma 38, $\exists K'$ such that $K \leq K'$, $K'/F$ is Galois and $\Gal(K'/F)$ is a solvable group.
+	(Say, $F = K_0' \leq \cdots \leq K_n' = K'$ as in Lemma 38.
+	Let $H_i = \{ \sigma \in \Gal(K/F): \sigma \text{ fixes } K_i'\}$.
+	Then $\{e\} = H_n \leq H_{n - 1} \leq \cdots \leq H_0 = \Gal(K'/F)$.
+	The property $K_{i + 1}'/K_i'$ is a cyclic extension implies $H_{i + 1} \trianglelefteq H_i$ and $H_i/H_{i + 1}$ is cyclic $\Ra \Gal(K'/F)$ is solvable.)
+	Then
+	\[
+		\Gal(f) = \Gal \left( \quot{K}{F} \right) \simeq \quot{\Gal \left( \quot{K'}{F} \right)}{\Gal \left( \quot{K'}{K} \right)}
+	\]
+	(by the fundamental theorem of Galois theory) is solvable.
+	(Note that any quotient of a solvable group is solvable.)
+	\par ($\La$) Assume that $\Gal(f)$ is solvable, i.e. $\Gal(K/F)$ is solvable where $K$ is the splitting field of $F$.
+	Say
+	\[
+		\{e\} = H_n \leq H_{n - 1} \leq \cdots \leq H_0 = \Gal(K/F)
+	\]
+	satisfy $H_{i + 1} \normto H_i$ and $H_i/H_{i + 1}$ is cyclic.
+	Let $K_i$ be the fixed field of $H_i$.
+	We have $F = K_0 \leq K_1 \leq \cdots \leq K_n = K$.
+	Here we know that $K_{i + 1}/K_i$ is a cyclic extension (since $H_{i + 1} \normto H_i$ and $H_i/H_{i + 1}$ is cyclic).
+	However, the goal here is to show that $K$ is contained in some radical extension $K'$ of $F$.
+	For this purpose, we'll use Prop 37.
+	Let $F' = F([K:F]\text{-th roots of unity})$.
+	Set $K_i' = K_i F', K' = K F'$.
+	Consider 
+	\[
+		F \leq F' = K_0' \leq K_1' \leq \cdots \leq K_n' = K' 
+	\]
+
+	\begin{clms}
+		\begin{enumerate}
+			\item[(1)] $K'/F$ is Galois.
+
+			\item[(2)] $K_{i + 1}'/K_i'$ is a cyclic extension.
+		\end{enumerate}
+	\end{clms}
+
+	Then since $F'$ contains all necessary roots of unity.
+	By Prop 37, $K_{i + 1}'/K_i'$ is a simple radical extension.
+	This prove that $K'/F$ is a radical extension $\Ra f$ is solvable by radicals.
+	This completes the proof of the theorem.
+
+	\begin{proofs}[Proof of the Claims]
+		\begin{enumerate}
+			\item[(1)] Prop 21
+
+			\item[(2)] We use the following proposition.
+
+				\begin{prop}[Proposition 19]
+					Suppose that $E'/E$ is a finite Galois extension.
+					Let $K$ be any field extension of $E$.
+					Then $K E'/E$ is a Galois extension and $\Gal(K E'/E') \simeq \Gal(K/K \cap E')$.
+				\end{prop}
+
+				Apply Proposition 19 with $E' = K_i F' = K_i'$, $E = K_i$ and $K = K_{i + 1}$.
+				By Prop 19, $K_{i + 1}'/K_i' = (K_{i + 1} K_i')/K_i'$ is a Galois extension since $K_i'/K_i$ is Galois.
+				Moreover 
+				\[
+					\Gal \left( \quot{K_{i + 1}'}{K_{i}} \right) = \Gal \left( \quot{K_{i + 1} (K_i' F)}{K_i F'} \right) \simeq \Gal \left( \quot{K_{i + 1}}{K_{i + 1} \cap K_i F'} \right)
+				\]
+				Now $\Gal(K_{i + 1}/K_{i + 1} \cap K_i F')$ is a subgroup of $\Gal(K_{i + 1}/K_i)$.
+				Since $\Gal(K_{i + 1}/K_i)$ is cyclic, $\Gal(K_{i + 1}/K_i F')$ is cyclic.
+				$\Ra \Gal(K_{i + 1}'/K_i')$ is cyclic.
+		\end{enumerate}
+	\end{proofs}
+\end{proofs}
 
 
 

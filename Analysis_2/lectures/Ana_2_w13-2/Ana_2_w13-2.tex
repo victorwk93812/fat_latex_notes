@@ -1,0 +1,629 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+\newenvironment{exs}[1][]{%
+  \begin{ex}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ex}
+}
+\newenvironment{rems}[1][]{%
+  \begin{rem}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{rem}
+}
+\newenvironment{dfns}[1][]{%
+  \begin{dfn}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{dfn}
+}
+\newenvironment{clms}[1][]{%
+  \begin{clm}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{clm}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+\newcommand{\bracket}[1]{\langle #1 \rangle}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+\newcommand{\Gal}{\text{Gal}}
+\newcommand{\id}{\text{id}}
+\newcommand{\dist}{\text{dist}}
+\newcommand{\cha}{\text{char}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\normto}{\trianglelefteq}
+\newcommand{\snormto}{\triangleleft}
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W13-2}
+\author{fat}
+% \date{\today}
+\date{May 16, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W13-2}
+
+Recall: 
+\begin{itemize}
+	\item Iterative function system (IFS) is a finite collection $(S_i)_{1 \leq i \leq m}$ of contractins (on $\RR^d$).
+
+	\item $\exists ! $ nonempty compact $E \subseteq \RR^d$ such that
+		\[
+			E = \bigcup_{i = 1}^m S_i(E)
+		\]
+		$E$ is also called the attractor of the IFS.
+
+	\item Define $S:\K \to \K$ by 
+		\[
+			S(A) = \bigcup_{i = 1}^m S_i(A)
+		\]
+		Then if $S_i(A) \subseteq A \quad \forall i$, one has
+		\[
+			E = \bigcap_{k = 0}^\infty S^{\circ k}(A)
+		\]
+\end{itemize}
+$S^{\circ k}(A) = \cup_{\I_k} S_{i_1} \circ \cdots \circ S_{i_k}(A)$ where $\I_k$ is the set of all $k$-term sequences $(i_1, ..., i_k), 1 \leq i_j \leq m \quad \forall j$.
+If $S_i(A) \subseteq A \quad \forall i$ and if $x \in E$, then $\exists$ a sequence (not necessarily unique) ($i_1, i_2, ...$) such that $x \in S_{i_1} \circ \cdots \circ S_{i_j}(A) \quad \forall k$.
+Given a sequence $(i_1, i_2, ...)$, 
+\[
+	\{x_{i_1, i_2, ...}\} = \bigcap_{k = 1}^\infty S_{i_1} \circ \cdots \circ S_{i_k}(A)
+\]
+Then $E = \cup\{x_{i_1, i_2, ...}\}$.
+This expressioin for $x_{i_1, i_2, ...}$ is independent of $A$ provided that $S_i(A) \subseteq A \quad \forall i$.
+
+\par We will consider a specific class of contractions.
+
+\begin{dfn}
+	A map $S: \RR^d \to \RR^d$ is a \textbf{similitude} if $\exists 0 < r < 1$ such that $|S(x) - S(y)| = r |x - y|$.
+\end{dfn}
+
+Can show: if $S$ is a similitude then $S(x) = r O x + a$ where $O$ is orthogonal, $a \in \RR^d$.
+If $S_1, ..., S_m$ are similitudes, then the corresponding attractors is called a \textbf{self-similar set}.
+
+\par Goal: Determine the Hausdorff and Minkowski dimensions of a self-similar set.
+A special case: $E = \cup_{i = 1}^m S_i(E)$ is "almost disjoint".
+$c_i =$ ratio of $S_i$.
+\[
+	H_\alpha(E) = H_\alpha \left( \bigcup_{i = 1}^m S_i(E) \right) "=" \sum_{i = 1}^m H_\alpha(S_i(E)) = \sum_{i = 1}^m c_i^\alpha(H_\alpha(E))
+\]
+Assuming $H_\alpha(E) \in (0, \infty)$, we obtain $\sum_{i = 1}^m c_i^\alpha = 1$.
+So $\dim_H(E)$ should satisfy this equation.
+For this to work, need $S_i(E)$ do not overlap too much.
+
+\begin{dfn}
+	Let $S_1, ..., S_m$ be similitudes.
+	We say that the IFS $(S_i)$ satisfies the \textbf{open set condition} if $\exists$ a nonempty bounded open set $V \subseteq \RR^d$ such that
+	\begin{itemize}
+		\item $V \supseteq \cup_{i = 1}^m S_i(V)$
+
+		\item $S_i(V) \cap S_j(V) = \phi$ if $i \neq j$.
+	\end{itemize}
+\end{dfn}
+
+\begin{exs}
+	\begin{enumerate}
+		\item Cantor set $V = (0, 1)$
+			\[
+				S_1(x) = \frac{1}{3} x \quad S_2(x) = \frac{1}{3}x + \frac{2}{3}
+			\]
+			$V$ satisfies the open set condition.
+
+		\item $[0, 1]$
+			\[
+				S_1 = \frac{1}{2} x \quad S_2(x) = \frac{1}{2} x + \frac{1}{2}
+			\]
+			Take $V = (0, 1)$, then $V$ satisfies the open set condition.
+
+		\item Sierpi\'nski gasket.
+			\[
+				S_1(x) = \frac{1}{2} x \quad S_2(x) = \frac{1}{2} x + \left(\frac{1}{2}, 0\right) \quad S_3(x) = \frac{1}{2} x + \left(\frac{1}{4}, \frac{\sqrt{3}}{4}\right)
+			\]
+	\end{enumerate}
+\end{exs}
+
+\begin{thm}[Hutchinson]
+	Suppose that $(S_i)$ are similitudes and the IFS satisfies the open set condition.
+	Let $c_i$ be the ratio of $S_i$.
+	If $E$ is the attractor of the IFS then $\dim_H(E) = \dim_M(E) = \alpha$, where $\sum_{i = 1}^m c_i^\alpha = 1$.
+	Moreover, for this $\alpha, H_\alpha(E) \in (0, \infty)$.
+\end{thm}
+
+\begin{exs}
+	\begin{enumerate}
+		\item $[0, 1]$.
+			\[
+				\frac{1}{2^\alpha} + \frac{1}{2^\alpha} = 1 \Ra \alpha = 1
+			\]
+			$\dim_H([0, 1]) = 1$.
+
+		\item Cantor set.
+			\[
+				\frac{1}{3^\alpha} + \frac{1}{3^\alpha} = 1 \Ra \alpha = \frac{\log 2}{\log 3}
+			\]
+
+		\item Sierpi\'nski gasket.
+			\[
+				\frac{1}{2^\alpha} +\frac{1}{2^\alpha} + \frac{1}{2^\alpha} = 1 \Ra \alpha = \frac{\log 3}{\log 2}
+			\]
+
+		\item von Koch curve: $\alpha = \log 4/\log 3$.
+	\end{enumerate}
+\end{exs}
+
+A technical lemma:
+
+\begin{lem}
+	Let $(V_k)$ be a collection of disjoint open subsets of $\RR^d$ such that each $V_k$ contains a ball of radius $ar$ and is contained in a larger ball of radius $br$.
+	Then any ball $B$ of radius $r$ intersects at most $(1 + 2b)^d a^{-d}$ of the closures $\overline{V_k}$.
+\end{lem}
+
+\begin{proofs}
+	If $\overline{V_k}$ meets $B$, then $\overline{V_k}$ is contained in the ball concentric with $B$ of radius $(1 + 2b) r$. 
+	Suppose that $n$ of the sets $\overline{V_k}$ intersect $B$.
+	Add the volumes of the corresponding interior balls: 
+	\[
+		n(ar)^d \leq (1 + 2b)^d r^d
+	\]
+	$\Ra n \leq (1 + 2b)^d a^{-d}$.
+\end{proofs}
+
+\begin{proofs}[Proof of Theorem]
+	Let $\alpha$ satisfy $\sum_{i = 1}^m c_i^\alpha = 1$.
+	For any set $A \subseteq \RR^d$ and $(i_1, ..., i_k) \in \I_k$.
+	Write $A_{i_1, ..., i_k} = S_{i_1} \circ \cdots \circ S_{i_k}(A)$.
+	$E$ is attractor $\Ra E = \cup_{i = 1}^m S_i(E)$.
+	$\Ra E = \cup_{\I_k} E_{i_1, ..., i_k}$.
+	This gives a cover for $E$.
+	Note:
+	\[
+		\begin{split}
+			\sum_{\I_k} \diam (E_{i_1, ..., i_k})^\alpha &= \sum_{\I_k} (c_{i_1} \cdots c_{i_k})^\alpha \diam(E)^\alpha\\
+			&= \left( \sum_{i_1} c_{i_1}^\alpha \right) \cdots \left( \sum_{i_k} c_{i_k}^\alpha \right) \diam(E)^\alpha\\ 
+			&= \diam(E)^\alpha
+		\end{split}
+	\]
+	On the other hand, given any $\delta > 0$, can find $k$ such that $\diam(E_{i_1, ..., i_k}) < \delta$.
+	\[
+		\Ra H_\alpha^\delta(E) \leq \diam(E)^\alpha
+	\]
+	\[
+		\Ra H_\alpha(E) \leq \diam(E)^\alpha
+	\]
+	\[
+		\Ra \dim_H(E) \leq \alpha
+	\]
+
+	\par Lower bound: use mass distribution principle.
+	Write $\I = \{(i_1, i_2, ...): i \leq i_j \leq m\}$.
+	$I_{i_1, ..., i_k} = \{(j_1, j_2, ...) \in \I: j_1 = i_1, ..., j_k = i_k\}$.
+	We define a measure on $\I$ such that
+	\[
+		\mu(I_{i_1, ..., i_k}) = (c_{i_1} \cdots c_{i_k})^\alpha
+	\]
+	Fact: $\mu$ can be extended to a measure such that $\mu(\I) = 1$.
+	Using $\mu$, we can define $\nu$ on $E$ by
+	\[
+		\nu(A) = \mu(\{(i_1, i_2, ...): x_{i_1, i_2, ...} \in A \cap E\}) \text{ if } A \text{ is Borel}
+	\]
+	Will show: $\nu$ satisfies the mass distribution principle.
+	Let $V$ be the open set in the definition of the OSC.
+	$V \supseteq \cup_{i = 1}^m S_i(V) = S(V) \Ra \overline{V} \supseteq S(\overline{V})$.
+	The iterates $S^{\circ k}(\overline{V})$ converges to $E$.
+	In particular, $\overline{V} \supseteq E, \overline{V_{i_1, ..., i_k}} \supseteq E_{i_1, ..., i_k}$.
+	Fix $r \in (0, 1)$.
+	For each $(i_1, i_2, ...) \in \I, \exists$ a first $K$ such that
+	\[
+		\left( \min_{1 \leq i \leq m} c_i \right) r \leq c_{i_1} \cdots c_{i_K} \leq r \cdots (*)
+	\]
+	Let $\Q$ denote the set of all these finite sequences $(i_1, ..., i_K)$.
+	(For example, $d = 1, S_1(x) = 1/4 x, S_2(x) = 1/4 x + 1/4, S_3(x) = 1/2 x + 1/2$ and $r = 1/3$.
+	Then $\Q = \{(1), (2), (3, 1), (3, 2), (3, 3)\}$.)
+	(Reason to introduce $\Q$: make sure that the sizes of $\overline{V_{i_1, ..., i_k}}$ are comparable.)
+	Facts:
+	\begin{itemize}
+		\item $\Q$ is a finite set.
+
+		\item $\{V_{i_1, ..., i_k}: (i_1, ..., i_k) \in \Q\}$ are disjoint.
+
+		\item $E \subseteq \cup_{(i_1, ..., i_k) \in \Q} E_{i_1, ..., i_k} \subseteq \cup_{(i_1, ..., i_k) \in \Q} \overline{V_{i_1, ..., i_k}}$.
+	\end{itemize}
+
+	Now choose $a, b$ such that $V$ contains a ball of radius $a$ and is contained in a ball of radius $b$.
+	For all $(i_1, ..., i_k) \in \Q, V_{i_1, ..., i_k}$ contains a ball of radius $c_{i_1} \cdots c_{i_k} a$.
+	From $(*), V_{i_1, ..., i_k}$ contains a ball of radius $(\min_{1 \leq i \leq m} c_i) ra$.
+	$V_{i_1, ..., i_k}$ is also contained in a ball of radius $b r$.
+	Pick any ball with radius $r$.
+	Let $\Q'$ be the set of those sequences in $\Q$ such that $B$ intersects $\overline{V_{i_1, ..., i_k}}$.
+	By lemma, $\Q'$ has at most $q := (1 + 2b)^d a^{-d} (\min_{1 \leq i \leq m} c_i)^{-d}$ many sequences.
+	\[
+		\begin{split}
+			\Ra \nu(B) &= \mu(\{(i_1, i_2, ...) \in \I: x_{i_1, i_2, ..} \in E \cap B\})\\
+			&\leq \mu \left( \bigcup_{(i_1, ..., i_k) \in \Q'} I_{i_1, ..., i_k}\right)\\
+			&\leq \sum_{(i_1, ..., i_k) \in \Q} \mu(I_{i_1, ..., i_k}) \leq q(c_{i_1} \cdots c_{i_k})^\alpha \stackrel{(*)}{\leq} q r^\alpha
+		\end{split}
+	\]
+	By the mass distribution principle, we have $H_\alpha(E) > 0$ and $\dim_H(E) \geq \alpha$.
+	To show $\dim_M(E) = \alpha$, suffices to show $\overline{\dim}_M(E) \leq \alpha$.
+	The $\Q$ we define above has at most $(\min_{1 \leq i \leq m} c_i)^{-\alpha} r^{-\alpha}$ many sequences. 
+	(By the fact that $\sum_{(i_1, ..., i_k) \in \Q} c_{i_1} \cdots c_{i_k} = 1$.)
+	For each sequence $(i_1, ..., i_k) \in \Q$, we have
+	\[
+		\diam(\overline{V_{i_1, ..., i_k}}) = c_{i_1} \cdots c_{i_k} \diam(\overline{V}) \leq r \diam(\overline{V})
+	\]
+	$E$ is covered by $(\min_{1 \leq i \leq m} c_i)^{-\alpha} r^{-\alpha}$ many sets of diameter $r \diam(\overline{V})$.
+	This holds $\forall r \in (0, 1)$.
+	$\Ra \overline{\dim}_M(E) \leq \alpha$.
+\end{proofs}
+
+\begin{rems}
+	\begin{enumerate}
+		\item In the proof above, we claim that the measure $\mu$ (and hence $\nu$) exists.
+			$\mu$ can be constructed similarly to the one on the Cantor set.
+			Alternatively, we can construct $\nu$ directly.
+			$\nu$ is also called a \textbf{self-similar measure}.
+			It satisfies
+			\[
+				\nu(A) = \sum_{i = 1}^m c_i^\alpha \nu(S_i^{-1}(A)) \quad \forall \text{ Borel }A
+			\]
+			This can be regarded as a fixed point equation.
+			To show its existence, it suffices to show that
+			\[
+				\omega \mapsto \sum_{i = 1}^m c_i^\alpha \omega \circ S_i^{-1}
+			\]
+			is a contraction under an appropriate metric.
+			One can define
+			\[
+				d(\omega_1, \omega_2) = \sup\left\{ \left| \int g \dd{\omega_1} - \int g \dd{\omega_2} \right|: g \text{ is 1-Lipschitz} \right\}
+			\]
+			Can show: $d$ is a metric on the set of all probability measures, and it is complete.
+			$d$ is also known as the \textbf{Wasserstein distance}.
+
+		\item For general IFS, we always have $\overline{\dim}_M(E) \leq \alpha$ where $\alpha$ satisfies $\sum_{i = 1}^m c_i^\alpha = 1$.
+	\end{enumerate}
+\end{rems}
+
+\section{Fractals \boldmath$m$\unboldmath \,  Number Theory}
+
+Let $m \geq 2$ be an integer.
+Consider base-$m$ expansion of real numbers.
+Let $p_0, ..., p_{m - 1}$ be "proportions": $0 < p_i < 1, \sum_{i = 1}^{m - 1} p_i = 1$.
+$\forall x \in [0, 1)$, write $n_j^{(k)} (x) =$ numer of times the digit $j$ occurs in the first $k$ places of the base-$m$ expansion of $x$.
+\[
+	E(p_0, ..., p_{m - 1}) = \left\{ x \in [0, 1): \lim_{k \to \infty} \frac{n_j^{(k)}(x)}{k} = p_j \quad \forall j = 1, ..., m\right\} 
+\]
+Fact: (Borel normal number theorem) $E(1/m, ..., 1/m)$ has Lebesgue measure 1.
+General $p_0, ..., p_{m - 1}$?
+
+\begin{thm}
+	\[
+		\dim_H(E(p_0, ..., p_{m - 1})) = -\frac{1}{\log m} \sum_{i = 0}^{m - 1} p_i \log p_i
+	\]
+\end{thm}
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

@@ -3,13 +3,15 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{soul}
 \usepackage{mathtools}
 \usepackage{hyperref}
 \usepackage{fancyhdr, lipsum}
 \usepackage{ulem}
 \usepackage{fontspec}
 \usepackage{xeCJK}
-% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../../fonts/, AutoFakeBold]{edukai-5.0.ttf}
 % \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
 % set your own font :
 % \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
@@ -268,6 +270,10 @@
 % \opnorm[\Bigg]{a} % largest
 % \opnorm*{a}       % \left and \right
 
+
+\newcommand\dunderline[2][.4pt]{%
+  \raisebox{-#1}{\underline{\raisebox{#1}{\smash{\underline{#2}}}}}}
+\newcommand{\cul}[2][black]{\color{#1}\underline{\color{black}{#2}}\color{black}}
 
 \newcommand{\A}{\mathcal A}
 \renewcommand{\AA}{\mathbb A}

@@ -1,0 +1,569 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[Path = ../../../fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+\newenvironment{exs}[1][]{%
+  \begin{ex}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ex}
+}
+\newenvironment{rems}[1][]{%
+  \begin{rem}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{rem}
+}
+\newenvironment{dfns}[1][]{%
+  \begin{dfn}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{dfn}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+\newcommand{\bracket}[1]{\langle #1 \rangle}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+\newcommand{\Gal}{\text{Gal}}
+\newcommand{\id}{\text{id}}
+\newcommand{\dist}{\text{dist}}
+\newcommand{\cha}{\text{char}}
+\newcommand{\diam}{\text{diam}}
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Introduction to Algebra 2 HW9}
+\author{B11202041 物理二 \, 劉晁泓}
+% \date{\today}
+\date{May 13, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Introduction to Algebra 2 HW9}
+
+\section*{14.6}
+
+\setcounter{prob}{1}
+\begin{prob}
+	Determine the Galois groups of the following polynomials:
+	\begin{enumerate}
+		\item[(a)] $x^3 - x^2 - 4$
+
+		\item[(b)] $x^3 - 2x + 4$
+
+		\item[(c)] $x^3 - x + 1$
+
+		\item[(d)] $x^3 + x^2 - 2x - 1$ 
+	\end{enumerate}
+\end{prob}
+
+\begin{sols}
+	\begin{enumerate}
+		\item[(a)] It is easy to see that 2 is a root of $x^3 - x^2 - 4$.
+			Thus $x^3 - x^2 - 4 = (x - 2) (x^2 + x + 2)$.
+			$x^2 + x + 2$ is an irreducible $\Ra \Gal(f) \simeq C_2$.
+
+		\item[(b)] It is easy to see that $-2$ is a root of $x^3 - 2x + 4$.
+			Thus $x^3 - 2x + 4 = (x + 2) (x^2 - 2x + 4)$.
+			$x^2 - 2x + 4$ is an irreducible $\Ra \Gal(f) \simeq C_2$.
+
+		\item[(c)] First $x^3 - x + 1$ is an irreducible.
+			To see this, since $x^3 - x + 1 \in \ZZ[x]$ is monic, it suffices to evaluate that it has no integer roots.
+			Also $x^3 - x \geq 0$ for all $x \geq 0$ and $x^3 - x \leq -4$ for all $x \leq -2$ and $x = -1$ is not a root.
+			Thus $x^3 - x + 1$ is indeed an irreducible.
+			$\Delta(f) = (-1)^2 - 4 (-1)^3 - 27 (1)^2 = 1 + 4 - 27 = -22$ is not a square.
+			$\Ra \Gal(f) \simeq S_3$.
+
+		\item[(d)] Again $x^3 + x^2 - 2x - 1$ is an irreducible.
+			To see this, again we evaluate that is has no integer roots.
+			Now $x^3 + x^2 - 2x \geq 2$ for all $x \geq 2$, $x^3 + x^2 - 2x \leq 0$ for all $x \leq -2$, and $x = -1, 0, 1$ are all not roots.
+			Thus $x^3 + x^2 - 2x - 1$ is indeed an irreducible.
+			$\Delta(f) = (-2)^2 - 4 (-2)^3 - 4 (1)^3(-1) - 27 (-1)^2 + 18 (1)(-2)(-1) = 4 + 32 + 4 - 27 + 36 = 49$ is a square.
+			$\Ra \Gal(f) \simeq A_3$.
+	\end{enumerate}
+\end{sols}
+
+\setcounter{prob}{3}
+\begin{prob}
+	Determine the Galois group of $x^4 - 25$.
+\end{prob}
+
+\begin{sols}
+	We have $x^4 - 25 = (x^2 + 5)(x^2 - 5) = (x + \sqrt{5})(x - \sqrt{5}) (x + \sqrt{5} i) (x - \sqrt{5} i)$.
+	Thus it is obvious that the splitting field of $x^4 - 25$ over $\QQ$ is $\QQ(\sqrt{5}, i)$.
+	Note that $[\QQ(\sqrt{5}, i):\QQ] = [\QQ(\sqrt{5}, i):\QQ(\sqrt{5})][\QQ(\sqrt{5}):\QQ] = 2 \cdot 2 = 4$.
+	Thus $|\Gal(f)| = 4$.
+	The only groups of order 4 are $V_4$ the Klein-4 group and $C_4$ the cyclic group.
+	But we know that $\QQ(\sqrt{5}, i)$ at least contains 3 proper subfields $\QQ(\sqrt{5}), \QQ(i), \QQ(\sqrt{5} i)$, but $C_4$ has only 1 nontrival proper subgroup.
+	By the fundamental theorem of Galois theory, we must have $\Gal(f) \simeq V_4$.
+\end{sols}
+
+\begin{prob}
+	Determine the Galois group of $x^4 + 4$.
+\end{prob}
+
+\begin{sols}
+	First $x^4 + 4 = (x^2 + 2x + 2) (x^2 - 2x + 2)$ is reducible with roots $\pm 1 \pm i$.
+	Thus the splitting field of $x^4 + 4$ is $\QQ(i)$.
+	Therefore obviously $\Gal(f) = \Gal(\QQ(i)/\QQ) \simeq C_2$.
+\end{sols}
+
+\setcounter{prob}{6}
+\begin{prob}
+	Determine the Galois group of $x^4 + 2x^2 + x + 3$
+\end{prob}
+
+\begin{sols}
+	First $f(x) := x^4 + 2x^2 + x + 3$ is irreducible.
+	To see this, first $f(x)$ has no roots because $x^4 + 2 x^2 + x \geq 0$ for all $x \neq 0 \in \ZZ$, and	also $x = 0$ is not a root.
+	Thus $x^4 + 2x^2 + x + 3$ should only have quadratic factors if reducible.
+	Since the coefficient of $x^3$ is 0, combine this with the constant coefficient 3, we find the factorization of $f(x)$ in $\ZZ[x]$ should either be $f(x) = (x^2 + ax + 3) (x^2 - ax + 1)$ or $f(x) = (x^2 + ax - 1) (x^2 - ax - 3)$ where $a \in \ZZ$.
+	But in both cases, comparing the linear term gives $2a = 1$ or $-2 a = 1$, contradicting the fact that $a \in \ZZ$.
+	Thus $f(x)$ is indeed an irreducible.
+	For a degree 4 polynomial $f(x) = x^4 + a x^3 + b x^2 + c x + d$, the discriminant could be written as
+	\[
+		\begin{split}
+			\Delta(f) &= 256 d^3 - 192 a c d^2- 128 b^2 d^2 + 144 b c^2 d - 27 c^4 + 144 a^2 b d^2 - 6 a^2 c^2 d - 80 a b^2 c d + 18 a b c^2 + 16 b^4 d\\
+			&- 4 b^3 c^2 - 27 a^4 d^2 + 18 a^3 bcd - 4 a^3 c^3 - 4 a^2 b^3 d + a^2 b^2 c^2
+		\end{split}
+	\]
+	We consider the discriminant in our case $f(x) = x^4 + 2x^2 + x + 3$:
+	\[
+		\Delta(f) = 256 (3)^3  - 128 (2)^2 (3)^2  + 144 (2) (1)^2 (3) - 27 (1)^4 + 16 (2)^4 (3)  - 4 (2)^3 (1)^2 = 3877 
+	\]
+	which is not a square.
+	We further consider the cubic resolvent
+	\[
+		g(x) = x^3 - 2 b x^2 + (b^2 + ac - 4d) x + (c^2 - abc + a^2 d)
+	\]
+	In our case this is 
+	\[
+		g(x) = x^3 - 2 (2) x^2 + ((2)^2 - 4 (3)) x + (1)^2 = x^3 - 4 x^2 - 8x + 1
+	\]
+	We evaluate that if $g(x)$ is an irreducible over $\QQ$.
+	Again this is a monic polynomial in $\ZZ[x]$, thus we examine if it has roots in $\ZZ$ or not.
+	Since the constant term is 1, the only roots possible are $\pm 1$, but obviously none of them are roots.
+	Thus $g(x)$ is an irreducible over $\QQ$. 
+	By our discussion in class, we have $\Gal(f) \simeq S_4$.
+\end{sols}
+
+\setcounter{prob}{10}
+\begin{prob}
+	Let $F$ be an extension of $\QQ$ of degree 4 that is not Galois over $\QQ$.
+	Prove that the Galois closure of $F$ has Galois group either $S_4, A_4$ or the dihedral group $D_8$ of order 8.
+	Prove that the Galois group is dihedral if and only if $F$ contains a quadratic extension of $\QQ$.
+\end{prob}
+
+\begin{sols}
+	Given $\alpha \in F \setminus \QQ$.
+	Since $[\QQ(\alpha):\QQ] | [F:\QQ]$, we must have $[\QQ(\alpha):\QQ] = 2$ or 4.
+	Now if there exists $\beta \in F \setminus \QQ$ such that $\deg m_{\beta, \QQ}(x) = 4$, then we must have $F = \QQ(\beta)$.
+	Thus if $F \neq \QQ(\alpha)$ for all $\alpha \in F \setminus \QQ$, then all the minimal polynomials of $\alpha \in F\setminus \QQ$ must have degree 2.
+	\par First consider the case that $F \neq \QQ(\alpha)$ for all $\alpha$ (i.e., $\deg m_{\alpha, \QQ}(x) = 2 \quad \forall \alpha \in F \setminus \QQ$.)
+	Then we have $[\QQ(\alpha):\QQ] = 2$.
+	In this case if $\beta \in F \setminus \QQ(\alpha)$, then we must have $F = \QQ(\alpha)(\beta) = \QQ(\alpha, \beta)$.
+	Now since $\beta \in F \setminus \QQ(\alpha)$, in particular we have $\beta \in F \setminus \QQ$.
+	By assumption the minimal polynomial of $\beta$ could only be of degree 2.
+	Since $\alpha$ has minimal polynomial of degree 2 over $\QQ$, every extension of $\QQ$ containing $\alpha$ must also contain the conjugate of $\alpha$.
+	Same works for $\beta$ since it also has degree 2.
+	We find $F = \QQ(\alpha, \beta)$ must contain all the conjugates of $\alpha, \beta$.
+	Since $[F:\QQ] = 4$ we find $F$ must be the splitting field of $g(x) := m_{\alpha, \QQ}(x) m_{\beta, \QQ}(x)$.
+	Thus $F$ is Galois, a contradiction.
+
+	\par Therefore we must have $F = \QQ(\beta)$ for some $\beta \in F\setminus \QQ$ with $h(x) := \deg m_{\beta, \QQ}(x) = 4$.
+	Note that $\QQ$ has characteristic 0, thus any irreducible is separable.
+	Thus the Galois closure of $F$ is just the splitting field of $h(x)$ over $\QQ$.
+	Since $\deg h = 4$, by our discussion, the Galois group $\Gal(h)$ must be a subgroup of $S_4$ with $4||\Gal(h)|$.
+	Now the splitting field of $h(x)$ over $\QQ$, call it $F'$, is not equal to $F$.
+	Thus we have $[F':\QQ] = [F':F][F:\QQ]$ with $[F':F] \geq 2$.
+	$\Ra [F':\QQ] \geq 2 \cdot 4 = 8$.
+	By the fundamental theorem of Galois theory, $|\Gal(h)| = [F':\QQ] \geq 8$.
+	The only subgroups of $S_4$ with order $\geq 8$ are $S_4, A_4$ and $D_8$, thus $\Gal(h)$ must be one of them.
+
+	\par Next we prove that $F$ contains a quadratic extension, say $\QQ(\sqrt{D})$, if and only if $\Gal(h) \simeq D_8$.
+	$\La$ is trivial since $D_8$ contains index 2 subgroups, e.g. $\ev{\sigma}$, thus by the fundamental theorem of Galois theory, $\QQ$ must have a degree 2 extension, which must be quadratic.
+	We next prove $\Ra$.
+	First note that $\Gal(h)$ cannot be $A_4$ since it has no index 2 subgroups.
+	Note that since $[F:\QQ(\sqrt{D})] = 2$, we could write $F = \QQ(\sqrt{D})(\sqrt{a + b \sqrt{D}})$ for some $a, b \in \QQ$.
+	But this is just $F = \QQ(\sqrt{a + b\sqrt{D}})$.
+	Now the minimal polynomial of $\sqrt{a + b\sqrt{D}}$ is $h(x) = x^4 - 2a x^2 + a^2 - b^2 D$, which has cubic resolvent $g(x) = x^3 + 4 a x^2 + 4 b^2 D x$.
+	Since $\Gal(h)$ is the splitting field of the minimal polynomial $h(x)$ we could evaluate if the cubic resolvent of $h(x)$ is reducible or not.
+	But $g(x) = x^3 + 4 a x^2 + 4 b^2 D x = x (x^2 + 4 a x + 4 b^2 D)$ is reducible.
+	By discussion in class, we must have $\Gal(h) \simeq D_8$.
+
+\end{sols}
+
+\setcounter{prob}{17}
+\begin{prob}
+	Let $\theta$ be a root of $x^3 - 3 x + 1$.
+	Prove that the splitting field of this polynomial is $\QQ(\theta)$ and that the Galois group is cyclic of order 3.
+	In particular the other roots of this polynomial can be written in the form $a + b \theta + c \theta^2$ for some $a, b, c \in \QQ$.
+	Determine the other roots explicitly in terms of $\theta$.
+\end{prob}
+
+\begin{sols}
+	First I claim that $x^3 - 3x + 1$ is an irreducible.
+	To see this, since $x^3 - 3x + 1$ is a degree 3 monic polynomial in $\ZZ[x]$, it suffices to evaluate that it has no integer roots.
+	Now again $x^3 - 3x + 1 \geq 3$ for all $x \geq 2$ and $x^3 - 3x + 1 \leq -1$ for all $x \leq -2$.
+	Moreover it is easy to see that $-1, 0, 1$ are all not roots of $x^3 - 3x + 1$.
+	Thus indeed $x^3 - 3x + 1$ has no integer roots, hence is an irreducible.
+	In this case we should examine the discriminant $\Delta(f) = -4 (-3)^3 - 27 (1)^2 = 27 \cdot 3 = 81$.
+	$\Delta(f)$ is a square $\Ra \Gal(f) \simeq A_3 \simeq C_3$ by our discussion in class.
+	Note that $[\QQ(\theta):\QQ] = 3$ since the minimal polynomial of $\theta$ is just $x^3 - 3x + 1$.
+	Thus $\QQ(\theta)$ must be the splitting field of $x^3 - 3x + 1$ over $\QQ$.
+	It is then clear that the other roots could be written as a linear combination of $1, \theta, \theta^2$ with coefficients in $\QQ$.
+
+	\par Now let's determine the other two roots $\alpha, \beta$ in terms of $\theta$.
+	First by Vieta's formula, one has
+	\[
+		\alpha + \beta = - \theta, \quad \alpha \beta = -\frac{1}{\theta} \cdots (*)
+	\]
+	This implies that $\alpha, \beta$ are the two roots of the quadratic 
+	\[
+		g(x) := x^2 + \theta x - \frac{1}{\theta} = (x - \alpha) (x - \beta) 
+	\]
+	Consider the the discriminant of the original polynomial $f$ we have
+	\[
+		\Delta(f) = (\beta - \theta) (\theta - \alpha) (\alpha - \beta) = \sqrt{ -4 (-3)^3 - 27 (1)^2} = \sqrt{81} = 9
+	\]
+	Now observe that $(\theta - \beta) (\theta - \alpha)$ is just $g(\theta) = \theta^2 + \theta \cdot \theta - 1/\theta = 2 \theta^2 - 1/\theta$.
+	Thus rearraging the above equation we have
+	\[
+		\alpha - \beta = \frac{9}{2 \theta^2 - \frac{1}{\theta}} = \frac{9 \theta}{2 \theta^3 - 1} = \frac{9 \theta}{6 \theta - 3} = \frac{3 \theta}{2 \theta - 1}
+	\]
+	Next by solving $(c_2 \theta^2 + c_1 \theta+ c_0)(2 \theta - 1) = 1$ using the fact that $\theta^3 - 3 \theta + 1 = 0$, we obtain 
+	\[
+		\frac{1}{2 \theta - 1} = \frac{1}{3} (4 \theta^2 + 2 \theta - 11) 
+	\]
+	\[
+		\Ra \alpha - \beta = \theta (4 \theta^2 + 2 \theta - 11) = 4 \theta^3 + 2 \theta^2 - 11 \theta = 2 \theta^2 + \theta - 4 \cdots (**)
+	\]
+	Comparing $(*)$ and $(**)$ we get
+	\[
+		\alpha = \theta^2 - 2, \quad \beta = - \theta^2 - \theta + 2
+	\]
+\end{sols}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

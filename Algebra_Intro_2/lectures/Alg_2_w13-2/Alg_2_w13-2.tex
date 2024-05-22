@@ -3,15 +3,13 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-\usepackage[usenames, dvipsnames]{color}
-\usepackage{soul}
 \usepackage{mathtools}
 \usepackage{hyperref}
 \usepackage{fancyhdr, lipsum}
 \usepackage{ulem}
 \usepackage{fontspec}
 \usepackage{xeCJK}
-% \setCJKmainfont[Path = ../../../fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
 % \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
 % set your own font :
 % \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
@@ -271,10 +269,6 @@
 % \opnorm*{a}       % \left and \right
 
 
-\newcommand\dunderline[2][.4pt]{%
-  \raisebox{-#1}{\underline{\raisebox{#1}{\smash{\underline{#2}}}}}}
-\newcommand{\cul}[2][black]{\color{#1}\underline{\color{black}{#2}}\color{black}}
-
 \newcommand{\A}{\mathcal A}
 \renewcommand{\AA}{\mathbb A}
 \newcommand{\B}{\mathcal B}
@@ -348,18 +342,99 @@
 
 \linespread{1.5}
 \pagestyle{fancy}
-\title{Template}
+\title{Intro to Algebra 2 W13-2}
 \author{fat}
 % \date{\today}
-\date{May, 2024}
+\date{May 17, 2024}
 \begin{document}
 \maketitle
 \thispagestyle{fancy}
 \renewcommand{\footrulewidth}{0.4pt}
 \cfoot{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
-\fancyhead[L]{Template}
+\fancyhead[L]{Intro to Algebra 2 W13-2}
 
+\begin{prop}[Proposition 19]
+	Suppose that $K/E$ is a finite Galois extension and $E'/E$ is any extension of $E$.
+	Then $K E'/E'$ is a Galois extension and $\Gal(K E'/E') \simeq \Gal(K/K \cap E')$.
+\end{prop}
+
+\begin{rem}
+	In the proof of Theorem 39, we applied Prop 19 with $K = K_{i + 1}, E = K_i, E' = K_i F' = K_i'$.
+Then $K E' = K_{i + 1} K_i F' = K_{i + 1}'$.
+By Prop 19, $\Gal(K_{i + 1}'/K_i') = \Gal(K_{i + 1}(K_i F')/K_i F') \simeq \Gal(K_{i + 1}/K_{i + 1} \cap K_i F')$ which is subgroup of $\Gal(K_{i + 1}/K_i)$.
+\end{rem}
+
+\begin{proofs}
+	Since $K/E$ is a finite Galois extension, by the primitive element theorem, $K = E(\alpha)$ for some $\alpha \in K$ and $K$ is the splitting field of $m_{\alpha, E}(x)$.
+	Then $K E' = E' E(\alpha) = E' (\alpha)$.
+	Again, $K E'$ is the splitting field of $m_{\alpha, E'}(x)$ (which divides $m_{\alpha, E}(x)$). 
+	$\Ra K E'/E'$ is a Galois extension.
+	Now consider the group homomorphism $\Phi: \Gal(K E'/E') \to \Gal(K/E)$ defined by $\Phi(\sigma) = \sigma|_K$.
+	We claim
+	\begin{clms}
+		\begin{enumerate}
+			\item[(1)] $\ker \Phi = \{\id\}$ 
+
+			\item[(2)] $\Im \Phi = \Gal(K/K \cap E')$ (which is a subgroup of $\Gal(K/E)$ since $E \subseteq K \cap E'$) 
+		\end{enumerate}
+	\end{clms}
+
+	\begin{proofs}[Proof of Claim]
+		\begin{enumerate}
+			\item[(1)] Suppose $\sigma \in \ker \Phi$, i.e., $\sigma|_K = \id_K$.
+				Now $\sigma$ fixes every element of $E'$ (since $\sigma \in \Gal(K E'/E')$) and every element of $K$
+				$\Ra \sigma$ fixes every element of $K E' \Ra \sigma = \id_{K E'}$.
+				This proves that $\ker \Phi = \{\id_{K E'}\}$.
+
+			\item[(2)] Let $H = \Im \Phi$.
+				By the Galois correspondence, it suffices to show that the fixed field of $H$ is $K \cap E'$.
+				\[
+					\begin{split}
+						K_H &= \{\alpha \in K: \sigma|_K(\alpha) = \alpha \quad \forall \sigma|_K \in \Im \Phi = H\} \\
+						&= \{\alpha \in K: \sigma(\alpha) = \alpha, \quad \forall \sigma \in \Gal(K E'/E')\}\\
+						&= \{\alpha \in K \cap E'\} = K \cap E' 
+					\end{split}
+				\]
+		\end{enumerate}
+	\end{proofs}
+\end{proofs}
+
+\subsection*{Solving cubic equations}
+
+\par Assume that $f(x) = x^3 + a x^2 + bx + c$ is irreducible over $F$. ($\cha F \neq 2, 3$)
+Let $\alpha_1, \alpha_2, \alpha_3$ be the roots of $f$.
+Consider 
+
+\begin{align*}
+	\beta_1 &= \alpha_1 + \alpha_2 + \alpha_3\\
+	\beta_2 &= \alpha_1 + \zeta \alpha_2 + \zeta^2 \alpha_3\\
+	\beta_3 &= \alpha_1 + \zeta^2 \alpha_2 + \zeta \alpha_3
+\end{align*}
+
+called the Lagrange resolvents.
+We check that $\beta_2^3 + \beta_3^3, \beta_2 \beta_3 \in F$.
+Indeed, we have
+\begin{align*}
+	\beta_2^3 + \beta_3^3 &= -2 a^3 + 9ab - 27 c =: A\\
+	\beta_2 \beta_3 &= a^2 - 3b = B
+\end{align*}
+$\Ra \beta_2^3, \beta_3^3$ are roots of $x^2 - Ax + B^3 = 0$.
+\[
+	\Ra \beta_2^3, \beta_3^3 = \frac{A \pm \sqrt{A^2 - 4B^3}}{2}
+\]
+We may chech that $A^2 - 4B^3 = -27 \Delta(f)$, i.e. 
+\[
+	\Ra \beta_2^3, \beta_3^3 = \frac{A \pm \sqrt{-27 \Delta(f)}}{2}
+\]
+Then 
+\[
+	\alpha_1 = \frac{\beta_1 + \beta_2 + \beta_3}{3} = -\frac{a}{3} + \frac{1}{3} \sqrt[3]{\frac{A + \sqrt{-27 \Delta(f)}}{2}} + \frac{1}{3} \sqrt[3]{\frac{A - \sqrt{-27 \Delta(f)}}{2}}   
+\]
+where the choice of 3rd roots of $(A \pm \sqrt{-27 \Delta(f)})/2$ is such that $\beta_2 \beta_3 = a^2 - 3b$.
+
+\par See the book for solutions of quartic equations in radicals.
+	
 
 
 

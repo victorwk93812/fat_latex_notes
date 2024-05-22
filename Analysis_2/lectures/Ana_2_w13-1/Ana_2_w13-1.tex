@@ -1,0 +1,740 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+\newenvironment{exs}[1][]{%
+  \begin{ex}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ex}
+}
+\newenvironment{rems}[1][]{%
+  \begin{rem}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{rem}
+}
+\newenvironment{dfns}[1][]{%
+  \begin{dfn}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{dfn}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+\newcommand{\bracket}[1]{\langle #1 \rangle}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+\newcommand{\Gal}{\text{Gal}}
+\newcommand{\id}{\text{id}}
+\newcommand{\dist}{\text{dist}}
+\newcommand{\cha}{\text{char}}
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Analysis 2 W13-1}
+\author{fat}
+% \date{\today}
+\date{May 14, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Analysis 2 W13-1}
+
+Recall: $\forall \delta > 0, \alpha \geq 0, E \subseteq \RR^d$, define 
+\[
+	\begin{split}
+		H_\alpha^\delta(E) &= \inf \left\{ \sum_{n = 1}^\infty (\text{diam}(F_k))^\alpha: E \subseteq \bigcup_{k = 1}^\infty F_k, \text{diam}(F_k) \leq \delta \right\}\\
+		H_\alpha^*(E) = \lim_{\delta \to 0} H_\alpha^\delta(E)
+	\end{split}
+\]
+where $H_\alpha^*(E)$ is the outer $\alpha$-dimensional Hausdorff measure.
+If $E$ is Borel, write $H_\alpha(E) = H_\alpha^*(E)$ the $\alpha$-dimensional Hausdorff measure.
+$\dim_H(E)$ is the unique number such that
+\[
+	H_\alpha(E) = 
+	\begin{cases}
+		\infty & \text{if } \alpha < \dim_H(E)\\
+		0 & \text{if } \alpha > \dim_H(E)
+	\end{cases}
+\]
+Tools that help us to compute the Hausdorff dimension:
+
+\begin{lem}
+	Let $E \subseteq \RR^d$ be compact and $f: E \to \RR^k$ be $\gamma$-H\"older continuous:
+	\[
+		|f(x) - f(y)| \leq M |x - y|^\gamma, \quad x, y \in E
+	\]
+	Then $H_{\alpha/\gamma}(f(E)) \leq M^{\alpha/\gamma}H_\alpha(E)$ and $\dim_H (f(E)) \leq (1/\gamma) \dim_H(E)$.
+\end{lem}
+
+\begin{proofs}
+	Suppose that $(F_k)$ covers $E$.
+	Then $(f(E \cap F_k))_k$ covers $f(E)$.
+		\begin{align*}
+			&\text{diam}(f(E \cap F_k)) \leq M \text{diam} (F_k)^\gamma\\
+			&\Ra \sum_k \text{diam}(f(E \cap F_k))^{\frac{\alpha}{\gamma}} \leq M^{\frac{\alpha}{\gamma}} \sum_k \text{diam} (F_k)^\alpha\\
+			&\Ra H_{\frac{\alpha}{\gamma}}(f(E)) \leq M^{\frac{\alpha}{\gamma}} H_\alpha(E)
+		\end{align*}
+		If $\dim_H(f(E)) = \alpha/\gamma$, then $H_{(\alpha - \epsilon)/\gamma}(f(E)) = \infty$.
+		$\Ra H_{\alpha - \epsilon}(E) = \infty$.
+		$\Ra \dim_H(E) \geq \alpha - \epsilon$.
+		$\Ra \dim_H(E) \geq \alpha = \gamma \dim_H(f(E))$.
+\end{proofs}
+
+\section{Hausdorff Dimension of the Middle Third Cantor Set}
+
+Recall: $f$ the Cantor function is H\"older continuous with exponent $\log 2/\log 3$.
+\begin{align*}
+	&0 < H_1([0, 1]) \leq MH_{\frac{\log 2}{\log 3}} (C)\\
+	&\Ra \dim_H(C) \geq \frac{\log 2}{\log 3}
+\end{align*}
+Write $\alpha = \log 2/\log 3$.
+
+\begin{clm}
+	$H_\alpha(C) \leq 1$. ($\Ra \dim_H(C) \leq \log 2/\log 3$).	
+\end{clm}
+
+\begin{proofs}
+	$C = \cap_k E_k, E_k$ is a fininte union of $2^k$ many intervals of length $3^{-k}$.
+	Fix $\delta > 0$.
+	Choose $K$ large such that $3^{-K} < \delta$.
+	Then $E_K = (I_K)$ covers $C$.
+	\[
+		\text{diam} (I_K)^\alpha = (3^{-K})^\alpha = 2^{-K}
+	\]
+	\[
+		\Ra H_\alpha^\delta(C) \leq 2^K \cdot \frac{1}{2^K} = 1
+	\]
+\end{proofs}
+\begin{prop}
+	If $E \subseteq \RR^d$ has Hausdorff dimension $< 1$, then $E$ is totally disconnected.
+\end{prop}
+
+\begin{proofs}
+	Let $x, y\in E$ be distinct.
+	Define $f: \RR^d \to [0, \infty)$ by $f(z) = |z - x|$.
+	Then $f$ is Lipschitz.
+	\[
+		\dim_H(f(E)) \leq \dim_H(E) < 1
+	\]
+	$\Ra f(E) \subseteq [0, \infty)$ has $H_1$-measure (Lebesgue measure) zero.
+	$\Ra f(E)^c$ is dense in $[0, \infty)$.
+	Pick $r \in f(E)^c$ such that $0 < r < f(y)$.
+	Then 
+	\[
+		E = \{z \in E: |z - x| < r\} \cup \{z \in F: |z - x| > r\}
+	\]
+	where the first set contains $x$ and the second contains $y$.
+	Thus $E$ is contained in 2 disjoint open sets, $x$ in one and $y$ in the other.
+	$x, y$ are in 2 different connected components of $E$.
+\end{proofs}
+
+\section{Minkowski Dimension}
+
+We cover a set by almost disjoint cubes of side length $\delta$.
+Need $\sim 1/\delta$ many cubes to cover a curve, $\sim 1/\delta^2$ many cubes to cover a square, ....
+In general, if we want to cover a $k$-dimensional cube, we need $1/\delta^k$ many $d$-cubes.
+If we need $1/\delta^\alpha$ many cubes to cover a set, then the dimension of the set should be $\alpha$.
+
+\begin{dfn}
+	Let $E \subseteq \RR^d$ be bounded and nonempty.
+	For $\delta > 0$, we define 
+	\[
+		N_\delta(E) = \text{ the smallest number of sets of diameter } \leq \delta \text{ which covers } E
+	\]
+	The \textbf{lower} and \textbf{upper Minkowski dimensions} of $E$ are defined as
+	\[
+		\underline{\dim}_M(E) = \liminf_{\delta \to 0} - \frac{\log (N_\delta(E))}{\log \delta}
+	\]
+	\[
+		\overline{\dim}_M(E) = \limsup_{\delta \to 0} -\frac{\log (N_\delta(E))}{\log \delta}
+	\]
+	If $\underline{\dim}_M(E) = \overline{\dim}_M(E)$, we call this number $\dim_M(E)$ the \textbf{Minkowski dimension}.
+\end{dfn}
+
+We can replace $N_\delta(E)$ by 
+\begin{itemize}
+	\item The smallest number of closed balls of radius $\delta$ that cover $E$.
+
+	\item The smallest number of closed cubes of side length $\delta$ that cover $E$.
+
+	\item The largest number of disjoint balls of radius $\delta$ with centers in $E$.
+\end{itemize}
+
+Can check that the values of the Minkowski dimensions will remain unchanged.
+
+\par Another equivalent definition:
+For $\delta > 0$, define $E_\delta$ to be the $\delta$-neighborhood of $E$.
+If the dimension of $E$ is $\alpha$, then the $d$-dimensional volume of $E_\delta$ is $\sim \delta^{d - \alpha}$.
+The coefficient $C$ is also known as the Minkowski content of $E$.
+\[
+	C = \lim_{\delta \to 0} \frac{m_d(E_\delta)}{\delta^{d - \alpha}}
+\]
+If the limit exists and is positive and finite, then $C$ is called the \textbf{$\bm{\alpha}$-dimensional Minkowski content} of $E$.
+The Minkowski content is not a measure since it is not even finitely additive.
+
+\begin{prop}
+	If $E \subseteq \RR^d$ is nonempty and bounded, then
+	\[
+		\underline{\dim}_M(E) = d - \limsup_{\delta \to 0} \frac{\log m_d(E_\delta)}{\log \delta}
+	\]
+	\[
+		\overline{\dim}_M(E) = d - \liminf_{\delta \to 0} \frac{\log m_d(E_\delta)}{\log \delta}
+	\]
+\end{prop}
+
+\begin{proofs}
+	If $E$ can be covered by $N_\delta(E)$ many balls with radius $\delta$, where $\delta \in (0, 1)$, then $E_\delta$ can be covered by the concentric balls of radius $2 \delta$.
+	\[
+		\Ra m_d(E_\delta) \leq N_\delta(E) v_d (2 \delta)^d
+	\]
+	where $v_d$ is the volume of a unit $d$-dimensional ball.
+	\[
+		\Ra -\frac{\log m_d (E_\delta)}{\log \delta} \leq -\frac{\log (2^d v^d) + d \log \delta + \log (N_\delta(E))}{\log \delta}
+	\]
+	\[
+		\Ra \liminf_{\delta \to 0} -\frac{\log m_d(E_\delta)}{\log \delta} \leq -d + \underline{\dim}_M(E)
+	\]
+	Similarly, if we replace liminf by limsup, we obtain an inequality for $\overline{\dim}_M(E)$.
+	For the upper bounds, if there are $N_\delta(E)$ many disjoint balls of radii $\delta$ with centers in $E$, then 
+	\[
+		N_\delta(E) v_d \delta^d \leq m_d (E_\delta)
+	\]
+	This gives the other inequalities.
+\end{proofs}
+
+\section{Relationship between Minkowski and Hausdorff Dimensions}
+
+If $E$ can be covered by $N_\delta(E)$ many sets of diameter $\leq \delta$, then
+\[
+	H_\alpha^\delta(E) \leq N_\delta(E) \delta^\alpha
+\]
+If $H_\alpha^\delta(E) > 1$, then $\log(N_\delta(E)) + \alpha \log \delta > 0$
+$\Ra \underline{\dim}_M(E) \geq \alpha$.
+$\Ra \dim_H(E) \leq \underline{\dim}_M(E) \leq \overline{\dim}_M(E)$ whenever $E \subseteq \RR^d$ is nonempty, Borel and bounded.
+
+\begin{prop}
+	\[
+		\dim_M(C) = \frac{\log 2}{\log 3}
+	\]
+\end{prop}
+
+\begin{proofs}
+	Suffices to show $\overline{\dim}_M(C) \leq \log 2/\log 3$.
+	$C$ is covered by $2^k$ many intervals of length $3^{-k}$.
+	If $3^{-k} < \delta \leq 3^{-(k - 1)}$, then $N_\delta(C) \leq 2^k$.
+	\[
+		\overline{\dim}_M(C) \leq \limsup_{k \to \infty} \frac{\log 2^k}{\log 3^{k - 1}} = \frac{\log 2}{\log 3}
+	\]
+\end{proofs}
+
+\begin{prop}
+	Let $E \subseteq \RR^d$ be nonempty and bounded.
+	Then $\underline{\dim}_M(E) = \underline{\dim}_M(\overline{E})$ and $\overline{\dim}_M(E) = \overline{\dim}_M(\overline{E})$.
+\end{prop}
+
+Not a good property because this implies $\dim_M(\QQ \cap [0, 1]) = 1$.
+
+\begin{proof}
+	Let $B_1, ..., B_k$ be closed balls of radius $\delta$.
+	If $(B_i)$ covers $E$, then it also covers $\overline{E}$, and vice versa.
+\end{proof}
+
+\begin{prop}
+	$E = \{0, 1, 1/2, 1/3, ...\}$ has Minkowski dimension $1/2$.
+\end{prop}
+
+\begin{proofs}
+	Fix $\delta \in (0, 1/2)$.
+	Let $k$ be the integer satisfying 
+	\[
+		\frac{1}{k(k + 1)} \leq \delta < \frac{1}{(k - 1)k}
+	\]
+	If $I$ is an interval of length $\leq \delta$, then $I$ can cover at most one of the points $\{1, 1/2, ..., 1/k\}$.
+	\[
+		N_\delta(E) \geq k
+	\]
+	\[
+		\Ra -\frac{\log (N_\delta(E))}{\log \delta} \geq \frac{\log k}{\log (k (k + 1))} \to \frac{1}{2} \to \infty
+	\]
+	as $k \to \infty$.
+	$\Ra \underline{\dim}_M(E) \geq 1/2$.
+	On the other hand, for the same $\delta$ and $k$ as above, then $k + 1$ many intervals of length $\delta$ cover $[0, 1/k]$.
+	Can cover the remaining points by $k - 1$ many other intervals.
+	\[
+		\Ra N_\delta(E) \leq 2 k
+	\]
+	\[
+		\Ra -\frac{\log (N_\delta(E))}{\log \delta} \leq \frac{\log(2k)}{\log ((k - 1) k)} \to \frac{1}{2}
+	\]
+	$\Ra \overline{\dim}_M(E) \leq 1/2$.
+\end{proofs}
+
+Even though Minkowski dimension behaves badly, it is very useful since it gives an upper bound for the Hausdorff dimension.
+
+\section{Mass Distribution Principle}
+
+A very powerful tool for us to find a lower bound for the Hausdorff dimension.
+
+\begin{thm}
+	Let $\phi \neq E \subseteq \RR^d$ be Borel.
+	Suppose that $\exists$ a finite Borel measure supported on $E$ that satisfies the following:
+	$\exists \alpha > 0$ such that $\mu(B(x, r)) \leq r^\alpha \quad \forall x \in \RR^d$ and $\forall r > 0$.
+	Then $\dim_H(E) \geq \alpha$.
+\end{thm}
+
+\begin{rem}
+	In fact these are equivalent. (Frostman's lemma.)
+\end{rem}
+
+\begin{proofs}
+	Let $\delta > 0$ and let $(F_k)$ be cover for $E$ such that $E \subseteq \cup_{k = 1}^\infty F_k, E \cap F_k \neq \phi, \text{diam}(F_k) \leq \delta$ and
+	\[
+		\sum_{k = 1}^\infty \text{diam}(F_k)^\alpha \leq H_\alpha^\delta(E) + \frac{\mu(E)}{2}
+	\]
+	Pick $x_k \in E \cap F_k$.
+	Write $r_k = \text{diam}(F_k)$.
+	\[
+		\begin{split}
+			\mu(E) & \leq \mu \left( \bigcup_{k = 1}^\infty F_k \right) \leq \sum_{k = 1}^\infty \mu(F_k) \leq \sum_{k = 1}^\infty \mu(B(x_k, r_k))\\
+			&\leq \sum_{k = 1}^\infty r_k^\alpha = \sum_{k = 1}^\infty \text{diam}(F_k)^\alpha \leq H_\alpha^\delta(E) + \frac{\mu(E)}{2}
+		\end{split}
+	\]
+	\[
+		\Ra H_\alpha^\delta(E) \geq \frac{\mu(E)}{2} > 0
+	\]
+	$\Ra \dim_H(E) \geq \alpha$.
+\end{proofs}
+
+\begin{exs}[Application of Mass Distribution Principle]
+	Construct a measure on $C$ as follows.
+	Each of the $2^k$ $k^{\text{th}}$-level intervals is assigned measure $2^{-k}$.
+	Assume such a measure exists.
+	If $1/3^{k + 1} \leq r < 1/3^k$, then $B(x, r)$ can intersect at most one of the $k^{\text{th}}$-level intervals.
+	\[
+		\mu(B(x, r)) \leq \frac{1}{2^k} = \left( \frac{1}{3^k} \right)^{\frac{\log 2}{\log 3}} \leq (3r)^{\frac{\log 2}{\log 3}}
+	\]
+	\[
+		\dim_H(C) \geq \frac{\log 2}{\log 3}
+	\]
+	Define $\mu([a, b]) = F(b) - F(a)$, where $F$ is the Cantor function.
+	Can check $\mu$ satisfies the property.
+	Thus such a measure exists.
+\end{exs}
+
+\section{Self-similar Sets}
+
+Fractal: Sets of mon-integral dimension.
+Many fractals are made up of parts taht are similar to the whole.
+E.g., $C$ is two similar copies of itself, Sierpinski gasket, ...
+Can define these fractals by using the so-called iterative function systems (IFS).
+
+\begin{dfn}
+	Let $\Phi_1, ..., \Phi_m: \RR^d \to \RR^d$ be contractions.
+	The collection $(\Phi_i)_{1 \leq i \leq m}$ is called an \textbf{iterative function system (IFS)}.
+	A nonempty compact set $E$ is called an \textbf{attractor} or an \textbf{invariant set} for the IFS if
+	\[
+		F = \bigcup_{i =1}^m \Phi_i(E)
+	\]
+\end{dfn}
+
+Consider the IFS
+\[
+	\Phi_1(x) = \frac{1}{3} x, \quad \Phi_2(x) = \frac{1}{3} x + \frac{2}{3}
+\]
+$C = \Phi_1(C) \cup \Phi_2(C)$, so $C$ is an attractor of $(\Phi_i, \Phi_2)$.
+Will prove: An IFS has a unique attractor.
+In particular, we can define the middle-third Cantor set to be the attractor of the above IFS.
+Idea: Construct a fixed point by iteration.
+Need to define a metric on nonempty compact subsets of $\RR^d$.
+Let $\K$ denote the set of all nonempty compact subsets of $\RR^d$.
+Define the \textbf{Hausdorff metric} $d_H$ to be
+\[
+	d_H(A, B) = \inf\{\delta > 0: A \subseteq B_\delta, B \subseteq A_\delta\}
+\]
+
+\begin{prop}
+	$d_H$ is a metric on $\K$.
+\end{prop}
+
+\begin{proofs}
+	We just show the triangle inequality.
+	Let $A, B, C \in \K$.
+	Let $\delta, \delta'$ be such that $A \subseteq B_\delta, B \subseteq A_\delta, B \subseteq C_{\delta'}, C \subseteq B_{\delta'}$.
+	Then $A \subseteq C_{\delta + \delta'}, C \subseteq A_{\delta + \delta'}$.
+	Taking infimum, obtain $d_H(A, C) \leq d_H(A, B) + d_H(B, C)$.
+\end{proofs}
+
+\begin{prop}
+	$(\K, d_H)$ is complete.
+\end{prop}
+
+\begin{proof}
+	Tedious. Exercise.
+\end{proof}
+
+\begin{thm}
+	Consider the IFS $(S_i)$, where $S_i$ has Lipschitz constant $c_i \in (0, 1)$.
+	Then $\exists ! E \in \K$ such that
+	\[
+		E = \bigcup_{i = 1}^m S_i(E)
+	\]
+	Moreover, if we define $S: \K \to \K$ by 
+	\[
+		S(A) = \bigcup_{i = 1}^m S_i(A) \quad \forall A \in \K
+	\]
+	then
+	\[
+		E = \bigcap_{k = 0}^\infty S^{\circ k} (A) \quad \forall A \in \K \text{ s.t. } S_i(A) \subseteq A \quad \forall i = 1, ..., m
+	\]
+\end{thm}
+
+\begin{proofs}
+	Let $A \in \K$ be such that $S_i(A) \subseteq A \quad \forall i$.
+	(This set exists since we could take $A = B(0, r)$ for large $r$.)
+	Then $S^{\circ k}(A) \subseteq S^{\circ k - 1}(A)$.
+	$\Ra (S^{\circ k}(A))_k$ is a decreasing sequence of nonempty compact sets.
+	$E := \cap_{k = 0}^\infty S^{\circ k}(A)$ is nonempty and compact.
+	Clearly, $S(E) = E$.
+	$E$ is an attractor of the IFS.
+	Uniqueness:
+	Suppose that $E, F$ are attractors.
+	Then 
+	\[
+		d_H(S(E), S(F)) = d_H\left(\bigcup_{i = 1}^m S_i(E), \bigcup_{i = 1}^m S_i(F)\right) \leq \max_{1 \leq i \leq m} d_H(S_i(E), S_i(F))
+	\]
+	where the last inequality comes from the fact that if $S_i(E)_\delta$ contains $S_i(F)$ for all $i$ then $(\cup_{i = 1}^m S_i(E))_\delta$ contains $\cup_{i = 1}^m S_i(F)$.
+	Then
+	\[
+		d_H(S(E), S(F)) \leq \max_{1 \leq i \leq m} d_H(S_i(E), S_i(F)) \leq (\max_{1 \leq i \leq m} c_i) d_H(E, F)	
+	\]
+	But $c := \max_{1 \leq i \leq m} c_i \in (0, 1)$, thus $d_H(E, F) \leq c d_H(E, F)$ gives $d_H(E, F) = 0$.
+	So $E = F$.
+\end{proofs}
+
+\begin{rem}
+	Can also use the Banach fixed-point theorem to prove the theorem, but we need $(\K, d_H)$ is complete.
+\end{rem}
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

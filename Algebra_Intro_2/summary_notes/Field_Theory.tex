@@ -2032,29 +2032,80 @@ trivial group $\{\id\}$，因為$\QQ$和$\FF_p$的prime subfield就是自己。
 \begin{ex}
 	Find the Galois group of the splitting field of $p(x)=x^3-2$ over $\QQ$
 
-	WIP
+	\begin{enumerate}
+		\item 找根：$\sqrt[3]{2},\sqrt[3]{2}\zeta_3,\sqrt[3]{2}\zeta_3^2$
+		\item 找generator: the splitting field of $p(x)=x^3-2$ is $K=\QQ(\sqrt[3]{2},\zeta_3)$
+		\item generator只能被送到他的conjugates(即minimal polynomials的根)：$\sqrt[3]{2}$的$m=x^3-2$，$\zeta_3$的$m=x^2-x+1$，任意$K/Q$的Automorphism可以是
+		      \begin{align*}
+			      \sqrt[3]{2} & \mapsto \sqrt[3]{2}, \sqrt[3]{2}\zeta_3, \sqrt[3]{2}\zeta_3^2 \\
+			      \zeta_3     & \mapsto \zeta_3, \zeta_3^2
+		      \end{align*}
+		      所以總共有六種automorphism，$|\Aut(K/\QQ)|=6$等於$[K:\QQ]$所以是Galois。
+		\item 接著identify他的group structure：首先找出這些Automorphism的generator，定義
+		      \begin{align*}
+			      \sigma: \sqrt[3]{2} & \mapsto \sqrt[3]{2}\zeta_3,\quad\zeta_3 \mapsto \zeta_3 \\
+			      \tau: \sqrt[3]{2}   & \mapsto \sqrt[3]{2},\quad \zeta_3\mapsto \zeta_3^2
+		      \end{align*}
+		      可以發現$\sigma^2: \sqrt[3]{2}\to\sqrt[3]{2}, \zeta_3\mapsto \zeta_3$，接著$\sigma^3$就是identity。$\tau^2$也是identity。
+		      可以驗證$\sigma\tau\neq\tau\sigma$和$\tau\sigma^2=\sigma\tau$，所以$G\cong D_{2\cdot 3}$
+		\item 事實上，$G$會permute $x^3-2$的根，所以應該會同構於$S_3$的子群，但他們又有一樣的order，所以$G\cong S_3$（我們知道$D_{2\cdot 3}\cong S_3$）。回到剛剛$D_6$的例子，我們可以label根$\{\sqrt[3]{2},\sqrt[3]{2}\zeta_3,\sqrt[3]{2}\zeta_3^2\}$成$\{1,2,3\}$，用permutation的記號可以寫$\sigma=(123)$，$\tau=(23)$。
+	\end{enumerate}
 \end{ex}
 
 \begin{ex}
 	Find the Galois group of the splitting field of $p(x)=x^4-3$ over $\QQ$
 
-	WIP
+	\begin{enumerate}
+		\item 找根：$3^{1/4}i^k,\quad k=0,1,2,3$
+		\item 找generator: $K=\QQ(3^{1/4},i)$
+		\item generator只能被送到他的conjugates:
+		      \begin{align*}
+			      3^{1/4} & \mapsto 3^{1/4}i^k,\quad k=0,1,2,3 \\
+			      i       & \pm i
+		      \end{align*}
+		      所以$|\Aut(K/\QQ)|=8=[K:\QQ]$所以是Galois。
+		\item Automorphism的generator:
+		      \begin{align*}
+			      \sigma: 3^{1/4} \mapsto 3^{1/4}i, \quad i\mapsto i \\
+			      \tau: 3^{1/4} \mapsto 3^{1/4}, \quad i\mapsto -i
+		      \end{align*}
+		      可以驗證$\sigma^4=\tau^2=1$和$\sigma\tau=\tau\sigma^3$，所以$G\cong D_8\le S_4$。將根$3^{1/4}i^k,\quad k=0,1,2,3$依序標記，用permutation記號可以寫$\sigma=(1234), \tau=(2,4)$。
+	\end{enumerate}
 \end{ex}
 
-\begin{ex}
-	Find the Galois group of $\QQ(\zeta_p)/\QQ$, where $p$ is a prime
+% 4.1.3末尾
+% \begin{ex}
+% 	Find the Galois group of $\QQ(\zeta_p)/\QQ$, where $p$ is a prime
 
-	WIP
-\end{ex}
+% 	WIP
+% \end{ex}
 
-\begin{ex}
-	Find the Galois group of $\FF_{p^n}/\FF_p$, where $p$ is a prime
+% \begin{ex}
+% 	Find the Galois group of $\FF_{p^n}/\FF_p$, where $p$ is a prime
 
-	WIP
-\end{ex}
+% 	WIP
+% \end{ex}
 
 
 \subsection{Fixed Fields}
+% 考慮$\Aut(K/F)$中的一個automorphism $\sigma$，考慮一個$K$的子集$E$會被$\sigma$ stabilized，
+
+$\Aut(K/F)$定義為所有$K$的automorphism fixing $F$，
+
+\begin{dfn}
+	$K/F$是一個field extension，$S$是$\Aut(K/F)$的一個子集，$K$的一個subfield被稱為$S$的fixed field如果所有$S$中的automorphism fix這個subfield。
+\end{dfn}
+
+注意到如果$S$的fixed field是\underline{所有$S$中automorphism的fixed field}的交集，他們都是包含$F$的$K$的subfields就是，所以fixed field的確是個field。
+
+\begin{ex}
+	$K=\QQ(\sqrt{2},\sqrt{3})/\QQ$，有兩個autumorphism:
+	\begin{align*}
+		\sigma(\sqrt2,\sqrt3) & =(-\sqrt2,\sqrt3) \\
+		\tau(\sqrt2,\sqrt3)=(\sqrt2,-\sqrt3)
+	\end{align*}
+	那麼在$K$中同時被$\sigma, \tau$ fix的元素只有有理數，所以$S=\{\sigma,\tau\}$的fixed field是$\QQ$。
+\end{ex}
 
 \subsection{The Fundamental Theorem of Galois Theory}
 
@@ -2091,12 +2142,17 @@ trivial group $\{\id\}$，因為$\QQ$和$\FF_p$的prime subfield就是自己。
 \subsubsection{Cyclotomic and Abelian Extensions}
 
 \begin{thm}[Galois Group of $\QQ(\zeta_n)$]
-	$\QQ(\zeta_n)/\QQ$是Galois的且$\Gal(QQ(\zeta_n))\cong (\ZZ/n\ZZ)^\times$。
-	更明確地說，$a\in (\ZZ/n\ZZ)$對應到一個automorphism $\sigma_a: \zeta_n\mapsto \zeta_n^a$。
+	$\QQ(\zeta_n)/\QQ$是Galois的且$\Gal(\QQ(\zeta_n)/\QQ)\cong (\ZZ/n\ZZ)^\times$。
+	更明確地說，$a\in (\ZZ/n\ZZ)^\times $對應到一個automorphism $\sigma_a: \zeta_n\mapsto \zeta_n^a$。
 \end{thm}
 
+原則上，我們能從$G=\Gal(\QQ(\zeta_n)/\QQ)$的Group Structure得出所有$\QQ(\zeta_n)$的subfields，
+但如果$(\ZZ/n\ZZ)^\times$ 很複雜就會變很麻煩。我們先來看看$n=p$的簡單情況，這時
+$G\cong (\ZZ/p\ZZ)^\times$是個Cyclic group of order $p-1$。所以$G=\langle \sigma \rangle$，
+其中$\sigma(\zeta_p)=\zeta_p^a$，$a$是$G\cong (\ZZ/p\ZZ)^\times$的一個generator。
+由Galois對應關係，$\QQ(\zeta_p)$的subfields就是$\sigma^d$的fixed fields（$d|p-1$）。
 
-
+為了explicitly計算這些subfields，
 
 
 

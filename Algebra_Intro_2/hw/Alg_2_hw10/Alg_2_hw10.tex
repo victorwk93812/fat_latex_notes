@@ -3,13 +3,15 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{soul}
 \usepackage{mathtools}
 \usepackage{hyperref}
 \usepackage{fancyhdr, lipsum}
 \usepackage{ulem}
 \usepackage{fontspec}
 \usepackage{xeCJK}
-% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+\setCJKmainfont[Path = ../../../fonts/, AutoFakeBold]{edukai-5.0.ttf}
 % \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
 % set your own font :
 % \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
@@ -109,7 +111,7 @@
 % Set title format
 % \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
 \usepackage{amsthm}
-\usetikzlibrary{shapes.geometric, arrows, trees}
+\usetikzlibrary{shapes.geometric, arrows}
 % https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
 
 % \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
@@ -206,6 +208,11 @@
 }{%
   \end{dfn}
 }
+\newenvironment{clms}[1][]{%
+  \begin{clm}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{clm}
+}
 %%%%
 %Lists
 %\begin{itemize}
@@ -263,6 +270,10 @@
 % \opnorm[\Bigg]{a} % largest
 % \opnorm*{a}       % \left and \right
 
+
+\newcommand\dunderline[2][.4pt]{%
+  \raisebox{-#1}{\underline{\raisebox{#1}{\smash{\underline{#2}}}}}}
+\newcommand{\cul}[2][black]{\color{#1}\underline{\color{black}{#2}}\color{black}}
 
 \newcommand{\A}{\mathcal A}
 \renewcommand{\AA}{\mathbb A}
@@ -331,207 +342,125 @@
 \newcommand{\id}{\text{id}}
 \newcommand{\dist}{\text{dist}}
 \newcommand{\cha}{\text{char}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\normto}{\trianglelefteq}
+\newcommand{\snormto}{\triangleleft}
 
 \linespread{1.5}
 \pagestyle{fancy}
-\title{Intro to Algebra 2 W12-1}
-\author{fat}
+\title{Introduction to Algebra 2 HW10}
+\author{B11202041 物理二 \, 劉晁泓}
 % \date{\today}
-\date{May 8, 2024}
+\date{May 21, 2024}
 \begin{document}
 \maketitle
 \thispagestyle{fancy}
 \renewcommand{\footrulewidth}{0.4pt}
 \cfoot{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
-\fancyhead[L]{Intro to Algebra 2 W12-1}
+\fancyhead[L]{Introduction to Algebra 2 HW10}
 
-We continue the discussion on $f$ a separable, irreducible of degree 4.
+\section*{14.7}
 
-\par Let $\alpha_1, ..., \alpha_4$ be the roots of $f$.
-\[
-	\begin{split}
-		\theta_1 = (\alpha_1 + \alpha_2) (\alpha_3 + \alpha_4)\\
-		\theta_2 = (\alpha_1 + \alpha_3) (\alpha_2 + \alpha_4)\\
-		\theta_3 = (\alpha_1 + \alpha_4) (\alpha_2 + \alpha_3)
-	\end{split}
-\]
-We have seen that
-\[
-	g(x) = (x - \theta_1) (x - \theta_2) (x - \theta_3) \in F[x]
-\]
-Indeed, if $f(x) = x^4 + a x^3 + b x^2 + cx + d$, then $g(x) = x^3 - 2 bx^2 + (b^2 + ac - 4d) x + (c^2 - abc + a^2 d)$.
-Furthermore, we can check that $\Delta(g) = \Delta(f)$.
-
-\par Consider the case that $\Delta(f)$ is a square in $F$.
-Note that in this case, $g(x)$ is either irreducible over $F$ or splits completely.
-(Explanation: (Constants $a, b, c$ in the following remark are indepedent of which in our main discussion.)
-If $g(x) = (x - a) (x^2 + bx + c)$, where $b^2 - 4c$ is not a square, then the roots are $a, (-b \pm \sqrt{b^2 - 4c})/2$.
-\[
-	\Ra \Delta(g) = \left( \left(a - \frac{-b + \sqrt{b^2 - 4c}}{2}\right) \left( a - \frac{-b - \sqrt{b^2 - 4c}}{2} \right) (\sqrt{b^2 - 4c})\right)^2
-\]
-$\Ra \Delta(g) = \alpha^2 (b^2 - 4c)$ with $\alpha \in F$ and $b^2 - 4c$ not a square.
-So $\Delta(g)$ is not a square in $F$, but $\Delta(g) = \Delta(f)$ is assumed to be a square, a contradiction.)
-Let $E$ be the splitting field of $f$.
-If $g(x)$ is irreducible, then $[F(\theta_1):F] = 3 \Ra 3 | [E:F]$.
-$\Ra 3 | |\Gal(E/F)| \cdots (**)$.
-Recall that if $\Delta(f)$ is a square, then $\Gal(f) = A_4$ or $C_2 \times C_2$, otherwise $\Gal(f) = S_4, D_8$ or $C_4$.
-Since $3 \not| \, |C_2 \times C_2|$, in this case we must have $\Gal(f) = \Gal(E/F) \simeq A_4$.
-On the other hand if $g(x)$ splits completely over $F$, i.e., if $\theta_1, \theta_2, \theta_3 \in F$, we may check that the only elements of $S_4$ that fixes each of $\theta_i$ are $e, (1 \, 2) (3 \, 4), (1 \, 3) (2 \, 4), (1 \, 4) (2 \, 3) \cdots (*)$
-$\Ra \Gal(f) \simeq C_2 \times C_2$.
-
-\par Now consider the case that $\Delta(f)$ is not a square in $F$.
-Note that in this case, $g(x)$ cannot split completely over $F$ by $(*)$
-If $g(x)$ is irreducible over $F$, then by the same reason as in $(**)$, we have $3 | |\Gal(f)| \Ra \Gal(f) \simeq S_4$. 
-If $g(x)$ is not irreducible over $F$, we consider the factorization of $f$ over $F(\sqrt{\Delta(f)})$.
-If $f$ is irreducible over $F(\sqrt{\Delta(f)})$, then $[E:F] = [E:F(\sqrt{\Delta(f)})] [F(\sqrt{\Delta(f)}):F] \geq 4 \cdot 2 = 8$. 
-$\Ra \Gal(f) \simeq D_8$.
-Finally if $f$ is not irreducible over $F(\sqrt{\Delta(f)})$, then $\Gal(f) \simeq C_4$.
-
-\par Let's summarize the case of $f$ of degree 4.
-
-\tikzstyle{level 1}=[level distance=20mm, sibling distance=30mm]
-\tikzstyle{level 2}=[level distance=40mm, sibling distance=15mm]
-\tikzstyle{level 3}=[level distance=50mm]
-\begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-		\node {$\Gal(f)$} [grow'=right]
-		child {node {$\Delta(f)$ square}
-			child {node {$g$ irr. over $F \Ra A_4$}}
-			child {node {$g$ splits comp. over $F \Ra C_2 \times C_2$}}
-		}
-		child {node {$\Delta(f)$ not square}
-		  child {node {$g$ irr. over $F \Ra S_4$}}
-		  child {node {$g$ red. over $F$}
-		  	child {node {$f$ irr. over $F(\sqrt{\Delta(f)}) \Ra D_8$}}
-		  	child {node {$f$ red. over $F(\sqrt{\Delta(f)}) \Ra C_4$}}
-		  }
-		};
-	\end{tikzpicture}
-	\caption{Summary}
-\end{figure}
-
-\begin{exs}
-	$f(x) = x^4 + x^3 + x^2 + x + 1$.
-	$\Delta(f) = 125$.
-	$g(x) = x^3 - 2 x^2 - 2x + 1 = (x + 1) (x^2 - 3x + 1)$.
-	Over $\QQ(\sqrt{5})$, we have
+\setcounter{prob}{0}
+\begin{prob}
+	Use Cardano's Formulas to solve the equation $x^3 + x^2 - 2 = 0$.
+	In particular show that the equation has the real root
 	\[
-		f(x) = \left(x^2 - \frac{1 + \sqrt{5}}{2} x + 1\right) \left( x^2 - \frac{-1 - \sqrt{5}}{2} x + 1 \right)
+		\frac{1}{3} \left( \sqrt[3]{26 + 15 \sqrt{3}} + \sqrt[3]{26 - 15 \sqrt{3}} - 1 \right)
 	\]
-	$\Ra \Gal(f) \simeq C_4$.
-\end{exs}
-
-\section*{14.7 Radical Extensions : Insolvability of Quintic Polynomials}
-
-\begin{dfn}
-	If $K = F(\sqrt[n]{a})$ for some $a \in F, n \in \NN$, then we say $K$ is a \textbf{simple radical extension} of $F$.
-\end{dfn}
-
-Note that in general $F(\sqrt[n]{a})/F$ may not be a Galois extension.
-For example $\QQ(\sqrt[3]{2})/\QQ$ is not a Galois extension.
-$(*)$ In order for $F(\sqrt[n]{a})/F$ to be Galois 
-\begin{enumerate}
-	\item[(a)] $\cha F \not| \, n$ (so that $x^n - a$ is separable)
-
-	\item[(b)] All $n$-th roots of unity are in $F$. 
-		(So that $F(\sqrt[n]{a})$ contains all conjugates of $\sqrt[n]{a}$ over $F$, i.e. $F(\sqrt[n]{a})$ is the splitting field of $x^n - a$.)
-\end{enumerate}
-
-\begin{prop}[Proposition 36]
-	Assume that $(*)$ holds, then $F(\sqrt[n]{a})/F$ is a Galois extension.
-	Moreover, if $a$ is not of the form $a = h^k$ for some $k| n, k \geq 2, h \in F$ (so that $x^n - a$ is irreducible), then $\Gal(F(\sqrt[n]{a})/F)$ is cyclic of order $n$, generated by $\sigma: \sqrt[n]{a} \mapsto \sqrt[n]{a} \zeta$, where $\zeta$ is a primitive $n$-th root of unity.
-\end{prop}
-
-\begin{proofs}
-	We have seen that under $(*)$, $F(\sqrt[n]{a})/F$ is Galois.
-	Now if $a$ is not of the form $a = b^k, k | n, k \geq 2, b \in F$, then $x^n - a$ is irreducible, so the conjugates of $\sqrt[n]{a}$ over $F$ are $\sqrt[n]{a} \zeta^k, k = 0, ..., n - 1$ and $|\Gal(F(\sqrt[n]{a})/F)| = n$.
-	Now, we check that
-	\begin{align*}
-		\sigma(\sqrt[n]{a}) &= \sqrt[n]{a} \zeta\\
-		\sigma^2 (\sqrt[n]{a}) &= \sigma (\sqrt[n]{a} \zeta) = (\sqrt[n]{a} \zeta) \zeta = \sqrt[n]{a} \zeta^2\\
-		\vdots\\
-		\sigma^k(\sqrt[n]{a}) &= \sqrt[n]{a} \zeta^k
-	\end{align*}
-	Since $\zeta$ is a primitive $n$-th root of unity, the smallest positive integer $k$ such that $\sigma^k(\sqrt[n]{a}) = \sqrt[n]{a}$ is $k = n$.
-	$\Ra \sigma$ has order $n$.
-	$\Ra \Gal(F(\sqrt[n]{a})/F) = \ev{\sigma}$ is cyclic.
-\end{proofs}
-
-\begin{dfn}
-	A finite field extension $E/F$ is a \textbf{cyclic extension} if $E/F$ is Galois and $\Gal(E/F)$ is cyclic.
-\end{dfn}
-
-\begin{prop}[Proposition 37]
-	Assume that $(*)$ holds and $E/F$ is a cyclic extension.
-	Then $E = F(\sqrt[n]{a})$ for some $a \in F$.
-\end{prop}
-
-\begin{rem}
-	The statement cyclic extension $\Ra$ simple radical extension holds \textit{only under the assumption} $(*)$.
-	There are cyclic extensions that are not simple radical extensions.
-	For example $\QQ(\cos 2 \pi/7)/\QQ$ is cyclic but not a simple radical extension.
-\end{rem}
-
-Before the proof of proposition let's recall a lemma.
-
-\begin{lem}[Lemma 7]
-	Let $G = \{\sigma_1, ..., \sigma_n\} \leq \text{Aut}(E)$.
-	Then $\nexists \beta_1, ..., \beta_n \in E$ such that $\sigma_1(\alpha) \beta_1 + \cdots + \sigma_n(\alpha) \beta_n = 0 \quad \forall \alpha \in E$.
-\end{lem}
-
-\begin{proofs}[Proof of Proposition]
-	Assume that $\Gal(E/F) = \ev{\sigma}$.
-	Let $\zeta$ be a primitive $n$-th root of unity.
-	By Lemma 7, there exists $\alpha \in E$ such that
+	Show directly that the roots of this cubic are $1, -1 \pm i$.
+	Explain this by proving that 
 	\[
-		\beta := \alpha + \zeta \sigma(\alpha) + \cdots + \zeta^{n -1} \sigma^{n - 1} (\alpha) \neq 0
+		\sqrt[3]{26 + 15 \sqrt{3}} = 2 + \sqrt{3} \quad \sqrt[3]{26 - 15 \sqrt{3}} = 2 - \sqrt{3}
 	\]
-	Now 
-	\[
-		\sigma(\beta) = \sigma(\alpha) + \zeta \sigma^2 (\alpha) + \cdots + \zeta^{n - 2} \sigma^{n - 1} (\alpha) + \zeta^{n - 1} \alpha = \zeta^{-1} \beta
-	\]
-	$\Ra \sigma^k(\beta) = \zeta^{-k}(\beta)$.
-	$\Ra$ The only element of $\Gal(E/F)$ that fixes $\beta$ is $\id$.
-	$E = F(\beta)$.
-	By Galois correspondence, $\beta$ is not contained in any proper subfield of $E$ containing $F$.
-	$\Ra E = F(\beta)$.
-	Moreover, we have
-	\[
-		\sigma(\beta^n) = (\zeta^{-1} \beta)^n = \beta^n
-	\]
-	$\Ra \beta^n \in F$, say $a = \beta^n$.
-	Then $\beta = \sqrt[n]{a}$ and $E = F(\sqrt[n]{a})$.
-\end{proofs}
+\end{prob}
 
-\begin{dfns}
+\setcounter{prob}{6}
+\begin{prob}[Kummer Generators for Cyclic Extensions]
+	Let $F$ be a field of characteristic not dividing $n$ containing the $n^{\text{th}}$ roots of unity and let $K$ be a cyclic extension of degree $d$ dividing $n$.
+	Then $K = F(\sqrt[n]{a})$ for some nonzero $a \in F$.
+	Let $\sigma$ be a generator for the cyclic group $\Gal(K/F)$.
+
 	\begin{enumerate}
-		\item[(1)] A field extension $K/F$ is said to be a \textbf{radical extension} (called a \textbf{root extension} in the book) if $\exists$ subfields $K_1, K_2, ..., K_{s - 1}$ with $F = K_0 \leq K_1 \leq K_2 \leq \cdots \leq K_{s - 1} \leq K_s = K$ and $K_{i + 1}/K_i$ is a simple radical extension for all $i = 0, ..., s - 1$.
+		\item[(a)] Show that $\sigma(\sqrt[n]{a}) = \zeta \sqrt[n]{a}$ for some primitive $d^{\text{th}}$ root of unity $\zeta$.
 
-		\item[(2)] If $\alpha \in \overline{F}$ is contained in some radical extension of $F$, then we say $\alpha$ can be \textbf{expressed by radicals}.
+		\item[(b)] Suppose $K = F(\sqrt[n]{a}) = F(\sqrt[n]{b})$.
+			Use (a) to show that $\sigma(\sqrt[n]{a})/\sqrt[n]{a} = (\sigma(\sqrt[n]{b})/\sqrt[n]{b})^i$ for some integer $i$ relatively prime to $d$.
+			Conclude that $\sigma$ fixes the element $\sqrt[n]{a}/(\sqrt[n]{b})^i$ so this is an element of $F$.
 
-		\item[(3)] A polynomial $f(x) \in F[x]$ is said to be \textbf{solvable by radicals} if all its roots are expressible by radicals.
+		\item[(c)] Prove that $K = F(\sqrt[n]{a}) = F(\sqrt[n]{b})$ if and only if $a = b^i c^n$ and $b = a^j d_n$ for some $c, d \in F$, i.e., if and only if $a$ and $b$ generate the same subgroup of $F^\times$ modulo $n^{\text{th}}$ powers.
 	\end{enumerate}
-\end{dfns}
+\end{prob}
 
-\begin{thm}[Theorem 39]
-	A polynomial $f(x) \in F[x]$ is solvable by radicals $\Lra \Gal(f)$ is a solvable group.
-	(We say a group $G$ is \textbf{solvable} if $\exists H_0 = \{e\} \triangleleft H_1 \triangleleft \cdots \triangleleft H_n = F$ such that $H_i \triangleleft H_{i + 1}$ and $H_{i + 1}/H_i$ is cyclic (or abelian))
-\end{thm}
+\setcounter{prob}{9}
+\begin{prob}
+	Let $K = \QQ(\zeta_p)$ be the cyclotomic field of $p^{\text{th}}$ roots of unity for the prime $p$ and let $G = \Gal(K/\QQ)$.
+	Let $\zeta$ denote any $p^{\text{th}}$ root of unity.
+	Prove that $\sum_{\sigma \in G} \sigma(\zeta)$ (the trace from $K$ to $\QQ$ of $\zeta$) is $-1$ or $p - 1$ depending on whether $\zeta$ is not a primitive $p^{\text{th}}$ root of unity.
+\end{prob}
 
-Note that when $n \geq 5$, $S_n$ is not solvable.
-(When $n \geq 5$, the only normal subgroups of $S_n$ are $\{e\}, A_n, S_n$.
-Also $A_n$ is simple.
-From this, it's clear that $S_n$ is not solvable by radicals.)
+\setcounter{prob}{10}
+\begin{prob}[The Classical Gauss Sum]
+	Let $K = \QQ(\zeta_p)$ be the cyclotomic field of $p^{\text{th}}$ roots of unity for the odd prime $p$, viewed as subfield of $\CC$, and let $G = \Gal(K/\QQ)$.
+	Let $H$ denote the subgroup of index 2 in the cyclic group $G$.
+	Define $\eta_0 = \sum_{\tau \in H} \tau(\zeta_p), \eta_1 = \sum_{\tau \in \sigma H} \tau(\zeta_p)$, where $\sigma$ is a generator of $\Gal(K/\QQ)$ (the two \textit{periods} of $\zeta_p$ with respect to $H$, i.e., the sum of the conjugates of $\zeta_p$ with respect to the two cosets of $H$ in $G$, cf. Section 5).
 
-\begin{cor}[Corollary 40]
-	A generic polynomial of degree 5 cannot be solved by radicals.
-\end{cor}
+	\begin{enumerate}
+		\item[(a)] Prove that $\sigma(\eta_0) = \eta_1, \sigma(\eta_1) = \eta_0$ and that 
+			\[
+				\eta_0 = \sum_{a = \text{square}} \zeta_p^a \quad \eta_1 = \sum_{b \neq \text{square}} \zeta_p^b
+			\]
+			where the sums are over the squares and nonsquares (respectively) in $(\ZZ/p \ZZ)^\times$.
+			[Observe that $H$ is the subgroup of squares in $(\ZZ/p \ZZ)^\times$.]
 
-\begin{rem}
-	There are expressions for roots of polynomials of degree $\geq 5$, but they are simply not in terms of radicals. 
-\end{rem}
+		\item[(b)] Prove that $\eta_0 + \eta_1 = (\zeta_p, 1) = -1$ and $\eta_0 - \eta_1 = (\zeta_p, -1)$ where $(\zeta_p, 1)$ and $\zeta_p, -1)$ are two of the Lagrange resolvents of $\zeta_p$.
+
+		\item[(c)] Let $g = \sum_{i = 0}^{p - 1} \zeta_p^{i^2}$ (the classical \textit{Gauss sum}).
+			Prove that
+			\[
+				g = (\zeta_p, -1) = \sum_{i = 0}^{p - 2} (-1)^i \sigma^i (\zeta_p)
+			\]
+
+		\item[(d)] Prove that $\tau g = g$ if $\tau \in H$ and $\tau g = -g$ if $\tau \notin H$.
+			Conclude in particular that $[\QQ(g):\QQ] = 2$.
+			Recall that complex conjugation is the automorphism $\sigma_{-1}$ on $K$ (cf. Exercise 7 of Section 5).
+			Conclude that $\bar{g} = g$ if $-1$ is a square mod $p$ (i.e., if $p \equiv 1 \pmod{4}$) and $\bar{g} = -g$ if $-1$ is not a square mod $p$ (i.e. if $p \equiv 3 \pmod{4}$) where $\bar{g}$ denotes the complex conjugate of $g$.
+
+		\item[(e)] Prove that $g \bar{g} = p$.
+			[The complex conjugate of a root of unity is its reciprocal.
+			then $\bar{g} = \sum_{j = 0}^{p - 2} (-1)^j (\sigma^j(\zeta_p))^{-1}$ gives
+			\[
+				\begin{split}
+					g \bar{g} &= \sum_{i, j = 0}^{p - 2} (-1)^i (-1)^j \frac{\sigma^i (\zeta_p)}{\sigma^j (\zeta_p)} = \sum_{i, j = 0}^{p - 2} (-1)^{i - j} \sigma^j \left[ \frac{\sigma^{i - j}(\zeta_p)}{\zeta_p} \right]\\
+					&= \sum_{k = 0}^{p - 2} (-1)^k \sum_{j = 0}^{p - 2} \sigma^j \left[ \frac{\sigma^k(\zeta_p)}{\zeta_p} \right]
+				\end{split}
+			\]
+			where $k = i - j$.
+			If $k = 0$ the element $\sigma^k(\zeta_p)/\zeta_p$ is 1, and if $k \neq 0$ then this is a primitive $p^{\text{th}}$ root of unity.
+			Use the previous exercise to conclude that the inner sum is $p - 1$ when $k = 0$ and is $-1$ otherwise.]
+
+		\item[(f)] Conclude that $g^2 = (-1)^{(p - 1)/2} p$ and that $\QQ(\sqrt{(-1)^{(p - 1)/2} p})$ is the unique quadratic subfield of $\QQ(\zeta_p)$. (Cf. also Exercise 33 of Section 6.)
+	\end{enumerate}
+\end{prob}
+
+\setcounter{prob}{18}
+\begin{prob}
+	\begin{enumerate}
+		\item[(a)] Prove that if $D = s^2 + t^2$ is the sum of two rational squares then there exists an extension $L/\QQ$ containing $K$ which is Galois over $\QQ$ with a cyclic Galois group of order 4.
+			[Consider the extension $\QQ(\sqrt{D + s \sqrt{D}})$.]
+			(Note also that $D$ is the sum of two rational squares if and only if $D$ is also the sum of two integer squares, so one may assume $s$ and $t$ are integral without loss.)
+
+		\item[(b)] Prove conversely that if $K$ can be embedded in a cyclic extension $L$ of degree 4 as in (a) then $D$ is the sum of two squares.
+			[One approach: (i) observe first that $L$ is quadratic over $K$, so $L = K(\sqrt{a + b \sqrt{D}})$ for some $a, b \in \QQ$,
+			(ii) show that $L$ contains the quadratic subfield $\QQ(\sqrt{a^2 - b^2 D})$, which must be $\QQ(\sqrt{D})$ if $L/\QQ$ is cyclic, and use Exercise 7.] 
+
+		\item[(c)] Conclude in particular that $\QQ(\sqrt{3})$ is not a subfield of any cyclic extension of degree 4 over $\QQ$.
+			Similarly conclude that the fields $\QQ(\sqrt{D})$ for squarefree integers $D < 0$ are never contained in cyclic extensions of degree 4 over $\QQ$ (this gives an alternate proof for Exercise 19, Section 6).
+	\end{enumerate}
+\end{prob}
+
+
 
 
 

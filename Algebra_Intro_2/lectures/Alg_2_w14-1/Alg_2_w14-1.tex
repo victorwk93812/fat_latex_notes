@@ -3,13 +3,15 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{soul}
 \usepackage{mathtools}
 \usepackage{hyperref}
 \usepackage{fancyhdr, lipsum}
 \usepackage{ulem}
 \usepackage{fontspec}
 \usepackage{xeCJK}
-% \setCJKmainfont[Path = ./fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../../fonts/, AutoFakeBold]{edukai-5.0.ttf}
 % \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
 % set your own font :
 % \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
@@ -109,7 +111,7 @@
 % Set title format
 % \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
 \usepackage{amsthm}
-\usetikzlibrary{shapes.geometric, arrows, trees}
+\usetikzlibrary{shapes.geometric, arrows}
 % https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
 
 % \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
@@ -206,6 +208,11 @@
 }{%
   \end{dfn}
 }
+\newenvironment{clms}[1][]{%
+  \begin{clm}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{clm}
+}
 %%%%
 %Lists
 %\begin{itemize}
@@ -263,6 +270,10 @@
 % \opnorm[\Bigg]{a} % largest
 % \opnorm*{a}       % \left and \right
 
+
+\newcommand\dunderline[2][.4pt]{%
+  \raisebox{-#1}{\underline{\raisebox{#1}{\smash{\underline{#2}}}}}}
+\newcommand{\cul}[2][black]{\color{#1}\underline{\color{black}{#2}}\color{black}}
 
 \newcommand{\A}{\mathcal A}
 \renewcommand{\AA}{\mathbb A}
@@ -331,207 +342,190 @@
 \newcommand{\id}{\text{id}}
 \newcommand{\dist}{\text{dist}}
 \newcommand{\cha}{\text{char}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\normto}{\trianglelefteq}
+\newcommand{\snormto}{\triangleleft}
 
 \linespread{1.5}
 \pagestyle{fancy}
-\title{Intro to Algebra 2 W12-1}
+\title{Intro to Algebra 2 W14-1}
 \author{fat}
 % \date{\today}
-\date{May 8, 2024}
+\date{May 22, 2024}
 \begin{document}
 \maketitle
 \thispagestyle{fancy}
 \renewcommand{\footrulewidth}{0.4pt}
 \cfoot{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
-\fancyhead[L]{Intro to Algebra 2 W12-1}
+\fancyhead[L]{Intro to Algebra 2 W14-1}
 
-We continue the discussion on $f$ a separable, irreducible of degree 4.
+\par Quiz next Friday (14.2 - 14.7)
 
-\par Let $\alpha_1, ..., \alpha_4$ be the roots of $f$.
+\par Final exam: the Friday after next week (14.2 - 14.7, 10.1, 10.2, 10.3, Chap 12 Fundamental theorem for finitely generated modules over PID)
+
+\par Recall last time, for a cubic polynomial $f(x) = x^3 + a x^2 + bx + c$ with roots $\alpha_1, \alpha_2, \alpha_3$, we defined
 \[
-	\begin{split}
-		\theta_1 = (\alpha_1 + \alpha_2) (\alpha_3 + \alpha_4)\\
-		\theta_2 = (\alpha_1 + \alpha_3) (\alpha_2 + \alpha_4)\\
-		\theta_3 = (\alpha_1 + \alpha_4) (\alpha_2 + \alpha_3)
-	\end{split}
+	\beta_1 = \alpha_1 + \alpha_2 + \alpha_3
 \]
-We have seen that
 \[
-	g(x) = (x - \theta_1) (x - \theta_2) (x - \theta_3) \in F[x]
+	\beta_2 = \alpha_1 + \zeta \alpha_2 + \zeta^2 \alpha_3
 \]
-Indeed, if $f(x) = x^4 + a x^3 + b x^2 + cx + d$, then $g(x) = x^3 - 2 bx^2 + (b^2 + ac - 4d) x + (c^2 - abc + a^2 d)$.
-Furthermore, we can check that $\Delta(g) = \Delta(f)$.
-
-\par Consider the case that $\Delta(f)$ is a square in $F$.
-Note that in this case, $g(x)$ is either irreducible over $F$ or splits completely.
-(Explanation: (Constants $a, b, c$ in the following remark are indepedent of which in our main discussion.)
-If $g(x) = (x - a) (x^2 + bx + c)$, where $b^2 - 4c$ is not a square, then the roots are $a, (-b \pm \sqrt{b^2 - 4c})/2$.
 \[
-	\Ra \Delta(g) = \left( \left(a - \frac{-b + \sqrt{b^2 - 4c}}{2}\right) \left( a - \frac{-b - \sqrt{b^2 - 4c}}{2} \right) (\sqrt{b^2 - 4c})\right)^2
+	\beta_3 = \alpha+1 + \zeta^2 \alpha_2 + \zeta \alpha_3
 \]
-$\Ra \Delta(g) = \alpha^2 (b^2 - 4c)$ with $\alpha \in F$ and $b^2 - 4c$ not a square.
-So $\Delta(g)$ is not a square in $F$, but $\Delta(g) = \Delta(f)$ is assumed to be a square, a contradiction.)
-Let $E$ be the splitting field of $f$.
-If $g(x)$ is irreducible, then $[F(\theta_1):F] = 3 \Ra 3 | [E:F]$.
-$\Ra 3 | |\Gal(E/F)| \cdots (**)$.
-Recall that if $\Delta(f)$ is a square, then $\Gal(f) = A_4$ or $C_2 \times C_2$, otherwise $\Gal(f) = S_4, D_8$ or $C_4$.
-Since $3 \not| \, |C_2 \times C_2|$, in this case we must have $\Gal(f) = \Gal(E/F) \simeq A_4$.
-On the other hand if $g(x)$ splits completely over $F$, i.e., if $\theta_1, \theta_2, \theta_3 \in F$, we may check that the only elements of $S_4$ that fixes each of $\theta_i$ are $e, (1 \, 2) (3 \, 4), (1 \, 3) (2 \, 4), (1 \, 4) (2 \, 3) \cdots (*)$
-$\Ra \Gal(f) \simeq C_2 \times C_2$.
+we defined $A = \beta_2^3 + \beta_3^3 = -2a^3 + 9ab - 27c, B = \beta_2 \beta_3 = a^2 - 3b\in F$.
+$\beta_2^3, \beta_3^3$ are therefore roots of $x^2 - Ax + B^3 = 0$
+\[
+	\beta_2^3, \beta_3^3 = \frac{A \pm \sqrt{A^2 - 4 B^3}}{2}
+\]
+Question: There are 3 complex numbers $\gamma_1 (\gamma_2)$ such that $\gamma_1^3 (\gamma_2^3) = (A +(-) \sqrt{A^2 - 4 B^3})/2$.
+Note that the choices of $\gamma_1, \gamma_2$ must satisfy $\gamma_1 \gamma_2 = a^2 - 3b$.
+That is, there are 3 choices of $\gamma_1$.
+Once $\gamma_1$ is chosen, then we must choose $\gamma_2$ such that $\gamma_1 \gamma_2 = a^2 - 3b$.
+There are 3 possible choices for $(\gamma_1, \gamma_2)$, corresponding to the 3 roots of $f(x)$.
 
-\par Now consider the case that $\Delta(f)$ is not a square in $F$.
-Note that in this case, $g(x)$ cannot split completely over $F$ by $(*)$
-If $g(x)$ is irreducible over $F$, then by the same reason as in $(**)$, we have $3 | |\Gal(f)| \Ra \Gal(f) \simeq S_4$. 
-If $g(x)$ is not irreducible over $F$, we consider the factorization of $f$ over $F(\sqrt{\Delta(f)})$.
-If $f$ is irreducible over $F(\sqrt{\Delta(f)})$, then $[E:F] = [E:F(\sqrt{\Delta(f)})] [F(\sqrt{\Delta(f)}):F] \geq 4 \cdot 2 = 8$. 
-$\Ra \Gal(f) \simeq D_8$.
-Finally if $f$ is not irreducible over $F(\sqrt{\Delta(f)})$, then $\Gal(f) \simeq C_4$.
-
-\par Let's summarize the case of $f$ of degree 4.
-
-\tikzstyle{level 1}=[level distance=20mm, sibling distance=30mm]
-\tikzstyle{level 2}=[level distance=40mm, sibling distance=15mm]
-\tikzstyle{level 3}=[level distance=50mm]
-\begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-		\node {$\Gal(f)$} [grow'=right]
-		child {node {$\Delta(f)$ square}
-			child {node {$g$ irr. over $F \Ra A_4$}}
-			child {node {$g$ splits comp. over $F \Ra C_2 \times C_2$}}
-		}
-		child {node {$\Delta(f)$ not square}
-		  child {node {$g$ irr. over $F \Ra S_4$}}
-		  child {node {$g$ red. over $F$}
-		  	child {node {$f$ irr. over $F(\sqrt{\Delta(f)}) \Ra D_8$}}
-		  	child {node {$f$ red. over $F(\sqrt{\Delta(f)}) \Ra C_4$}}
-		  }
-		};
-	\end{tikzpicture}
-	\caption{Summary}
-\end{figure}
-
-\begin{exs}
-	$f(x) = x^4 + x^3 + x^2 + x + 1$.
-	$\Delta(f) = 125$.
-	$g(x) = x^3 - 2 x^2 - 2x + 1 = (x + 1) (x^2 - 3x + 1)$.
-	Over $\QQ(\sqrt{5})$, we have
+\begin{ex}
+	$f(x) = x^3 + x^2 - 2$.
+	$\beta_2^3 = 26 + 15 \sqrt{3}, \beta_3^3 = 26 - 15 \sqrt{3}$.
+	Let $\gamma_1, \gamma_2$ be the real numbers such that $\gamma_1^3, \gamma_2^3 = 26 \pm 15 \sqrt{3}$, i.e., $\gamma_1, \gamma_2 = \sqrt[3]{26 \pm 15 \sqrt{3}}$.
+	The producct of these 2 is $\sqrt[3]{1} = 1$
+	$\Ra$ The pairs are $(\gamma_1, \gamma_2), (\gamma_1 \zeta, \gamma_1 \zeta^2), (\gamma_1 \zeta^2, \gamma_2 \zeta)$.
+	$\Ra$ The 3 roots of $f(x)$ are
 	\[
-		f(x) = \left(x^2 - \frac{1 + \sqrt{5}}{2} x + 1\right) \left( x^2 - \frac{-1 - \sqrt{5}}{2} x + 1 \right)
+		\frac{-1 + \gamma_1 + \gamma_2}{3}, \frac{-1 + \gamma_1 \zeta + \gamma_2 \zeta^2}{3}, \frac{-1 + \gamma_1 \zeta^2 + \gamma_2 \zeta}{3}
 	\]
-	$\Ra \Gal(f) \simeq C_4$.
-\end{exs}
+\end{ex}
 
-\section*{14.7 Radical Extensions : Insolvability of Quintic Polynomials}
-
-\begin{dfn}
-	If $K = F(\sqrt[n]{a})$ for some $a \in F, n \in \NN$, then we say $K$ is a \textbf{simple radical extension} of $F$.
-\end{dfn}
-
-Note that in general $F(\sqrt[n]{a})/F$ may not be a Galois extension.
-For example $\QQ(\sqrt[3]{2})/\QQ$ is not a Galois extension.
-$(*)$ In order for $F(\sqrt[n]{a})/F$ to be Galois 
-\begin{enumerate}
-	\item[(a)] $\cha F \not| \, n$ (so that $x^n - a$ is separable)
-
-	\item[(b)] All $n$-th roots of unity are in $F$. 
-		(So that $F(\sqrt[n]{a})$ contains all conjugates of $\sqrt[n]{a}$ over $F$, i.e. $F(\sqrt[n]{a})$ is the splitting field of $x^n - a$.)
-\end{enumerate}
-
-\begin{prop}[Proposition 36]
-	Assume that $(*)$ holds, then $F(\sqrt[n]{a})/F$ is a Galois extension.
-	Moreover, if $a$ is not of the form $a = h^k$ for some $k| n, k \geq 2, h \in F$ (so that $x^n - a$ is irreducible), then $\Gal(F(\sqrt[n]{a})/F)$ is cyclic of order $n$, generated by $\sigma: \sqrt[n]{a} \mapsto \sqrt[n]{a} \zeta$, where $\zeta$ is a primitive $n$-th root of unity.
-\end{prop}
-
-\begin{proofs}
-	We have seen that under $(*)$, $F(\sqrt[n]{a})/F$ is Galois.
-	Now if $a$ is not of the form $a = b^k, k | n, k \geq 2, b \in F$, then $x^n - a$ is irreducible, so the conjugates of $\sqrt[n]{a}$ over $F$ are $\sqrt[n]{a} \zeta^k, k = 0, ..., n - 1$ and $|\Gal(F(\sqrt[n]{a})/F)| = n$.
-	Now, we check that
-	\begin{align*}
-		\sigma(\sqrt[n]{a}) &= \sqrt[n]{a} \zeta\\
-		\sigma^2 (\sqrt[n]{a}) &= \sigma (\sqrt[n]{a} \zeta) = (\sqrt[n]{a} \zeta) \zeta = \sqrt[n]{a} \zeta^2\\
-		\vdots\\
-		\sigma^k(\sqrt[n]{a}) &= \sqrt[n]{a} \zeta^k
-	\end{align*}
-	Since $\zeta$ is a primitive $n$-th root of unity, the smallest positive integer $k$ such that $\sigma^k(\sqrt[n]{a}) = \sqrt[n]{a}$ is $k = n$.
-	$\Ra \sigma$ has order $n$.
-	$\Ra \Gal(F(\sqrt[n]{a})/F) = \ev{\sigma}$ is cyclic.
-\end{proofs}
-
-\begin{dfn}
-	A finite field extension $E/F$ is a \textbf{cyclic extension} if $E/F$ is Galois and $\Gal(E/F)$ is cyclic.
-\end{dfn}
-
-\begin{prop}[Proposition 37]
-	Assume that $(*)$ holds and $E/F$ is a cyclic extension.
-	Then $E = F(\sqrt[n]{a})$ for some $a \in F$.
-\end{prop}
-
-\begin{rem}
-	The statement cyclic extension $\Ra$ simple radical extension holds \textit{only under the assumption} $(*)$.
-	There are cyclic extensions that are not simple radical extensions.
-	For example $\QQ(\cos 2 \pi/7)/\QQ$ is cyclic but not a simple radical extension.
-\end{rem}
-
-Before the proof of proposition let's recall a lemma.
-
-\begin{lem}[Lemma 7]
-	Let $G = \{\sigma_1, ..., \sigma_n\} \leq \text{Aut}(E)$.
-	Then $\nexists \beta_1, ..., \beta_n \in E$ such that $\sigma_1(\alpha) \beta_1 + \cdots + \sigma_n(\alpha) \beta_n = 0 \quad \forall \alpha \in E$.
-\end{lem}
-
-\begin{proofs}[Proof of Proposition]
-	Assume that $\Gal(E/F) = \ev{\sigma}$.
-	Let $\zeta$ be a primitive $n$-th root of unity.
-	By Lemma 7, there exists $\alpha \in E$ such that
-	\[
-		\beta := \alpha + \zeta \sigma(\alpha) + \cdots + \zeta^{n -1} \sigma^{n - 1} (\alpha) \neq 0
-	\]
-	Now 
-	\[
-		\sigma(\beta) = \sigma(\alpha) + \zeta \sigma^2 (\alpha) + \cdots + \zeta^{n - 2} \sigma^{n - 1} (\alpha) + \zeta^{n - 1} \alpha = \zeta^{-1} \beta
-	\]
-	$\Ra \sigma^k(\beta) = \zeta^{-k}(\beta)$.
-	$\Ra$ The only element of $\Gal(E/F)$ that fixes $\beta$ is $\id$.
-	$E = F(\beta)$.
-	By Galois correspondence, $\beta$ is not contained in any proper subfield of $E$ containing $F$.
-	$\Ra E = F(\beta)$.
-	Moreover, we have
-	\[
-		\sigma(\beta^n) = (\zeta^{-1} \beta)^n = \beta^n
-	\]
-	$\Ra \beta^n \in F$, say $a = \beta^n$.
-	Then $\beta = \sqrt[n]{a}$ and $E = F(\sqrt[n]{a})$.
-\end{proofs}
+\section*{14.9 Transcendental Extensions}
 
 \begin{dfns}
 	\begin{enumerate}
-		\item[(1)] A field extension $K/F$ is said to be a \textbf{radical extension} (called a \textbf{root extension} in the book) if $\exists$ subfields $K_1, K_2, ..., K_{s - 1}$ with $F = K_0 \leq K_1 \leq K_2 \leq \cdots \leq K_{s - 1} \leq K_s = K$ and $K_{i + 1}/K_i$ is a simple radical extension for all $i = 0, ..., s - 1$.
+		\item[(1)] $E/F$ a field extension.
+			A subset $\{\alpha_1, ..., \alpha_n\} \subset E$ is said to be \textbf{algebraically independent} over $F$ if there is no nonzero polynomial $f(x_1, ..., x_n) \in F[x_1, ..., x_n]$ such that $f(\alpha_1, ..., \alpha_n) = 0$.
+			A subset $A$ of $E$ is algebraically independent over $F$ if any finite subset of $A$ is algebraically independent.
 
-		\item[(2)] If $\alpha \in \overline{F}$ is contained in some radical extension of $F$, then we say $\alpha$ can be \textbf{expressed by radicals}.
-
-		\item[(3)] A polynomial $f(x) \in F[x]$ is said to be \textbf{solvable by radicals} if all its roots are expressible by radicals.
+		\item[(2)] A \textbf{transcendental base} for $E/F$ is a maximal subset of $E$ that is algebraically independent.
 	\end{enumerate}
 \end{dfns}
 
-\begin{thm}[Theorem 39]
-	A polynomial $f(x) \in F[x]$ is solvable by radicals $\Lra \Gal(f)$ is a solvable group.
-	(We say a group $G$ is \textbf{solvable} if $\exists H_0 = \{e\} \triangleleft H_1 \triangleleft \cdots \triangleleft H_n = F$ such that $H_i \triangleleft H_{i + 1}$ and $H_{i + 1}/H_i$ is cyclic (or abelian))
+\begin{thm}
+	Any 2 transcendental bases for $E/F$ have the same cardinality.
 \end{thm}
 
-Note that when $n \geq 5$, $S_n$ is not solvable.
-(When $n \geq 5$, the only normal subgroups of $S_n$ are $\{e\}, A_n, S_n$.
-Also $A_n$ is simple.
-From this, it's clear that $S_n$ is not solvable by radicals.)
+\begin{thm}
+	The cardinality of a transcendental base for $E$ over $F$ is called the \textbf{transcendence degree} of $E$ over $F$.
+\end{thm}
 
-\begin{cor}[Corollary 40]
-	A generic polynomial of degree 5 cannot be solved by radicals.
-\end{cor}
+\begin{ex}
+	$E = F(x) =$ field of rational functions over $F$ has transcendence degree 1 over $F$.
+\end{ex}
+
+\section*{Chapter 10 Introduction to Module Theory}
+
+(Basically, a module is a common generalization of abelian groups and vector spaces.)
+
+\begin{dfn}
+	Let $R$ be a ring.
+	A \textbf{left $\bm{R}$-module} (or left modules over $R$) is an abelian group $M$ together with an action $\cdot: R \times M \to M$ of $R$ on $M$ such that
+	\begin{enumerate}
+		\item[(1)] $(r + s) \cdot m = r \cdot m + s \cdot m \quad \forall r, s \in R, m \in M$.
+
+		\item[(2)] $(r s) \cdot m = r (s \cdot m)$
+
+		\item[(3)] $r\cdot (m_1 + m_2) = r \cdot m_1 + r \cdot m_2 \quad \forall r \in R, m_1, m_2 \in M$
+
+		\item[(4)] If $R$ has 1, then $1 \cdot m = m \quad \forall m \in M$.
+	\end{enumerate}
+	Right $R$-modules are similarly defined.
+\end{dfn}
+
+\begin{lem}
+	Let $M$ be a left $R$-module.
+	Then $0 \cdot m = 0 \quad \forall m \in M$.
+	Note that 0 on the left hand side is $0 \in R$ and $0 \in M$ is the 0 on the right.
+\end{lem}
+
+\begin{exs}
+	\begin{enumerate}
+		\item[(1)] $R = \ZZ, M$ an abelian group.
+			Define $\ZZ \times M \to M$ by $r \cdot m := rm (= m + \cdots + m \text{ if } r > 0)$. 
+			Then $M$ is a $\ZZ$-module.
+
+		\item[(2)] $R = F$ a field, $V$ a vector space over $F$.
+			Define $F \times V \to V$ by $a \cdot v = av$.
+			Then $V$ is a left $F$-module.
+			Conversely if $V$ is a $F$-module, then $V$ is a vector space.
+	\end{enumerate}
+\end{exs}
 
 \begin{rem}
-	There are expressions for roots of polynomials of degree $\geq 5$, but they are simply not in terms of radicals. 
+	Assume that $R$ is commutative.
+	Then a left $R$-module is automatically a right $R$-module by setting $m \cdot r := r \cdot m$.
+	(Note that right $R$-module requires that $m \cdot (r s) = (m \cdot r) s \cdots (*)$.
+	If $R$ is not commutative, then $\cdot$ may not satisfy $(*)$ because $m \cdot (rs) := (r s) \cdot m$, but $(m \cdot r) s := (rm) \cdot s = s (r \cdot m) = (sr) \cdot m$.) 
+	In such a case we'll simple say $M$ is a $R$-module.
 \end{rem}
+
+\begin{rem}
+	Throughout the discussion, all modules are assumed by left modules.
+\end{rem}
+
+\begin{dfn}
+	A \textbf{$\bm{R}$-submodule} $N$ of $M$ is a subgroup of $M$ that is closed under the action of $R$.
+\end{dfn}
+
+\begin{exs}
+	\begin{enumerate}
+		\item[(1)] $R = \ZZ$, $\ZZ$-submodules $\lra$ subgroups.
+
+		\item[(2)] $R = F$, $F$-submodules $\lra$ subspaces.
+
+		\item[(3)] $R$ itself is a left $R$-module where the action of $R$ on $R$ is given by $r \cdot s := rs$.
+			$I$ is a submodule of $R$ $\Lra I$ is a subgroup of $R$ such that $r \cdot a \in I \quad \forall r \in R, a \in I$ $\Lra I$ is a left ideal of $R$.
+			Thus, if $R$ is commutative, then submodules of $R$ $\Lra$ ideals of $F$.
+
+		\item[(4)] $R^n$ is a left $R$-module where $r \cdot (s_1, ..., s_n) = (r s_1, ..., r s_n)$.
+
+		\item[(5)] If $S$ is a subring of $R$, then a left $R$-module is automatically a left $S$-module by setting $s \cdot m = s \cdot m$.
+
+		\item[(6)] If $M$ is a left $R$-module, $I \normto R$ such that $I \cdot M = 0$ (meaning $a \cdot m = 0 \quad \forall a \in I ,m \in M$).
+			Then $M$ becomes a $(R/I)$-module by setting $(r + I) \cdot m = r \cdot m$.
+
+		\item[(7)] $R = F[x]$ is a polynomial ring over a field $F$.
+			Let $V$ be a vector space over $F$ and $T: V \to V$ be a linear transformation.
+			Define an action of $F[x]$ on $V$ by
+			\[
+				(a_n x^n + \cdots + a_0) v := a_n T^n(v) + \cdots + a_1 T(v) + a_0 v
+			\]
+			Then $V$ becomes an $F[x]$-module.
+			(Different $T$ yields a different struture of $V$ as a $F[x]$-module.)
+			Conversely if $V$ is a $F[x]$-module then $V$ is an $F$-module (by (5)) and hence a vector space over $F$.
+			Now the action of $x$ on $V$ defines a linear transformation $T: V \to V$ defined by $T(v) = x \cdot v$.
+			($T(c_1 v_1 + c_2 v_2) = x (c_1 v_1 + c_2 v_2) = (x c_1) \cdot v_1 + (x c_2) \cdot v_2 = c_1 (x \cdot v_1) + c_2 (x \cdot v_2) = c_1 T(v_1) + c_2 T(v_2)$.)
+			Now $U$ is a submodule of $V$ $\Lra$ $U$ is a subgroup of $V$ such that $U$ is closed under the action of $F[x]$ 
+			$\Lra$ $U$ is a subgroup of $V$ such that $a_n T^n (v) + \cdots + a_1 T(v) + a_0 v \in U \quad \forall v \in U$ 
+			$\Lra$ $U$ is a subgroup of $V$ such that $T(v) \in U$ and $av \in U \quad \forall v \in U, a \in F$.
+			$\Lra$ $U$ is a $T$-invariant subspace of $V$.
+	\end{enumerate}
+\end{exs}
+
+\begin{prop}[Proposition 1]
+	Assume that $R$ is a ring with 1.
+	A nonempty set $N$ of a left $R$-module $M$ is a submodule of $M$ $\Lra x + ry \in N \quad \forall x, y \in N, r \in R$.
+\end{prop}
+
+\begin{proofs}
+	($\Ra$) Clear.
+
+	\par ($\La$) We have seen that a nonempty subset $A$ of an additive subgroup $G$ is a subgroup of $G$ $\Lra x - y \in A \quad \forall x, y \in A$.
+	Here since $R$ has 1 apply the condition $x + ry \in N$ with $r = -1$.
+	We see that $x - y = x + (-1) y \in N$.
+	Thus $N$ is a subgroup of $M$.
+	Then $\forall r \in R, \forall y \in N, ry = 0 + r \cdot y \in N$ by assumption.
+	$\Ra N$ is a subgroup closed under the action of $R$.
+	$\Ra N$ is a submodule.
+\end{proofs}
 
 
 

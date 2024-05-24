@@ -376,6 +376,34 @@
 	\]
 \end{prob}
 
+\begin{sols}
+	Suppose the roots are $\alpha_1, \alpha_2, \alpha_3$, then we have
+	\[
+		\begin{split}
+			A &:= -2 a^2 + 9 ab - 27 c = -2 + 54 = 52\\
+			B &:= a^2 - 3b = 1
+		\end{split}
+	\]
+	\[
+		\begin{split}
+			\Ra \alpha_1 &= -\frac{a}{3} + \frac{1}{3} \sqrt[3]{\frac{A + \sqrt{A^2 - 4 B^3}}{2}} + \sqrt[3]{\frac{A + \sqrt{A^2 - 4 B^3}}{2}} \\
+			&= \frac{1}{3} \left(\sqrt[3]{26 + \sqrt{26^2 - 1}} + \sqrt[3]{26 - \sqrt{26^2 - 1}} \right) =\frac{1}{3} \left( \sqrt[3]{26 + 15 \sqrt{3}} + \sqrt[3]{26 - 15 \sqrt{3}} - 1 \right)
+		\end{split}
+	\]
+	To prove taht $\sqrt[3]{26 - 15 \sqrt{3}} = 2 \pm \sqrt{3}$, it suffices to prove that $(2 \pm \sqrt{3})^3 = 26 \pm 15 \sqrt{3}$.
+	Indeed $(2 \pm \sqrt{3})^3 = 8 \pm 3 \cdot 4 \sqrt{3} + 3 \cdot 2 \cdot 3 \pm 3 \sqrt{3} = 26 \pm 15 \sqrt{3}$.
+	Thus we have
+	\[
+		\alpha_1 = \frac{1}{3} (2 + \sqrt{3} + 2 - \sqrt{3} - 1) = 1
+	\]
+	We could therefore divide $x^3 + x^2 - 2$ by $x - 1$ and get
+	\[
+		x^3 + x^2 - 2 = (x - 1)(x^2 + 2x + 2) = (x - 1) (x - (-1 + i)) (x - (-1 - i))
+	\]
+	Thus the roots are $1, -1 \pm i$.
+
+\end{sols}
+
 \setcounter{prob}{6}
 \begin{prob}[Kummer Generators for Cyclic Extensions]
 	Let $F$ be a field of characteristic not dividing $n$ containing the $n^{\text{th}}$ roots of unity and let $K$ be a cyclic extension of degree $d$ dividing $n$.
@@ -389,9 +417,31 @@
 			Use (a) to show that $\sigma(\sqrt[n]{a})/\sqrt[n]{a} = (\sigma(\sqrt[n]{b})/\sqrt[n]{b})^i$ for some integer $i$ relatively prime to $d$.
 			Conclude that $\sigma$ fixes the element $\sqrt[n]{a}/(\sqrt[n]{b})^i$ so this is an element of $F$.
 
-		\item[(c)] Prove that $K = F(\sqrt[n]{a}) = F(\sqrt[n]{b})$ if and only if $a = b^i c^n$ and $b = a^j d_n$ for some $c, d \in F$, i.e., if and only if $a$ and $b$ generate the same subgroup of $F^\times$ modulo $n^{\text{th}}$ powers.
+		\item[(c)] Prove that $K = F(\sqrt[n]{a}) = F(\sqrt[n]{b})$ if and only if $a = b^i c^n$ and $b = a^j d^n$ for some $c, d \in F$, i.e., if and only if $a$ and $b$ generate the same subgroup of $F^\times$ modulo $n^{\text{th}}$ powers.
 	\end{enumerate}
 \end{prob}
+
+\begin{sols}
+	\begin{enumerate}
+		\item[(a)] We know that since $\sigma \in \Gal(K/F)$, we must have $\sigma(\sqrt[n]{a}) = \zeta_n^k \sqrt[n]{a}$ where $\zeta_n = e^{2 \pi i/n}$ ($\sigma$ sends a root to its conjugate).
+			Note that $\sigma$ fixes $\gamma_n^k$ since it is in $F$, thus we see that $\sigma^l(\sqrt[n]{a}) = \zeta_n^{kl} \sqrt[n]{a}$.
+			Since $\sigma$ has order $d$, we find that $(\zeta_n^k)^d = 1$, thus it must be a $d^{\text{th}}$ root of unity.
+			Also it must be primitive since if not then $\sigma$ will have order less than $d$.
+			Thus $\sigma(\sqrt[n]{a}) = \zeta \sqrt[n]{a}$ for some primitive $d^{\text{th}}$ root of unity.
+
+		\item[(b)] By an identical argument to (a), we find $\sigma(\sqrt[n]{b}) = \zeta' \sqrt[n]{b}$ where $\zeta'$ is another primitive $d^{\text{th}}$ root of unity.
+			But the powers of the primitive $d^{\text{th}}$ roots of unity are exactly the elements in $(\ZZ/d \ZZ)^\times$, which has elements relatively prime to $d$.
+			Thus we must have $\sigma(\sqrt[n]{a})/\sqrt[n]{a}) = \zeta = \zeta'^i = (\sigma(\sqrt[n]{b})/\sqrt[n]{b})^i$ for some $\overline{i} \in (\ZZ/d \ZZ)^\times$, i.e., some $i$ with $(i, d) = 1$.
+			A direct arithmetic operation gives $\sigma(\sqrt[n]{a}/(\sqrt[n]{b})^i) = \sqrt[n]{a}/(\sqrt[n]{b})^i$.
+
+		\item[(c)] Suppose $K = F(\sqrt[n]{a}) = F(\sqrt[n]{b})$.
+			Then by (b), there exists $c, d \in F$ such that $c = \sqrt[n]{a}/(\sqrt[n]{b})^i$ and $d = \sqrt[n]{b}/(\sqrt[n]{a})^j$ for some $i, j$ with $(i, d) = (j, d) = 1$.
+			Taking the $n^{\text{th}}$ powers of these equations directly gives us $a = b^i c^n$ and $b = a^j d^n$ for some $c, d \in F$.
+			Conversely, $a = b^i c^n \Ra \sqrt[n]{a} = \sqrt[n]{b}^i c \Ra F(\sqrt[n]{a} \subseteq F(\sqrt[n]{b})$.
+			By $b = a^j d^n$ we get the other inclusion.
+			Thus $F(\sqrt[n]{a}) = F(\sqrt[n]{b})$.
+	\end{enumerate}
+\end{sols}
 
 \setcounter{prob}{9}
 \begin{prob}
@@ -399,6 +449,17 @@
 	Let $\zeta$ denote any $p^{\text{th}}$ root of unity.
 	Prove that $\sum_{\sigma \in G} \sigma(\zeta)$ (the trace from $K$ to $\QQ$ of $\zeta$) is $-1$ or $p - 1$ depending on whether $\zeta$ is not a primitive $p^{\text{th}}$ root of unity.
 \end{prob}
+
+\begin{sols}
+	Note that the Galois group is just $(\ZZ/p \ZZ)^\times$
+	The only non-primitive $p^{\text{th}}$ root of unity is just 1 since $p$ is a prime (every nonidentity element in $(\ZZ/p \ZZ)^\times$ generates the whole cyclic group.)
+	It is also trivial that $\sum_{\sigma \in G} \sigma(1) = p - 1$ since $\sigma$ must fix $1 \in \QQ$.
+	Now if $\zeta$ is a primitive $p^{\text{th}}$ root of unity then $\sum_{\sigma \in G} \sigma(\zeta)$ runs through all primitive $p^{\text{th}}$ roots of unity.
+	Thus we have
+	\[
+		\sum_{\sigma \in G} \sigma(\zeta) = \zeta^{p - 1} + \zeta^{p - 2} + \cdots + \zeta = -1
+	\]
+\end{sols}
 
 \setcounter{prob}{10}
 \begin{prob}[The Classical Gauss Sum]
@@ -444,8 +505,82 @@
 	\end{enumerate}
 \end{prob}
 
+\begin{sols}
+	\begin{enumerate}
+		\item[(a)] Observe that $H = \{g^2: g \in (\ZZ/p \ZZ)^\times\}$.
+			To see this, it suffices to show that $[G:H] = 2$.
+			Now for $\overline{a}, \overline{b} \in G$, we have
+			$\overline{a}^2 = \overline{b}^2$
+			$\Lra a^2 - b^2 \equiv 0 \pmod{p}$.
+			$\Lra (a + b) (a - b) \equiv 0 \pmod{p}$.
+			$\Lra \overline{a} = \overline{-b}$ or $\overline{a} = \overline{b}$.
+			We see that $H$ is exactly $H = \{\overline{1}^2, \overline{2}^2, ..., \overline{(p - 1)/2}^2\}$, which are $(p - 1)/2$ distinct elements by the last condition.
+			Now notice that the coset $\sigma H = G \setminus H$ since $[G:H] = 2$ and $\sigma \notin H$.
+			Thus indeed
+			\[
+				\eta_0 = \sum_{a = \text{square}} \zeta_p^a \quad \eta_1 = \sum_{\beta \neq \text{square}} \zeta_p^b
+			\]
+			On the other hand, $\sigma(\eta_0)$ is just taking the sum over $\sigma \tau \in \sigma H$, which is exactly the definition of $\eta_1$.
+			Also we find $\sigma(\eta_1)$ takes sum over the coset $\sigma^2 H = H$ since $\sigma^2 \in H$ by the definition of $H$.
+			Thus we must also have $\sigma(\eta_1) = \eta_0$.
+
+		\item[(b)] By the definition of Lagrange resolvents,
+			\[
+				(\zeta_p, 1) = \zeta_p + 1^1 \sigma(\zeta_p) + 1^2 \sigma^2(\zeta_p) + \cdots + 1^{p - 2} \sigma^{p - 2}(\zeta_p)  = \eta_0 + \eta_1
+			\]
+			\[
+				(\zeta_p, -1) = \zeta_p + (-1)^1 \sigma(\zeta_p) + (-1)^2 \sigma^2(\zeta_p) + \cdots + (-1)^{p - 2} \sigma^{p - 2}(\zeta_p) = \eta_0 - \eta_1 
+			\]
+			since obviously $\sigma^i \in H$ iff $i$ is even.
+
+		\item[(c)] Observe that $g$ is summing over the squares in $(\ZZ/p \ZZ)^\times$ 2 times with an additional $\zeta_p^0 = 1$.
+			Thus we have $g = 2 \eta_0 - 1 = 2 \eta_0 - (\eta_0 + \eta_1) = \eta_0 - \eta_1 = (\zeta_p, -1)$.
+
+		\item[(d)] We know that $g = \eta_0 - \eta_1$, thus $\tau g = \tau(\eta_0) - \tau(\eta_1)$.
+			If $\tau \in H$ then $\tau(\eta_0) = \sum_{\sigma \in H} \tau \sigma(\zeta_p) = \sum_{\sigma \in H} \sigma(\zeta_p)$ since $\tau H = H$.
+			Thus $\tau(\eta_0) = \eta_0$.
+			Similarly we see that $\tau(\eta_1) = \eta_1$ since $\Gal$ is abelian(cyclic).
+			Therefore $\tau g = \tau(\eta_0 - \eta_1) = \eta_0 - \eta_1 = g$.
+			Now if $\tau \notin H$ then $\tau(\eta_0) = \sum_{\sigma \in H} \tau \sigma(\zeta_p) = \sum_{\sigma \in \tau H} \sigma(\zeta_p) = \eta_1$.
+			Similarly $\tau(\eta_1) = \eta_0$.
+			Thus if $\tau \notin H$ then $\tau g = \tau(\eta_0 - \eta_1) = \eta_1 - \eta_0 = -g$.
+			Now $\overline{g} = \sigma_{-1} g$ since $\sigma_{-1}$ is just the complex conjugate map.
+			The complex conjugate map $\sigma_{-1} g = \overline{g} = g$
+			$\Lra \sigma_{-1} \in H$
+			$\Lra$ $\sigma_{-1} = g^2$ for some $g:\zeta_p \mapsto \zeta_p^j \in G$ for some $j$ ($\sigma_{-1}$ is a square in $G$, i.e., is in $H$) 
+			$\Lra -1 = j^2 \pmod{p}$ for some $j$ $\Lra -1$ is a square modulo $p$.
+			Thus $\overline{g} = g$ if and only if $-1$ is a square modulo $p$.
+			By a similar argument we may also conclude that $\sigma_{-1} g = \overline{g} = -g$ if and only if $-1$ is not a square modulo $p$.
+			
+		\item[(e)] Since the complex conjugate of a root of unity is its reciprocal, we have
+			\[
+					g \bar{g} = \sum_{i, j = 0}^{p - 2} (-1)^i (-1)^j \frac{\sigma^i (\zeta_p)}{\sigma^j (\zeta_p)} = \sum_{i, j = 0}^{p - 2} (-1)^{i - j} \sigma^j \left[ \frac{\sigma^{i - j}(\zeta_p)}{\zeta_p} \right] = \sum_{k = 0}^{p - 2} (-1)^k \sum_{j = 0}^{p - 2} \sigma^j \left[ \frac{\sigma^k(\zeta_p)}{\zeta_p} \right]
+			\]
+			Since $\sigma$ has order $p - 1$, if $k \neq 0$ then $\sigma^k(\zeta_p)$ must be some primitive $p^{\text{th}}$ root of unity.
+			Thus by problem 10 we conclude that
+			\[
+				\sum_{j = 0}^{p - 2} \sigma^j \left( \frac{\sigma^k(\zeta_p)}{\zeta_p} \right) = 
+				\begin{cases}
+					p - 1 & \text{if } k = 0\\
+					-1 & \text{if } k \neq 0
+				\end{cases}
+			\]
+			Therefore
+			\[
+				g \overline{g} = p - 1 + \sum_{k = 1}^{p - 2} (-1)^k (-1) = p - 1 + 1 = p
+			\]
+			since $p - 2$ is odd.
+				
+		\item[(f)] In (d) we've seen that $\overline{g} = g$ if $p \equiv 1 \pmod{4}$ and $\overline{g} = -g$ if $p \equiv -1 \pmod{4}$.
+			This is just $\overline{g} = (-1)^{(p - 1)/2} g$.
+			Thus $g \overline{g} = (-1)^{(p - 1)/2} g^2 = p \Ra g^2 = (-1)^{(p - 1)/2} p$.
+
+	\end{enumerate}
+\end{sols}
+
 \setcounter{prob}{18}
 \begin{prob}
+	Let $D \in \ZZ$ be a squarefree integer and let $K = \QQ(\sqrt{D})$.
 	\begin{enumerate}
 		\item[(a)] Prove that if $D = s^2 + t^2$ is the sum of two rational squares then there exists an extension $L/\QQ$ containing $K$ which is Galois over $\QQ$ with a cyclic Galois group of order 4.
 			[Consider the extension $\QQ(\sqrt{D + s \sqrt{D}})$.]
@@ -460,7 +595,59 @@
 	\end{enumerate}
 \end{prob}
 
+\begin{sols}
+	\begin{enumerate}
+		\item[(a)] Consider the field extension $\QQ(\sqrt{D + s \sqrt{D}})/\QQ$.
+			This field is actually the splitting field of $(x^2 - D)^2 - s^2 D$.
+			To see this, observe that the four roots of $(x^2 - D)^2 - s^2 D$ are just $\pm \sqrt{D \pm s\sqrt{D}}$.
+			Thus it suffices to prove that $\sqrt{D - s\sqrt{D}} \in \QQ(\sqrt{D + s \sqrt{D}})$.
+			We have
+			\[
+				\frac{t \sqrt{D}}{\sqrt{D + s \sqrt{D}}} = \frac{t \sqrt{D} \sqrt{D - s \sqrt{D}}}{\sqrt{D^2 - s^2 D}} = \frac{t \sqrt{D} \sqrt{D - s \sqrt{D}}}{t \sqrt{D}} = \sqrt{D - s \sqrt{D}}
+			\]
+			Since $\sqrt{D}, \sqrt{D + s \sqrt{D}} \in \QQ(\sqrt{D + s \sqrt{D}})$, we must have $\sqrt{D - s \sqrt{D}} \in \QQ(\sqrt{s + \sqrt{D}})$.
+			Therefore indeed $\QQ(\sqrt{D + s \sqrt{D}})$ is the splitting field of $(x^2 - D)^2 - s^2 D$ and $\QQ(\sqrt{D + s \sqrt{D}})/\QQ$ is Galois.
+			Also it has degree 4 since 
+			\[
+				\left[\QQ\left(\sqrt{D + s \sqrt{D}}\right):\QQ\right] = \left[\QQ\left(\sqrt{D + s\sqrt{D}}\right):\QQ(\sqrt{D})\right] [\QQ(\sqrt{D}): \QQ] = 2 \cdot 2 = 4
+			\]
+			It remains to prove that the Galois group is cyclic.
+			It suffices to prove that there exists an element of order 4.
+			Consider $\sigma \in \Gal(\QQ(\sqrt{D + s \sqrt{D}})/\QQ)$ defined by $\sigma(\sqrt{D + s \sqrt{D}}) = \sqrt{D - s \sqrt{D}}$.
+			We have
+			\[
+				\sigma\left(\sqrt{D + \sqrt{D}}\right)^2 = \sigma(D + \sqrt{D}) = D + \sigma(\sqrt{D}) = \left(\sqrt{D - \sqrt{D}}\right)^2 = D - \sqrt{D}
+			\]
+			\[
+				\Ra \sigma(\sqrt{D}) = - \sqrt{D}
+			\]
+			Thus
+			\[
+				\sigma^2\left(\sqrt{D + \sqrt{D}}\right) = \sigma\left(\sqrt{D - \sqrt{D}}\right) = \sigma \left( \frac{t \sqrt{D}}{\sqrt{D + \sqrt{D}}} \right) = \frac{- t \sqrt{D}}{\sqrt{D - s \sqrt{D}}} = - \sqrt{D + \sqrt{D}}
+			\]
+			It is therefore clear that $\sigma$ has order 4 and we are done.
 
+		\item[(b)] If $K \subseteq L$ then $[L:K] = [L:\QQ]/[K:\QQ] = 4/2 = 2$.
+			Thus $L$ must be of the form $L = K(\sqrt{a + b \sqrt{D}})$ for some $a, b \in \QQ$ by the quadratic formula.
+			We've already seen that $\sqrt{a + b \sqrt{D}}$ is a root of the polynomial $(x^2 - D)^2 - b^2D$ (same argument as in (a)).
+			Note that this polynomial is actually irreducible since any product of its linear factors would not result in a polynomial with coefficients all in $\QQ$. 
+			(We know this because we actually know all the roots of this polynomial, namely $\pm \sqrt{a \pm b \sqrt{D}}$.)
+			Since $L/\QQ$ is Galois we find that it must contain all the conjugates of $\sqrt{a + b \sqrt{D}}$, in particular containing $\sqrt{a - b \sqrt{D}}$.
+			Thus $\sqrt{a + b \sqrt{D}} \sqrt{a - b \sqrt{D}} = \sqrt{a^2 - b^2 D} \in L$.
+			Consider the field $\QQ(\sqrt{a^2 - b^2 D}) \subseteq L$.
+			Since $\Gal(L/\QQ)$ is cyclic, by Galois correspondence we find that we must have $\QQ(\sqrt{a^2 - b^2 D}) = \QQ(\sqrt{D})$ since there is only 1 unique subgroup of order 2.
+			By problem 7, we see that we must have $a^2 - b^2 D = c^2 D$ for some $c \in \QQ$.
+			$\Ra D = a^2 /(b^2 + c^2) \Ra 1/D = (b/a)^2 + (c/a)^2$ is a sum of two rational squares.
+			Moreover $\QQ(\sqrt{D}) = \QQ(\sqrt{1/D})$.
+			Thus we may view $D$ as a sum of two rational squares.
+
+		\item[(c)] 3 is not a sum of two rational squares since it is not a sum of two integer squares.
+			Thus $\QQ(\sqrt{3})$ must not be a subfield of any cyclic extension of degree 4 over $\QQ$ by (a) and (b).
+			Also any $D < 0$ must not be a sum of two rational squares.
+			Thus $\QQ(\sqrt{D})$ must also not be contained in a cyclic extension of order 4 over $\QQ$.
+
+	\end{enumerate}
+\end{sols}
 
 
 

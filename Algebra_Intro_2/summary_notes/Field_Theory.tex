@@ -295,9 +295,13 @@
 \newcommand{\YY}{\mathbb Y}
 \newcommand{\Z}{\mathcal Z}
 \newcommand{\ZZ}{\mathbb Z}
+
+
+\newcommand{\cbrt}[1]{\sqrt[3]{#1}}
+
 \DeclareMathOperator{\Char}{char}
 \DeclareMathOperator{\Aut}{Aut}
-\DeclareMathOperator{\Gal}{Aut}
+\DeclareMathOperator{\Gal}{Gal}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\GCD}{GCD}
 \DeclareMathOperator{\Emb}{Emb}
@@ -1883,289 +1887,6 @@ $\phi$顯然保乘法，由Freshman's Dream可知$\phi$保加法，因此他是h
 \clearpage
 \section{Galois Theory}
 
-\subsection{Automorphisms of Simple Extensions}
-
-\begin{dfn}[field automorphism, automorphism group]
-	Let $K$ be a field. A field automorphism of $K$ is a ring isomorphism $\sigma$ of $K$ with itself
-	\[\sigma:K\to K\]
-	that is a bijection and has $\sigma(x+y)=\sigma(x)+\sigma(y)$ and $\sigma(xy)=\sigma(x)\sigma(y)$ for any $x,y\in K$.
-	The collection of automorphism of $K$ is denoted $\Aut(K)$.
-\end{dfn}
-可以驗證$(\Aut(K),+)$和$(\Aut(K),\cdot)$都是group。
-
-\ex 對各種field $K$舉幾個$\Aut(K)$中元素的例子：
-
-\begin{itemize}
-	\item $\Aut(\CC)$: complex conjugation map $\sigma(a+bi)=a-bi$
-	\item $\Aut(\QQ(\sqrt{D}))$ for squarefree $D$: conjugation map $\sigma(a+b\sqrt{D})=a-b\sqrt{D}$
-	\item $\Aut(\FF_{p^n})$: the $p$th-power Frobenius map $\sigma(x)=x^p$
-\end{itemize}
-
-不難驗證這些都是$\Aut(K)$中的映射，但是實際上要構造一個automorphism並不容易。
-首先，觀察到任何automorphism $\sigma$都應該fix $0$:
-\[\sigma(0)=\sigma(0+0)=\sigma(0)+\sigma(0) \Rightarrow \sigma(0)=0\]
-也應該fix $1$:
-\[\sigma(1)=\sigma(1\cdot 1)=\sigma(1)\cdot\sigma(1) \Rightarrow \sigma(1)=\sigma(1)\]
-所以也fix由$1$生成的prime subfield。從這裡可以看出$\Aut(\QQ)$和$\Aut(\FF_p)$都是
-trivial group $\{\id\}$，因為$\QQ$和$\FF_p$的prime subfield就是自己。
-我們可以定義fix某個subfield的automorphism:
-\begin{dfn}[fixing fields]
-	If $K/F$ is a field extension, we define $\Aut(K/F)$ to be the set of
-	automorphisms of $K$ fixing $F$ (i.e., the collection of $\sigma\in \Aut(K)$
-	such that $\sigma(a)=a$ for every $a\in F$ ).
-\end{dfn}
-而他會是原本的automorphism group的子群：$\Aut(K/F)\le \Aut(K)$。
-
-\begin{ex}
-	Find all automorphisms of $\QQ(\sqrt{D})/\QQ$ ($D$ is squarefree)
-
-	每個$\Aut(\QQ(\sqrt{D})/\QQ)$中的automorphism都由其在generator上的值決定，在這裡就是$\sigma(\sqrt{D})$。
-	因為
-	\[\sigma(\sqrt{D})^2=\sigma(\sqrt{D}^2)=\sigma(D)=D\]
-	所以$\sigma(\sqrt{D})$只能是$\pm\sqrt{D}$。分別對應到identity automorphism和conjugation automorphism。
-	因此$|\Aut(\QQ(\sqrt{D})/\QQ)|=2$，更進一步，$\Aut(\QQ(\sqrt{2})/\QQ)$和$\ZZ/2\ZZ$同構。
-\end{ex}
-
-\begin{ex} Find all automorphisms of $\Aut(\QQ(\sqrt[3]{2})/\QQ)$
-
-	\[\sigma(\sqrt[3]{2})^3=\sigma(2)=2\]
-	所以$\sigma(\sqrt[3]{2})\in \{\sqrt[3]{2},\sqrt[3]{2}\zeta_3, \sqrt[3]{2}\zeta_3^2\}$
-	但後兩者都不在$\QQ(\sqrt[3]{2})$裡，所以$\sigma(\sqrt[3]{2})=\sqrt[3]{2}$，$\sigma$只是identity automorphism。
-
-\end{ex}
-
-比起看更多的例子，讓我們利用Lifting Isomorphism的概念來看到形式化地說明：在Theorem \ref{lift_splitting}中設$\phi=\id_F$：
-\begin{thm}[Simple Extensions的Automorphism]\leavevmode
-	\begin{itemize}
-		\item 若$\alpha$是algebra over $F$且有minimal polynomial $m(x)$，$K=F(\alpha)$的Simple Extention
-		      （也可以說是$m(x)$的spltting field），那麼對於任意$\sigma\in\Aut(K/F)$，$\sigma(\alpha)$也是$m(x)$在$K$中的根。
-		\item 反過來說，如果$\beta$是$m(x)$在$K$中的根，那存在一個$\tau\in\Aut(K/F)$使得$\tau(\alpha)=\beta$
-
-	\end{itemize}\end{thm}
-
-\begin{proofs}
-	設$m(x)=a_n x^n+\cdots+a_1x+ a_0\in F[x]$，注意到$\sigma(a_i)=a_i$因為$\sigma$ fixes $F$，
-	所以$\sigma(\alpha)$也是$m(x)$的根：
-	\[m(\sigma(\alpha))=a_n\sigma(\alpha)^n+\cdots+a_1 \sigma(\alpha)+\alpha_0=\sigma(a_n \alpha^n +\cdots + a_0)=\sigma(0)=0\]
-
-	反過來說，如果$\beta$是$m(x)$在$K$中的根，在Theorem \ref{lift_splitting}中設$\phi=\id_F$，可以把他lift成$\tau:F(\alpha)\to F(\beta)$使得$\tau(\alpha)=\beta$。
-	因為$F(\alpha)=K=F(\beta)$，所以$\tau\in\Aut(K/F)$。
-\end{proofs}
-
-\begin{cor}[Simple Extention的Automorphisms的數量上界]
-	$$\left|\Aut(K/F)\right|=\text{Number of roots of $m(x)$}\le [K:F]$$
-\end{cor}
-\begin{proofs}
-	我們得到$K$中$m(x)$的根和$\Aut(K/F)$之間的雙射，並且由於$m(x)$具有階數$[K: F]$，考慮到可能有重根的情況，我們有$\left|\Aut(K/F)\right| < [K: F]$。
-\end{proofs}
-
-利用這個特性，我們原則上可以算出任何Simple Extensions $F(\alpha)$的Automorphism和他的Group structure。
-只要我們知道$\alpha$的minimal polynomial的根
-
-.............再來看一個例子:
-
-\begin{ex} Find all automorphisms of $\Aut(\QQ(\sqrt{2}+\sqrt{3})/\QQ)$
-
-	我們已經知道$K=\QQ(\sqrt2+\sqrt3)=\QQ(\sqrt2,\sqrt3)$
-	且$\sqrt2+\sqrt3$有minimal polynomial $m(x)=x^4-10x^2+1$，他的四個根就是$\pm\sqrt{2}\pm\sqrt{3}\in K$。
-	所以四個Automorphism就分別是
-	\begin{align*}
-		\Aut(K/F)=\{
-		 & \id_K,                                                                  \\
-		 & a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6}\mapsto a-b\sqrt{2}+c\sqrt{3}-d\sqrt{6}, \\
-		 & a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6}\mapsto a+b\sqrt{2}-c\sqrt{3}-d\sqrt{6}, \\
-		 & a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6}\mapsto a-b\sqrt{2}-c\sqrt{3}+d\sqrt{6}
-		\}
-	\end{align*}
-
-\end{ex}
-
-% WIP: https://web.northeastern.edu/dummit/teaching_fa20_5111/5111_lecture_18_semidirect_products_field_automorphisms.pdf
-% 有更多例子之後再看
-
-% \begin{prop}
-% 	Let $K/F$ be a field extension and let $\alpha\in K$ be algebraic over $F$.
-
-% 	Then for any $\sigma\in\Aut(K/F)$, $\sigma\alpha$ is a root of the minimal polynomial for $\alpha$ over $F$,
-% 	i.e. $\Aut(K/F)$ permutes the roots of irreducible polynomials. Equivalently, any polynomial with coefficients in $F$ having $\alpha$ as a root also has $\sigma\alpha$ as a root.
-% \end{prop}
-
-
-
-% https://web.northeastern.edu/dummit/teaching_fa20_5111/5111_lecture_18_semidirect_products_field_automorphisms.pdf
-
-
-\subsection{Automorphisms of Splitting Fields}
-
-我們將首先看一個關於多項式根的有用性質：
-\begin{thm}[Normality (有一個根就有全部) of Splitting Fields]
-	如果$K$是$F$上的一個spltting field，且$p(x)\in F[x]$是irreducible。那麼：
-	如果$p(x)$在$K$有一個根，$p(x)$就在$K$中splits completely
-	(i.e. $p(x)$的所有根都在$K$中)
-\end{thm}
-
-\begin{proofs}
-	假設$K$是某個多項式$q(x)$在$F$上的splitting field，這個多項式有根$r_1,\ldots,r_n$，所以$K=F(r_1,\ldots, r_n)$
-	。若$p$有個根$\alpha\in K$，且有另外一個根$\beta$(尚未確定是否$\in K$)。有個Lifting Isomophism
-	$\sigma:F(\alpha)\to F(\beta)$ fixing $F$使得$\sigma(\alpha)=\beta$。所以有$K(\beta)
-		=F(r_1,\ldots,r_n,\beta)=F(\beta)(r_1,\ldots,r_n)$，因此$K(\beta)$
-	是$q(x)$在$F(\beta)$上的splitting field。又因為$\alpha\in K$，$K=K(\alpha)$，
-	可以發現$K$是$q(x)$在$F(\alpha)$的spltting field。
-	再次把$\sigma$ lift 成$\tau: K\to K(\beta)$ fixing $F$。特別地，因為isomorphism保degree，$[K:F]=[K(\beta):F]$，所以$K=K(\beta)$，$\beta\in K$。
-\end{proofs}
-
-\begin{thm}[Splitting Fields的Automorphisms的數量上界]
-	如果$K$是$F$上的一個Splitting Field，那麼$\abs{\Aut(K/F)} \le [K:F]$。
-	等號成立若且唯若$K/F$ separable。
-\end{thm}
-
-\begin{proofs}
-	這很像上面的，但證明要用歸納法$n=[K:F]$，WIP (lec 19 p 8)
-\end{proofs}
-
-當等號成立時，這個Extension被稱為是Galois的:
-\begin{dfn}[Galois Extension]
-	如果$\abs{\Aut(K/F)} = [K:F]$，稱$K$是$F$的一個Galois Extention，
-	$K/F$的Automorphism被記為$\Gal(K/F)$，稱為Galois Group。
-\end{dfn}
-
-\begin{ex}
-	Find the Galois group of the splitting field of $p(x)=x^3-2$ over $\QQ$
-
-	\begin{enumerate}
-		\item 找根：$\sqrt[3]{2},\sqrt[3]{2}\zeta_3,\sqrt[3]{2}\zeta_3^2$
-		\item 找generator: the splitting field of $p(x)=x^3-2$ is $K=\QQ(\sqrt[3]{2},\zeta_3)$
-		\item generator只能被送到他的conjugates(即minimal polynomials的根)：$\sqrt[3]{2}$的$m=x^3-2$，$\zeta_3$的$m=x^2-x+1$，任意$K/Q$的Automorphism可以是
-		      \begin{align*}
-			      \sqrt[3]{2} & \mapsto \sqrt[3]{2}, \sqrt[3]{2}\zeta_3, \sqrt[3]{2}\zeta_3^2 \\
-			      \zeta_3     & \mapsto \zeta_3, \zeta_3^2
-		      \end{align*}
-		      所以總共有六種automorphism，$|\Aut(K/\QQ)|=6$等於$[K:\QQ]$所以是Galois。
-		\item 接著identify他的group structure：首先找出這些Automorphism的generator，定義
-		      \begin{align*}
-			      \sigma: \sqrt[3]{2} & \mapsto \sqrt[3]{2}\zeta_3,\quad\zeta_3 \mapsto \zeta_3 \\
-			      \tau: \sqrt[3]{2}   & \mapsto \sqrt[3]{2},\quad \zeta_3\mapsto \zeta_3^2
-		      \end{align*}
-		      可以發現$\sigma^2: \sqrt[3]{2}\to\sqrt[3]{2}, \zeta_3\mapsto \zeta_3$，接著$\sigma^3$就是identity。$\tau^2$也是identity。
-		      可以驗證$\sigma\tau\neq\tau\sigma$和$\tau\sigma^2=\sigma\tau$，所以$G\cong D_{2\cdot 3}$
-		\item 事實上，$G$會permute $x^3-2$的根，所以應該會同構於$S_3$的子群，但他們又有一樣的order，所以$G\cong S_3$（我們知道$D_{2\cdot 3}\cong S_3$）。回到剛剛$D_6$的例子，我們可以label根$\{\sqrt[3]{2},\sqrt[3]{2}\zeta_3,\sqrt[3]{2}\zeta_3^2\}$成$\{1,2,3\}$，用permutation的記號可以寫$\sigma=(123)$，$\tau=(23)$。
-	\end{enumerate}
-\end{ex}
-
-\begin{ex}
-	Find the Galois group of the splitting field of $p(x)=x^4-3$ over $\QQ$
-
-	\begin{enumerate}
-		\item 找根：$3^{1/4}i^k,\quad k=0,1,2,3$
-		\item 找generator: $K=\QQ(3^{1/4},i)$
-		\item generator只能被送到他的conjugates:
-		      \begin{align*}
-			      3^{1/4} & \mapsto 3^{1/4}i^k,\quad k=0,1,2,3 \\
-			      i       & \pm i
-		      \end{align*}
-		      所以$|\Aut(K/\QQ)|=8=[K:\QQ]$所以是Galois。
-		\item Automorphism的generator:
-		      \begin{align*}
-			      \sigma: 3^{1/4} \mapsto 3^{1/4}i, \quad i\mapsto i \\
-			      \tau: 3^{1/4} \mapsto 3^{1/4}, \quad i\mapsto -i
-		      \end{align*}
-		      可以驗證$\sigma^4=\tau^2=1$和$\sigma\tau=\tau\sigma^3$，所以$G\cong D_8\le S_4$。將根$3^{1/4}i^k,\quad k=0,1,2,3$依序標記，用permutation記號可以寫$\sigma=(1234), \tau=(2,4)$。
-	\end{enumerate}
-\end{ex}
-
-% 4.1.3末尾
-% \begin{ex}
-% 	Find the Galois group of $\QQ(\zeta_p)/\QQ$, where $p$ is a prime
-
-% 	WIP
-% \end{ex}
-
-% \begin{ex}
-% 	Find the Galois group of $\FF_{p^n}/\FF_p$, where $p$ is a prime
-
-% 	WIP
-% \end{ex}
-
-
-\subsection{Fixed Fields}
-% 考慮$\Aut(K/F)$中的一個automorphism $\sigma$，考慮一個$K$的子集$E$會被$\sigma$ stabilized，
-
-$\Aut(K/F)$定義為所有$K$的automorphism fixing $F$，
-
-\begin{dfn}
-	$K/F$是一個field extension，$S$是$\Aut(K/F)$的一個子集，$K$的一個subfield被稱為$S$的fixed field如果所有$S$中的automorphism fix這個subfield。
-\end{dfn}
-
-注意到如果$S$的fixed field是\underline{所有$S$中automorphism的fixed field}的交集，他們都是包含$F$的$K$的subfields就是，所以fixed field的確是個field。
-
-\begin{ex}
-	$K=\QQ(\sqrt{2},\sqrt{3})/\QQ$，有兩個autumorphism:
-	\begin{align*}
-		\sigma(\sqrt2,\sqrt3) & =(-\sqrt2,\sqrt3) \\
-		\tau(\sqrt2,\sqrt3)=(\sqrt2,-\sqrt3)
-	\end{align*}
-	那麼在$K$中同時被$\sigma, \tau$ fix的元素只有有理數，所以$S=\{\sigma,\tau\}$的fixed field是$\QQ$。
-\end{ex}
-
-\subsection{The Fundamental Theorem of Galois Theory}
-
-\begin{thm}[FTGT]\leavevmode
-	$K/F$: Galois Extension，$G=\Gal(K/F)$
-	任意一個夾在$K,F$中間的Field $E$ ($K/E/F$)，我們能找到以下的Galois correspondence：
-	\[
-		\left\{\text{Subfields $E$ of $K$ containing $F$}\right\}
-		\begin{matrix}
-			\underrightarrow{\text{Elements of $G$ fixing $E$}} \\
-			\underleftarrow{\text{Elements of $K$ fixed by $H$}}
-		\end{matrix}
-		\left\{\text{Subgroups $H$ of $G$}\right\}
-	\]
-	\begin{enumerate}
-		\item $[K:E]=|H|$和$[E:F]=|G:H|$
-		\item $\Gal(K/E)=H$
-		\item If Fbar is a fixed algebraic closure of F, then the embeddings of E into
-		      F are in bijection with the left cosets of H in G.
-		\item $E/F$是Galois $\iff$ $H\lhd G$，在這個情況下$\Gal(E/F)\cong G/H$
-		\item  Intersections of subgroups correspond to joins of fields, and joins of
-		      subgroups correspond to intersections of fields.
-		\item  The lattice of subgroups of G is the same as the lattice of
-		      intermediate fields of K/F turned upside-down
-	\end{enumerate}
-\end{thm}
-
-\subsection{Applications of the FTGT}
-
-\subsubsection{Finite Fields and Irreducible Polynomials in $\FF_p[x]$}
-\subsubsection{The Primitive Element Theorem}
-\subsubsection{Properties of Composite Extensions}
-
-\subsubsection{Cyclotomic and Abelian Extensions}
-
-\begin{thm}[Galois Group of $\QQ(\zeta_n)$]
-	$\QQ(\zeta_n)/\QQ$是Galois的且$\Gal(\QQ(\zeta_n)/\QQ)\cong (\ZZ/n\ZZ)^\times$。
-	更明確地說，$a\in (\ZZ/n\ZZ)^\times $對應到一個automorphism $\sigma_a: \zeta_n\mapsto \zeta_n^a$。
-\end{thm}
-
-原則上，我們能從$G=\Gal(\QQ(\zeta_n)/\QQ)$的Group Structure得出所有$\QQ(\zeta_n)$的subfields，
-但如果$(\ZZ/n\ZZ)^\times$ 很複雜就會變很麻煩。我們先來看看$n=p$的簡單情況，這時
-$G\cong (\ZZ/p\ZZ)^\times$是個Cyclic group of order $p-1$。所以$G=\langle \sigma \rangle$，
-其中$\sigma(\zeta_p)=\zeta_p^a$，$a$是$G\cong (\ZZ/p\ZZ)^\times$的一個generator。
-由Galois對應關係，$\QQ(\zeta_p)$的subfields就是$\sigma^d$的fixed fields（$d|p-1$）。
-
-為了explicitly計算這些subfields，
-
-
-
-
-
-
-
-
-
-
-
-
-
 \subsection{上課筆記}
 
 \begin{dfn}[Conjugates over a field]
@@ -2491,6 +2212,497 @@ $\Leftrightarrow \forall \alpha \in E, m_{\alpha, F}(x)$ splits completely over 
 			is a subfield of $E$ containing $F$.
 	\end{enumerate}
 \end{lem}
+
+\subsection{Automorphisms of Simple Extensions}
+
+\begin{dfn}[field automorphism, automorphism group]
+	Let $K$ be a field. A field automorphism of $K$ is a ring isomorphism $\sigma$ of $K$ with itself
+	\[\sigma:K\to K\]
+	that is a bijection and has $\sigma(x+y)=\sigma(x)+\sigma(y)$ and $\sigma(xy)=\sigma(x)\sigma(y)$ for any $x,y\in K$.
+	The collection of automorphism of $K$ is denoted $\Aut(K)$.
+\end{dfn}
+可以驗證$(\Aut(K),+)$和$(\Aut(K),\cdot)$都是group。
+
+\ex 對各種field $K$舉幾個$\Aut(K)$中元素的例子：
+
+\begin{itemize}
+	\item $\Aut(\CC)$: complex conjugation map $\sigma(a+bi)=a-bi$
+	\item $\Aut(\QQ(\sqrt{D}))$ for squarefree $D$: conjugation map $\sigma(a+b\sqrt{D})=a-b\sqrt{D}$
+	\item $\Aut(\FF_{p^n})$: the $p$th-power Frobenius map $\sigma(x)=x^p$
+\end{itemize}
+
+不難驗證這些都是$\Aut(K)$中的映射，但是實際上要構造一個automorphism並不容易。
+首先，觀察到任何automorphism $\sigma$都應該fix $0$:
+\[\sigma(0)=\sigma(0+0)=\sigma(0)+\sigma(0) \Rightarrow \sigma(0)=0\]
+也應該fix $1$:
+\[\sigma(1)=\sigma(1\cdot 1)=\sigma(1)\cdot\sigma(1) \Rightarrow \sigma(1)=\sigma(1)\]
+所以也fix由$1$生成的prime subfield。從這裡可以看出$\Aut(\QQ)$和$\Aut(\FF_p)$都是
+trivial group $\{\id\}$，因為$\QQ$和$\FF_p$的prime subfield就是自己。
+我們可以定義fix某個subfield的automorphism:
+\begin{dfn}[fixing fields]
+	If $K/F$ is a field extension, we define $\Aut(K/F)$ to be the set of
+	automorphisms of $K$ fixing $F$ (i.e., the collection of $\sigma\in \Aut(K)$
+	such that $\sigma(a)=a$ for every $a\in F$ ).
+\end{dfn}
+而他會是原本的automorphism group的子群：$\Aut(K/F)\le \Aut(K)$。
+
+\begin{ex}
+	Find all automorphisms of $\QQ(\sqrt{D})/\QQ$ ($D$ is squarefree)
+
+	每個$\Aut(\QQ(\sqrt{D})/\QQ)$中的automorphism都由其在generator上的值決定，在這裡就是$\sigma(\sqrt{D})$。
+	因為
+	\[\sigma(\sqrt{D})^2=\sigma(\sqrt{D}^2)=\sigma(D)=D\]
+	所以$\sigma(\sqrt{D})$只能是$\pm\sqrt{D}$。分別對應到identity automorphism和conjugation automorphism。
+	因此$|\Aut(\QQ(\sqrt{D})/\QQ)|=2$，更進一步，$\Aut(\QQ(\sqrt{2})/\QQ)$和$\ZZ/2\ZZ$同構。
+\end{ex}
+
+\begin{ex} Find all automorphisms of $\Aut(\QQ(\sqrt[3]{2})/\QQ)$
+
+	\[\sigma(\sqrt[3]{2})^3=\sigma(2)=2\]
+	所以$\sigma(\sqrt[3]{2})\in \{\sqrt[3]{2},\sqrt[3]{2}\zeta_3, \sqrt[3]{2}\zeta_3^2\}$
+	但後兩者都不在$\QQ(\sqrt[3]{2})$裡，所以$\sigma(\sqrt[3]{2})=\sqrt[3]{2}$，$\sigma$只是identity automorphism。
+
+\end{ex}
+
+比起看更多的例子，讓我們利用Lifting Isomorphism的概念來看到形式化地說明：在Theorem \ref{lift_splitting}中設$\phi=\id_F$：
+\begin{thm}[Simple Extensions的Automorphism]\leavevmode
+	\begin{itemize}
+		\item 若$\alpha$是algebra over $F$且有minimal polynomial $m(x)$，$K=F(\alpha)$的Simple Extention
+		      （也可以說是$m(x)$的spltting field），那麼對於任意$\sigma\in\Aut(K/F)$，$\sigma(\alpha)$也是$m(x)$在$K$中的根。
+		\item 反過來說，如果$\beta$是$m(x)$在$K$中的根，那存在一個$\tau\in\Aut(K/F)$使得$\tau(\alpha)=\beta$
+
+	\end{itemize}\end{thm}
+
+\begin{proofs}
+	設$m(x)=a_n x^n+\cdots+a_1x+ a_0\in F[x]$，注意到$\sigma(a_i)=a_i$因為$\sigma$ fixes $F$，
+	所以$\sigma(\alpha)$也是$m(x)$的根：
+	\[m(\sigma(\alpha))=a_n\sigma(\alpha)^n+\cdots+a_1 \sigma(\alpha)+\alpha_0=\sigma(a_n \alpha^n +\cdots + a_0)=\sigma(0)=0\]
+
+	反過來說，如果$\beta$是$m(x)$在$K$中的根，在Theorem \ref{lift_splitting}中設$\phi=\id_F$，可以把他lift成$\tau:F(\alpha)\to F(\beta)$使得$\tau(\alpha)=\beta$。
+	因為$F(\alpha)=K=F(\beta)$，所以$\tau\in\Aut(K/F)$。
+\end{proofs}
+
+\begin{cor}[Simple Extention的Automorphisms的數量上界]
+	$$\left|\Aut(K/F)\right|=\text{Number of roots of $m(x)$}\le [K:F]$$
+\end{cor}
+\begin{proofs}
+	我們得到$K$中$m(x)$的根和$\Aut(K/F)$之間的雙射，並且由於$m(x)$具有階數$[K: F]$，考慮到可能有重根的情況，我們有$\left|\Aut(K/F)\right| < [K: F]$。
+\end{proofs}
+
+利用這個特性，我們原則上可以算出任何Simple Extensions $F(\alpha)$的Automorphism和他的Group structure。
+只要我們知道$\alpha$的minimal polynomial的根
+
+.............再來看一個例子:
+
+\begin{ex} Find all automorphisms of $\Aut(\QQ(\sqrt{2}+\sqrt{3})/\QQ)$
+
+	我們已經知道$K=\QQ(\sqrt2+\sqrt3)=\QQ(\sqrt2,\sqrt3)$
+	且$\sqrt2+\sqrt3$有minimal polynomial $m(x)=x^4-10x^2+1$，他的四個根就是$\pm\sqrt{2}\pm\sqrt{3}\in K$。
+	所以四個Automorphism就分別是
+	\begin{align*}
+		\Aut(K/F)=\{
+		 & \id_K,                                                                  \\
+		 & a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6}\mapsto a-b\sqrt{2}+c\sqrt{3}-d\sqrt{6}, \\
+		 & a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6}\mapsto a+b\sqrt{2}-c\sqrt{3}-d\sqrt{6}, \\
+		 & a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6}\mapsto a-b\sqrt{2}-c\sqrt{3}+d\sqrt{6}
+		\}
+	\end{align*}
+
+\end{ex}
+
+% WIP: https://web.northeastern.edu/dummit/teaching_fa20_5111/5111_lecture_18_semidirect_products_field_automorphisms.pdf
+% 有更多例子之後再看
+
+% \begin{prop}
+% 	Let $K/F$ be a field extension and let $\alpha\in K$ be algebraic over $F$.
+
+% 	Then for any $\sigma\in\Aut(K/F)$, $\sigma\alpha$ is a root of the minimal polynomial for $\alpha$ over $F$,
+% 	i.e. $\Aut(K/F)$ permutes the roots of irreducible polynomials. Equivalently, any polynomial with coefficients in $F$ having $\alpha$ as a root also has $\sigma\alpha$ as a root.
+% \end{prop}
+
+
+
+% https://web.northeastern.edu/dummit/teaching_fa20_5111/5111_lecture_18_semidirect_products_field_automorphisms.pdf
+
+
+\subsection{Automorphisms of Splitting Fields}
+
+我們將首先看一個關於多項式根的有用性質：
+\begin{thm}[Normality (有一個根就有全部) of Splitting Fields]
+	如果$K$是$F$上的一個spltting field，且$p(x)\in F[x]$是irreducible。那麼：
+	如果$p(x)$在$K$有一個根，$p(x)$就在$K$中splits completely
+	(i.e. $p(x)$的所有根都在$K$中)
+\end{thm}
+
+\begin{proofs}
+	假設$K$是某個多項式$q(x)$在$F$上的splitting field，這個多項式有根$r_1,\ldots,r_n$，所以$K=F(r_1,\ldots, r_n)$
+	。若$p$有個根$\alpha\in K$，且有另外一個根$\beta$(尚未確定是否$\in K$)。有個Lifting Isomophism
+	$\sigma:F(\alpha)\to F(\beta)$ fixing $F$使得$\sigma(\alpha)=\beta$。所以有$K(\beta)
+		=F(r_1,\ldots,r_n,\beta)=F(\beta)(r_1,\ldots,r_n)$，因此$K(\beta)$
+	是$q(x)$在$F(\beta)$上的splitting field。又因為$\alpha\in K$，$K=K(\alpha)$，
+	可以發現$K$是$q(x)$在$F(\alpha)$的spltting field。
+	再次把$\sigma$ lift 成$\tau: K\to K(\beta)$ fixing $F$。特別地，因為isomorphism保degree，$[K:F]=[K(\beta):F]$，所以$K=K(\beta)$，$\beta\in K$。
+\end{proofs}
+
+\begin{thm}[Splitting Fields的Automorphisms的數量上界]
+	如果$K$是$F$上的一個Splitting Field，那麼$\abs{\Aut(K/F)} \le [K:F]$。
+	等號成立若且唯若$K/F$ separable。
+\end{thm}
+
+\begin{proofs}
+	這很像上面的，但證明要用歸納法$n=[K:F]$，WIP (lec 19 p 8)
+\end{proofs}
+
+當等號成立時，這個Extension被稱為是Galois的:
+\begin{dfn}[Galois Extension]
+	如果$\abs{\Aut(K/F)} = [K:F]$，稱$K$是$F$的一個Galois Extention，
+	$K/F$的Automorphism被記為$\Gal(K/F)$，稱為Galois Group。
+\end{dfn}
+
+\begin{ex}
+	Find the Galois group of the splitting field of $p(x)=x^3-2$ over $\QQ$
+
+	\begin{enumerate}
+		\item 找根：$\sqrt[3]{2},\sqrt[3]{2}\zeta_3,\sqrt[3]{2}\zeta_3^2$
+		\item 找generator: the splitting field of $p(x)=x^3-2$ is $K=\QQ(\sqrt[3]{2},\zeta_3)$
+		\item generator只能被送到他的conjugates(即minimal polynomials的根)：$\sqrt[3]{2}$的$m=x^3-2$，$\zeta_3$的$m=x^2-x+1$，任意$K/Q$的Automorphism可以是
+		      \begin{align*}
+			      \sqrt[3]{2} & \mapsto \sqrt[3]{2}, \sqrt[3]{2}\zeta_3, \sqrt[3]{2}\zeta_3^2 \\
+			      \zeta_3     & \mapsto \zeta_3, \zeta_3^2
+		      \end{align*}
+		      所以總共有六種automorphism，$|\Aut(K/\QQ)|=6$等於$[K:\QQ]$所以是Galois。
+		\item 接著identify他的group structure：首先找出這些Automorphism的generator，定義
+		      \begin{align*}
+			      \sigma: \sqrt[3]{2} & \mapsto \sqrt[3]{2}\zeta_3,\quad\zeta_3 \mapsto \zeta_3 \\
+			      \tau: \sqrt[3]{2}   & \mapsto \sqrt[3]{2},\quad \zeta_3\mapsto \zeta_3^2
+		      \end{align*}
+		      可以發現$\sigma^2: \sqrt[3]{2}\to\sqrt[3]{2}, \zeta_3\mapsto \zeta_3$，接著$\sigma^3$就是identity。$\tau^2$也是identity。
+		      可以驗證$\sigma\tau\neq\tau\sigma$和$\tau\sigma^2=\sigma\tau$，所以$G\cong D_{2\cdot 3}$
+		\item 事實上，$G$會permute $x^3-2$的根，所以應該會同構於$S_3$的子群，但他們又有一樣的order，所以$G\cong S_3$（我們知道$D_{2\cdot 3}\cong S_3$）。回到剛剛$D_6$的例子，我們可以label根$\{\sqrt[3]{2},\sqrt[3]{2}\zeta_3,\sqrt[3]{2}\zeta_3^2\}$成$\{1,2,3\}$，用permutation的記號可以寫$\sigma=(123)$，$\tau=(23)$。
+	\end{enumerate}
+\end{ex}
+
+\begin{ex}
+	Find the Galois group of the splitting field of $p(x)=x^4-3$ over $\QQ$
+
+	\begin{enumerate}
+		\item 找根：$3^{1/4}i^k,\quad k=0,1,2,3$
+		\item 找generator: $K=\QQ(3^{1/4},i)$
+		\item generator只能被送到他的conjugates:
+		      \begin{align*}
+			      3^{1/4} & \mapsto 3^{1/4}i^k,\quad k=0,1,2,3 \\
+			      i       & \pm i
+		      \end{align*}
+		      所以$|\Aut(K/\QQ)|=8=[K:\QQ]$所以是Galois。
+		\item Automorphism的generator:
+		      \begin{align*}
+			      \sigma: 3^{1/4} \mapsto 3^{1/4}i, \quad i\mapsto i \\
+			      \tau: 3^{1/4} \mapsto 3^{1/4}, \quad i\mapsto -i
+		      \end{align*}
+		      可以驗證$\sigma^4=\tau^2=1$和$\sigma\tau=\tau\sigma^3$，所以$G\cong D_8\le S_4$。將根$3^{1/4}i^k,\quad k=0,1,2,3$依序標記，用permutation記號可以寫$\sigma=(1234), \tau=(2,4)$。
+	\end{enumerate}
+\end{ex}
+
+% 4.1.3末尾
+% \begin{ex}
+% 	Find the Galois group of $\QQ(\zeta_p)/\QQ$, where $p$ is a prime
+
+% 	WIP
+% \end{ex}
+
+% \begin{ex}
+% 	Find the Galois group of $\FF_{p^n}/\FF_p$, where $p$ is a prime
+
+% 	WIP
+% \end{ex}
+
+
+\subsection{Fixed Fields}
+% 考慮$\Aut(K/F)$中的一個automorphism $\sigma$，考慮一個$K$的子集$E$會被$\sigma$ stabilized，
+
+$\Aut(K/F)$定義為所有$K$的automorphism fixing $F$，
+
+\begin{dfn}
+	$K/F$是一個field extension，$S$是$\Aut(K/F)$的一個子集，$K$的一個subfield被稱為$S$的fixed field如果所有$S$中的automorphism fix這個subfield。
+\end{dfn}
+
+注意到如果$S$的fixed field是\underline{所有$S$中automorphism的fixed field}的交集，他們都是包含$F$的$K$的subfields就是，所以fixed field的確是個field。
+
+\begin{ex}
+	$K=\QQ(\sqrt{2},\sqrt{3})/\QQ$，有兩個autumorphism:
+	\begin{align*}
+		\sigma(\sqrt2,\sqrt3) & =(-\sqrt2,\sqrt3) \\
+		\tau(\sqrt2,\sqrt3)&=(\sqrt2,-\sqrt3)
+	\end{align*}
+	那麼在$K$中同時被$\sigma, \tau$ fix的元素只有有理數，所以$S=\{\sigma,\tau\}$的fixed field是$\QQ$。
+\end{ex}
+
+\subsection{The Fundamental Theorem of Galois Theory}
+
+\begin{thm}[FTGT]\leavevmode
+	$K/F$: Galois Extension，$G=\Gal(K/F)$。
+
+	「夾在$K,F$中間的Intermediate field $E$ (即$K/E/F$)」和「所有$G$的subgroup $H$」之間有Galois correspondence：
+	\[
+		\left\{\text{Subfields $E$ of $K$ containing $F$}\right\}
+		\begin{matrix}
+			\underrightarrow{\text{Elements of $G$ fixing $E$}} \\
+			\underleftarrow{\text{Elements of $K$ fixed by $H$}}
+		\end{matrix}
+		\left\{\text{Subgroups $H$ of $G$}\right\}
+	\]
+	\noindent ("$\rightarrow$") 給定一個子體$E$，會對應到fix $E$中元素的所有automorphism組成的子群。
+
+	\noindent ("$\leftarrow$") 給定一個子群$H$，會對應到他的fixed fields。
+
+	\begin{enumerate}
+		\item Subgroup indices對應到extension degrees:
+		\[[K:E]=|H|\text{ and }[E:F]=|G:H|\]
+		\item $\Gal(K/E)=H$
+		\item If $\bar{F}$ is a fixed algebraic closure of $F$, then the embeddings of $E$ into
+		      $F$ are in bijection with the left cosets of $H$ in G.
+		\item $E/F$是Galois $\iff$ $H\lhd G$，在這個情況下$\Gal(E/F)\cong G/H$
+		\item  Intersections of subgroups correspond to joins of fields, and joins of
+		      subgroups correspond to intersections of fields.
+		\item  The lattice of subgroups of G is the same as the lattice of
+		      intermediate fields of K/F turned upside-down
+	\end{enumerate}
+\end{thm}
+
+\subsection{Applications of the FTGT}
+
+\subsubsection{Finite Fields and Irreducible Polynomials in $\FF_p[x]$}
+\subsubsection{The Primitive Element Theorem}
+\subsubsection{Properties of Composite Extensions}
+
+\subsubsection{Cyclotomic and Abelian Extensions}
+
+\begin{thm}[Galois Group of $\QQ(\zeta_n)$]
+	$\QQ(\zeta_n)/\QQ$是Galois的且$\Gal(\QQ(\zeta_n)/\QQ)\cong (\ZZ/n\ZZ)^\times$。
+	更明確地說，$a\in (\ZZ/n\ZZ)^\times $對應到一個automorphism $\sigma_a: \zeta_n\mapsto \zeta_n^a$。
+\end{thm}
+
+原則上，我們能從$G=\Gal(\QQ(\zeta_n)/\QQ)$的Group Structure得出所有$\QQ(\zeta_n)$的subfields，
+但如果$(\ZZ/n\ZZ)^\times$ 很複雜就會變很麻煩。我們先來看看$n=p$的簡單情況，這時
+$G\cong (\ZZ/p\ZZ)^\times$是個Cyclic group of order $p-1$。所以$G=\langle \sigma \rangle$，
+其中$\sigma(\zeta_p)=\zeta_p^a$，$a$是$G\cong (\ZZ/p\ZZ)^\times$的一個generator。
+由Galois對應關係，$\QQ(\zeta_p)$的subfields就是$\sigma^d$的fixed fields（$d|p-1$）。
+
+為了explicitly計算這些subfields，
+
+
+\subsection{Galois Groups of Polynomials}
+
+我們用FTGT算了很多intermediate fields和minimal polynomials，
+但這預設了我們一定能算出所有$K/F$的Galois Group。如果$K=F(p)$是任意一個
+polynomial的splitting field，那找出$\Gal(p)=Gal(K/F)$和$K/F$的degree
+並不是一個顯然的事情。
+
+WIP (separable? having irreducible factor ? and itself irreducible)
+
+% 我們分析一個generic polynomial的Galois group。
+
+% \subsubsection{Symmetric Functions}
+
+% 先研究多項式根與係數關係：....WIP
+
+% 假設$x_1,\cdots,x_n$是fixed indeterminates，定義它們的elementary symmetric function $s_k$為
+% \begin{align*}
+% 	s_1&=x_1+x_2+x_3+\cdots+x_n \\
+% 	s_2&=x_1x_2+x_1x_3+\cdots+x_1x_n+x_2x_3+\cdots+x_{n-1}x_n \\
+% 	s_3&=x_1x_2x_3+\cdots+x_{n-2}x_{n-1}x_n\\
+% 	s_n=x_1\cdots x_n
+% \end{align*}
+% 我們知道如果monic的$p$有根$x_1,\cdots,x_n$，那麼
+% \[
+% p(x)=(x-x_1)\cdots(x-x_n)=x^n-s_1 x^{n-1}+s_2 t^{n-2}+\cdots + (-1)^n s_n	
+% \]
+
+
+% \begin{prop}[Generic Galois Group]
+% 	$F(x_1,\ldots,x_n)$
+% \end{prop}
+
+% \begin{proof}
+	
+% \end{proof}
+
+\subsubsection{Discriminants of Polynomials}
+
+給定一個char不等於2的體$F$，國中就學過了我們可以用配方法找到一個$F[x]$中的二次多項式$p(x)=ax^2+bx+c$的根：
+\[
+x_{1,2}=\frac{-b\pm\sqrt{b^2-4ac}}{2a}	
+\]
+其中
+\[
+	D=b^2-4ac=(x_1-x_2)^2	
+\]
+用現在的術語來講，如果$D=0$那$p$就是inseparable，如果$D\neq 0$那$p$的根
+會生成extension $F(\sqrt{D})$，如果$D$是perfect square就只會是$F$。
+
+我們可以generalize他：
+
+\begin{dfn}
+	給定indeterminants $x_1,\cdots,x_n$，定義判別式
+	\[
+	\Delta(x_1,\cdots,x_n)=\prod_{i<j}(x_i-x_j)^2	
+	\]
+	對於一個多項式$p$，他的判別式並定義為他的根$r_1,...,r_n$的判別式：
+	\[
+	\Delta(p)=\Delta(r_1,...,r_n)
+	\]
+\end{dfn}
+
+WIP ($A_n$, $S_n$, 判別式與他的的根號在的extension)
+
+\subsubsection{Cubic Polynomials}
+
+現在討論三次多項式，reducible的情況就只有
+\begin{itemize}
+	\item 可以拆成三個一次式：trivial
+	\item 拆成一個一次式和一個irred二次式：splitting field就是一個quadratic extension，
+	galois group就是$\ZZ/2\ZZ$。
+\end{itemize}
+重要的是irreducible的三次多項式：設irred. $p(x)=x^3-a_1 x^2+a_2 x-a_3$有三個根$r_1,r_2,r_3$
+那麼因為$r_1+r_2+r_3=a_1$，$p$的splitting field $K=F(r_1,r_2,r_3)=F(r_1,r_2)$。
+Tower of extension是$F\subset F(r_1) \subset F(r_1,r_2)=K$，而對於degree我們有$[F(r_1):F]=3$和$[F(r_1,r_2):F(r_1)]\le (3-1)=2$
+
+因為$p$ irreducible，所以$\Gal(p)$就是$S_3$的一個transitive subgroup，也就是$S_3$或$A_3$，
+這兩個case可以用$p$的判別式區分。
+\[
+	\Gal(p) \cong
+	\begin{cases}
+		A_3 & \text{if } \Delta(f) \text{ is a square in }F\\
+		S_3 & \text{if } \Delta(f) \text{ is not a square in }F
+	\end{cases}
+\]
+
+\begin{thm}[Cardano's Formulas]
+	如果$\Char{F}\neq 2,3$且$g(x)=x^3+px+q$ irred. and sep.。定義
+	\[
+		A=\cbrt{-\frac{q}{2} + \sqrt{\frac{q^2}{4} + \frac{q^3}{27}}},\quad
+		B=\cbrt{-\frac{q}{2} - \sqrt{\frac{q^2}{4} + \frac{q^3}{27}}} 
+	\]
+	取三次方根使得$AB=-p/3$，那麼$g$的三個根為
+	\[
+	A+B, \zeta_3 A+\zeta_3^2 B, \zeta_3^2 A+\zeta_3 B	
+	\]
+\end{thm}
+
+\begin{proof}
+	考慮恆等式
+	\[(x+y)^3-3xy(x+y)=x^3+y^3\]
+	取$x+y=t$，$3xy=-p$，$x^3+y^3=q$，變為
+	\[t^3+pt+q=0\]
+	....WIP
+\end{proof}
+
+\subsection{Solvability in Radicals}
+
+\begin{dfn}[Simple Radical Extension：塞一個$n$次根號給一個field]
+	對一個$\beta=a^{1/n}$ such that $\beta^n=a\in F$，
+	$K=F(\beta)$被稱為一個simple radical extension。
+\end{dfn}
+其中，$a^{1/n}$的意思是在$\bar{F}$中隨便找一個$x^n-a$的根$\beta$。
+
+一般來說$F(a^{1/n})$不一定是Galois，(WIP normal closure?)。
+但如果$F$裡面有$n$th roots of unity，可以發現$x^n-a$是separable:
+\[(x^n-a, D(x^n-a))=(x^n-a, nx^{n-1})=1\]
+
+....WIP Lagrange resolvent.... motivation ...
+
+\begin{thm}[如果包含roots of unity則Simple Radical Extension是Galois且cyclic]\label{simple_radical_extension_galois_cyclic}
+	如果一個Field $F$滿足
+	\begin{enumerate}
+		\item $\Char{F}$不整除$n$
+		\item 包含$n$th root\textbf{s} of unity $\mu_n$
+	\end{enumerate}
+	那麼對於任意$a\in F^\times$，$F(a^{1/n})/F$是Galois且Galois group
+	是cyclic group of order dividing $n$。
+
+	反過來說，任意cyclic Galois extension $K/F$
+	of order dividing $n$可以寫成$K=F(a^{1/n})$ for some $a\in F$
+\end{thm}
+
+\begin{proof}
+	\noindent ("$\Rightarrow$"): 設$a\in F^\times$，$F$包含$n$th roots of unity，
+	那麼$K=F(a^{1/n})$是$x^n-a$在$F$上的splitting field，因為$\Char F\nmid n$且$a\neq 0$，所以
+	\[(x^n-a, D(x^n-a))=(x^n-a, nx^{n-1})=1\]
+	所以他separable，因此是Galois的，設$G=\Gal(K/F)$
+	
+	對於任意$\sigma\in G$，考慮$\sigma(a^{1/n})$，由homomorphicity，且$\sigma$ fixes $F\ni a$，有
+	\[
+	(\sigma(a^{1/n}))^n=\sigma(a)=a
+	\]
+	所以$\sigma(a^{1/n})=a^{1/n}\zeta$ for some $n$th root of unity $\zeta$。
+	
+	可以定義$\phi:G\to\mu_n$為
+	\[\phi(\sigma)=\zeta=\frac{\sigma(a^{1/n})}{a^{1/n}}\]
+	可以驗證$\phi$是Group homomorphism:
+	\[\phi(\sigma\tau)=\frac{\sigma\tau(a^{1/n})}{a^{1/n}}  
+	=  \frac{\sigma(a^{1/n}\zeta_\tau)}{a^{1/n}}
+	=  \frac{a^{1/n}\zeta_\tau\zeta_\sigma}{a^{1/n}}
+	=\zeta_\tau \zeta_\sigma\]
+	且$\ker\phi$裡只有trivial automorphism，由First Isomoprhism Theorem，$G\cong \phi(G) \le \mu_n\cong \ZZ/n\ZZ$。 
+\end{proof}
+
+我們稱$\sqrt{2}, \sqrt[n]{1}$和$\cbrt{2+7\sqrt{2+\sqrt5}-8\sqrt[9]{17}}$這樣的數為能用根式表達，先給出他的嚴謹定義：
+\begin{dfn}
+	\begin{itemize}
+		\item 	$\alpha\in F$ is expressible in Radicals if there exists a tower of extensions
+	\[F=K_0 \subseteq K_1 \subseteq K_2 \subseteq \cdots \subseteq K_d=K \]
+	such that $\alpha\in K$ and $K_{i+1}/K_i$ is a \textbf{simple radical extension} for each $i$.
+	\item We say $K/F$ is a \textbf{root extension}.
+	\item A polynomial $f(x)\in F[x]$ is \textbf{solvable in radicals} if each of its roots can be expressed in radicals.
+	\end{itemize}
+\end{dfn}
+這個Tower of extensions從左往右看在我們可以想成不斷地塞根號進來（造simple radical extension）做出$\alpha$。
+
+所以說，如果要研究一個$\alpha\in\bar{F}$是否能用根式表達，只要研究他的最小多項式（透過研究他的Galois conjugates）
+是否solvable in radicals。
+前面的定義只有說$\alpha$會在某個root extension裡，現在我們證明實際上它會在一個Galois root extension裡
+\begin{prop}[Elements Expressible in Radicals]
+	If $\alpha$ can be expressed in radicals over $F$, then $\alpha$ is contained in a root extension $K$ having
+	a tower $F=L_0\subseteq ...\subseteq L_K=L$ where $L$ is Galois over $F$ and each intermediate extension $L_{i+1}/L_i$
+	is Galois with cyclic Galois Group
+\end{prop}
+
+\begin{proof}
+	如果$\alpha$能用根式表達，那他的所有Galois conjugates也都可以，所以他的最小多項式的splitting field $K$也是一個root extension:
+	\[F=K_0\subseteq...\subseteq K_d=K\]
+	其中$K_{i+1}/K_i$代表裡面的第$i$個，由某個$K_i$中元素的$n_i$次根號來造的simple radical extension。
+	
+	現在我們考慮$E/F$是個只用unity的$n_i$次根號來造的extension，$E/F$實際上就是一個$n_1\cdots n_d$次的simple radical extension（$x^{n_1\cdots n_d}-1$的splitting field）。
+
+	於是以下composite field造出來的tower就是我們找的那個：
+	\[F\subseteq E=EK_0\subseteq EK_1 \subseteq \cdots \subseteq EK_d = EK \]
+	其中$EK_{i+1}/EK_i$是用$n_i$th root of unity造的simple radical extension。所以$\mu_{n_i}$被包含在$E\subseteq EK_i$，
+	所以由Theorem \ref{simple_radical_extension_galois_cyclic}可知這些extension都是galois且galois group是cyclic。
+\end{proof}
+由FTGT把這個tower of extension對應到一個chain of subgroups
+\begin{align*}
+	F&=L_0\subseteq L_1\subseteq \cdots \subseteq L_k=L \\
+	G&=G_0\ge G_1 \ge \cdots \ge G_k=\{e\}
+\end{align*}
+其中$G=\Gal(L/F)$，每個intermediate field $L_i$ Galois correspond到一個$G$的subgroup $G_i=\Gal(L_i/F)$。且$G_{i+1}\lhd G_i$，
+quotient之後的$G_i/G_{i+1}$是cyclic（order就是對應的simple radical的根號次數）
+
+\begin{dfn}
+	A finite group $G$ is solvable if there exists a chain of subgroups such that $G_{i+1}\lhd G_i$ and the quotient group is cyclic。
+\end{dfn}
+
+\begin{ex}
+	$D_{2n}$ is solvable since $G_1=\langle r \rangle$ is cyclic and the quotient group $D_{2n}/G_1=\langle \bar{s}\rangle\cong Z_2$ 
+\end{ex}
+
+\begin{ex}
+	$S_4$ is solvable:
+	\[S_4\ge A_4 \ge V_4 \ge \langle(12)(34)\rangle\ge\{e\}\]
+	where $V_4=\langle(12)(34),(13)(24)\rangle$. Note that $V_4\lhd A_4$ since it is in fact normal in $S_4$,
+	and each successive quotient is cyclic because it has prime order 2 or 3.
+\end{ex}
+
+
 
 
 \end{document}

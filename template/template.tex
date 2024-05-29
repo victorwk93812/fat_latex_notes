@@ -15,6 +15,8 @@
 % \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
 % set your own font :
 % \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{mathrsfs}
+% use \mathscr{A} in math mode for scripty A
 \usepackage{physics}
 % \setCJKmainfont{AR PL KaitiM Big5}
 % \setmainfont{Times New Roman}
@@ -213,6 +215,11 @@
   \begin{clm}[#1]$ $\par\nobreak\ignorespaces
 }{%
   \end{clm}
+}
+\newenvironment{thms}[1][]{%
+  \begin{thm}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{thm}
 }
 \newenvironment{ntns}[1][]{%
   \begin{ntn}[#1]$ $\par\nobreak\ignorespaces

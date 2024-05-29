@@ -1,0 +1,806 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{soul}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont[Path = ../../../fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{mathrsfs}
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+\newtheorem*{ntn}{Notation}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+\newenvironment{exs}[1][]{%
+  \begin{ex}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ex}
+}
+\newenvironment{rems}[1][]{%
+  \begin{rem}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{rem}
+}
+\newenvironment{dfns}[1][]{%
+  \begin{dfn}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{dfn}
+}
+\newenvironment{clms}[1][]{%
+  \begin{clm}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{clm}
+}
+\newenvironment{ntns}[1][]{%
+  \begin{ntn}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ntn}
+}
+\newenvironment{props}[1][]{%
+  \begin{prop}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{prop}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+\newcommand{\bracket}[1]{\langle #1 \rangle}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand\dunderline[2][.4pt]{%
+  \raisebox{-#1}{\underline{\raisebox{#1}{\smash{\underline{#2}}}}}}
+\newcommand{\cul}[2][black]{\color{#1}\underline{\color{black}{#2}}\color{black}}
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+\newcommand{\Gal}{\text{Gal}}
+\newcommand{\id}{\text{id}}
+\newcommand{\dist}{\text{dist}}
+\newcommand{\cha}{\text{char}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\normto}{\trianglelefteq}
+\newcommand{\snormto}{\triangleleft}
+
+\linespread{1.0}
+\pagestyle{fancy}
+\title{Ergodic Notes}
+\author{fat}
+% \date{\today}
+\date{May 24, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Ergodic Notes}
+
+\section{Measure Theory}
+
+\begin{dfns}
+	$(*)$
+	\begin{enumerate}
+		\item[(1)] $\mathscr{S} \subseteq 2^X$ is called a \textbf{semi-algebra} if 
+			\begin{enumerate}
+				\item[(i)] $\phi \in \mathscr{S}$
+					
+				\item[(ii)] If $A, B \in \mathscr{S}$ then $A \cap B \in \mathscr{S}$
+
+				\item[(iii)] If $A \in \mathscr{S}$ then $X \setminus A = \cap_{i = 1}^n E_i$ for pairwise disjoint $E_i \in \mathscr{S}$.
+			\end{enumerate}
+
+		\item[(2)] $\mathscr{A} \subseteq 2^X$ is called an \textbf{algebra} if 
+			\begin{enumerate}
+				\item[(i)] $\phi \in \mathscr{A}$
+					
+				\item[(ii)] If $A, B \in \mathscr{A}$ then $A \cap B \in \mathscr{A}$
+
+				\item[(iii)] If $A \in \mathscr{A}$ then $X \setminus A \in \mathscr{A}$ 
+			\end{enumerate}
+			Given $\mathscr{S}$ a semi-algebra.
+
+		\item[(3)] $\mathscr{B} \subseteq 2^X$ is called a \textbf{$\sigma$-algebra} if 
+			\begin{enumerate}
+				\item[(i)] $\phi \in \mathscr{B}$
+					
+				\item[(ii)] If $B_n \in \mathscr{B}$ for $n \geq 1$ then $\cup_{n = 1}^\infty B_n \in \mathscr{B}$.
+
+				\item[(iii)] If $A, B \in \mathscr{A}$ then $A \cap B \in \mathscr{A}$
+			\end{enumerate}
+			$(X, \mathscr{B})$ is a \textbf{measurable space}.\\
+			\textbf{Finite measure} is a function $m: \mathscr{B} \to \RR^+$ with $m(\phi) = 0$ and $m(\cup_{n = 1}^\infty B_n ) = \sum_{n = 1}^\infty m(B_n)$ where $B_n$ pairwise disjoint.\\
+			\textbf{Finite measure space} if $(X, \mathscr{B}, m)$ where $(X, \mathscr{B})$ is a measurable space and $m$ is a finite measure.\\
+			A \textbf{Probability Space} is a finite measure space with $m(X) = 1$, $m$ is the \textbf{probability measure}.\\ 
+			A \textbf{finite signed measure} is $m \to \RR$ , $m(\phi) = 0$ with countable additivity.
+	\end{enumerate}
+\end{dfns}
+
+Jordan decomposition $\Ra$ any finite signed measure = a difference of two finite measures.
+\begin{thm}[Jordan Decomposition]
+	Any finite signed measure is a difference of two finite measures.
+\end{thm}
+
+\begin{proofs}[Proof of sketch]
+	There exists $P, N \subseteq \mathscr{B}$ (the positive set and negative set) such that 
+	\begin{enumerate}
+		\item $P \cup N = X$ and $P \cap N = \phi$
+
+		\item $m(E) \geq 0$ for all $E \subseteq P$.
+
+		\item $m(E) \leq 0$ for all $E \subseteq N$.
+	\end{enumerate}
+	Construct these sets by countable additivity and induction.
+	Define the \textbf{Jordan decomposition}
+	\[
+		m^+(E) := m(E \cap P) \quad m^-(E) := -m(E \cap N)
+	\]
+	Then $m(E) = m^+(E) - m^-(E)$ is a difference of two finite measures.
+\end{proofs}
+
+Any intersection of ($\sigma$-)algebras are ($\sigma$-)algebras.  
+The \textbf{algebra generated by} $\mathscr{S}$ is defined by $\mathscr{A}(\mathscr{S}) = \{E = \cup_{i = 1}^n A_i: A_i ,..., A_n \text{ disjoint subsets of } \mathscr{S}\}$, which is the smallest algebra that contains $\mathscr{S}$. 
+
+\begin{dfn}
+	$(*)$
+	$M \subseteq 2^X$ is called a \textbf{monotone class} if $E_1 \subseteq E_2 \subseteq \cdots$ all belong to $M$ then so does $\cup_{n = 1}^\infty E_n$.
+	Same works for intersection of nested sets in $M$.
+\end{dfn}
+
+Any intersection of monotone classes is a monotone class.
+
+\begin{prop}
+	$(*)$
+	Given an algebra $\mathscr{A}$.
+	$\mathscr{B}(\mathscr{A})$ is exactly the monotone class generated by $\mathscr{A}$ (denoted by $M(\mathscr{A})$).
+\end{prop}
+
+\begin{proofs}
+	Clearly $M(\mathscr{A}) \subseteq \mathscr{B}(\mathscr{A})$ since a $\sigma$-algebra is necessarily a monotone class.
+
+	\par Next we see that a monotone class that is an algebra must be a $\sigma$-algebra.
+	This is because for any countable sets $E_k$ consider $F_n = \cup_{i = 1}^n E_i$.
+	Then $\cup_{i = 1}^\infty E_i = \cup_{i = 1}^\infty F_i$ must be in the monotone class.
+	By algebra we know that replacing the union by intersection in the above argument must also hold.
+
+	\par It remains to show that $M(\mathscr{A})$ is an algebra.
+	Consider $M_* := \{E \in M| X \setminus E \in M\}$.
+	Then $M_*$ is an algebra.
+	Can also show that $M_*$ is a monotone class.
+	Thus by the minimality of $M(\mathscr{A})$ we see that $M_*$ must be equal to $M(\mathscr{A})$, which is $M(\mathscr{A})$ is indeed an algebra.
+\end{proofs}
+
+\begin{thm}
+	$(*)$
+	If $\tau: \mathscr{S} \to \RR^+$ is finitely additive then there exists a unique finitely additive extension $\tau_1: \mathscr{A}(\mathscr{S}) \to \RR^+$.
+	If $\tau$ is countably additive then so is $\tau_1$.
+\end{thm}
+
+\begin{thm}
+	$(*)$
+	Let $\tau_1: \mathscr{A} \to \RR^+$ be countably additive and $\tau_1(X) = 1$.
+	Then there is a unique probability measure  $\tau_2: \mathscr{B}(\mathscr{A}) \to \RR^+$ that extends $\tau_1$.	
+\end{thm}
+
+\begin{proofs}
+	\par Define the outer measure for $T \subseteq 2^X$
+	\[
+		\tau^*(T) = \inf \left\{ \sum_n \tau_1(A_n): T \subseteq \cup_n A_n \text{ with } A_1, A_2, ... \in \mathscr{A} \right\}
+	\]
+
+	\par Let's prove that $m^*$ is indeed an outer measure (prove the $\sigma$-subadditivity).
+	Given countable $T_i \in 2^X$, we want to prove that $\tau^*(\cup_{i \in \NN} T_i) \leq \sum_{i \in \NN} \tau^*(T_i)$.
+	Now by the definition of infimum, there exists a covering $A_{in}, n \in \NN$ for each $T_i$ such that 
+	\[
+		\sum_{n \in \NN} \tau_1(A_{in}) \leq \frac{\epsilon}{2^i} + \tau^*(T_i)
+	\]
+	Note that the set $\{A_{in}\}, i \in \NN, n \in \NN$ is a countable cover for $\cup_{i \in \NN} T_i = T$.
+	Then
+	\[
+		m^*(T) \leq \sum_{i \in \NN} \sum_{n \in \NN} \tau_1(A_{in}) \leq \epsilon + \sum_{i \in NN} \tau^*(T_i)
+	\]
+	Since $\epsilon$ is arbitrary we are done.
+
+	Then restrict 
+	\[
+		\mathscr{B} := \{ M \in 2^X: \tau^*(S) = \tau^*(S \cap M) + \tau^*(S \cap M^c) \quad \forall S \in 2^X\}
+	\]
+	to be the $m^*$-Caratheodory measurable sets.
+	
+	\par Let's prove the $\sigma$-additivity of $\tau^*$ for measurable sets in $\mathscr{B}$ (actually proved in TA class last sem?).
+	For $S_1, S_2 \in \mathscr{B}$ disjoint, we have
+	\[
+		\tau^*(S \cup S') = \tau^*((S \cup S') \cap S') + \tau^*((S \cup S') \cap S) = \tau^*(S) + \tau^*(S')
+	\]
+	This is the finite additivity. 
+	To prove $\sigma$-additivity, one side $\tau^*(\cup_{i \in \NN} S_i) \leq \sum_{i \in \NN} \tau^*(S_i)$ comes from sub-additivity.
+	The other side:
+	\[
+		\tau^*(\bigcup_{i \in \NN} S_i) \geq \tau^*(\bigcup_{i = 1}^n S_i) = \sum_{i = 1}^n \tau^*(S_i)
+	\]
+	Since the left hand side is a monotone increasing sequence as $n \to \infty$, taking $n \to \infty$ completes the proof.
+
+	\par Now let's check that $\mathscr{B}$ contains $\mathscr{A}$.
+	Given $A \in \mathscr{A}$, if $\{A_n\}_1^\infty$ is a cover of an arbitrary $S \subseteq X$ then $\{A_n \cap A\}_1^\infty$ is a cover for $S \cap A$ and $\{A_n \cap A^c\}_1^\infty$ is a cover for $S \cap A^c$.
+	This gives $\tau^*(S \cap A) + \tau^*(S \cap A^c) \leq \tau^*(S)$.
+	On the other hand if $\{A_{1n}\}_1^\infty$ is a cover for $S \cap A$ and $\{A_{2n}\}_1^\infty$ is a cover for $S \cap A^c$ then their union is a cover for $S$.
+	This gives the other inequality.
+	
+	\par May check uniqueness by basic set operation.
+	Can also restrict the $\sigma$-algebra to be $\mathscr{B}(\mathscr{A})$, which is a sub-$\sigma$-algebra of $\mathscr{B}$.
+\end{proofs}
+
+\begin{thm}
+	$(X, \mathscr{B}, m)$ be a probability space and $\mathscr{B} = \mathscr{B}(\mathscr{A})$ for some algebra $\mathscr{A}$.
+	Then $\forall \epsilon > 0, \forall B \in \mathscr{B}$ there exists $A \in \mathscr{A}$ with $m(A \Delta B) < \epsilon$.
+\end{thm}
+
+\begin{proofs}[Proof of sketch]
+	$(*)$
+	Prove the set 
+	\[
+		\mathscr{B}' := \{A \in \mathscr{B}| \forall \epsilon > 0, \exists A' \in \mathscr{A} \text{ such that } m(A \Delta A') < \epsilon\}
+	\]
+	is a $\sigma$-algebra.
+	It is trivial that for each $A \in \mathscr{B}'$, we have $A^c \in \mathscr{B}'$.
+	For countable union use $\epsilon/2^i$-argument and by subadditivity.
+\end{proofs}
+
+\section{Integration}
+
+\begin{dfn}
+	$f: (X, \mathscr{B}, m) \to \RR$ is \textbf{measurable} if $f^{-1}(D) \in \mathscr{B}$ whenever $D \in \mathscr{B}(R)$, or equivalently $f^{-1}(c, \infty) \in \mathscr{B}$ for all $c \in \RR$.
+\end{dfn}
+
+Roadmap:
+\begin{enumerate}
+	\item Simple functions
+		\[
+			\int f \dd{m} = \sum_{i = 1}^n a_i m(A_i)
+		\]
+
+	\item Positive functions
+		\[
+			\int f \dd{m} = \lim_{n \to \infty} \int f_n \dd{m}
+		\]
+		where $f_n$ simple.
+
+	\item Measurable functions
+		\[
+			\int f \dd{m} = \int f^+ \dd{m} - \int f^- \dd{m}
+		\]
+
+	\item Complex measurable functions
+		\[
+			\int f \dd{m} = \int \Re f \dd{m} + i \int \Im f \dd{m}
+		\]
+\end{enumerate}
+
+\begin{dfn}
+	$f$ is called \textbf{integrable} if $\int f^+ \dd{m}, \int f^- \dd{m} < \infty$.
+	If $f$ is complex then we mean $\Re(f)$ and $\Im(f)$ are both integrable.
+	$L^1(X, \mathscr{B}, m)$ is the space of all integrable functions $f: X \to \CC$ quotiented by the set of measure zero functions as usual.
+	$\int_A f \dd{m}$ denotes $\int f \chi_A \dd{m}$.
+\end{dfn}
+
+Note that $f$ integrable iff $|f|$ integrable and $f = g$ a.e. implies identical integral.
+$L^1$ is a Banach space with $\|f\|_1 = \int |f| \dd{m}$.
+
+\begin{thm}[Monotone Convergence Theorem]
+	Suppose $f_1 \leq f_2 \leq f_3 \leq ...$ where each $f_i$ integrable. 	
+	Then 
+	\[
+		\int \lim_{n \to \infty} f_n \dd{m} = \lim_{n \to \infty} \int f_n \dd{m}
+	\]
+\end{thm}
+
+\begin{thm}[Fatou's lemma]
+	Let $\{f_n\}$ be a sequence of measurable real-valued functions bounded below by an integrable function.
+	We have
+	\[
+		\int \liminf f_n \dd{m} \leq \liminf \int f_n \dd{m}
+	\]
+\end{thm}
+
+\begin{thm}[Dominated Convergence Theorem]
+	If $g: X \to \RR$ is integrable and $\{f_n\}$ is a sequence of measurable real-valued functions with $|f_n| \leq g$ a.e. and $\lim_{n \to \infty} f_n = f$ a.e. then 
+	\[
+		\lim_{n \to \infty} \int f_n \dd{m} = \int f \dd{m}
+	\]
+\end{thm}
+
+\section{Function Spaces}
+
+\begin{dfn}
+	$(*)$
+	Let $L^p(X, \mathscr{B}, m)$ be the space of all measurable functions $f: X \to \CC$ with $|f|^p$ integrable quotiented by a space of measure zero functions.
+	$\|f\|_p := (\int |f|^p \dd{m})^{1/p})$ is the $L^p$ norm.
+\end{dfn}
+
+$(*)$
+$L^p$ is Banach.
+If $m(X) < \infty$ and $1 \leq p < q$ then $L^q(X, \mathscr{B}, m) \subseteq L^p(X, \mathscr{B}, m)$.
+
+\subsection{Hilbert Spaces}
+
+$(*)$
+$L^p(X, \mathscr{B}, m)$ is Hilbert iff $p = 2$.
+We have $(f, g) = \int f \overline{g} \dd{m}$ with $\|f\|_{L^2} = \sqrt{(f, f)}$.
+\[
+	|(f, g)| \leq \|f\| \cdot \|g\|  \forall f, g \in \mathscr{H}
+\]
+$L^2(X, \mathscr{B}, m)$ is separable iff $(X, \mathscr{B}, m)$ has a countable basis, that is $\exists \{E_n\}$ of $\mathscr{B}$ such that $\forall \epsilon > 0, \forall B \in \mathscr{B}$, there is some $n$ with $m(B \Delta E_n) < \epsilon$.
+If $X$ is a metric space and $\mathscr{B}$ is the $\sigma$-algebra of Borel subsets of $X$ and $m$ any probability measure then $(X, \mathscr{B}, m)$ has a countable basis.
+A Hilbert space is separable iff there exists $\{e_n\}_1^\infty$ an orthonormal basis.
+All $v \in \mathscr{H}$ could be written into $v = \sum_{n = 1}^\infty a_n e_n$ and
+\[
+	\|v\|^2 = \sum_{n = 1}^\infty |a_n|^2
+\]
+with $\sum_{n = 1}^\infty |a_n|^2 < \infty$.
+
+\section{Haar Measure}
+
+\begin{thm}[Theorem 0.13]
+	$(*)$
+	Let $G$ be a compact topological group.
+	Then there exists a unique probability measure $m$ defined on the $\sigma$-algebra $\mathscr{B}(G)$ of Borel subsets of $G$ such that $m$ is rotation invariant, i.e., $m(x E) = m(E) \forall x \in G, \forall E \in \mathscr{B}(G)$, and regular. 
+	Such a $m$ is called the \textbf{Haar measure}.
+	Can check that the rotation invariance condition could be written as
+	\[
+		\int_G f(x y) \dd{m} y = \int_G f(y) \dd{m}(y) \quad \forall f \in L^1(m), \forall x \in G
+	\]
+\end{thm}
+
+Note that if $G$ is metrisable then we could remove the regularity assumption since any probability measure would be regular.
+
+\begin{ex}
+	$(*)$
+	For the circle group $K = \{z \in \CC| |z| = 1\}$ the Haar measure is the normalized circular Lebesgue measure.
+\end{ex}
+
+\section{Character Theory}
+
+\begin{dfn}
+	$(*)$
+	Let $G$ be a locally compact abelian group.
+	A \textbf{character} $\varphi$ is a continuous homomorphism from $G \to K$.
+	$\widehat{G}$ is the set of all characters.
+	Can define group multiplication by pointwise multiplication, thus $\widehat{G}$ is an abelian group.
+	Define the \textbf{compact open topology} on $\widehat{G}$ by
+	\[
+		\T := \text{ the topology generated by } \{f \in \widehat{G}: f(C) \subseteq U \text{ for some compact } C \subseteq G \text{ and for some open } U \subseteq K\}
+	\]
+\end{dfn}
+
+\begin{exs}
+	$(*)$
+	\begin{enumerate}
+		\item $\widehat{\RR} \simeq \RR$
+
+		\item $\widehat{\ZZ} \simeq \SS^1$
+
+		\item $\widehat{\SS^1} \simeq \ZZ$
+
+		\item $\widehat{(\SS^1)^n} \simeq \ZZ^n$
+	\end{enumerate}
+\end{exs}
+
+\begin{props}
+	$(*)$
+	\begin{enumerate}
+		\item $\widehat{G}$ is a locally compact abelian group under the compact open topology.
+
+		\item $G \simeq \widehat{\widehat{G}}$.
+
+		\item If $\Gamma$ is a subgroup of $\widehat{G}$ then $H = \{g \in G| \gamma(g) = 1 \quad \forall \gamma in \Gamma \}$ is a closed subgroup of $G$ and $(\widehat{G/H)} = \Gamma$.
+
+			\begin{proofs}[Idea of Proof]
+				By the universal property of quotient spaces, we see that a continuous map $\varphi: G \to K$ induces a unique continuous map $\tilde{\varphi}: G/H \to K$ and vice versa.
+			\end{proofs}
+
+		\item If $H$ is a closed subgroup of $G$ and $H \neq G$ then there exists a $\gamma \in \widehat{G}, \gamma \not\equiv 1$ such that $\gamma(h) = 1 \forall h \in H$.
+
+		\item Let $G$ be compact.
+			The members of $\widehat{G}$ form an orthonormal basis for $L^2(m)$ where $m$ is the Haar measure.
+
+			\begin{proofs}[Proof]
+				It suffices to show 
+				\[
+					\int_G \gamma(x) \dd{m}(x) = 0 \quad \text{ if }\gamma \not\equiv 1
+				\]
+				Since $m$ is the Haar measure we have
+				\[
+					\int \gamma(x) \dd{m}(x) = \int \gamma(ax) \dd{m}(x) = \gamma(a) \int \gamma(x) \dd{m}(x)
+				\]
+				Choose $a$ such that $\gamma(a) \neq 1$ then $\gamma(x) \dd{m}(x) = 0$.
+			\end{proofs}
+
+		\item If $G$ is compact then $\widehat{G}$ is an orthonormal basis for $L^2(m)$ where $m$ is the Haar measure.
+			That is, $\forall f \in L^2(m)$, we can write
+			\[
+				f = \sum_{\gamma \in \widehat{G}} a_\gamma \gamma
+			\]
+			This is \textbf{Fourier series} $f$.
+			We also have the Parseval's identity:
+			\[
+				\|f\|_{L^2}^2 = \sum_{\gamma \in \widehat{G}}|a_\gamma|^2
+			\]
+
+	\end{enumerate}
+\end{props}
+
+\begin{rem}
+	$(*)$
+	Note that a compact Hausdorff space $X$ is metrisable iff $C(X)$ the space of all continuous funtions is separable.
+	If $(X, \mathscr{B}, m)$ is in addition a measure space, then $C(X)$ is dense in $L^2(X)$.
+	Thus we see that in the compact metric space case $L^2(X, \mathscr{B}, m)$ is separable.
+\end{rem}
+
+\section{Measure Preserving Transformations}
+
+\begin{dfn}
+	$(*)$
+	Suppose $(X_1, \mathscr{B}_1, m_2), (X_2, \mathscr{B}_2, m_2)$ are probability spaces.
+	Let $T: X_1 \to X_2$ be a transformation.
+	\begin{enumerate}
+		\item[(a)] $T$ is \textbf{measurable} if $T^{-1}(\mathscr{B}_2) \subseteq \mathscr{B}_1$.
+
+		\item[(b)] $T$ is \textbf{measure-preserving} if $T$ is measurable and $m_1(T^{_1}(B_2)) = m_2(B_2) \forall B_2 \in \mathscr{B}_2$.
+
+		\item[(c)] $T$ is \textbf{invertible measure-preserving} if $T$ is measure-preserving, bijective, and $T^{-1}$ is also measure-preserving.
+	\end{enumerate}
+\end{dfn}
+
+\begin{thm}[Theorem 1.1]
+	$(*)$
+	Given probability spaces $(X_1, \mathscr{B}_1, m_1), (X_2, \mathscr{B}_2, m_2)$ and $T: X_1 \to X_2$ a transformation.
+	Let $\mathscr{S}_2$ be a semi-algebra generating $\mathscr{B}_2$.
+	If for each $A_2 \in \mathscr{B}_2$ we have $T^{-1}(A_2) \in \mathscr{B}_1$ and $m_1(T^{-1}(A_2)) = m_2(A_2)$ then $T$ is measure-preserving.
+\end{thm}
+
+\begin{proofs}
+	$(*)$
+	Let $\mathscr{C}_2 = \{B \in \mathscr{B}_2: T^{-1}(B) \in \mathscr{B}_1, m_1(T^{-1}(B)) = m_2(B)\}$.\\
+	\[
+		\mathscr{S}_2 \subseteq \mathscr{C}_2 \Ra \mathscr{A}(\mathscr{S}_2) \subseteq \mathscr{C}_2 \subseteq \mathscr{B}_2 = M(\mathscr{A}(\mathscr{S}_2))
+	\]
+	Can check that $\mathscr{C}_2$ is a monotone class, so $M(\mathscr{A}_2(\mathscr{S}_2)) \subseteq \mathscr{C}_2$, which completes the proof.
+\end{proofs}
+
+\begin{exs}
+	$(*)$
+	\begin{enumerate}
+		\item The identity transformation on a measure space is measure-preserving.
+
+		\item The transformation $T(x) = ax$ defined on any compact group $G$ (called a \textbf{rotation}) preserves Haar measure.
+
+		\item A continuous automorphism of a compact group preserves Haar measure.
+
+			\begin{proofs}
+				Let $A$ be the continuous automorphism on $G$.
+				Define a probability measure on the Borel subsets of $G$ by $\mu(E) = m(A^{-1}(E))$.
+				Then $\mu$ is regular since $m$ is regular.
+				We have
+				\[
+					\mu(Ax \cdot E) = m(A^{-1}(A x \cdot E)) = m(x \cdot A^{-1}(E)) = \mu(E)
+				\]
+				Thus $\mu$ is rotation invariant.
+				We see that $\mu = m$ is the unique Haar measure on $G$, thus $A$ is measure-preserving.
+			\end{proofs}
+	\end{enumerate}
+\end{exs}
+
+% https://www.math.uchicago.edu/~may/VIGRE/VIGRE2010/REUPapers/Gleason.pdf
+
+	
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

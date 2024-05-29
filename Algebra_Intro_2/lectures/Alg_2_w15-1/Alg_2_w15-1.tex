@@ -15,6 +15,8 @@
 % \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
 % set your own font :
 % \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{mathrsfs}
+% use \mathscr{A} in math mode for scripty A
 \usepackage{physics}
 % \setCJKmainfont{AR PL KaitiM Big5}
 % \setmainfont{Times New Roman}
@@ -189,11 +191,6 @@
 }{%
   \end{proof}
 }
-\newenvironment{thms}[1][\proofname]{%
-  \begin{thm}[#1]$ $\par\nobreak\ignorespaces
-}{%
-  \end{thm}
-}
 \newenvironment{sols}[1][]{%
   \begin{sol}[#1]$ $\par\nobreak\ignorespaces
 }{%
@@ -218,6 +215,16 @@
   \begin{clm}[#1]$ $\par\nobreak\ignorespaces
 }{%
   \end{clm}
+}
+\newenvironment{thms}[1][]{%
+  \begin{thm}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{thm}
+}
+\newenvironment{ntns}[1][]{%
+  \begin{ntn}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ntn}
 }
 %%%%
 %Lists
@@ -354,128 +361,217 @@
 
 \linespread{1.5}
 \pagestyle{fancy}
-\title{Intro to Algebra 2 W14-2}
+\title{Intro to Algebra 2 W15-1}
 \author{fat}
 % \date{\today}
-\date{May 24, 2024}
+\date{May 29, 2024}
 \begin{document}
 \maketitle
 \thispagestyle{fancy}
 \renewcommand{\footrulewidth}{0.4pt}
 \cfoot{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
-\fancyhead[L]{Intro to Algebra 2 W14-2}
-
-\section*{10.2 Module Homomorphisms and Quotient Modules}
-
-Under this section all modules are left modules.
+\fancyhead[L]{Intro to Algebra 2 W15-1}
 
 \begin{dfn}
-	Let $M, N$ be $R$-modules.
-	\begin{enumerate}
-		\item[(1)] If $\phi:M \to N$ is a (additive) group homomorphism such that $\phi(r \cdot m) = r \cdot \phi(m) \quad \forall m \in M, \forall r \in R$ then we say $\phi$ is a \textbf{$\bm{R}$-module homomorphism}.
-
-		\item[(2)] If $\phi$ is both 1-1 and onto, then we say $\phi$ is a \textbf{$\bm{R}$-module isomorphism}, $M$ and $N$ are \textbf{isomorphic} and write $M \stackrel{\phi}{\simeq} N$.
-
-		\item[(3)] $\ker \phi := \{m \in M: \phi(m) = 0\}$, $\Im \phi := \{n \in N: \exists m \in M \text{ such that } \phi(m) = n\}$.
-			(Note that $\ker \phi \leq M$ and $\Im \phi \leq N$.)
-	\end{enumerate}
+	Let $M_1, ..., M_n$ be (left) $R$-modules.
+	Define an action of $R$ on the abelian group $M_1 \times \cdots \times M_n$ by 
+	\[
+		r \cdot (m_1, ..., m_n) := (r m_1, ..., r m_n)
+	\]
+	Then $M_1 \times \cdot \times M_n$ is an $R$-module.
+	We denote this $R$-module by $M_1 \oplus \cdots \oplus M_n$ and call it the \textbf{direct sum} of $M_1, ..., M_n$.
 \end{dfn}
 
-\begin{exs}
+\begin{prop}[Proposition 5]
+	Let $N_1, ..., N_m$ be (left) $R$-submodules.
+	The following are equivalent.
 	\begin{enumerate}
-		\item[(1)] $R = \ZZ$.
-			Then a $\ZZ$-module homomorphism is simply an additive group homomorphism.
+		\item[(1)] The function $\phi: N_1 \times \cdots \times N_m \to N_1 + \cdots + N_k$ with $(a_1, ..., a_k) \mapsto a_1 + \cdots + a_k$ is an isomorphism.
+			
+		\item[(2)] $\forall j, N_j \cap (\sum_{i \neq j} N_i) = 0$.
 
-		\item[(2)] $R = F$.
-			A $F$-module is a vector space over $F$.
-			Then a $F$-module homomorphism is simple a linear transformation.
-
+		\item[(3)] Every element $x$ of $N_1 + \cdots + N_k$ can be written uniquely as $x = a_1 + \cdots + a_k, a_j \in N_j$.
 	\end{enumerate}
-\end{exs}
-
-\begin{prop}[Proposition 3]
-	Assume that $M$ is an $R$-module and $N \leq M$.
-	Define an action of $F$ on $M/N$ (set of cosets of $N$ in $M$) by $r \cdot (a + N) := r \cdot a + N$.
-	Then the action is well-defined and $M/N$ becomes an $R$-module under this action of $R$ called the \textbf{quotient of $\bm{M}$ by $\bm{N}$}.
-	Moreover, the map $M \mapsto M/N$ defined by $a \mapsto a + N$ is an $R$-module homomorphism with $\ker = N$.
 \end{prop}
 
-\begin{proofs}
-	Well-definedness:
-	If $a + N = b + N$ then $a = b + n$ for some $n \in N$.
-	Then
-	\[
-		\begin{split}
-			r \cdot (a + N) &= r \cdot a + N = r \cdot (b + n) + N = r \cdot b + r \cdot n + N\\
-			&= r \cdot b + N = r \cdot (b + N)
-		\end{split}
-	\]
-	We skip the proof of other statements.
-\end{proofs}
-
-\begin{ntn}
-	Let $A, B$ be submodules of $M$.
-	Then 
-	\[
-		A + B:= \{a + b: a \in A, b \in B\}
-	\]
-	(which is a submodule of $M$ and is the smallest submodule of $M$ containing $A$ and $B$)
-\end{ntn}
-
-\begin{thms}[Theorem 4 Isomorphism Theorems]
-	\begin{enumerate}
-		\item[(1)] Let $\phi: M \to N$ be an $R$-module homomorphism.
-			Then $M/\ker \phi \simeq \Im \phi$.
-
-		\item[(2)] If $A, B \leq M$, then
-			\[
-				\quot{(A + B)}{B} \simeq \quot{A}{A \cap B}
-			\]
-
-		\item[(3)] If $A \leq B \leq M$, then
-			\[
-				\quot{M/A}{B/A} \simeq \quot{M}{B}
-			\]
-
-		\item[(4)] Let $N \leq M$.
-			Then there exists a bijection between \{submodules of $M$ containing $N$\} and \{submodules of $M/N$\}, which is $L: N \leq L \leq M \lra L/N$.
-	\end{enumerate}
-\end{thms}
+\begin{proof}
+	See the proof of corresponding result in linear algebra.
+\end{proof}
 
 \begin{dfn}
-	Let $M$ be an $R$-module.
+	Suppose that $M = N_1 + \cdots + N_k$ such that any of the 3 conditions holds, the we say $M$ is the \textbf{(internal) direct sum} of $N_1, ..., N_k$ and write $M = N_1 \oplus \cdots \oplus N_k$.
+\end{dfn}
 
-	\begin{enumerate}
-		\item[(1)] Let $A$ be a subset of $M$.
-			Then $RA := \{r_1 a_1 + \cdots + r_n a_n: n > 0, r_j \in R, a_j \in A\}$ is called the \textbf{submodule generated by $\bm{A}$}.
-			(If $R$ has 1, then $RA$ is the smallest submodule containing $A$.)
-
-		\item[(2)] Let $N \leq M$.
-			If $A$ is a subset of $M$ such that $N = RA$, then we say $A$ is a \textbf{generating set} or a \textbf{set of generators} for $N$.
-			If $|A| < \infty$, then we say $N$ is \textbf{fintely generated}.
-
-		\item[(3)] If $N = Ra (:= \{ra: r \in R\})$, then we say $N$ is the \textbf{cyclic submodule generated by $\bm{A}$}.
-	\end{enumerate}
+\begin{dfn}
+	An $R$-module $F$ is said to be \textbf{free} on a subset $A$ if $\forall x \neq 0 \in R, \exists ! r_a \in R$ for $a \in A$ such that $x = \sum_{a \in A} r_a a$, where $r_a = 0$ for all but finitely many $a \in A$.
+	In such a case, we say $A$ is a \textbf{basis} or a \textbf{set of free generators} for $F$.
+	When $R$ is commutative the cardinality of $A$ is called the \textbf{rank} of $F$.
+	(When $R$ is not commutative, it is possible that a free module has 2 bases with different cardinality.)
 \end{dfn}
 
 \begin{exs}
 	\begin{enumerate}
-		\item[(1)] $R = \ZZ$.
-			Then $\ZZ a = \{ra: r \in \ZZ\} = \ev{a}$ is the cyclic subgroup generated by $a$.
+		\item[(1)] Let $R$ be a ring with 1. 
+			$F = R^n$ is a free $R$-module on $\{(1, ..., 0), (0, 1, 0, ..., 0), ..., (0, ..., 0, 1)\}$. 
 
-		\item[(2)] $M = R$.
-			Then $RA = $ left ideal generated by $A$ and for $a \in R$, $Ra =$ left ideal generated by $a$.
-
-		\item[(3)] Let $F$ be a field, $V$ a vector space over $F$.
-			Let $T: V \to V$ be a linear transformation.
-			Recall that $T$ gives rise to an $F[x]$-module structure on $V$ by $(a_n x^n + \cdots + a_n) \cdot v := a_n T^n (v) + \cdots + a_1 T(v) + a_0 v$.
-			Then $U$ is the cyclic $F[x]$-submodule generated by $v$ 
-			$\Lra U = \{a_n T^n(v) + \cdots + a_0 v: n \geq 0, a_j \in F\}$
-			$\Lra T\text{-cyclic subspace of } V \text{ generated by }V$
-
+		\item[(2)] Let $A$ be any set.
+			We let $F(A)$ denote 
+			\[
+				F(A) := \left\{\sum_{i = 1}^n r_i a_i: n \geq 0, a_i \in A, r_i \in R\right\}
+			\]
+			be the formal sum, which is assigning a coefficient to each $a$ with all but finitely many equal to 0.
+			Then $F(A)$ is a free $R$-module on the set $\{1 \cdot a: a \in A\}$, which we may identify with $A$.
 	\end{enumerate}
 \end{exs}
+
+\begin{thm}[Theorem 4]
+	Let $R$ be a PID and $M$ be a free $R$-module of rank $m$.
+	Let $N$ be a submodule of $M$.
+	Then
+	\begin{enumerate}
+		\item[(1)] $N$ is a free module of rank $n \leq m$.
+
+		\item[(2)] There exis a basis $\{y_1, ..., y_m\}$ for $M$ and $d_1, ..., d_n \in R$ with $d_1 | d_2 | \cdots | d_n$ such that $\{d_1 y_1, ..., d_n y_n\}$ is a basis for $N$.
+	\end{enumerate}
+\end{thm}
+
+\begin{thm}[Theorem 5, Fundamental Theorem for Finitely Generated Modules over a PID: existence of invariant factors]
+	Let $R$ be a PID.
+	Let $M$ be a finitely generated $R$-module.
+	Then 
+	\[
+		M \simeq R^r \oplus \quot{R}{(d_1)} \oplus \cdots \oplus \quot{R}{(d_n)}
+	\]
+	for some $r \geq 0$ and $d_1, ..., d_n \in R$ with $d_1 | d_2 | \cdots | d_n$.
+\end{thm}
+
+\begin{dfn}
+	We call $r$ the \textbf{rank} of $M$ and $d_1, ..., d_n$ the \textbf{invariant factors} of $M$.
+\end{dfn}
+
+\begin{proofs}[Proof of Theorem 5]
+	Assume that $M$ is generated by $a_1, ..., a_m$.
+	Let $F$ be the free $R$-module on some $\{x_1, ..., x_m\}$.
+	Define an $R$-module homomorphism $\phi: F \to M$ by $\phi(r_1 x_1 + \cdots r_m x_m) = r_1 a_1 + \cdots + r_m a_m$.
+	Clearly $\phi$ is surjective since $M$ is generated by $a_1, ..., a_m$.
+	$\Ra F/\ker \phi \simeq \Im \phi = M$.
+	By Theorem 4, $\exists$ a basis $\{y_1, ..., y_m\}$ for $F$, and $d_1 ,..., d_n \in R, n \leq m$ such that $\{d_1 y_1, ..., d_n y_n\}$ is a basis for $\ker \phi$.
+	Now $F = R y_1 \oplus \cdots \oplus R y_m$ and $\ker \phi = R (d_1 y_1) \oplus \cdots \oplus R (d_n y_n)$
+	$\Ra F/\ker \phi \simeq R/(d_1) \oplus \cdots \oplus R/(d_n) \oplus R^{m - n}$.
+	(Define $R \to R y/R (ay)$ by $r \mapsto r y + R(ay)$.
+	Clearly, it's surjective with $\ker = (a) \Ra R /(a) \simeq R y / R(ay)$.)
+\end{proofs}
+
+\par By the Chinese Remainder Theorem, if $d = p_1^{e_1} \cdots p_k^{e_k}, p_j$ irreducibles (= primes in PID) then $R/(d) \simeq R/(p_1^{e_1}) \times \cdots \times R/(p_k^{e_k})$.
+Then
+
+\begin{thm}[Theorem 6, Fundamental Theorem for Finitely Generated Module over a PID: existence of elementary divisors]
+	Same assumptions as in Theorem 5.
+	Then
+	\[
+		M \simeq R^r \oplus \quot{R}{(p_1^{e_1})} \oplus \cdots \oplus \quot{R}{(p_k^{e_k})}
+	\]
+	for some $r \geq 0, p_i^{e_i}$ prime powers in $R$ ($p_i$ need not be distinct).
+\end{thm}
+
+\begin{dfn}
+	The prime powers are called the \textbf{elementary divisors} of $M$.
+\end{dfn}
+
+\begin{thm}[Theorem 9, Fundamental Theorem for Finitely Generated Modules over a PID]
+	Let $R$ be a PID.
+	Two finitely generated $R$-modules are isomorphic
+	$\Lra$ They have the same rank and same invariant factors
+	$\Lra$ They have the same rank and the same elementary divisors.
+\end{thm}
+
+Apply the fundamental theorem to the case $R = \ZZ$
+
+\begin{cor}[Fundamental Theorem for Finitely Generated Abelian Groups]
+	Let $G$ be a finitely generated abelian group.
+	Then
+	\[
+		G \simeq \ZZ^r \oplus \quot{\ZZ}{d_1 \ZZ} \oplus \cdots \oplus \quot{\ZZ}{d_n \ZZ}
+	\]
+	for some $r \geq 0, d_1, ..., d_n \in \NN$ with $d_1 | d_2 | \cdots | d_n$.
+\end{cor}
+
+\begin{ex}
+	Let $V$ be a finite-dimensional vector space over an algebraically closed field $F$ (e.g. $F = \CC$).
+	Let $T: V \to V$ be a linear transformation.
+	Recall that $T$ gives rise to an $F[x]$-module structure on $V$ by  $(a_n x^n + \cdots + a_0) v = a_n T^n(x) + \cdots + a_0 v$.
+	Now $F[x]$ is a PID.
+	By Theorem 5+9, $V \simeq F[x]^r \oplus F[x]/(p_1(x)^{e_1}) \oplus \cdots \oplus F[x]/(p^n(x)^{e_n})$ for some unique $r \geq 0$ and irreducible polynomials $p_j(x), e_j \geq 1$.
+	Since $\dim V < \infty$, $r$ must be $0$ ($\dim F[x] = \infty$).
+	Moreover, since $F$ is algebraically closed, a polynomial $f$ in $F[x]$ is irreducible $\Lra f$ has degree 1.
+	Thus $p_j(x) = x - \lambda_j$ for some $\lambda_j \in F$.
+	Now let $V_j$ be the subspace of $V$ corresponding to $F[x]/(p_j(x)^{e_j}) = F[x]/((x - \lambda_j)^{e_j})$.
+	Now $F[x]/((x - \lambda_j)^{e_j})$ is annihilated by $(x - \lambda_j)^{e_j}$ (meaning that $\forall v \in F[x]/((x - \lambda_j)^{e_j})$ we have $(x - \lambda_j)^{e_j} v = 0$).
+	Since $V_j \simeq F[x]/((x - \lambda_j)^{e_j})$, we also have $(x - \lambda_j)^{e_j} v = 0 \quad \forall v \in V_j$
+	$\Ra (T - \lambda_j)^{e_j} (v) = 0 \quad \forall v \in V_j$, i.e. $v_j$ is a generalized eigenvector with eigenvalue $\lambda_j$.
+\end{ex}
+
+It remains to prove Theorem 4.
+
+\begin{lem}
+	Let $R$ be a PID and $M$ be a free $R$-module of rank $m$ with basis $\{x_1, ..., x_m\}$.
+	Let $N$ be the $R$-submodule generated by
+	\[
+		\begin{split}
+			v_1 &= a_{11} x_1 + \cdots + a_{1m} x_m\\
+			&\quad \quad \quad \quad \quad \vdots\\
+			v_n &= a_{n 1} x_1 + \cdots + a_{nm} x_m\\
+		\end{split}
+	\]
+	Then there exst a basis $y_1, ..., y_m$ for $M$ and $d_1, ..., d_k \in R, k \leq \min(m, n)$ such that $\{d_1 y_1, ..., d_k y_k\}$ is a basis for $N$.
+	More precisely, let $A \in M_{n \times m} (R)$ be the matrix 
+	\[
+		A = 
+		\begin{pmatrix}
+			a_{11} & \cdots &a_{1m}\\
+			\vdots & & \vdots\\
+			a_{n1} & \cdots & a_{nm}
+		\end{pmatrix}
+	\]
+	Then $\exists U \in \text{GL}(n, R), V \in \text{GL}(n, R)$ such that $(UAV)_{ij} = \delta_{ij} d_i$ ($d_i = 0$ if $i > k$) with $d_1 | d_2 | \cdots | d_k$.
+	Then 
+	\[
+		\begin{pmatrix}
+			y_1\\
+			\vdots\\
+			y_m
+		\end{pmatrix}
+		=
+		V^{-1}
+		\begin{pmatrix}
+			x_1\\
+			\vdots\\
+			x_m
+		\end{pmatrix}
+	\]
+	($D$ is called the Smith normal from for $A$).
+	Moreover, if we let $\delta_0(A) = 1$ and $\delta_j(A) = \text{GCD(all the determinants of } i \times i \text{ minors of }A)$.
+	Then $d_i = \delta_i(A)/\delta_{i - 1}(A)$ for $i = 1, ..., k$.
+\end{lem}
+
+\begin{ex}
+	$M = \ZZ^3$, $N$ the subgroup generated by $(12, 6, -6), (-16, -4, 12), (-24, -6, 18)$ and $(4, 4, 6)$.
+	Let
+	\[
+		A = 
+		\begin{pmatrix}
+			12 & 6 & -6\\
+			-16 & -4 & 12\\
+			-24 & -6 & 18\\
+			4 & 4 & 6
+		\end{pmatrix}
+	\]
+	$\delta_0(A) = 1, \delta_1(A) = 2, \delta_2(A) = 12, \delta_3(A) = 144$.
+	$\Ra d_1 = 2/1 = 2, d_2 = 12/2 = 6, d_3 = 144/12 = 12$.
+	$\exists$ a basis $\{y_1, y_2, y_3\}$ for $M = \ZZ^3$ such that $\{2 y_1, 6 y_2, 12 y_3\}$ is a basis for $N$
+	$\Ra M/N \simeq \ZZ/(2) \oplus \ZZ/(6) \oplus \ZZ/(12)$.
+\end{ex}
 
 
 

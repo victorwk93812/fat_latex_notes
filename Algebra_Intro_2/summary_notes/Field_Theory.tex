@@ -296,10 +296,26 @@
 \newcommand{\Z}{\mathcal Z}
 \newcommand{\ZZ}{\mathbb Z}
 
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+
+\newcommand{\normto}{\trianglelefteq}
+\newcommand{\snormto}{\triangleleft}
 
 \newcommand{\cbrt}[1]{\sqrt[3]{#1}}
 
 \DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\cha}{char}
+\DeclareMathOperator{\diag}{diam}
+\DeclareMathOperator{\dist}{dist}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Gal}{Gal}
 \DeclareMathOperator{\id}{id}
@@ -1889,19 +1905,6 @@ $\phi$顯然保乘法，由Freshman's Dream可知$\phi$保加法，因此他是h
 
 \subsection{上課筆記}
 
-\begin{dfn}[Conjugates over a field]
-	Given a field $F$.
-	If $\alpha,\beta\in\bar{F}$
-	have the same minimal polynomial over $F$, then
-	we say they are conjugates over $F$.
-\end{dfn}
-
-\ex
-
-注意到$i,-i$在$\RR$上是conjugates，因為他們的minimal polynomial都是$x^2+1$。
-但在$\CC$上不是，因為這時minimal polynomials是$x-i$和$x+i$。
-
-
 Let $F'=F$ and $\phi=\id_F$ in Theorem \ref{lift_simple}, we know that if $\alpha,\beta\in \bar{F}$ are conjugates over $F$, then $\phi_{\alpha,\beta}$ is an isomorphism from $F(\alpha)$ to $F(\beta)$ such that $\phi_{\alpha,\beta}|_F=\id_F$.
 Conversely,
 
@@ -2221,7 +2224,7 @@ $\Leftrightarrow \forall \alpha \in E, m_{\alpha, F}(x)$ splits completely over 
 	that is a bijection and has $\sigma(x+y)=\sigma(x)+\sigma(y)$ and $\sigma(xy)=\sigma(x)\sigma(y)$ for any $x,y\in K$.
 	The collection of automorphism of $K$ is denoted $\Aut(K)$.
 \end{dfn}
-可以驗證$(\Aut(K),+)$和$(\Aut(K),\cdot)$都是group。
+可以驗證$(\Aut(K),+)$、$(\Aut(K),\cdot)$和$(\Aut(K),\circ)$都是group。
 
 \ex 對各種field $K$舉幾個$\Aut(K)$中元素的例子：
 
@@ -2245,6 +2248,11 @@ trivial group $\{\id\}$，因為$\QQ$和$\FF_p$的prime subfield就是自己。
 	such that $\sigma(a)=a$ for every $a\in F$ ).
 \end{dfn}
 而他會是原本的automorphism group的子群：$\Aut(K/F)\le \Aut(K)$。
+
+注意到如果$\sigma\in\Aut(K/F)$，對於任意的$v,w\in K$和$\alpha\in F$都有個
+\[\sigma(v+w)=\sigma(v)+\sigma(w),\quad \sigma(\alpha v)=\alpha\sigma(v)\]
+因為$K/F$可以想成一個vector space，我們只要確定$\sigma$在$K/F$的basis上的值就好，因為$\sigma$保乘法，所以實際上
+只要確定在generator上的值。
 
 \begin{ex}
 	Find all automorphisms of $\QQ(\sqrt{D})/\QQ$ ($D$ is squarefree)
@@ -2328,6 +2336,10 @@ trivial group $\{\id\}$，因為$\QQ$和$\FF_p$的prime subfield就是自己。
 \subsection{Automorphisms of Splitting Fields}
 
 我們將首先看一個關於多項式根的有用性質：
+\begin{dfn}[Normality]
+	$K/F$ is normal if for any irreducible $p(x)\in F[x]$, if $p(x)$ has a root in $K$ then $p(x)$ splits completely in $K$
+\end{dfn}
+
 \begin{thm}[Normality (有一個根就有全部) of Splitting Fields]
 	如果$K$是$F$上的一個spltting field，且$p(x)\in F[x]$是irreducible。那麼：
 	如果$p(x)$在$K$有一個根，$p(x)$就在$K$中splits completely
@@ -2344,7 +2356,7 @@ trivial group $\{\id\}$，因為$\QQ$和$\FF_p$的prime subfield就是自己。
 	再次把$\sigma$ lift 成$\tau: K\to K(\beta)$ fixing $F$。特別地，因為isomorphism保degree，$[K:F]=[K(\beta):F]$，所以$K=K(\beta)$，$\beta\in K$。
 \end{proofs}
 
-\begin{thm}[Splitting Fields的Automorphisms的數量上界]
+\begin{thm}[Splitting Fields的Automorphisms的數量上界]\label{automorphism_upper_bound}
 	如果$K$是$F$上的一個Splitting Field，那麼$\abs{\Aut(K/F)} \le [K:F]$。
 	等號成立若且唯若$K/F$ separable。
 \end{thm}
@@ -2432,11 +2444,113 @@ $\Aut(K/F)$定義為所有$K$的automorphism fixing $F$，
 	$K=\QQ(\sqrt{2},\sqrt{3})/\QQ$，有兩個autumorphism:
 	\begin{align*}
 		\sigma(\sqrt2,\sqrt3) & =(-\sqrt2,\sqrt3) \\
-		\tau(\sqrt2,\sqrt3)&=(\sqrt2,-\sqrt3)
+		\tau(\sqrt2,\sqrt3)   & =(\sqrt2,-\sqrt3)
 	\end{align*}
 	那麼在$K$中同時被$\sigma, \tau$ fix的元素只有有理數，所以$S=\{\sigma,\tau\}$的fixed field是$\QQ$。
 \end{ex}
 
+\subsection{Characterizations of Galois Extensions}
+
+\begin{prop}[Automorphism的線性獨立性]
+	If $\sigma_1,\cdots,\sigma_n$ are distinct embeddings of a field $K$ into a field $L$, then they are linearly independent as functions on $K$. In particular, distinct automorphism of $K$ are linearly independent as functions.
+\end{prop}
+
+\begin{proof}
+	對$n$做歸納法，$n=1$的時候顯然，考慮$n>1$且$\sigma_1,\cdots,\sigma_n$滿足
+	\[a_1\sigma_1+\cdots+a_n\sigma_n=0\]
+	也就是他們的某個線性組合是零函數，對任意的$x\in K$有
+	\[a_1\sigma_1(x)+\cdots+a_n\sigma_n(x)=0...(*)\]
+	因為$\sigma_1\neq\sigma_2$，所以一定存在$0\neq y\in K$使得$\sigma_1(y)\neq\sigma_2(y)$。將$xy$送進前面的零函數，由homomorphicity有
+	\[a_1\sigma_1(x)\sigma_1(y)+\cdots a_n\sigma_n(x)\sigma_n(y)=0\]
+	把(*)乘以$\sigma_1(y)$減去他，有
+	\[a_2\sigma_2(x)[\sigma_1(y)-\sigma_2(y)]+\cdots+a_n\sigma_n(x)[\sigma_1(y)-\sigma_n(y)]=0\]
+	由induction hypothesis這$n-1$個term的係數$a_i[\sigma_1(y)-\sigma_i(y)]=0$，特別是$a_2[\sigma_1(y)-\sigma_2(y)]=0$，由前面的假設可知$a_2=0$，所以$(*)$就變成$n-1$個terms，由induction hypothesis所有$a_i=0$。
+\end{proof}
+
+\begin{thm}[Fixed field的degree]\label{fixed_field_degree}
+	$[K:F]<\infty$ and $H\le \Aut(K/F)$. If $E$ is the fixed field of $H$, then $[K:E]=|H|$.
+\end{thm}
+
+\begin{proof}
+	設$H=\{\sigma_1,...,\sigma_h\}$，$[K:E]=d$，$\{v_1,...,v_d\}$為$K/E$的一組basis。現在只須說明$h=d$
+
+	設這些$H$中automorphisms的某個線性組合為零(映射):$x_1\sigma_1+\cdots+x_h\sigma_h=0$，考慮它們在basis上的取值
+	\begin{align*}
+		\sigma_1(v_1)x_1+\sigma_2(v_1)x_2+\cdots+\sigma_h(v_1)x_h & = 0        \\
+		\sigma_1(v_2)x_1+\sigma_2(v_2)x_2+\cdots+\sigma_h(v_2)x_h & = 0        \\
+		                                                          & \ \ \vdots \\
+		\sigma_1(v_d)x_1+\sigma_2(v_d)x_2+\cdots+\sigma_h(v_d)x_h & = 0        \\
+	\end{align*}
+	這是一個$d$條方程$h$個變數的線性方程組，如果$h>d$，那麼一定有非零解$(x_1,...,x_h)=(c_1,...,c_h)$。
+	選取任意的係數$a_i\in F$乘上第$i$條方程相加，並定義$w=\sum_{i=1}^d a_i v_i$，有
+	\[c_1\sigma_1(w)+\cdots+c_h\sigma_h(w)=0\]
+	因為$a_i$是任意的且$v_i$是basis，所以$w$是$K/E$中的任一向量，這說明$\sigma_j$有非零係數的零線性組合，即是線性相依的，與前面的prop矛盾。
+
+	如果$h<d$....證明懶得看了....WIP
+\end{proof}
+
+\begin{thm}[Characterizations of Galois Extensions]
+	對體擴張$K/F$的以下敘述等價:
+	\begin{enumerate}
+		\item $K/F$ is Galois: $\abs{\Aut(K/F)}=[K:F]$
+		\item $K/F$ is the splitting field of some \textbf{separable} polynomial in $F[x]$
+		\item $F$ is the fixed field of $\Aut(K/F)$
+		\item $K/F$ is a normal, finite, separable extension.
+	\end{enumerate}
+\end{thm}
+
+\begin{proof}
+	\begin{itemize}
+		\item $1 \iff 26 $: 由Theorem \ref{automorphism_upper_bound}
+		\item $2\Rightarrow4$: ???
+		\item $4\Rightarrow2$: 由Finiteness可以假設$K=F(\alpha_1,...,\alpha_n)$ for some $a_i\in\bar{F}$。
+		      設$m_i(x)=m_{\alpha_i, F}$，由$K/F$的separability可知他們都separable。由normality可知這些$m_i$的所有根都在$K$中。設$m=LCM(m_i)$，
+		      則$K/F$就是separable的$m$的splitting field。
+		\item $1\iff 3$: 若$K/F$ Galois, $\abs{\Aut(K/F)}=[K:F]$
+
+		      $E$是$\Aut(K/F)$的fixed field
+
+		      $\iff \abs{\Aut(K/F)}=[K:E]=\dfrac{[K:F]}{[E:F]}$ (由Theorem \ref{fixed_field_degree})
+
+		      $\iff [E:F]=1 \iff E=F$
+		\item $1\Rightarrow4$: 如果$K/F$ Galois，那麼$K/F$ finite且separable (由2)。現在只剩下normality要證明。設$G=\Gal(K/F)=\{\sigma_1,\cdots,\sigma_n\}$。
+		      設$p(x)\in F[x]$ irreducible，對任意一個$p(x)$的根$\alpha\in K$，考慮所有的automorphism在這個根上的取值$\sigma_1(\alpha),\cdots,\sigma_n(\alpha)$（$\alpha$的所有Galois conjugates），
+		      重新排序，把裡面的$k$個distinct的拿出來，造一個separable的$q(x)=(x-\sigma_1(\alpha))\cdots(x-\sigma_k(\alpha))\in K[x]$，我們證明$p(x)=q(x)$透過證明他們互相整除對方。
+
+		      對每個$\tau\in G$，由群的特性有$\tau G=G$，也就是他permute $q(x)$的根，所以他fix $q(x)$的係數（也就是係數都在fixed field $F$中），因此由3可知$q(x)\in F[x]$。
+
+		      注意到distinct automorphisms中一定包含identity map，所以$p(x)$的根$\alpha$也是$q(x)$的一個根，因為$p(x)$是$\alpha$的minimal polynomial，所以$p(x)|q(x)$。
+
+		      另一方面，$p(\alpha)=0$，所以$\sigma_i(p(\alpha))=p(\sigma_i(\alpha))=0$，即$q(x)$的根$\sigma_1(\alpha),...,\sigma_k(\alpha)$也是$p(x)$的根，所以$q(x)|p(x)$。
+
+	\end{itemize}
+\end{proof}
+
+上面的證明啟發了以下定義：
+
+\begin{dfn}[Conjugates over a field]
+	Given a field $F$.
+	If $\alpha,\beta\in\bar{F}$
+	have the same minimal polynomial over $F$, then
+	we say they are conjugates over $F$.
+
+	If $K/F$ is a Galois extension and $\alpha\in K$, the element $\sigma(\alpha)$ for $\sigma\in \Gal(K/F)$ are called
+	Galois conjugates of $\alpha$ over $F$. If $E$ is an intermediate field of $K/F$, the field $\sigma(E)=\{\sigma(\alpha):\alpha\in E\}$
+	is called a Galois conjugate field of $E$ over $F$
+\end{dfn}
+
+至於為何要叫他conjugate，後面會證明intermediate field $E$對應到一個subgroup $H$，那麼$\sigma(E)$就對應到
+conjugate subgroup $\sigma H \sigma^{-1}$。
+
+我們前面證明的東西，簡單來說，就是the Galois conjugates of $\alpha$ over $F$ are the roots of
+the minimal polynomial of $\alpha$ over $F$。
+
+\ex
+
+注意到$i,-i$在$\RR$上是conjugates，因為他們的minimal polynomial都是$x^2+1$。
+但在$\CC$上不是，因為這時minimal polynomials是$x-i$和$x+i$。
+
+\clearpage
 \subsection{The Fundamental Theorem of Galois Theory}
 
 \begin{thm}[FTGT]\leavevmode
@@ -2451,13 +2565,14 @@ $\Aut(K/F)$定義為所有$K$的automorphism fixing $F$，
 		\end{matrix}
 		\left\{\text{Subgroups $H$ of $G$}\right\}
 	\]
-	\noindent ("$\rightarrow$") 給定一個子體$E$，會對應到fix $E$中元素的所有automorphism組成的子群。
-
-	\noindent ("$\leftarrow$") 給定一個子群$H$，會對應到他的fixed fields。
-
+	\noindent ("$\rightarrow$") 給定一個子體$E$，會對應到fix $E$中元素的所有automorphism組成的子群：
+	\[H:=\{\sigma\in\Gal(K/F): \forall a \in E, \sigma(a)=a\}\]
+	有點像$a$的stabilizer
+	\noindent ("$\leftarrow$") 給定一個子群$H$，會對應到他的fixed fields：
+	\[E:=\{a\in K: \forall \sigma\in H, \sigma(a)=a\}\]
 	\begin{enumerate}
 		\item Subgroup indices對應到extension degrees:
-		\[[K:E]=|H|\text{ and }[E:F]=|G:H|\]
+		      \[[K:E]=|H|\text{ and }[E:F]=|G:H|\]
 		\item $\Gal(K/E)=H$
 		\item If $\bar{F}$ is a fixed algebraic closure of $F$, then the embeddings of $E$ into
 		      $F$ are in bijection with the left cosets of $H$ in G.
@@ -2469,9 +2584,76 @@ $\Aut(K/F)$定義為所有$K$的automorphism fixing $F$，
 	\end{enumerate}
 \end{thm}
 
-\subsection{Applications of the FTGT}
+\begin{proof}
+	\begin{itemize}
+		\item (1):
+	\end{itemize}
 
+
+\end{proof}
+
+\subsection{Applications of the FTGT}
+使用FTGT我們就可以更系統性的找subfield和Galois group的subgroups，再來玩前面看過的例子：
+
+\begin{ex}
+	$K=\QQ(\theta,\omega)/\QQ$, where $\theta=2^{1/3}$ and $\omega=\zeta_3$。
+
+	\begin{itemize}
+		\item $K$ is Galois: Since it is the splitting field of (separable) $x^3-2$ over $\QQ$。
+		\item Automorphism must map the generators to one of its Galois Conjugates:
+		      \[\theta\mapsto\theta, \theta\omega, \theta\omega^2\quad \omega\mapsto \omega, \omega^2\]
+
+		\item Identify the group structure and the subgroup lattice: Define
+		      \[\sigma(\theta,\omega)=(\theta\omega,\omega)\quad\tau(\theta,\omega)=(\theta,\omega^2)\]
+		      we can verify (as previously) that $G=\langle \sigma,\tau\rangle\cong \langle r,s\rangle =D_6$
+	\end{itemize}
+\end{ex}
+
+\clearpage
 \subsubsection{Finite Fields and Irreducible Polynomials in $\FF_p[x]$}
+
+\begin{itemize}
+	\item Finite field with $p^n$ elements $\FF_{p^n}$ is unique up to isomorphism, which is the splitting field of $x^{p^n}-x$
+	      \[
+		      \mathbb{F}_{p^n}:= \{ \text{roots of } x^{p^n} - x \in \mathbb{F}_p[x] \text{ in } \overline{\mathbb{F}_p} \}
+	      \]
+	\item $G=\Gal(\FF_{p^n}/\FF_p)=\expval{\phi_{(n)}}$ is cyclic and generated by the
+	      Frobenius automorphism
+	      \[\phi_{(n)}:\FF_{p^n}\to\FF_{p^n}, x\mapsto x^p\]
+	\item Subgroups of $G$ are of the form $\expval{\phi^d}$ where $d|n$.
+	      They are all normal since $G$ is abelian.
+	\item So the corresponding fixed fields are Galois. Explicitly, they are
+	      \[
+		      \FF_{p^d}=\{ \text{roots of } x^{p^d} - x \in \mathbb{F}_p[x] \text{ in } \FF_{p^n} \}
+	      \]
+	      since $\phi^d(x)=x^{p^d}$
+	      % \item $\Gal(\FF_{p^d}/\FF)$
+\end{itemize}
+
+% \begin{thm}[$x^{p^n}-x$的因式分解]
+% 	$x^{p^n}-x$在$\FF_p[x]$中可以分解為數個次數整除$n$的首一多項式。
+% \end{thm}
+
+% \begin{proof}
+% 	設$q(x)=x^{p^n}-x$，則他是separable且跟
+% \end{proof}
+
+\begin{dfn}
+	The Mobius function is defined as \[\mu_n=\begin{cases}
+			1      & \text{ for } n=1                                         \\
+			0      & \text{ if $n$ has a square factor}                       \\
+			(-1)^r & \text{ if $n$ is squarefree and has $r$ distinct factor}
+		\end{cases}\]
+\end{dfn}
+
+\begin{prop}[Mobius Inversion Formula]
+	\[
+		g(n)=\sum_{d|n}f(d)
+		\quad\Rightarrow\quad
+		f(n)=\sum_{d|n}\mu(d)g(n/d)
+	\]
+\end{prop}
+
 \subsubsection{The Primitive Element Theorem}
 \subsubsection{Properties of Composite Extensions}
 
@@ -2524,18 +2706,18 @@ WIP (separable? having irreducible factor ? and itself irreducible)
 % \end{prop}
 
 % \begin{proof}
-	
+
 % \end{proof}
 
 \subsubsection{Discriminants of Polynomials}
 
 給定一個char不等於2的體$F$，國中就學過了我們可以用配方法找到一個$F[x]$中的二次多項式$p(x)=ax^2+bx+c$的根：
 \[
-x_{1,2}=\frac{-b\pm\sqrt{b^2-4ac}}{2a}	
+	x_{1,2}=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 \]
 其中
 \[
-	D=b^2-4ac=(x_1-x_2)^2	
+	D=b^2-4ac=(x_1-x_2)^2
 \]
 用現在的術語來講，如果$D=0$那$p$就是inseparable，如果$D\neq 0$那$p$的根
 會生成extension $F(\sqrt{D})$，如果$D$是perfect square就只會是$F$。
@@ -2545,11 +2727,11 @@ x_{1,2}=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 \begin{dfn}
 	給定indeterminants $x_1,\cdots,x_n$，定義判別式
 	\[
-	\Delta(x_1,\cdots,x_n)=\prod_{i<j}(x_i-x_j)^2	
+		\Delta(x_1,\cdots,x_n)=\prod_{i<j}(x_i-x_j)^2
 	\]
 	對於一個多項式$p$，他的判別式並定義為他的根$r_1,...,r_n$的判別式：
 	\[
-	\Delta(p)=\Delta(r_1,...,r_n)
+		\Delta(p)=\Delta(r_1,...,r_n)
 	\]
 \end{dfn}
 
@@ -2561,7 +2743,7 @@ WIP ($A_n$, $S_n$, 判別式與他的的根號在的extension)
 \begin{itemize}
 	\item 可以拆成三個一次式：trivial
 	\item 拆成一個一次式和一個irred二次式：splitting field就是一個quadratic extension，
-	galois group就是$\ZZ/2\ZZ$。
+	      galois group就是$\ZZ/2\ZZ$。
 \end{itemize}
 重要的是irreducible的三次多項式：設irred. $p(x)=x^3-a_1 x^2+a_2 x-a_3$有三個根$r_1,r_2,r_3$
 那麼因為$r_1+r_2+r_3=a_1$，$p$的splitting field $K=F(r_1,r_2,r_3)=F(r_1,r_2)$。
@@ -2572,7 +2754,7 @@ Tower of extension是$F\subset F(r_1) \subset F(r_1,r_2)=K$，而對於degree我
 \[
 	\Gal(p) \cong
 	\begin{cases}
-		A_3 & \text{if } \Delta(f) \text{ is a square in }F\\
+		A_3 & \text{if } \Delta(f) \text{ is a square in }F     \\
 		S_3 & \text{if } \Delta(f) \text{ is not a square in }F
 	\end{cases}
 \]
@@ -2581,11 +2763,11 @@ Tower of extension是$F\subset F(r_1) \subset F(r_1,r_2)=K$，而對於degree我
 	如果$\Char{F}\neq 2,3$且$g(x)=x^3+px+q$ irred. and sep.。定義
 	\[
 		A=\cbrt{-\frac{q}{2} + \sqrt{\frac{q^2}{4} + \frac{q^3}{27}}},\quad
-		B=\cbrt{-\frac{q}{2} - \sqrt{\frac{q^2}{4} + \frac{q^3}{27}}} 
+		B=\cbrt{-\frac{q}{2} - \sqrt{\frac{q^2}{4} + \frac{q^3}{27}}}
 	\]
 	取三次方根使得$AB=-p/3$，那麼$g$的三個根為
 	\[
-	A+B, \zeta_3 A+\zeta_3^2 B, \zeta_3^2 A+\zeta_3 B	
+		A+B, \zeta_3 A+\zeta_3^2 B, \zeta_3^2 A+\zeta_3 B
 	\]
 \end{thm}
 
@@ -2629,31 +2811,31 @@ Tower of extension是$F\subset F(r_1) \subset F(r_1,r_2)=K$，而對於degree我
 	那麼$K=F(a^{1/n})$是$x^n-a$在$F$上的splitting field，因為$\Char F\nmid n$且$a\neq 0$，所以
 	\[(x^n-a, D(x^n-a))=(x^n-a, nx^{n-1})=1\]
 	所以他separable，因此是Galois的，設$G=\Gal(K/F)$
-	
+
 	對於任意$\sigma\in G$，考慮$\sigma(a^{1/n})$，由homomorphicity，且$\sigma$ fixes $F\ni a$，有
 	\[
-	(\sigma(a^{1/n}))^n=\sigma(a)=a
+		(\sigma(a^{1/n}))^n=\sigma(a)=a
 	\]
 	所以$\sigma(a^{1/n})=a^{1/n}\zeta$ for some $n$th root of unity $\zeta$。
-	
+
 	可以定義$\phi:G\to\mu_n$為
 	\[\phi(\sigma)=\zeta=\frac{\sigma(a^{1/n})}{a^{1/n}}\]
 	可以驗證$\phi$是Group homomorphism:
-	\[\phi(\sigma\tau)=\frac{\sigma\tau(a^{1/n})}{a^{1/n}}  
-	=  \frac{\sigma(a^{1/n}\zeta_\tau)}{a^{1/n}}
-	=  \frac{a^{1/n}\zeta_\tau\zeta_\sigma}{a^{1/n}}
-	=\zeta_\tau \zeta_\sigma\]
-	且$\ker\phi$裡只有trivial automorphism，由First Isomoprhism Theorem，$G\cong \phi(G) \le \mu_n\cong \ZZ/n\ZZ$。 
+	\[\phi(\sigma\tau)=\frac{\sigma\tau(a^{1/n})}{a^{1/n}}
+		=  \frac{\sigma(a^{1/n}\zeta_\tau)}{a^{1/n}}
+		=  \frac{a^{1/n}\zeta_\tau\zeta_\sigma}{a^{1/n}}
+		=\zeta_\tau \zeta_\sigma\]
+	且$\ker\phi$裡只有trivial automorphism，由First Isomoprhism Theorem，$G\cong \phi(G) \le \mu_n\cong \ZZ/n\ZZ$。
 \end{proof}
 
 我們稱$\sqrt{2}, \sqrt[n]{1}$和$\cbrt{2+7\sqrt{2+\sqrt5}-8\sqrt[9]{17}}$這樣的數為能用根式表達，先給出他的嚴謹定義：
 \begin{dfn}
 	\begin{itemize}
 		\item 	$\alpha\in F$ is expressible in Radicals if there exists a tower of extensions
-	\[F=K_0 \subseteq K_1 \subseteq K_2 \subseteq \cdots \subseteq K_d=K \]
-	such that $\alpha\in K$ and $K_{i+1}/K_i$ is a \textbf{simple radical extension} for each $i$.
-	\item We say $K/F$ is a \textbf{root extension}.
-	\item A polynomial $f(x)\in F[x]$ is \textbf{solvable in radicals} if each of its roots can be expressed in radicals.
+		      \[F=K_0 \subseteq K_1 \subseteq K_2 \subseteq \cdots \subseteq K_d=K \]
+		      such that $\alpha\in K$ and $K_{i+1}/K_i$ is a \textbf{simple radical extension} for each $i$.
+		\item We say $K/F$ is a \textbf{root extension}.
+		\item A polynomial $f(x)\in F[x]$ is \textbf{solvable in radicals} if each of its roots can be expressed in radicals.
 	\end{itemize}
 \end{dfn}
 這個Tower of extensions從左往右看在我們可以想成不斷地塞根號進來（造simple radical extension）做出$\alpha$。
@@ -2671,7 +2853,7 @@ Tower of extension是$F\subset F(r_1) \subset F(r_1,r_2)=K$，而對於degree我
 	如果$\alpha$能用根式表達，那他的所有Galois conjugates也都可以，所以他的最小多項式的splitting field $K$也是一個root extension:
 	\[F=K_0\subseteq...\subseteq K_d=K\]
 	其中$K_{i+1}/K_i$代表裡面的第$i$個，由某個$K_i$中元素的$n_i$次根號來造的simple radical extension。
-	
+
 	現在我們考慮$E/F$是個只用unity的$n_i$次根號來造的extension，$E/F$實際上就是一個$n_1\cdots n_d$次的simple radical extension（$x^{n_1\cdots n_d}-1$的splitting field）。
 
 	於是以下composite field造出來的tower就是我們找的那個：
@@ -2681,8 +2863,8 @@ Tower of extension是$F\subset F(r_1) \subset F(r_1,r_2)=K$，而對於degree我
 \end{proof}
 由FTGT把這個tower of extension對應到一個chain of subgroups
 \begin{align*}
-	F&=L_0\subseteq L_1\subseteq \cdots \subseteq L_k=L \\
-	G&=G_0\ge G_1 \ge \cdots \ge G_k=\{e\}
+	F & =L_0\subseteq L_1\subseteq \cdots \subseteq L_k=L \\
+	G & =G_0\ge G_1 \ge \cdots \ge G_k=\{e\}
 \end{align*}
 其中$G=\Gal(L/F)$，每個intermediate field $L_i$ Galois correspond到一個$G$的subgroup $G_i=\Gal(L_i/F)$。且$G_{i+1}\lhd G_i$，
 quotient之後的$G_i/G_{i+1}$是cyclic（order就是對應的simple radical的根號次數）
@@ -2692,7 +2874,7 @@ quotient之後的$G_i/G_{i+1}$是cyclic（order就是對應的simple radical的�
 \end{dfn}
 
 \begin{ex}
-	$D_{2n}$ is solvable since $G_1=\langle r \rangle$ is cyclic and the quotient group $D_{2n}/G_1=\langle \bar{s}\rangle\cong Z_2$ 
+	$D_{2n}$ is solvable since $G_1=\langle r \rangle$ is cyclic and the quotient group $D_{2n}/G_1=\langle \bar{s}\rangle\cong Z_2$
 \end{ex}
 
 \begin{ex}
@@ -2703,7 +2885,227 @@ quotient之後的$G_i/G_{i+1}$是cyclic（order就是對應的simple radical的�
 \end{ex}
 
 
+\clearpage
+\section{Module Theory}
 
+把Vector space $(V,F,+,\cdot)$中的scalars從field改成ring就變成Module $(M,R,+,\cdot)$:
+\begin{dfn}[Module]
+	Let $R$ be a ring.
+	A \textbf{left $\bm{R}$-module} (or left modules over $R$) is an abelian group $(M,+)$ together with an action of $R$ on $M$
+	(想成Scalar product)
+	\[\cdot: R \times M \to M\]
+	such that
+	\begin{enumerate}
+		\item[(1)] $(r + s) \cdot m = r \cdot m + s \cdot m \quad \forall r, s \in R, m \in M$.
+
+		\item[(2)] $(r s) \cdot m = r (s \cdot m)$
+
+		\item[(3)] $r\cdot (m_1 + m_2) = r \cdot m_1 + r \cdot m_2 \quad \forall r \in R, m_1, m_2 \in M$
+
+		\item[(4)] If $R$ has 1, then $1 \cdot m = m \quad \forall m \in M$.
+	\end{enumerate}
+	Right $R$-modules are similarly defined.
+\end{dfn}
+\begin{lem}
+	Let $M$ be a left $R$-module.
+	Then $0_R \cdot m = 0_M \quad \forall m \in M$.
+\end{lem}
+
+\begin{ex}
+	\begin{enumerate}
+		\item $(M,\ZZ,+,\cdot)$: $R = \ZZ, M$ is any abelian group.
+		      Define $\ZZ \times M \to M$ by
+		      \[r \cdot m := rm =\begin{cases*} m + \cdots + m       & \text{ if } r > 0 \\
+               0                    & \text{ if } r = 0 \\
+               (-m) + \cdots + (-m) & \text{ if } r < 0\end{cases*}\]
+		      Then $M$ is a $\ZZ$-module.
+
+		\item $(V,F,+, \cdot)$: $R = F$ a field, $V$ a vector space over $F$.
+		      Define $F \times V \to V$ by $a \cdot v = av$.
+		      Then $V$ is a left $F$-module.
+		      Conversely if $V$ is a $F$-module, then $V$ is a vector space.
+		\item $(R,R,+,\cdot)$: $R$ itself is a left $R$-module where the action of $R$ on $R$ is given by $r \cdot s := rs$.
+		\item $R^n$ is a left $R$-module where $r \cdot (s_1, ..., s_n) = (r s_1, ..., r s_n)$.
+		\item If $S$ is a subring of $R$, then a left $R$-module is automatically a left $S$-module by setting $s \cdot m = s \cdot m$.
+	\end{enumerate}
+\end{ex}
+
+如果$R$是commutative，left $R$-module就自動是right $R$-module(設$m \cdot r := r \cdot m$)，在這個情況下我們就不分left right $R$-module而統稱$R$-module。
+以下我們說module一般指的是left module
+% (Note that right $R$-module requires that $m \cdot (r s) = (m \cdot r) s \cdots (*)$.
+% If $R$ is not commutative, then $\cdot$ may not satisfy $(*)$ because $m \cdot (rs) := (r s) \cdot m$, but $(m \cdot r) s := (rm) \cdot s = s (r \cdot m) = (sr) \cdot m$.)
+% In such a case we'll simple say $M$ is a $R$-module.
+
+\begin{dfn}
+	A \textbf{$\bm{R}$-submodule} $N$ of $M$ is a subgroup of $M$ that is closed under the action of $R$.
+\end{dfn}
+
+\begin{ex}
+	\begin{enumerate}
+		\item[(1)] $(M,\ZZ,+,\cdot)$: $\ZZ$-submodules $\lra$ subgroups.
+
+		\item[(2)] $(V,F,+, \cdot)$:$F$-submodules $\lra$ subspaces.
+
+		\item[(3)]
+			$I$ is a submodule of $R$ $\Lra I$ is a subgroup of $R$ such that $r \cdot a \in I \quad \forall r \in R, a \in I$ $\Lra I$ is a left ideal of $R$.
+			Thus, if $R$ is commutative, then submodules of $R$ $\Lra$ ideals of $F$.
+		\item[(6)] If $M$ is a left $R$-module, $I \normto R$ such that $I \cdot M = 0$ (meaning $a \cdot m = 0 \quad \forall a \in I ,m \in M$).
+			Then $M$ becomes a $(R/I)$-module by setting $(r + I) \cdot m = r \cdot m$.
+
+	\end{enumerate}
+\end{ex}
+
+\begin{ex}
+	$(V, F[x],+,\cdot)$ where the action is defined by
+	\[
+		(a_n x^n + \cdots + a_0)\cdot v := a_n T^n(v) + \cdots + a_1 T(v) + a_0 v
+	\]
+	% $F[x]$-submodules are subspaces
+	where $R = F[x]$ is a polynomial ring over a field $F$, $V$ is a vector space over $F$ and $T: V \to V$ be a linear transformation.
+	(Different $T$ yields a different struture of $V$ as a $F[x]$-module.)
+	Conversely if $V$ is a $F[x]$-module then $V$ is an $F$-module (by (5)) and hence a vector space over $F$.
+	Now the action of $x$ on $V$ defines a linear transformation $T: V \to V$ defined by $T(v) = x \cdot v$.
+	($T(c_1 v_1 + c_2 v_2) = x (c_1 v_1 + c_2 v_2) = (x c_1) \cdot v_1 + (x c_2) \cdot v_2 = c_1 (x \cdot v_1) + c_2 (x \cdot v_2) = c_1 T(v_1) + c_2 T(v_2)$.)
+
+
+	$U$ is a $F[x]$-submodule of $V$
+
+	\noindent $\Lra$ $U$ is a subgroup of $V$ such that $U$ is closed under the action of $F[x]$
+
+	\noindent $\Lra$ $U$ is a subgroup of $V$ such that $a_n T^n (v) + \cdots + a_1 T(v) + a_0 v \in U \quad \forall v \in U$
+
+	\noindent $\Lra$ $U$ is a subgroup of $V$ such that $T(v) \in U$ and $av \in U \quad \forall v \in U, a \in F$.
+
+	\noindent $\Lra$ $U$ is a $T$-invariant subspace of $V$.
+\end{ex}
+
+\begin{prop}[Submodule Criterion]
+	Assume that $R$ is a ring with 1.
+	A nonempty set $N$ of a left $R$-module $M$ is a submodule of $M$ $\Lra x + ry \in N \quad \forall x, y \in N, r \in R$.
+\end{prop}
+
+\begin{proofs}
+	($\Ra$) Clear.
+
+	\par ($\La$) We have seen that a nonempty subset $A$ of an additive subgroup $G$ is a subgroup of $G$ $\Lra x - y \in A \quad \forall x, y \in A$.
+	Here since $R$ has 1 apply the condition $x + ry \in N$ with $r = -1$.
+	We see that $x - y = x + (-1) y \in N$.
+	Thus $N$ is a subgroup of $M$.
+	Then $\forall r \in R, \forall y \in N, ry = 0 + r \cdot y \in N$ by assumption.
+	$\Ra N$ is a subgroup closed under the action of $R$.
+	$\Ra N$ is a submodule.
+\end{proofs}
+
+% \section{Module Homomorphisms and Quotient Modules}
+
+% Under this section all modules are left modules.
+
+% \begin{dfn}
+% 	Let $M, N$ be $R$-modules.
+% 	\begin{enumerate}
+% 		\item[(1)] If $\phi:M \to N$ is a (additive) group homomorphism such that $\phi(r \cdot m) = r \cdot \phi(m) \quad \forall m \in M, \forall r \in R$ then we say $\phi$ is a \textbf{$\bm{R}$-module homomorphism}.
+
+% 		\item[(2)] If $\phi$ is both 1-1 and onto, then we say $\phi$ is a \textbf{$\bm{R}$-module isomorphism}, $M$ and $N$ are \textbf{isomorphic} and write $M \stackrel{\phi}{\simeq} N$.
+
+% 		\item[(3)] $\ker \phi := \{m \in M: \phi(m) = 0\}$, $\Im \phi := \{n \in N: \exists m \in M \text{ such that } \phi(m) = n\}$.
+% 			(Note that $\ker \phi \leq M$ and $\Im \phi \leq N$.)
+% 	\end{enumerate}
+% \end{dfn}
+
+% \begin{ex}
+% 	\begin{enumerate}
+% 		\item[(1)] $R = \ZZ$.
+% 			Then a $\ZZ$-module homomorphism is simply an additive group homomorphism.
+
+% 		\item[(2)] $R = F$.
+% 			A $F$-module is a vector space over $F$.
+% 			Then a $F$-module homomorphism is simple a linear transformation.
+
+% 	\end{enumerate}
+% \end{ex}
+
+% \begin{prop}[Proposition 3]
+% 	Assume that $M$ is an $R$-module and $N \leq M$.
+% 	Define an action of $F$ on $M/N$ (set of cosets of $N$ in $M$) by $r \cdot (a + N) := r \cdot a + N$.
+% 	Then the action is well-defined and $M/N$ becomes an $R$-module under this action of $R$ called the \textbf{quotient of $\bm{M}$ by $\bm{N}$}.
+% 	Moreover, the map $M \mapsto M/N$ defined by $a \mapsto a + N$ is an $R$-module homomorphism with $\ker = N$.
+% \end{prop}
+
+% \begin{proofs}
+% 	Well-definedness:
+% 	If $a + N = b + N$ then $a = b + n$ for some $n \in N$.
+% 	Then
+% 	\[
+% 		\begin{split}
+% 			r \cdot (a + N) &= r \cdot a + N = r \cdot (b + n) + N = r \cdot b + r \cdot n + N\\
+% 			&= r \cdot b + N = r \cdot (b + N)
+% 		\end{split}
+% 	\]
+% 	We skip the proof of other statements.
+% \end{proofs}
+
+% % \begin{ntn}
+% % 	Let $A, B$ be submodules of $M$.
+% % 	Then
+% % 	\[
+% % 		A + B:= \{a + b: a \in A, b \in B\}
+% % 	\]
+% % 	(which is a submodule of $M$ and is the smallest submodule of $M$ containing $A$ and $B$)
+% % \end{ntn}
+
+% \begin{thm}[Theorem 4 Isomorphism Theorems]
+% 	\begin{enumerate}
+% 		\item[(1)] Let $\phi: M \to N$ be an $R$-module homomorphism.
+% 			Then $M/\ket \phi \simeq \Im \phi$.
+
+% 		\item[(2)] If $A, B \leq M$, then
+% 			\[
+% 				\quot{(A + B)}{B} \simeq \quot{A}{A \cap B}
+% 			\]
+
+% 		\item[(3)] If $A \leq B \leq M$, then
+% 			\[
+% 				\quot{M/A}{B/A} \simeq \quot{M}{B}
+% 			\]
+
+% 		\item[(4)] Let $N \leq M$.
+% 			Then there exists a bijection between \{submodules of $M$ containing $N$\} and \{submodules of $M/N$\}, which is $L: N \leq L \leq M \lra L/N$.
+% 	\end{enumerate}
+% \end{thm}
+
+% \begin{dfn}
+% 	Let $M$ be an $R$-module.
+
+% 	\begin{enumerate}
+% 		\item[(1)] Let $A$ be a subset of $M$.
+% 			Then $RA := \{r_1 a_1 + \cdots + r_n a_n: n > 0, r_j \in R, a_j \in A\}$ is called the \textbf{submodule generated by $\bm{A}$}.
+% 			(If $R$ has 1, then $RA$ is the smallest submodule containing $A$.)
+
+% 		\item[(2)] Let $N \leq M$.
+% 			If $A$ is a subset of $M$ such that $N = RA$, then we say $A$ is a \textbf{generating set} or a \textbf{set of generators} for $N$.
+% 			If $|A| < \infty$, then we say $N$ is \textbf{fintely generated}.
+
+% 		\item[(3)] If $N = Ra (:= \{ra: r \in R\})$, then we say $N$ is the \textbf{cyclic submodule generated by $\bm{A}$}.
+% 	\end{enumerate}
+% \end{dfn}
+
+% \begin{ex}
+% 	\begin{enumerate}
+% 		\item[(1)] $R = \ZZ$.
+% 			Then $\ZZ a = \{ra: r \in \ZZ\} = \ev{a}$ is the cyclic subgroup generated by $a$.
+
+% 		\item[(2)] $M = R$.
+% 			Then $RA = $ left ideal generated by $A$ and for $a \in R$, $Ra =$ left ideal generated by $a$.
+
+% 		\item[(3)] Let $F$ be a field, $V$ a vector space over $F$.
+% 			Let $T: V \to V$ be a linear transformation.
+% 			Recall that $T$ gives rise to an $F[x]$-module structure on $V$ by $(a_n x^n + \cdots + a_n) \cdot v := a_n T^n (v) + \cdots + a_1 T(v) + a_0 v$.
+% 			Then $U$ is the cyclic $F[x]$-submodule generated by $v$
+% 			$\Lra U = \{a_n T^n(v) + \cdots + a_0 v: n \geq 0, a_j \in F\}$
+% 			$\Lra T\text{-cyclic subspace of } V \text{ generated by }V$
+
+% 	\end{enumerate}
+% \end{ex}
 
 \end{document}
 

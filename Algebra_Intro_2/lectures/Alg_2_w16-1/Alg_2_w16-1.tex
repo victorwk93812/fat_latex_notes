@@ -1,0 +1,657 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{soul}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{fancyhdr, lipsum}
+\usepackage{ulem}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% \setCJKmainfont[Path = ../../../fonts/, AutoFakeBold]{edukai-5.0.ttf}
+% \setCJKmainfont[Path = ../../fonts/, AutoFakeBold]{NotoSansTC-Regular.otf}
+% set your own font :
+% \setCJKmainfont[Path = <Path to font folder>, AutoFakeBold]{<fontfile>}
+\usepackage{mathrsfs}
+% use \mathscr{A} in math mode for scripty A
+\usepackage{physics}
+% \setCJKmainfont{AR PL KaitiM Big5}
+% \setmainfont{Times New Roman}
+\usepackage{multicol}
+\usepackage{zhnumber}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[
+	a4paper,
+	top=2cm, 
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	includehead, includefoot,
+	heightrounded
+]{geometry}
+% \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xltxtra}
+\usepackage{biblatex} % 引用
+\usepackage{caption} % 調整caption位置: \captionsetup{width = .x \linewidth}
+\usepackage{subcaption}
+% Multiple figures in same horizontal placement
+% \begin{figure}[H]
+%      \centering
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[H]{0.4\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{}
+%          \caption{subCaption}
+%          \label{fig:my_label}
+%      \end{subfigure}
+%         \caption{Caption}
+%         \label{fig:my_label}
+% \end{figure}
+\usepackage{wrapfig}
+% Figure beside text
+% \begin{wrapfigure}{l}{0.25\textwidth}
+%     \includegraphics[width=0.9\linewidth]{overleaf-logo} 
+%     \caption{Caption1}
+%     \label{fig:wrapfig}
+% \end{wrapfigure}
+\usepackage{float}
+%% 
+\usepackage{calligra}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{gensymb}
+% Citing a website:
+% @misc{name,
+%   title = {title},
+%   howpublished = {\url{website}},
+%   note = {}
+% }
+\usepackage{framed}
+% \begin{framed}
+%     Text in a box
+% \end{framed}
+%%
+
+\usepackage{array}
+\newcolumntype{F}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{M}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{E}{>{$}r<{$}} % math-mode version of "r" column type
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}} % Centered, length-customizable environment
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}} % Left-aligned, length-customizable environment
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}} % Right-aligned, length-customizable environment
+
+% \begin{center}
+% \begin{tabular}{|C{3em}|c|l|}
+%     \hline
+%     a & b \\
+%     \hline
+%     c & d \\
+%     \hline
+% \end{tabular}
+% \end{center}    
+
+
+
+\usepackage{bm}
+% \boldmath{**greek letters**}
+\usepackage{tikz}
+\usepackage{titlesec}
+% standard classes:
+% http://tug.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf#subsection.8.2
+ % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+% Set title format
+% \titleformat{\subsection}{\large\bfseries}{ \arabic{section}.(\alph{subsection})}{1em}{}
+\usepackage{amsthm}
+\usetikzlibrary{shapes.geometric, arrows}
+% https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts
+
+% \tikzstyle{typename} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \begin{tikzpicture}[node distance = 2cm]
+
+% \node (name) [type, position] {text};
+% \node (in1) [io, below of=start, yshift = -0.5cm] {Input};
+
+% draw (node1) -- (node2)
+% \draw (node1) -- \node[adjustpos]{text} (node2);
+
+% \end{tikzpicture}
+
+%%
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+%%
+%%
+% A very large matrix
+% \left(
+% \begin{array}{ccccc}
+% V(0) & 0 & 0 & \hdots & 0\\
+% 0 & V(a) & 0 & \hdots & 0\\
+% 0 & 0 & V(2a) & \hdots & 0\\
+% \vdots & \vdots & \vdots & \ddots & \vdots\\
+% 0 & 0 & 0 & \hdots & V(na)
+% \end{array}
+% \right)
+%%
+
+% amsthm font style 
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Reference_guide
+
+% 
+%\theoremstyle{definition}
+%\newtheorem{thy}{Theory}[section]
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{ex}{Example}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{dfn}{Definition}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem*{clm}{Claim}
+%%\theoremstyle{remark}
+%\newtheorem*{sol}{Solution}
+
+
+
+\theoremstyle{definition}
+\newtheorem{thy}{Theory}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{rem}{Remark}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem*{clm}{Claim}
+%\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+\newtheorem*{ntn}{Notation}
+
+% Proofs with first line indent
+\newenvironment{proofs}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+\newenvironment{sols}[1][]{%
+  \begin{sol}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{sol}
+}
+\newenvironment{exs}[1][]{%
+  \begin{ex}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ex}
+}
+\newenvironment{rems}[1][]{%
+  \begin{rem}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{rem}
+}
+\newenvironment{dfns}[1][]{%
+  \begin{dfn}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{dfn}
+}
+\newenvironment{clms}[1][]{%
+  \begin{clm}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{clm}
+}
+\newenvironment{thms}[1][]{%
+  \begin{thm}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{thm}
+}
+\newenvironment{ntns}[1][]{%
+  \begin{ntn}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{ntn}
+}
+%%%%
+%Lists
+%\begin{itemize}
+%  \item ... 
+%  \item ... 
+%\end{itemize}
+
+%Indexed Lists
+%\begin{enumerate}
+%  \item ...
+%  \item ...
+
+%Customize Index
+%\begin{enumerate}
+%  \item ... 
+%  \item[$\blackbox$]
+%\end{enumerate}
+%%%%
+% \usepackage{mathabx}
+% Defining a command
+% \newcommand{**name**}[**number of parameters**]{**\command{#the parameter number}*}
+% Ex: \newcommand{\kv}[1]{\ket{\vec{#1}}}
+% Ex: \newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+% \renewcommand{\figurename}{圖}
+\newcommand{\sfa}{\text{  } \forall}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+\usepackage{xfrac}
+%\usepackage{faktor}
+%% The command \faktor could not run properly in the pc because of the non-existence of the 
+%% command \diagup which sould be properly included in the amsmath package. For some reason 
+%% that command just didn't work for this pc 
+\newcommand*\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
+\newcommand{\bracket}[1]{\langle #1 \rangle}
+
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+	\left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+	#1
+	\right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+	\mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+	#2
+	\mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+% \opnorm{a}        % normal size
+% \opnorm[\big]{a}  % slightly larger
+% \opnorm[\Bigg]{a} % largest
+% \opnorm*{a}       % \left and \right
+
+
+\newcommand\dunderline[2][.4pt]{%
+  \raisebox{-#1}{\underline{\raisebox{#1}{\smash{\underline{#2}}}}}}
+\newcommand{\cul}[2][black]{\color{#1}\underline{\color{black}{#2}}\color{black}}
+
+\newcommand{\A}{\mathcal A}
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\BB}{\mathbb B}
+\newcommand{\C}{\mathcal C}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\G}{\mathcal G}
+\newcommand{\GG}{\mathbb G}
+\renewcommand{\H}{\mathcal H}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\I}{\mathcal I}
+\newcommand{\II}{\mathbb I}
+\newcommand{\J}{\mathcal J}
+\newcommand{\JJ}{\mathbb J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\KK}{\mathbb K}
+\renewcommand{\L}{\mathcal L}
+\newcommand{\LL}{\mathbb L}
+\newcommand{\M}{\mathcal M}
+\newcommand{\MM}{\mathbb M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\NN}{\mathbb N}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\OO}{\mathbb O}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\R}{\mathcal R}
+\newcommand{\RR}{\mathbb R}
+\renewcommand{\S}{\mathcal S}
+\renewcommand{\SS}{\mathbb S}
+\newcommand{\T}{\mathcal T}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\U}{\mathcal U}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\V}{\mathcal V}
+\newcommand{\VV}{\mathbb V}
+\newcommand{\W}{\mathcal W}
+\newcommand{\WW}{\mathbb W}
+\newcommand{\X}{\mathcal X}
+\newcommand{\XX}{\mathbb X}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\YY}{\mathbb Y}
+\newcommand{\Z}{\mathcal Z}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\ru}{\rightharpoonup}
+\newcommand{\lu}{\leftharpoonup}
+\newcommand{\rd}{\rightharpoondown}
+\newcommand{\ld}{\leftharpoondown}
+\newcommand{\Gal}{\text{Gal}}
+\newcommand{\id}{\text{id}}
+\newcommand{\dist}{\text{dist}}
+\newcommand{\cha}{\text{char}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\normto}{\trianglelefteq}
+\newcommand{\snormto}{\triangleleft}
+
+\linespread{1.5}
+\pagestyle{fancy}
+\title{Intro to Algebra 2 W16-1}
+\author{fat}
+% \date{\today}
+\date{June 5, 2024}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Intro to Algebra 2 W16-1}
+
+\begin{rem}
+	\begin{enumerate}
+		\item[(1)] Suppose that $x_1, ..., x_m \in M$ ($M$ a $R$-module) and $y_1, ..., y_m$ are related by
+			\[
+				\begin{pmatrix}
+					y_1\\
+					\vdots\\
+					y_m
+				\end{pmatrix}
+				= M
+				\begin{pmatrix}
+					x_1\\
+					\vdots\\
+					x_m
+				\end{pmatrix}
+				\cdots (*)
+			\]
+			for some $M \in GL(m, R)$.
+			Then
+			\[
+				R x_1 + \cdots + R x_m = R y_1 + \cdots + R y_m
+			\]
+
+			\begin{proofs}
+				$(*) \Ra y_j \in R x_1 + \cdots + R x_m \forall j \Ra R.H.S. \subseteq L.H.S$.
+				
+				\par Then since $M$ is invertible, we also have
+				\[
+					\begin{pmatrix}
+						x_1\\
+						\vdots\\
+						x_m
+					\end{pmatrix}
+					= M^{-1}
+					\begin{pmatrix}
+						y_1\\
+						\vdots\\
+						y_m
+					\end{pmatrix}
+				\]
+				By the same reason, $L.H.S. \subseteq R.H.S.$.
+			\end{proofs}
+			Now let $A, U, V, x_1, ..., x_m, v_1, ..., v_n$ be given in the lemma.
+			Let $D = U A V$ be the diagonal matrix with indices $d_i$ as in the lemma.
+			Then we have
+			\[
+				\begin{pmatrix}
+					v_1\\
+					\vdots\\
+					v_n
+				\end{pmatrix}
+				= A
+				\begin{pmatrix}
+					x_1\\
+					\vdots\\
+					x_m
+				\end{pmatrix}
+				= U^{-1} D V^{-1}
+				\begin{pmatrix}
+					x_1\\
+					\vdots\\
+					x_m
+				\end{pmatrix}
+			\]
+			By the remark earlier, if we let
+			\[
+				\begin{pmatrix}
+					y_1\\
+					\vdots\\
+					y_n
+				\end{pmatrix}
+				= V^{-1}
+				\begin{pmatrix}
+					x_1\\
+					\vdots\\
+					x_m
+				\end{pmatrix}
+				\cdots (**)
+			\]
+			then $\{y_1, ..., y_m\}$ is also a basis for $M$. 
+			(By the remark $R y_1 + \cdots + R y_m = R x_1 + \cdots + T x_m = M$.
+			Moreover, if $y_1, ..., y_m$ has a nontrivial relation then using $(**)$ we also get a nontrivial $R$-linear relation among $x_j$, which is absurd.)
+			Also, set
+			\[
+				\begin{pmatrix}
+					w_1\\
+					\vdots\\
+					w_n
+				\end{pmatrix}
+				= U
+				\begin{pmatrix}
+					v_1\\
+					\vdots\\
+					v_n
+				\end{pmatrix}
+			\]
+			Then $R w_1 + \cdots + R w_n = R v_1 + \cdots + R v_n = N$.
+			Now
+			\[
+				\begin{pmatrix}
+					w_1\\
+					\vdots\\
+					w_n
+				\end{pmatrix}
+				= U
+				\begin{pmatrix}
+					v_1\\
+					\vdots\\
+					v_n
+				\end{pmatrix}
+				= D V^{-1} 
+				\begin{pmatrix}
+					x_1\\
+					\vdots\\
+					x_m
+				\end{pmatrix}
+				= D
+				\begin{pmatrix}
+					y_1\\
+					\vdots\\
+					y_m
+				\end{pmatrix}
+			\]
+			This shows that $V$ is a free $R$-module with basis $d_1 y_1, ..., d_k y_k$
+			(No nontrivial $R$-linear relation since $y_1, ..., y_m$ do not have one.)
+		\item[(2)] In the proof of Lemma, we'll see that $U$ and $V$ are products of matrices of the form\\
+			
+			\par For such a matrix $S$, it's easy to see that 
+			\[
+				\delta_j(SA) = \delta_j(A)
+			\]
+			\[
+				\delta_j(AS) = \delta_j(A)
+			\]
+			Then we have 
+			\[
+				\delta_j(A) = \delta_j(D) = d_1 \cdots d_j
+			\]
+			\[
+				\Ra d_j = \frac{\delta_j(A)}{\delta_{j - 1}(A)}
+			\]
+	\end{enumerate}
+\end{rem}
+
+\begin{proofs}[Proof of the lemma]
+	It remains to prove the existence of $U, V$.
+	Our proof is algorithmic.
+	\begin{enumerate}
+		\item[(1)] If $a_{ij} = 0 \quad \forall i, j$, nothing to be done.
+			If $a_{ij} \neq 0$ for some $i, j$, let $V$ be the matrix corresponding to the interchange of the first column and the $j$-th column.
+			Set $A := AV$.
+			Then the entries of the first column of $A = (a_{ij})$ will not be all 0.
+
+		\item[(2)] Let $d_1 = \gcd (a_{11}, a_{21}, ..., a_{n1})$. 
+			Find $U \in GL(n, R)$ such that $UA$ has first column of the form $\left(\begin{smallmatrix}
+				d_1\\
+				0\\
+				\vdots\\
+				0
+			\end{smallmatrix}\right)$. 
+			(Details to be given later)
+			Set $A = UA$.
+
+		\item[(3)] Let $d_1' = \gcd(a_{11} = d_1, ..., a_{1m})$.
+			Find $V \in GL(n, R)$ such that $AV$ has the first row of the form $(d_1' \, 0 \, \cdots \, 0)$.
+			(Note that the first column may not be of the form in step 2.)
+			Set $A := AV$.
+
+		\item[(4)] Repeat step 2 and 3 until $A$ becomes\\
+
+			\par Note that each time we apply step 2 the new $d_1$ we get will be a divisor of the old $d_1$.
+			Since $R$ is a PID, this $D_1$ must eventually stabilize.
+			$d_1^{\text{new}} | d_1^{\text{old}} \Ra (d_1^{\text{old}}) \subseteq (d_1^{\text{new}}) \subseteq \cdots$.
+			When $d_1$ is stabilized, we have $d_1 = d_1' = \gcd(d_1, a_{12}, ..., a_{1m})$.
+			$\Ra d_1 | a_{12}, a_{13}, ..., a_{1m}$.
+			In this case, the matrix $V$ in step 3 is \\
+
+		\item[(5)] Let $A'$ be the submatrix in 
+			\[
+				A = 
+				\begin{pmatrix}
+					d_1 & 0\\
+					0 & A'
+				\end{pmatrix}
+			\]
+			Apply step 1-4 on $A'$ and get the first two rows and columns diagonalized with entries $d_1, d_2$.
+			Repeat until we get the diagonalized $d_1, ..., d_k, 0, ..., 0$ matrix.
+
+		\item[(6)] (Note that the $d_1, ..., d_k$ from step 5 may not satisfy $d_1 | d_2 | \cdots$.)
+			For $j = 2, ..., k$, if $d_1 \not| \, d_j$, we apply step 2 and 3 to the matrix\\
+
+			\par After we run through $j = 2, ..., k$, the new $d_1, ..., d_k$ will satisfy $d_1 | d_2 , \cdots , d_k$.
+			Then we do the same thing on $d_2, ..., d_k$.
+			In this way, we'll get $U, V$ with $UAV$ in the form of a diagonal matrix with entries $d_1, ..., d_k, 0, ..., 0$ and $d_1 | d_2 | \cdots | d_k$.
+	\end{enumerate}
+\end{proofs}
+
+\begin{proofs}[Proof of Theorem 4]
+	Let $\{x_1, ..., x_m\}$ be a basis for $M$.
+	Define a sequence $v_1, v_2, ... \in N$ as follows.
+	Pick $v_1 \in N \setminus \{0\}$ and set $N_1 = R v_1$.
+	If $N_1 \neq N$, pick $v_2 \in N \setminus N_1$ and set $N_2 = R v_1 + R v_2$.
+	In general, if $N_k \neq N$, pick $v_{k + 1} \in N \setminus N_k$ and set $N_{k + 1} = R v_1 + \cdots + R v_{k + 1}$.
+	For any $l > 0$, be Lemma above, there exists a basis $\{y_1, ..., y_m\}$ for $M$ and $d_1 | \cdots | d_k \in R$ such that $d_1 y, ..., d_k y_k$ is a basis for $N_l = R v_1 + \cdots + R v_l$.
+	Now consider $N_{l + 1} = N_l + R v_{l + 1} = R d_1 y_1 + \cdots + R d_k y_k + R v_{l + 1}$.
+	Apply the lemma again.
+	Note that the matrix $A$ in the lemma is\\
+
+	\par The new $d_1^{\text{new}}$ will be $\gcd(d_1^{\text{old}}, ..., d_k, b_1, ..., b_m)$ which is a divisor of $d_1^{\text{old}}$.
+	We repeat the argument to $v_{l + 2}, v_{l + 3}, ...$.
+	Each time we will get a new $d_1$, which will be a divisor of the previous $d_1$.
+	Since $R$ is a PID, this sequence of $d_1$ wilil eventually stabilize.
+	By the same reasoning, $d_2, d_3, ..., d_k$ will stabilize.
+	When all $d_1, ..., d_k$ are stabilized, this means $N_l$ are also stabilized, i.e., $v_1, ..., v_l$ cannot be an infinite sequence and we have $N = N_l$ for some $l$ and $d_1, ..., d_k$ we get at the end is what we claim in the theorem.
+\end{proofs}
+
+\begin{ex}
+	Determine the structure of $\ZZ^3/G$ where $G$ is the subgroup generated by $(1 \, 2 \, 3), (4 \, 5 \, 6), (7 \, 8 \, 9)$.
+	\[
+		A = 
+		\begin{pmatrix}
+			1 & 2 & 3\\
+			4 & 5 & 6\\
+			7 & 8 & 9
+		\end{pmatrix}
+	\]
+	\[
+		\delta_0(A) = 1
+	\]
+	\[
+		\delta_1(A) = \gcd(1, ..., 9) = 1
+	\]
+	\[
+		\delta_2(A) = \cdots = 3
+	\]
+	\[
+		\delta_3(A) = \det A = 0
+	\]
+	\[
+		\Ra D = 
+		\begin{pmatrix}
+			1 & 0 & 0\\
+			0 & 3 & 0\\
+			0 & 0 & 0
+		\end{pmatrix}
+	\]
+	\[
+		\Ra \ZZ^3/G \simeq \quot{\ZZ}{(1)} \oplus \quot{\ZZ}{(3)} \oplus \ZZ \simeq \ZZ \oplus \quot{\ZZ}{3 \ZZ}
+	\]
+\end{ex}
+
+Problems in Final
+\begin{enumerate}
+	\item $\ZZ^n/G$
+
+	\item Properties of modules from the exercise
+
+	\item $\Gal(f)$ for $f = x^4 - ax^2 + b$
+
+	\item Galois theory for finite field
+
+	\item Cyclotomic polynomials
+
+	\item (If exists) General properties of Galois
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

@@ -1,5 +1,7 @@
 # LaTeX Notes on Algebra and Analysis
 
+(2024/08/28 update by victorwk93812: This repo is currently not under maintenance.)  
+
 For pdf files clone this repo and compile this on your local host or checkout the underlying google drives.
 
 **Lectures:**  
